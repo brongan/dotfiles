@@ -1,0 +1,18 @@
+[Desktop Entry]
+DefaultProfile=My Profile.profile
+
+[Favorite Profiles]
+Favorites=My Profile.profile
+
+[MainWindow]
+Height 1016=480
+Height 1080=650
+Height 679=650
+Height 720=1015
+Height 987=898
+State=AAAA/wAAAAD9AAAAAAAABLgAAAJsAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled
+Width 1208=1206
+Width 1280=1920
+Width 1920=1206
+Window-Maximized 1016x1920=true
