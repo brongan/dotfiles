@@ -76,5 +76,5 @@ POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh custom_user dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs status time battery)
 
-source $ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme 
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
