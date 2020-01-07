@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-stow config -t ~/.config
+stow config
 stow fonts -t ~/.fonts
 stow git
 stow konsole -t ~/.local/share/konsole

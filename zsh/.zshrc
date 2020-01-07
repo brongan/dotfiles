@@ -73,6 +73,7 @@ alias nano="vim"
 alias untar="tar -xvzf"
 alias sshhosts="sed -rn 's/^\s*Host\s+(.*)\s*/\1/ip' ~/.ssh/config"
 
-
-alias dingbat="tmux new -d -s lol 'WINEPREFIX=~/Games-Wine/LoL WINEARCH=win32 /opt/wine-lol/bin/wine ~/Games-Wine/LoL/drive_c/Riot\ Games/League\ of\ Legends/LeagueClient.exe'"
-
+alias dingbat="tmux new -d -s lol 'DXVK_STATE_CACHE=1 WINEPREFIX=~/Games/Games-Wine/LoL WINEARCH=win32 /opt/wine-lol/bin/wine ~/Games/Games-Wine/LoL/drive_c/Riot\ Games/League\ of\ Legends/LeagueClient.exe'"
+alias kill-orphans="sudo pacman -Rns $(pacman -Qtdq)"
+alias attach_headphones="sudo virsh attach-device win10 --file $HOME/dev/kvm_scripts/headset.xml> --config"
+alias detach_headphones="sudo virsh detach-device win10 --file $HOME/dev/kvm_scripts/headset.xml> --config"

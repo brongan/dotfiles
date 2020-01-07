@@ -1,12 +1,8 @@
 # This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
-#	name = ""
-#	email = Brong@LAPTOP-295L97N9.localdomain
-[user]
 	name = Brennan Tracy
 	email = brennantracy4@gmail.com
-	signingkey = 17DAC148E3F12D7A
+	signingkey = D0751117FC26D8665926B025DA4AC9060742E98C
 [push]
 	default = simple
 [color]
@@ -40,3 +36,5 @@
   untrack = rm --cache --
 [commit]
 	gpgsign = true
+[pull]
+	rebase = true
