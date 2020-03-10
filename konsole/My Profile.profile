@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=Sweet
-Font=Hack,12,-1,5,50,0,0,0,0,0,Regular
+Font=Fira Code Retina,12,-1,5,53,0,0,0,0,0,Regular
 
 [General]
 Command=/bin/zsh

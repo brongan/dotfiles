@@ -47,6 +47,7 @@ Plug 'wincent/terminus'
 Plug 'tpope/vim-repeat'
 Plug 'valloric/youcompleteme'
 Plug 'lervag/vimtex'
+Plug 'chrisbra/csv.vim'
 " Initialize plugin system
 call plug#end()
 
