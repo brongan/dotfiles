@@ -48,6 +48,8 @@ Plug 'tpope/vim-repeat'
 Plug 'valloric/youcompleteme'
 Plug 'lervag/vimtex'
 Plug 'chrisbra/csv.vim'
+Plug 'chriskempson/base16-vim'
+
 " Initialize plugin system
 call plug#end()
 
