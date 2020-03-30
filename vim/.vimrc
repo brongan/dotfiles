@@ -49,6 +49,8 @@ Plug 'valloric/youcompleteme'
 Plug 'lervag/vimtex'
 Plug 'chrisbra/csv.vim'
 Plug 'chriskempson/base16-vim'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc'
 
 " Initialize plugin system
 call plug#end()

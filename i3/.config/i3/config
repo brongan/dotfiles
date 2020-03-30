@@ -55,7 +55,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -187,6 +187,9 @@ bindsym $mod+d exec rofi --no-startup-id -show drun
 # flash current window
 bindsym $mod+n exec --no-startup-id flash_window
 
+# Screenshot + copy to clipboard
+bindsym $mod+Print exec --no-startup-id maim -x $DISPLAY -B --format=png /dev/stdout | xclip -selection clipboard -t image/png -i
+
 #*********************************************************************************
 
 #	Startup
@@ -197,7 +200,8 @@ exec --no-startup-id feh --bg-scale ~/Downloads/CyberneticBackground.jpg
 exec_always --no-startup-id compton
 exec --no-startup-id flashfocus
 exec --no-startup-id conky -c ~/.config/conky/conkyrc
-exec --no-startup-id polybar -c ~/.config/polybar/config example
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id keepassxc
 
 #********************************************************************************
 

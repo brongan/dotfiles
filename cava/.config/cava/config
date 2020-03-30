@@ -18,7 +18,6 @@
 # Manual sensitivity in %. Autosens must be turned off for this to take effect.
 # 200 means double height. Accepts only non-negative values.
 ; sensitivity = 100
-sensitivity = 5
 
 # The number of bars (0-200). 0 sets it to auto (fill up console).
 # Bars' width and space between bars in number of characters.
@@ -34,11 +33,18 @@ sensitivity = 5
 ; lower_cutoff_freq = 50
 ; higher_cutoff_freq = 10000
 
+# FFT buffer is set in the exponent of 2 and must be between 8 - 16, 8 = 256, 16 = 65536
+# this is the audio buffer used to create the spectrum
+# increasing the will improve the accuracy of the visualization, 
+# but will also make it slower and increase CPU usage
+# anything below 10 and above 13 is considered experimental. 
+; FFTbufferSize = 12;
+
 
 
 [input]
 
-# Audio capturing method. Possible methods are: 'pulse', 'alsa' or 'fifo'.
+# Audio capturing method. Possible methods are: 'pulse', 'alsa', 'fifo', 'sndio' or 'shmem'
 # Defaults to 'pulse', 'alsa' or 'fifo', in that order, dependent on what support cava was built with.
 #
 # All input methods uses the same config variable 'source'
@@ -49,6 +55,7 @@ sensitivity = 5
 # 
 # For alsa 'source' will be the capture device.
 # For fifo 'source' will be the path to fifo-file.
+# For shmem 'source' will be /squeezelite-AA:BB:CC:DD:EE:FF where 'AA:BB:CC:DD:EE:FF' will be squeezelite's MAC address
 ; method = pulse
 ; source = auto
 
@@ -58,13 +65,16 @@ sensitivity = 5
 ; method = fifo
 ; source = /tmp/mpd.fifo
 
+; method = shmem
+; source = /squeezelite-AA:BB:CC:DD:EE:FF
 
 
 [output]
 
 # Ouput method. Can be 'ncurses', 'noncurses' or 'raw'. 
 # 'noncurses' is for systems that does not suport ncurses.
-# 'raw' is a 16 bit data stream of the bar heights that can be used to send to other applications.
+# 'raw' is an 8 or 16 bit (configurable via the 'bit_format' option) data
+# stream of the bar heights that can be used to send to other applications.
 # 'raw' defaults to 200 bars, which can be adjusted in the 'bars' option above.
 ; method = ncurses
 
@@ -103,9 +113,11 @@ sensitivity = 5
 # Gradient mode, only hex defined colors are supported, background must also be defined in hex
 # or remain commented out. 1 = on, 0 = off. Warning: for certain terminal emulators cava will
 # not able to restore color definitions on exit, simply restart your terminal to restore colors.
-gradient = 1
-gradient_color_1 = '#0099ff'
-gradient_color_2 = '#ff3399'
+ gradient = 1
+; gradient_count = 2
+ gradient_color_1 = '#0099ff'
+ gradient_color_2 = '#ff3399'
+
 
 
 [smoothing]
@@ -137,3 +149,5 @@ gradient_color_2 = '#ff3399'
 ; 3 = 1 # midtone
 ; 4 = 1
 ; 5 = 1 # treble
+
+
