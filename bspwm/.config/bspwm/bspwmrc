@@ -1,0 +1,30 @@
+#! /bin/sh
+
+bspc monitor -d I
+
+# border color
+# bspc config normal_border_color "$(get_xrdb background)"
+# bspc config focused_border_color "$(get_xrdb color12)"
+bspc config border_width         3
+bspc config window_gap           12
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config single_monocle       true
+bspc config focus_follows_pointer false
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Caprine desktop='^2'
+bspc rule -a Discord desktop='^2'
+bspc rule -a Firefox desktop='^3'
+bspc rule -a Rofi state=floating
+
+# pointer
+xsetroot -cursor_name left_ptr
+
+# background
+/usr/bin/feh --bg-center ~/Desktop/CyberneticBackground.jpg
+

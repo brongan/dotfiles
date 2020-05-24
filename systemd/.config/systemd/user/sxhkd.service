@@ -1,0 +1,10 @@
+[Unit]
+Descriptio=Simple X Hotkey Daemon
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/sxhkd
+
+[Install]
+WantedBy=xinit.target
+

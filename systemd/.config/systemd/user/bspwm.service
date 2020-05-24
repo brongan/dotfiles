@@ -1,0 +1,10 @@
+[Unit]
+Descriptio=Binary Splitting Window Manager
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/bspwm
+
+[Install]
+WantedBy=xinit.target
+

@@ -1,0 +1,10 @@
+[Unit]
+Descriptio=Compositor
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/compton
+
+[Install]
+WantedBy=xinit.target
+

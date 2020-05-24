@@ -1,0 +1,10 @@
+[Unit]
+Descriptio=Compositor
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/polybar -c %h/.config/polybar/config.ini %i
+
+[Install]
+WantedBy=xinit.target
+

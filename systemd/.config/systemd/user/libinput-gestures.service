@@ -1,0 +1,10 @@
+[Unit]
+Descriptio=Python script to parse libinput and run commands based on gesturse
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/libinput-gestures
+
+[Install]
+WantedBy=xinit.target
+

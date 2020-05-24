@@ -1,0 +1,8 @@
+configuration {
+ modi: "window,drun,ssh,combi";
+ theme: "slate";
+ font: "Noto Sans 12";
+ combi-modi: "window,drun,ssh";
+ show-icons: true;
+ }
+

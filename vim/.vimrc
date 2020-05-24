@@ -25,7 +25,7 @@ nmap <leader>w :w!<cr>
 nmap <leader>q :q!<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugins, 
+" => Plugins,
 " :PlugInstall to install plugins, :PlugUpdate to update or install
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -51,6 +51,7 @@ Plug 'chrisbra/csv.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc'
+Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -72,16 +73,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " =>  Save Stuff
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" :W sudo saves the file 
+" :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
 " Line number and mouse point
-set number
 set mouse=a
 
 " Clipboard set to global and ctrl c/v maps
-" set clipboard=unnamedplus
 vmap <C-c> "+y
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
@@ -120,20 +119,23 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
 set hlsearch
 
 " Makes search act like search in modern browsers
-set incsearch 
+set incsearch
 
 " Add a bit extra margin to the left
 set foldcolumn=1
 
 " Disable comment continuation
 set formatoptions-=cro
+
+" Hybrid Line Numbers
+set number relativenumber
 
 " Underline when going to insert mode
 " autocmd InsertEnter,InsertLeave * set cul!
@@ -142,7 +144,7 @@ set formatoptions-=cro
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax enable 
+syntax enable
 
 " Set 256 color palette
 set t_Co=256
@@ -205,8 +207,8 @@ map <C-l> <C-W>l
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -257,6 +259,17 @@ endfunction
 
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
-""" Make Clipboard Intelligent 
+""" Make Clipboard Intelligent
 set clipboard=unnamedplus
+
+
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py
+  endif
+endfunction
 

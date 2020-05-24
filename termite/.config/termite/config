@@ -1,5 +1,5 @@
 [options]
-font = iosevka 12
+font = monospace 12
 
 [colors]
 # special
