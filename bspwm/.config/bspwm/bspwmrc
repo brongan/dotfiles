@@ -1,6 +1,6 @@
 #! /bin/sh
 
-bspc monitor -d I
+bspc monitor -d I II III IV V
 
 # border color
 # bspc config normal_border_color "$(get_xrdb background)"
@@ -17,14 +17,13 @@ bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc rule -a Caprine desktop='^2'
-bspc rule -a Discord desktop='^2'
-bspc rule -a Firefox desktop='^3'
+bspc rule -a Caprine   desktop='^5'
+bspc rule -a Discord   desktop='^5'
+bspc rule -a Firefox   desktop='^1'
+bspc rule -a Keepassxc desktop='^1'
 bspc rule -a Rofi state=floating
+bspc rule -a Zathura state=tiled
 
 # pointer
 xsetroot -cursor_name left_ptr
-
-# background
-/usr/bin/feh --bg-center ~/Desktop/CyberneticBackground.jpg
 

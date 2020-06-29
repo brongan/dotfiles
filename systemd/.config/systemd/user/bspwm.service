@@ -1,5 +1,6 @@
 [Unit]
-Descriptio=Binary Splitting Window Manager
+Description=Binary Splitting Window Manager
+Wants=sxhkd.service
 
 [Service]
 Type=simple

@@ -1,5 +1,6 @@
 [Unit]
-Descriptio=Compositor
+Description=Bar
+Wants=bspwm
 
 [Service]
 Type=simple

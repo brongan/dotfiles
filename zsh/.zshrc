@@ -4,30 +4,16 @@
 #  / /_\__ \ | | | | | (__
 # /____|___/_| |_|_|  \___|
 
-# Exports
-export VISUAL="/usr/bin/vim"
-export EDITOR="$VISUAL"
-export SYSTEMD_EDITOR=$EDITOR
-export ZSH="$HOME/.oh-my-zsh"
-export LC_ALL=en_US.UTF-8
-export TERMINAL=kitty
-export LESS="-R" # show colors
-export LESSOPEN="| bat %s"
-export PAGER=less
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export TERM="xterm-256color"
-export GPG_TTY=$(tty)
-export MALMO_XSD_PATH="$HOME/MalmoPlatform/Schemas"
-
 # FZF stuff
 FD_OPTIONS="--follow --exclude .git --exclude node_modules"
-export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi --inline-info --preview'[[ \$(file --mine {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {}) 2> /dev/null"
+export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi --inline-info --preview '([[ -d {} ]] && tree -aC {}) || ([[ -f {} ]] && bat --color=always --style=header,grid --line-range :300 {})'"
 export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPTIONS"
 export FZF_CTRL_T_COMMAND="fd --type d $FD_OPTIONS"
 export FZF_ALT_C_COMMAND="fd --type f --hidden $FD_OPTIONS"
 
-# Show OS info when opening a new terminal
-neofetch
+# NNN
+export NNN_PLUG='o:fzopen;v:preview-kitty'
+export NNN_FIFO=/tmp/nnn.fifo
 
 # Command execution time stamp shown in the history command output.
 HIST_STAMPS="mm/dd/yyyy"
@@ -53,6 +39,8 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+source /usr/share/vim/vimfiles/gruvbox_256palette.sh
+(cat ~/.cache/wal/sequences &)
 
 autoload -Uz compinit && compinit
 
@@ -60,9 +48,11 @@ bindkey -v # vi mode
 
 # Aliases for a few useful commands
 alias icat="kitty +kitten icat"
-alias ls="colorls"
+alias ls="exa"
 alias ip="ip -c"
 alias rm="rm -i"
+alias cat="bat"
+alias vim="nvim"
 
 alias dingbat="tmux new -d -s lol 'DXVK_STATE_CACHE=1 WINEPREFIX=~/Games/Games-Wine/LoL WINEARCH=win32 /opt/wine-lol/bin/wine ~/Games/Games-Wine/LoL/drive_c/Riot\ Games/League\ of\ Legends/LeagueClient.exe'"
 alias kill-orphans="sudo pacman -Rns $(pacman -Qtdq)"

@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	kitty
+	$TERMINAL
 
 # program launcher
 super + space
@@ -12,7 +12,31 @@ super + space
 
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+	notify-send "Reloading sxhkd config" && pkill -USR1 -x sxhkd
+
+# Show sxhkd help
+super + F1
+	notify-send "Showing sxhkd help" && cat ~/.config/sxhkd/sxhkdrc | awk '/^[a-z]/ && last \{print $0,"\t",last\} \{last=""\} /^#/\{last=$0\}' | column -t -s $'\t' | rofi -dmenu -i -no-show-icons -width 1000
+# ChangeVolume.sh
+XF86Audio{LowerVolume,RaiseVolume,Mute}
+	changeVolume.sh {down,up,mute}
+
+# ChangeBrightness.sh
+XF86MonBrightness{Up,Down}
+	changeBrightness.sh {up,down}
+
+# Take a Screenshot of the whole screen
+Print
+	shotgun - | xclip -selection clipboard -t image/png && notify-send "Taking a Screenshot" -i image-png 
+
+# Take a screenshot of a selection
+super + Print
+	shotgun $(hacksaw -f "-i %i -g %g") - | xclip -selection clipboard -t image/png -i && notify-send "Taking a Screenshot" -i image-png
+
+# Record a gif of a selection
+super + alt + Print
+	notify-send "Uploading 5s gif after 1s delay to Imgur..." -t 5000 -i upload-pictures && giph $(hacksaw -f "-g %g")-l -c 1,1,1,0.3 -p 5 -d 1 -t 5 | imgur.sh
+
 
 #
 # bspwm hotkeys
@@ -20,7 +44,7 @@ super + Escape
 
 # quit/restart bspwm
 super + alt + {q,r}
-	bspc {quit,wm -r}
+	notify-send "bswpm" '{quitting, restarting} bspwm' && systemctl --user {stop,restart} bspwm
 
 # close and kill
 super + {_,shift + }w
@@ -38,13 +62,24 @@ super + y
 super + g
 	bspc node -s biggest
 
+# hide window
+super + v
+  bspc node -g hidden
+
+# unhide window
+super + shift + v
+  bspc node {,$(bspc query -N -n .hidden | tail -n1)} -g hidden=off
+
+# hide/unhide polybar
+alt + p
+    {polybar-msg cmd hide, polybar-msg cmd show}
 #
 # state/flags
 #
 
-# set the window state
+# set the window state (tiled, pseudo_tiled, floating, fullscreen}
 super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+	notify-send "Setting Window State" {tiled,pseudo_tiled,floating,fullscreen} && bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -120,8 +155,3 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-XF86Audio{LowerVolume,RaiseVolume,Mute}
-	changeVolume.sh {down,up,mute}
-
-XF86MonBrightness{Up,Down}
-	changeBrightness.sh {up,down}

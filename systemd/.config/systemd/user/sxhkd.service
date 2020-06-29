@@ -1,9 +1,11 @@
 [Unit]
-Descriptio=Simple X Hotkey Daemon
+Description=Simple X Hotkey Daemon
+PartOf=bspwm.service
 
 [Service]
 Type=simple
 ExecStart=/usr/bin/sxhkd
+Environment="SXHKD_SHELL=/usr/bin/zsh"
 
 [Install]
 WantedBy=xinit.target

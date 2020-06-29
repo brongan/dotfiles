@@ -1,9 +1,10 @@
 [Unit]
-Descriptio=Compositor
+Description=Compositor
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/compton
+ExecStart=/usr/bin/picom
+ExecReload=/bin/kill -USR1 $MAINPID
 
 [Install]
 WantedBy=xinit.target

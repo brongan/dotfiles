@@ -2,7 +2,7 @@
 Description=Connect your computer to your smartphone or tablet. Ripped from https://github.com/KDE/plasma-systemd-integration/
 
 [Service]
-Type=forking
+Type=dbus
 ExecStart=/usr/lib/kdeconnectd
 BusName=org.kde.kdeconnect
 
