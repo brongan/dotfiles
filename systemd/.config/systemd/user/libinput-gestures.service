@@ -6,5 +6,5 @@ Type=simple
 ExecStart=/usr/bin/libinput-gestures
 
 [Install]
-WantedBy=xinit.target
+RequiredBy=xorg.target
 

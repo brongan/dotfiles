@@ -3,9 +3,10 @@ Description=Bar
 Wants=bspwm
 
 [Service]
+Environment=DISPLAY=:0
 Type=simple
 ExecStart=/usr/bin/polybar -c %h/.config/polybar/config.ini %i
 
 [Install]
-WantedBy=xinit.target
+RequiredBy=xorg.target
 

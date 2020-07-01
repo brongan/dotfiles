@@ -2,10 +2,12 @@
 Description=Connect your computer to your smartphone or tablet. Ripped from https://github.com/KDE/plasma-systemd-integration/
 
 [Service]
+Environment=DISPLAY=:0
 Type=dbus
 ExecStart=/usr/lib/kdeconnectd
 BusName=org.kde.kdeconnect
 
+
 [Install]
-WantedBy=xinit.target
+RequiredBy=xorg.target
 

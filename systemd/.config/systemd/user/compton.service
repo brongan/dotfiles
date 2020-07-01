@@ -2,10 +2,11 @@
 Description=Compositor
 
 [Service]
+Environment=DISPLAY=:0
 Type=simple
 ExecStart=/usr/bin/picom
 ExecReload=/bin/kill -USR1 $MAINPID
 
 [Install]
-WantedBy=xinit.target
+RequiredBy=xorg.target
 

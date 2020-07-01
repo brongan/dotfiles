@@ -3,10 +3,11 @@ Description=Simple X Hotkey Daemon
 PartOf=bspwm.service
 
 [Service]
+Environment=DISPLAY=:0
 Type=simple
 ExecStart=/usr/bin/sxhkd
 Environment="SXHKD_SHELL=/usr/bin/zsh"
 
 [Install]
-WantedBy=xinit.target
+RequiredBy=xorg.target
 

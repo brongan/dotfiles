@@ -2,9 +2,10 @@
 Description=PyWal Reload Oneshot
 
 [Service]
+Environment=DISPLAY=:0
 Type=oneshot
 ExecStart=/usr/bin/wal -R
 
 [Install]
-WantedBy=xinit.target
+RequiredBy=xorg.target
 

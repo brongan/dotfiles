@@ -1,0 +1,6 @@
+[Unit]
+Description=xorg systemd --user target
+Requires=xorg-server@0.service
+
+[Install]
+WantedBy=basic.target
