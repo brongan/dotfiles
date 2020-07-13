@@ -1,0 +1,46 @@
+{
+	// Schema for options: https://github.com/neoclide/coc.nvim/blob/master/data/schema.json
+	// :help coc.txt
+	"suggest.maxCompleteItemCount": 50,
+	"suggest.noselect": false,
+	"suggest.enablePreview": true,
+	"suggest.removeDuplicateItems": true,
+	"codeLens.enable": true,
+	"coc.preferences.formatOnSaveFiletypes": [
+		"css",
+		"markdown",
+		"javascript",
+		"html",
+		"yaml",
+		"json",
+		"rust",
+		"go",
+		"cmake"
+	],
+	"coc.preferences.rootPatterns": [
+		".git",
+		".hg",
+		".projections.json",
+		".vscode",
+		"cargo.toml"
+	],
+	// Valid options: ["edit", "split", "vsplit", "tabe", "drop", "tab drop"]
+	"coc.preferences.jumpCommand": "edit",
+	//"coc.preferences.useQuickfixForLocations": true,
+	// Yank config
+	"yank.enableCompletion": false,
+	// Python config
+	"python.jediEnabled": false,
+	"python.linting.enabled": true,
+	"python.linting.pylintEnabled": false,
+	"python.linting.flake8Enabled": true,
+	// Clangd config
+	"clangd.semanticHighlighting": true,
+	// Rust-Analyzer config
+	"rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
+	"rust-analyzer.updates.channel": "nightly",
+	"rust-analyzer.checkOnSave.command": "clippy",
+	"rust-analyzer.completion.addCallParenthesis": false,
+	"rust-analyzer.cargo.allFeatures": true,
+	"rust-analyzer.diagnostics.enable": true
+}

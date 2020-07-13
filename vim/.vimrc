@@ -31,8 +31,7 @@ vnoremap g<C-a> <C-a>
 " Remove all trailing whitespace by pressing F2
 nnoremap <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
-" Move highlighted section up and down
-vnoremap J :m '>+1<CR>gv=gv
+" Move highlighted section up and down vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " Quickly insert an empty new line without entering insert mode, below and above
@@ -58,15 +57,10 @@ set relativenumber
 " => Plugins,
 " :PlugInstall to install plugins, :PlugUpdate to update or install
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 " Plugins
 call plug#begin('~/.vim/plugged')
-
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'scrooloose/nerdtree'
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
