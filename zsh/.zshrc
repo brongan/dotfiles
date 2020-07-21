@@ -26,6 +26,7 @@ plugins=(
 	gitfast
 	golang
 	npm
+	pass
 	pyenv
 	pylint
 	sudo

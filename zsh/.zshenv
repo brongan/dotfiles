@@ -1,5 +1,5 @@
 # Enviroment variables
-export EDITOR="/usr/bin/vim"
+export EDITOR="/usr/bin/nvim"
 export SYSTEMD_EDITOR=$EDITOR
 export ZSH="$HOME/.oh-my-zsh"
 export LC_ALL=en_US.UTF-8
