@@ -1,5 +1,6 @@
-[Install]
+[Unit]
 Description=PyWal Reload Oneshot
+BindsTo=xorg.target
 
 [Service]
 Environment=DISPLAY=:0
@@ -7,5 +8,5 @@ Type=oneshot
 ExecStart=/usr/bin/wal -R
 
 [Install]
-RequiredBy=xorg.target
+WantedBy=xorg.target
 

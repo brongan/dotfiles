@@ -1,10 +1,11 @@
 [Unit]
 Description=Python script to parse libinput and run commands based on gesturse
+BindsTo=xorg.target
 
 [Service]
 Type=simple
 ExecStart=/usr/bin/libinput-gestures
 
 [Install]
-RequiredBy=xorg.target
+WantedBy=xorg.target
 

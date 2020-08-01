@@ -1,6 +1,6 @@
 [Unit]
 Description=Binary Splitting Window Manager
-Wants=sxhkd.service
+BindsTo=xorg.target
 
 [Service]
 Environment=DISPLAY=:0
@@ -8,5 +8,5 @@ ExecStart=/usr/bin/bspwm
 Restart=on-failure
 
 [Install]
-RequiredBy=xorg.target
+WantedBy=xorg.target
 

@@ -1,12 +1,12 @@
 [Unit]
 Description=Compositor
+BindsTo=xorg.target
 
 [Service]
 Environment=DISPLAY=:0
-Type=simple
 ExecStart=/usr/bin/picom
 ExecReload=/bin/kill -USR1 $MAINPID
 
 [Install]
-RequiredBy=xorg.target
+WantedBy=xorg.target
 
