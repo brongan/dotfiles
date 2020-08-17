@@ -19,6 +19,8 @@ modprobe -r nvidia_drm
 modprobe -r nvidia_modeset
 modprobe -r nvidia_uvm
 modprobe -r nvidia
+modprobe -r i2c_nvidia_gpu
+modprobe -r nouveau
 
 # Looks like these might need to be unloaded on Ryzen Systems. Not sure yet.
 modprobe -r ipmi_devintf
