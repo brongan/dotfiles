@@ -15,7 +15,8 @@
 		"json",
 		"rust",
 		"go",
-		"cmake"
+		"cmake",
+		"python"
 	],
 	"coc.preferences.rootPatterns": [
 		".git",
@@ -34,6 +35,7 @@
 	"python.linting.enabled": true,
 	"python.linting.pylintEnabled": false,
 	"python.linting.flake8Enabled": true,
+	"python.formatting.provider": "black",
 	// Clangd config
 	"clangd.semanticHighlighting": true,
 	// Rust-Analyzer config

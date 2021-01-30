@@ -50,13 +50,10 @@ bindkey -v # vi mode
 # Aliases for a few useful commands
 alias icat="kitty +kitten icat"
 alias ls="exa"
+alias ll="exa -aglhD"
 alias ip="ip -c"
 alias rm="rm -i"
 alias cat="bat"
 alias vim="nvim"
-
-alias dingbat="tmux new -d -s lol 'DXVK_STATE_CACHE=1 WINEPREFIX=~/Games/Games-Wine/LoL WINEARCH=win32 /opt/wine-lol/bin/wine ~/Games/Games-Wine/LoL/drive_c/Riot\ Games/League\ of\ Legends/LeagueClient.exe'"
-alias kill-orphans="sudo pacman -Rns $(pacman -Qtdq)"
-alias attach_headphones="sudo virsh attach-device win10 --file $HOME/dev/kvm_scripts/headset.xml> --config"
-alias detach_headphones="sudo virsh detach-device win10 --file $HOME/dev/kvm_scripts/headset.xml> --config"
+alias icat="kitty +kitten icat"
 

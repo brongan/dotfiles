@@ -63,18 +63,18 @@ POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND='blue'
 POWERLEVEL9K_BATTERY_VERBOSE=true
 POWERLEVEL9K_BATTERY_HIDE_ABOVE_THRESHOLD=80
 
-# User with amazon
-user_with_amazon() {
-    echo -n "\uf270 $(whoami)"
+# User with unicode
+user_with_unicode() {
+    echo -n "\u2615 $(whoami)"
 }
-POWERLEVEL9K_CUSTOM_USER="user_with_amazon"
+POWERLEVEL9K_CUSTOM_USER="user_with_unicode"
 
 #Time
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
 
 # Prompt elements
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh custom_user dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs status time battery)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv pyenv background_jobs status time battery)
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
