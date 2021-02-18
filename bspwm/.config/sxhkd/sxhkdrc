@@ -35,7 +35,7 @@ super + Print
 
 # Record a gif of a selection
 super + alt + Print
-	notify-send "Uploading 5s gif after 1s delay to Imgur..." -t 5000 -i upload-pictures && giph $(hacksaw -f "-g %g")-l -c 1,1,1,0.3 -p 5 -d 1 -t 5 | imgur.sh
+	notify-send "Copying a 5s gif after 1s delay to Clipboard..." -t 5000 -i upload-pictures && giph $(hacksaw -f "-g %g")-l -c 1,1,1,0.3 -p 5 -d 1 -t 5 | xclip -selection clipboard -t image/gif -i
 
 
 #

@@ -23,6 +23,7 @@ bspc rule -a discord   desktop='^5'
 bspc rule -a Nightly   desktop='^2' state=tiled
 bspc rule -a Keepassxc desktop='^1'
 bspc rule -a Rofi state=floating
+bspc rule -a Peek state=floating
 bspc rule -a Zathura state=tiled
 
 # pointer
