@@ -6,9 +6,10 @@
 
 # FZF stuff
 FD_OPTIONS="--follow --exclude .git --exclude node_modules"
-export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi --inline-info --preview '([[ -d {} ]] && tree -aC {}) || ([[ -f {} ]] && bat --color=always --style=header,grid --line-range :300 {})'"
+export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi --inline-info"
 export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPTIONS"
 export FZF_CTRL_T_COMMAND="fd --type d $FD_OPTIONS"
+export FZF_CTRL_T_OPTS="--preview '([[ -d {} ]] && tree -aC {}) || ([[ -f {} ]] && bat --color=always --style=header,grid --line-range :300 {})'"
 export FZF_ALT_C_COMMAND="fd --type f --hidden $FD_OPTIONS"
 
 # NNN
@@ -50,7 +51,7 @@ bindkey -v # vi mode
 # Aliases for a few useful commands
 alias icat="kitty +kitten icat"
 alias ls="exa"
-alias ll="exa -aglhD"
+alias ll="exa -aglh"
 alias ip="ip -c"
 alias rm="rm -i"
 alias cat="bat"
