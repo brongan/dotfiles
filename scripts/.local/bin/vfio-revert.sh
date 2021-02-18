@@ -29,5 +29,5 @@ echo "schedutil" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governo
 modprobe nvidia_drm nvidia_modeset nvidia_uvm nvidia-gpu nvidia i2c_nvidia_gpu nouveau
 
 # Restart Display Manager
-systemctl restart getty@tty1.service
+systemctl restart sysinit.target
 
