@@ -1,3 +1,16 @@
 #!/bin/bash
 
-termite -e "sudo pacman -Syu"
+if command -v kitty; then
+    TERMINAL=kitty
+else
+    TERMINAL=xterm
+fi
+
+if command -v paru; then
+    $TERMINAL paru
+elif command -v yay; then
+    $TERMINAL yay
+else
+    $TERMINAL sudo pacman -Syu
+fi
+
