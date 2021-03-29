@@ -3,6 +3,7 @@ Description=Binary Splitting Window Manager
 BindsTo=xorg.target
 
 [Service]
+Type=simple
 Environment=DISPLAY=:0
 ExecStart=/usr/bin/bspwm
 Restart=on-failure

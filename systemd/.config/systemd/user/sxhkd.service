@@ -1,13 +1,15 @@
 [Unit]
 Description=Simple X Hotkey Daemon
 PartOf=bspwm.service
+After=bspwm.service
+BindsTo=xorg.target
 
 [Service]
-Environment=DISPLAY=:0
 Type=simple
+Environment=DISPLAY=:0
 ExecStart=/usr/bin/sxhkd
 Environment="SXHKD_SHELL=/usr/bin/zsh"
 
 [Install]
-RequiredBy=xorg.target
+WantedBy=xorg.target
 

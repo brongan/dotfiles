@@ -1,10 +1,12 @@
 [Unit]
 Description=Bar
 PartOf=bspwm.service
+After=bspwm.service
+BindsTo=xorg.target
 
 [Service]
-Environment=DISPLAY=:0
 Type=simple
+Environment=DISPLAY=:0
 ExecStart=/usr/bin/polybar -c %h/.config/polybar/config.ini %i
 
 [Install]
