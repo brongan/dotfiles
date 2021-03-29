@@ -17,7 +17,7 @@ export NNN_PLUG='o:fzopen;v:preview-kitty'
 export NNN_FIFO=/tmp/nnn.fifo
 
 # Command execution time stamp shown in the history command output.
-HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy/mm/dd"
 
 # Plugins to load
 plugins=(
@@ -46,11 +46,17 @@ source /usr/share/vim/vimfiles/gruvbox_256palette.sh
 
 autoload -Uz compinit && compinit
 
+if [[ $TERM -eq xterm-kitty ]]; then
+	kitty + complete setup zsh | source /dev/stdin
+fi
+
 bindkey -v # vi mode
 
 # Aliases for a few useful commands
 alias icat="kitty +kitten icat"
+alias issh="kitty +kitten ssh"
 alias ls="exa"
+alias la="exa -a"
 alias ll="exa -aglh"
 alias ip="ip -c"
 alias rm="rm -i"
