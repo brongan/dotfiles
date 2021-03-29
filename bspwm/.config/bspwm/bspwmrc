@@ -36,3 +36,9 @@ for game in $mygames; do
     bspc rule -a steam_app_$game desktop=^10 state=fullscreen
 done
 
+kitty &
+cava &
+spt &
+firefox-nightly &
+caprine &
+discord &

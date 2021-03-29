@@ -52,7 +52,7 @@ super + {_,shift + }w
 
 # alternate between the tiled and monocle layout
 super + m
-	bspc desktop -l next
+	notify-send "Switching between tiled and monocle" && bspc desktop -l next
 
 # send the newest marked node to the newest preselected node
 super + y
@@ -79,7 +79,7 @@ alt + p
 
 # set the window state (tiled, pseudo_tiled, floating, fullscreen}
 super + {t,shift + t,s,f}
-	notify-send "Setting Window State" {tiled,pseudo_tiled,floating,fullscreen} && bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+	notify-send "Setting Window State" {tiled,pseudo_tiled,floating,"~fullscreen"} && bspc node -t {tiled,pseudo_tiled,floating,~fullscreen}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -106,7 +106,7 @@ super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
 # focus the last node/desktop
-super + {grave,Tab}
+alt + {grave,Tab}
 	bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
