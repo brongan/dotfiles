@@ -65,7 +65,7 @@ POWERLEVEL9K_BATTERY_HIDE_ABOVE_THRESHOLD=80
 
 # User with unicode
 user_with_unicode() {
-    echo -n "\u2615 $(whoami)"
+    echo -n "gnor$(whoami)"
 }
 POWERLEVEL9K_CUSTOM_USER="user_with_unicode"
 
