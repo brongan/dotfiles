@@ -80,8 +80,8 @@ Plug 'tmsvg/pear-tree'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }         "Need NodeJS and Yarn
 Plug 'honza/vim-snippets'
+Plug 'kovetskiy/sxhkd-vim'
 
 " Initialize plugin system
 call plug#end()
