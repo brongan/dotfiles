@@ -65,7 +65,8 @@ POWERLEVEL9K_BATTERY_HIDE_ABOVE_THRESHOLD=80
 
 # User with unicode
 user_with_unicode() {
-    echo -n "artnner$(whoami)"
+    whoami=$(whoami)
+    echo -n $(echo $whoami | rev)${whoami:1}
 }
 POWERLEVEL9K_CUSTOM_USER="user_with_unicode"
 

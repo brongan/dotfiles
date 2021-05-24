@@ -47,6 +47,7 @@ else
 	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 [ -f ~/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh ] && source ~/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh
 [ -f /usr/share/vim/vimfiles/gruvbox_256palette.sh ] && source /usr/share/vim/vimfiles/gruvbox_256palette.sh
