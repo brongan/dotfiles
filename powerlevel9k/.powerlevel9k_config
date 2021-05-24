@@ -65,7 +65,7 @@ POWERLEVEL9K_BATTERY_HIDE_ABOVE_THRESHOLD=80
 
 # User with unicode
 user_with_unicode() {
-    echo -n "gnor$(whoami)"
+    echo -n "artnner$(whoami)"
 }
 POWERLEVEL9K_CUSTOM_USER="user_with_unicode"
 
@@ -76,5 +76,8 @@ POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh custom_user dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv pyenv background_jobs status time battery)
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-
+if [ -d /usr/share/zsh-theme-powerlevel10k ]; then
+    source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+else
+   source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+fi
