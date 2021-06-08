@@ -1,17 +1,14 @@
 #!/bin/sh
 
-# From https://github.com/danhn255/dotfiles/blob/master/virtual-machine/qemu.sh
-#Location /etc/libvirt/hooks/qemu
-
 #Hooks for libvirt to run when starting or reverting back from win10 virtual machine
-# Script for win10
-if [[ $1 == "win10" ]]; then
+VM_NAME="win10"
+if [[ $1 == ${VM_NAME} ]]; then
    if [[ $2 == "prepare" ]]; then
-	/home/brong/.local/bin/vfio-start.sh
+	/home/brong/.local/bin/vfio-start.sh | tee -a /var/log/libvirt/custom_hooks.log
    fi
 
    if [[ $2 == "release" ]]; then
-	/home/brong/.local/bin/vfio-revert.sh
+	/home/brong/.local/bin/vfio-revert.sh | tee -a /var/log/libvirt/custom_hooks.log
    fi
 fi
 
