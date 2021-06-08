@@ -1,33 +1,30 @@
-# Enviroment variables
-export EDITOR="/usr/bin/nvim"
-export SUDO_EDITOR=${EDITOR}
-export SYSTEMD_EDITOR=$EDITOR
-export ZSH="$HOME/.oh-my-zsh"
-export LC_ALL=en_US.UTF-8
-export TERMINAL=kitty
-export LESS="-R" # show colors
-export LESSOPEN="| bat %s"
-export PAGER=less
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export GPG_TTY=$(tty)
-export MALMO_XSD_PATH="$HOME/MalmoPlatform/Schemas"
-wm=$(wmctrl -m | head -n 1 | cut -d' ' -f 2)
-if [[ $wm == "bspwm" || $wm == "i3" ]]; then
-  export _JAVA_AWT_WM_NONREPARENTING=1
+# TODO: Figure out why this is required?
+if (( $+commands[kitty] )); then
+	export TERMINAL=kitty
 fi
 
-# Ruby gems
-PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
-export GEM_HOME=$HOME/.gem
-PATH="$PATH:${GEM_HOME}/bin"
+# PATH
+typeset -U path
+
+# XDG PLZ
+if (( $+commands[systemd-path] )); then
+  path=($path "$(systemd-path user-binaries)")
+else
+  path=($path "$HOME/.local/bin")
+
+fi
+
+# Go and Rust have to be special
+path=($path "$HOME/.cargo/bin" "$HOME/go/bin")
 
 # Node.js
-PATH="$HOME/.node_modules/bin:$PATH"
-export npm_config_prefix=~/.node_modules
+if ! (( $+commands[nvm] )); then
+  path=($path "$HOME/.node_modules/bin")
+  export npm_config_prefix="$HOME/.node_modules"
+fi
 
-# PIP
-export PATH=$HOME/.local/bin:$PATH
-
-# Go
-export PATH="$PATH:$HOME/go/bin"
+# Work
+if (( $+commands[toolbox] )); then
+  path=$($path "$HOME/.toolbox/bin" "/usr/local/opt/ruby/bin")
+fi
 

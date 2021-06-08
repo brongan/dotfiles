@@ -18,6 +18,28 @@ if (( $+commands[kitty] )); then
 fi
 export NNN_FIFO=/tmp/nnn.fifo
 
+# Editors and pagers
+if (( $+commands[nvim] )); then
+  export EDITOR="nvim"
+else
+  export EDITOR="vim"
+fi
+
+export SUDO_EDITOR=$EDITOR
+export SYSTEMD_EDITOR=$EDITOR
+
+if (( $+commands[bat] )); then
+  export LESS="-R" # show colors
+  export LESSOPEN="| bat %s"
+  export PAGER=less
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
+
+wm=$(wmctrl -m 2&> /dev/null | head -n 1 | cut -d' ' -f 2)
+if [[ $wm == "bspwm" || $wm == "i3" ]]; then
+  export _JAVA_AWT_WM_NONREPARENTING=1
+fi
+
 # Command execution time stamp shown in the history command output.
 HIST_STAMPS="yyyy/mm/dd"
 
@@ -37,6 +59,7 @@ plugins=(
     virtualenv
 )
 
+ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 source ~/.powerlevel9k_config
 if [ -d /usr/local/Cellar/ ]; then
@@ -73,14 +96,9 @@ alias rm="rm -i"
 alias cat="bat"
 alias vim="nvim"
 
-# Work
-export PATH=$HOME/.toolbox/bin:$PATH
-export PATH=/usr/local/bin:$PATH
-export PATH="/usr/local/opt/ruby/bin:$PATH"
+# Work?
 autoload bashcompinit && bashcompinit
-autoload -Uz compinit && compinit
-compinit
-complete -C '/usr/local/bin/aws_completer' aws
+[ -f '/usr/local/bin/aws_completer' ] && complete -C '/usr/local/bin/aws_completer' aws
 
 # Finalize
 autoload -Uz compinit && compinit
