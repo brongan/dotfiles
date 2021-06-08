@@ -96,9 +96,21 @@ alias rm="rm -i"
 alias cat="bat"
 alias vim="nvim"
 
-# Work?
-autoload bashcompinit && bashcompinit
+# Work
+if (( $+commands[eda] )); then
+	export EDA_AUTO="$HOME/.config/eda/completion"
+	mkdir -p $EDA_AUTO
+	eda completions zsh > $EDA_AUTO/_eda
+	fpath=($EDA_AUTO $fpath)
+fi
 [ -f '/usr/local/bin/aws_completer' ] && complete -C '/usr/local/bin/aws_completer' aws
 
+if [ -c "/Users/${USER}/Library/Android/sdk" ]; then
+	export ANDROID_HOME="/Users/${USER}/Library/Android/sdk"
+	path=($path "$ANDROID_HOME/platforms-tools" "$ANDROID_HOME/tools/" "$ANDROID_HOME/build-tools/21.1.2" "/Users/${USER}/workplace/ATVAndroidDevTools/gradle")
+	export ANDROID_HVPROTO=ddm
+fi
+
 # Finalize
+autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
