@@ -10,8 +10,11 @@ export LESSOPEN="| bat %s"
 export PAGER=less
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export GPG_TTY=$(tty)
-export BLANT_DIR="$HOME/dev/BLANT"
 export MALMO_XSD_PATH="$HOME/MalmoPlatform/Schemas"
+wm=$(wmctrl -m | head -n 1 | cut -d' ' -f 2)
+if [[ $wm == "bspwm" || $wm == "i3" ]]; then
+  export _JAVA_AWT_WM_NONREPARENTING=1
+fi
 
 # Ruby gems
 PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
