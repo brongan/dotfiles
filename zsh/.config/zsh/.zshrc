@@ -59,9 +59,9 @@ plugins=(
     virtualenv
 )
 
-ZSH="$HOME/.oh-my-zsh"
+ZSH="$XDG_CONFIG_HOME/oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
-source ~/.powerlevel9k_config
+source "$XDG_CONFIG_HOME/.powerlevel9k_config"
 if [ -d /usr/local/Cellar/ ]; then
 	source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 	source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -84,7 +84,7 @@ fi
 
 if (( $+commands[kitty] )); then
 	alias icat="kitty +kitten icat"
-	alias issh="kitty +kitten ssh"
+	alias ssh="kitty +kitten ssh"
 fi
 
 # Aliases for a few useful commands
@@ -95,6 +95,9 @@ alias ip="ip -c"
 alias rm="rm -i"
 alias cat="bat"
 alias vim="nvim"
+alias pass="gopass"
+alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
+alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
 
 # Work
 if (( $+commands[eda] )); then
