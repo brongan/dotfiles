@@ -55,7 +55,7 @@ else
 fi
 
 # Work
-if (( $+commands[toolbox] )); then
-  path=$($path "$HOME/.toolbox/bin" "/usr/local/opt/ruby/bin")
+if [[ -d "$HOME/.toolbox" ]]; then
+  path=($path "$HOME/.toolbox/bin" "/usr/local/opt/ruby/bin")
 fi
 
