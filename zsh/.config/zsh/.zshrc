@@ -24,6 +24,9 @@ if (( $+commands[nvim] )); then
 else
   export EDITOR="vim"
 fi
+if (( ! $+commands[sudoedit] )); then
+  alias sudoedit="sudo -e"
+fi
 
 export SUDO_EDITOR=$EDITOR
 export SYSTEMD_EDITOR=$EDITOR
