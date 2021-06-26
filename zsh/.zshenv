@@ -5,9 +5,16 @@ export XDG_STATE_HOME=${XDG_STATE_HOME:-$HOME/.local/state}
 ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export HISTFILE="${XDG_STATE_HOME}/zsh/history"
 
-# TODO: Figure out why this is required?
-if (( $+commands[kitty] )); then
-	export TERMINAL=kitty
+if [[ $OSTYPE =~ "linux" ]]; then
+  if (( $+commands[kitty] )); then
+    export TERMINAL="kitty"
+  elif (( $+commands[alacritty] )); then
+    export TERMINAL="alacritty"
+  else
+    export TERMINAL="xterm"
+  fi
+elif [[ $OSTYPE =~ "darwin" ]]; then
+  export TERMINAL="iterm"
 fi
 
 # PATH
