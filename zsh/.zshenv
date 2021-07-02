@@ -54,8 +54,8 @@ export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/startup.py"
 path=($path "${CARGO_HOME}/bin" "${GOPATH}/bin")
 
 # Node.js
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-if [ -s "$NVM_DIR/nvm.sh" ]; then
+if [ -s "${XDG_CONFIG_HOME}/nvm/nvm.sh" ]; then
+  export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
   \. "$NVM_DIR/nvm.sh" # This loads nvm
 else
   path=($path "$HOME/.node_modules/bin")
