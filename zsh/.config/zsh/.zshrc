@@ -24,9 +24,6 @@ if (( $+commands[nvim] )); then
 else
   export EDITOR="vim"
 fi
-if (( ! $+commands[sudoedit] )); then
-  alias sudoedit="sudo -e"
-fi
 
 export SUDO_EDITOR=$EDITOR
 export SYSTEMD_EDITOR=$EDITOR
@@ -43,27 +40,8 @@ if [[ $wm == "bspwm" || $wm == "i3" ]]; then
   export _JAVA_AWT_WM_NONREPARENTING=1
 fi
 
-# Command execution time stamp shown in the history command output.
-HIST_STAMPS="yyyy/mm/dd"
+[ -f ${XDG_CACHE_HOME}/wal/sequences ] && (cat ~/.cache/wal/sequences &)
 
-# Plugins to load
-plugins=(
-	aws
-	docker
-	fd
-	gitfast
-	golang
-	npm
-	pass
-	pyenv
-	pylint
-	sudo
-	vi-mode
-    virtualenv
-)
-
-ZSH="$XDG_CONFIG_HOME/oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
 source "$XDG_CONFIG_HOME/.powerlevel9k_config"
 if [ -d /usr/local/Cellar/ ]; then
 	source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -71,23 +49,6 @@ if [ -d /usr/local/Cellar/ ]; then
 else
 	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
-[ -f ~/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh ] && source ~/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh
-[ -f /usr/share/vim/vimfiles/gruvbox_256palette.sh ] && source /usr/share/vim/vimfiles/gruvbox_256palette.sh
-[ -f ~/.cache/wal/sequences ] && (cat ~/.cache/wal/sequences &)
-
-bindkey -v # vi mode
-
-if (( $+commands[kitty] )) && [[ $TERM -eq xterm-kitty ]]; then
-	kitty + complete setup zsh | source /dev/stdin
-fi
-
-if (( $+commands[kitty] )); then
-	alias icat="kitty +kitten icat"
-	alias ssh="kitty +kitten ssh"
 fi
 
 # Aliases for a few useful commands
@@ -101,6 +62,33 @@ alias vim="nvim"
 alias pass="gopass"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
+alias yarn='yarn --use-yarnrc "${XDG_CONFIG_HOME}/yarn/config"'
+
+if (( ! $+commands[sudoedit] )); then
+  alias sudoedit="sudo -e"
+fi
+
+if (( $+commands[kitty] )); then
+	alias icat="kitty +kitten icat"
+	alias ssh="kitty +kitten ssh"
+fi
+
+# Completion
+if [[ $OSTYPE =~ "linux" ]]; then
+	source /usr/share/fzf/key-bindings.zsh
+	source /usr/share/fzf/completion.zsh
+	source /usr/share/vim/vimfiles/gruvbox_256palette.sh
+elif [[ $OSTYPE =~ "darwin" ]]; then
+	source ~/.fzf.zsh
+	source ${XDG_DATA_HOME}/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh 
+fi
+
+bindkey -v # vi mode
+autoload -Uz compinit && compinit
+
+if (( $+commands[kitty] )) && [[ $TERM == "xterm-kitty" ]]; then
+	kitty + complete setup zsh | source /dev/stdin
+fi
 
 # Work
 if (( $+commands[eda] )); then
@@ -116,7 +104,3 @@ if [ -c "/Users/${USER}/Library/Android/sdk" ]; then
 	path=($path "$ANDROID_HOME/platforms-tools" "$ANDROID_HOME/tools/" "$ANDROID_HOME/build-tools/21.1.2" "/Users/${USER}/workplace/ATVAndroidDevTools/gradle")
 	export ANDROID_HVPROTO=ddm
 fi
-
-# Finalize
-autoload bashcompinit && bashcompinit
-autoload -Uz compinit && compinit

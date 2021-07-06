@@ -4,6 +4,7 @@ export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 export XDG_STATE_HOME=${XDG_STATE_HOME:-$HOME/.local/state}
 ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export HISTFILE="${XDG_STATE_HOME}/zsh/history"
+export HISTSIZE=2000
 
 if [[ $OSTYPE =~ "linux" ]]; then
   if (( $+commands[kitty] )); then
@@ -15,17 +16,6 @@ if [[ $OSTYPE =~ "linux" ]]; then
   fi
 elif [[ $OSTYPE =~ "darwin" ]]; then
   export TERMINAL="iterm"
-fi
-
-## workaround for handling TERM variable in multiple tmux sessions properly from http://sourceforge.net/p/tmux/mailman/message/32751663/[dead link 2020-04-03 ⓘ] by Nicholas Marriott
-if [[ -n ${TMUX} && -n ${commands[tmux]} ]];then
-  case $(tmux showenv TERM 2>/dev/null) in
-    *256color) ;&
-    TERM=fbterm)
-      TERM=screen-256color ;;
-    *)
-      TERM=screen
-  esac
 fi
 
 # PATH
@@ -42,7 +32,6 @@ export GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export RUSTUP_HOME="${XDG_DATA_HOME}rustup"
 export GOPATH="${XDG_DATA_HOME}/go"
-alias yarn='yarn --use-yarnrc "${XDG_CONFIG_HOME}/yarn/config"'
 export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
 export LESSKEY="${XDG_CONFIG_HOME}/less/keys"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/password-store"
