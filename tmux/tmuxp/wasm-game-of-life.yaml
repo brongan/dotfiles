@@ -1,0 +1,21 @@
+session_name: wasm-game-of-life
+start_directory: ~/ws/wasm-game-of-life
+options:
+    main-pane-width: 30
+windows:
+- window_name: rust
+  layout: even-horizontal
+  focus: true
+  panes:
+    - nvim src/*
+    - wasm-pack build
+- window_name: javascript
+  start_directory: ./www
+  layout: even-horizontal
+  panes:
+  - nvim index.js index.html 
+  - blank
+- window_name: root
+  start_directory: ./www
+  panes:
+  - npm start
