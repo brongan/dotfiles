@@ -84,6 +84,8 @@ elif [[ $OSTYPE =~ "darwin" ]]; then
 fi
 
 bindkey -v # vi mode
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
 autoload -Uz compinit && compinit
 
 if (( $+commands[kitty] )) && [[ $TERM == "xterm-kitty" ]]; then
