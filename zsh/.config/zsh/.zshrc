@@ -43,13 +43,6 @@ fi
 [ -f ${XDG_CACHE_HOME}/wal/sequences ] && (cat ~/.cache/wal/sequences &)
 
 source "$XDG_CONFIG_HOME/.powerlevel9k_config"
-if [ -d /usr/local/Cellar/ ]; then
-	source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-	source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-else
-	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
 
 # Aliases for a few useful commands
 alias ls="exa"
@@ -78,9 +71,14 @@ if [[ $OSTYPE =~ "linux" ]]; then
 	source /usr/share/fzf/key-bindings.zsh
 	source /usr/share/fzf/completion.zsh
 	source /usr/share/vim/vimfiles/gruvbox_256palette.sh
+	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ $OSTYPE =~ "darwin" ]]; then
-	source ~/.fzf.zsh
+	source /usr/local/Cellar/fzf/0.27.2/shell/key-bindings.zsh
+	source /usr/local/Cellar/fzf/0.27.2/shell/completion.zsh
 	source ${XDG_DATA_HOME}/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh 
+	source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 bindkey -v # vi mode
@@ -99,9 +97,8 @@ if (( $+commands[eda] )); then
 	eda completions zsh > $EDA_AUTO/_eda
 	fpath=($EDA_AUTO $fpath)
 fi
-[ -f '/usr/local/bin/aws_completer' ] && complete -C '/usr/local/bin/aws_completer' aws
 
-if [ -c "/Users/${USER}/Library/Android/sdk" ]; then
+if [ -d "/Users/${USER}/Library/Android/sdk" ]; then
 	export ANDROID_HOME="/Users/${USER}/Library/Android/sdk"
 	path=($path "$ANDROID_HOME/platforms-tools" "$ANDROID_HOME/tools/" "$ANDROID_HOME/build-tools/21.1.2" "/Users/${USER}/workplace/ATVAndroidDevTools/gradle")
 	export ANDROID_HVPROTO=ddm
