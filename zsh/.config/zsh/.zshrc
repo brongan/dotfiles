@@ -73,6 +73,9 @@ if [[ $OSTYPE =~ "linux" ]]; then
 	source /usr/share/vim/vimfiles/gruvbox_256palette.sh
 	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+	bindkey -v # vi mode
+	bindkey '^A' beginning-of-line
+	bindkey '^E' end-of-line
 elif [[ $OSTYPE =~ "darwin" ]]; then
 	source /usr/local/Cellar/fzf/0.27.2/shell/key-bindings.zsh
 	source /usr/local/Cellar/fzf/0.27.2/shell/completion.zsh
@@ -81,9 +84,6 @@ elif [[ $OSTYPE =~ "darwin" ]]; then
 	source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-bindkey -v # vi mode
-bindkey '^A' beginning-of-line
-bindkey '^E' end-of-line
 autoload -Uz compinit && compinit
 
 if (( $+commands[kitty] )) && [[ $TERM == "xterm-kitty" ]]; then
