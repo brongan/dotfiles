@@ -4,7 +4,8 @@ export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 export XDG_STATE_HOME=${XDG_STATE_HOME:-$HOME/.local/state}
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export HISTFILE="${XDG_STATE_HOME}/zsh/history"
-export HISTSIZE=2000
+export HISTSIZE=5000
+export SAVEHIST=10000
 setopt appendhistory
 
 if [[ $OSTYPE =~ "linux" ]]; then
