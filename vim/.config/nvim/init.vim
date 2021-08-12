@@ -1,11 +1,19 @@
 if $XDG_DATA_HOME != ""
-    set runtimepath^=${XDG_DATA_HOME}/nvim runtimepath+=${XDG_DATA_HOME}/nvim/after
+    set runtimepath^=${XDG_CONFIG_HOME}/nvim runtimepath+=${XDG_DATA_HOME}/nvim runtimepath+=${XDG_DATA_HOME}/nvim/after
+
+    set packpath^=${XDG_DATA_HOME}/nvim,${XDG_CONFIG_HOME}/nvim
+    set packpath+=${XDG_CONFIG_HOME}/nvim/after,${XDG_DATA_HOME}/nvim/after
 else
-    set runtimepath^=~/.vim runtimepath+=~/.vim/after
+    set runtimepath+=~/.vim runtimepath+=~/.vim/after
 endif
 
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
+
+call mkdir($XDG_DATA_HOME."/vim/spell", 'p')
+set viewdir=$XDG_DATA_HOME/vim/view | call mkdir(&viewdir, 'p')
+
+set backupdir=${XDG_CACHE_HOME}/vim/backup | call mkdir(&backupdir, 'p')
+set directory=${XDG_CACHE_HOME}/vim/swap   | call mkdir(&directory, 'p')
+set undodir=${XDG_CACHE_HOME}/vim/undo     | call mkdir(&undodir,   'p')
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
