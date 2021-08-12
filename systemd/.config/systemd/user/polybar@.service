@@ -1,8 +1,7 @@
 [Unit]
 Description=Bar
-PartOf=bspwm.service
+Wants=bspwm.service
 After=bspwm.service
-BindsTo=xorg.target
 
 [Service]
 Type=simple

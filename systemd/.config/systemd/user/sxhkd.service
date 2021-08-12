@@ -1,8 +1,7 @@
 [Unit]
 Description=Simple X Hotkey Daemon
-PartOf=bspwm.service
+Wants=bspwm.service
 After=bspwm.service
-BindsTo=xorg.target
 
 [Service]
 Type=simple

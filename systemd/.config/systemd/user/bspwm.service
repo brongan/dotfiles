@@ -1,6 +1,5 @@
 [Unit]
 Description=Binary Splitting Window Manager
-BindsTo=xorg.target
 
 [Service]
 Type=simple

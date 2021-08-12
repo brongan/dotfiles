@@ -1,6 +1,5 @@
 [Unit]
 Description=Compositor
-BindsTo=xorg.target
 
 [Service]
 Environment=DISPLAY=:0

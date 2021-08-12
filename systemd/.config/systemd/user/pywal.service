@@ -1,6 +1,5 @@
 [Unit]
 Description=PyWal Reload Oneshot
-BindsTo=xorg.target
 
 [Service]
 Type=oneshot

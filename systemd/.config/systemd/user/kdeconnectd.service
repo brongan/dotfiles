@@ -1,6 +1,5 @@
 [Unit]
 Description=Connect your computer to your smartphone or tablet. Ripped from https://github.com/KDE/plasma-systemd-integration/
-BindsTo=xorg.target
 
 [Service]
 Type=dbus
