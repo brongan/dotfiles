@@ -3,6 +3,13 @@
 # Helpful to read output when debugging
 set -eux
 
+# Stop Display Server
+USER=brong
+XORG_SERVICE="xorg-server@0.service"
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u ${USER})/bus"
+sudo -E -u ${USER} systemctl --user stop ${XORG_SERVICE}
+sleep 1
+
 # Unbind VTconsoles
 for (( i = 0; i < 16; i++)) do   if test -x /sys/class/vtconsole/vtcon${i}; then
 	if [ `cat /sys/class/vtconsole/vtcon${i}/name | grep -c "frame buffer"` = 1 ]; then
@@ -13,7 +20,6 @@ for (( i = 0; i < 16; i++)) do   if test -x /sys/class/vtconsole/vtcon${i}; then
 fi done
 
 # Unbind EFI-Framebuffer
-
 if test -e "/tmp/vfio-is-nvidia" ; then
 	rm -f /tmp/vfio-is-nvidia
 fi
@@ -38,10 +44,6 @@ virsh nodedev-detach pci_0000_08_00_2
 virsh nodedev-detach pci_0000_08_00_3
 
 # Load VFIO Kernel Module  
-modprobe vfio-pci  
+modprobe vfio vfio-pci vfio_iommu_type1
 
 echo "performance" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
-
-# Idk
-sleep 1
-
