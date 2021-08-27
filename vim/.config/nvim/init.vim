@@ -104,6 +104,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'honza/vim-snippets'
 Plug 'kovetskiy/sxhkd-vim'
+Plug 'google/vim-maktaba'
+Plug 'bazelbuild/vim-bazel'
 
 " Initialize plugin system
 call plug#end()
