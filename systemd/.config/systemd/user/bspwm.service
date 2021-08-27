@@ -1,5 +1,7 @@
 [Unit]
 Description=Binary Splitting Window Manager
+Requires=xorg-server@0.service
+After=xorg-server@0.service
 
 [Service]
 Type=simple

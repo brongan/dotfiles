@@ -2,10 +2,11 @@
 Description=Simple X Hotkey Daemon
 Wants=bspwm.service
 After=bspwm.service
+After=xorg-server@0.service
 
 [Service]
 Type=simple
-Environment=DISPLAY=:0
+Environment=DISPLAY=:0 _JAVA_AWT_WM_NONREPARENTING=1
 ExecStart=/usr/bin/sxhkd
 Environment="SXHKD_SHELL=/usr/bin/zsh"
 
