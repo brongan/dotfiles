@@ -27,6 +27,7 @@
 	],
 	// Valid options: ["edit", "split", "vsplit", "tabe", "drop", "tab drop"]
 	"coc.preferences.jumpCommand": "edit",
+	"diagnostic.checkCurrentLine": true,
 	//"coc.preferences.useQuickfixForLocations": true,
 	// Yank config
 	"yank.enableCompletion": false,

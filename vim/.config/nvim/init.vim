@@ -81,7 +81,7 @@ else
     call plug#begin('~/.vim/plugged')
 endif
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'scrooloose/nerdtree'
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-surround'
