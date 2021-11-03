@@ -18,12 +18,6 @@ bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc rule -a Caprine   desktop='^5'
-bspc rule -a Discord   desktop='^5'
-bspc rule -a discord   desktop='^5'
-bspc rule -a Steam     desktop='^3'
-bspc rule -a Nightly   desktop='^2' state=tiled
-bspc rule -a Chromium  desktop='^2'
 bspc rule -a Rofi state=floating
 bspc rule -a Peek state=floating
 bspc rule -a Zathura state=tiled

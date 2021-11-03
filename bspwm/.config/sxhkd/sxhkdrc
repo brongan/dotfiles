@@ -77,9 +77,9 @@ alt + p
 # state/flags
 #
 
-# set the window state (tiled, pseudo_tiled, floating, fullscreen}
-super + {t,shift + t,s,f}
-	notify-send "Setting Window State" {tiled,pseudo_tiled,floating,"~fullscreen"} && bspc node -t {tiled,pseudo_tiled,floating,~fullscreen}
+# toggle fullscreen
+super + f
+    bspc node -t \~fullscreen
 
 # set the node flags
 super + ctrl + {m,x,y,z}
