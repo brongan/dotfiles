@@ -73,7 +73,6 @@ if [[ $OSTYPE =~ "linux" ]]; then
 	source /usr/share/vim/vimfiles/gruvbox_256palette.sh
 	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-	bindkey -v # vi mode
 	bindkey '^A' beginning-of-line
 	bindkey '^E' end-of-line
 elif [[ $OSTYPE =~ "darwin" ]]; then
@@ -90,16 +89,3 @@ if (( $+commands[kitty] )) && [[ $TERM == "xterm-kitty" ]]; then
 	kitty + complete setup zsh | source /dev/stdin
 fi
 
-# Work
-if (( $+commands[eda] )); then
-	export EDA_AUTO="$HOME/.config/eda/completion"
-	mkdir -p $EDA_AUTO
-	eda completions zsh > $EDA_AUTO/_eda
-	fpath=($EDA_AUTO $fpath)
-fi
-
-if [ -d "/Users/${USER}/Library/Android/sdk" ]; then
-	export ANDROID_HOME="/Users/${USER}/Library/Android/sdk"
-	path=($path "$ANDROID_HOME/platforms-tools" "$ANDROID_HOME/tools/" "$ANDROID_HOME/build-tools/21.1.2" "/Users/${USER}/workplace/ATVAndroidDevTools/gradle")
-	export ANDROID_HVPROTO=ddm
-fi

@@ -65,8 +65,3 @@ else
 fi
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 
-# Work
-if [[ -d "$HOME/.toolbox" ]]; then
-  path=($path "$HOME/.toolbox/bin" "/usr/local/opt/ruby/bin")
-fi
-
