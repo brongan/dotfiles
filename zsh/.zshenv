@@ -21,6 +21,8 @@ elif [[ $OSTYPE =~ "darwin" ]]; then
   export TERMINAL="iterm"
 fi
 
+export PRIMARY_MONITOR=$(xrandr --query -display :0.0| grep " connected " | awk '{ print$1 }' | head -n 1)
+
 # PATH
 typeset -U path
 if (( $+commands[systemd-path] )); then
