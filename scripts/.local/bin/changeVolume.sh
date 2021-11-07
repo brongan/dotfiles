@@ -8,22 +8,17 @@ VOLUME_PCT_CHANGE=1
 MAX_TICKS=20
 NUM_TICKS=$(( 100/${MAX_TICKS} ))
 
-function get_progress_string {
-	local volume=$1
-	local range=$((  ${volume}/${NUM_TICKS} ))
-	printf '▀%.0s' {1..$range}
-}
-
 function send_notification {
 	local volume="$(pamixer --get-volume)"
 	local mute="$(pamixer --get-mute)"
 	if [[ $volume == 0 || "$mute" == "true" ]]; then
 		# Show the sound muted notification
-		dunstify -a "changeVolume" -u low -i audio-volume-muted -r "$MSG_ID" "Volume muted" 
+		dunstify -a "changeVolume" -u low -i audio-volume-muted -r "$MSG_ID" "Volume Muted" \
+			-h int:value:$volume
 	else
 		# Show the volume notification
 		dunstify -a "changeVolume" -u low -i audio-volume-high -r "$MSG_ID" \
-			"Volume: ${volume}%" "$(get_progress_string $volume)"
+			"Volume: ${volume}%" -h int:value:$volume
 	fi
 }
 

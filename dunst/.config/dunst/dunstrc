@@ -26,6 +26,7 @@
 	icon_position = left
     max_icon_size = 50
     icon_path = /usr/share/icons/Papirus-Dark/16x16/actions:/usr/share/icons/Papirus/16x16/apps:/usr/share/icons/Papirus/16x16/apps:/usr/share/icons/Papirus-Dark/16x16/devices:/usr/share/icons/Papirus/16x16/emblems:/usr/share/icons/Papirus/16x16/emotes:/usr/share/icons/Papirus/16x16/mimetypes:/usr/share/icons/Papirus/16x16/panel:/usr/share/icons/Papirus-Dark/16x16/places:/usr/share/icons/Papirus/16x16/status
+    progress_bar = true
 
 [frame]
     color = "#aaaaaa"
