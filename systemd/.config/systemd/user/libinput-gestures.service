@@ -3,6 +3,7 @@ Description=Python script to parse libinput and run commands based on gesturse
 
 [Service]
 Type=simple
+Environment=DISPLAY=:0
 ExecStart=/usr/bin/libinput-gestures
 
 [Install]
