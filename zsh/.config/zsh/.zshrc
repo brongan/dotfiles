@@ -83,7 +83,7 @@ elif [[ $OSTYPE =~ "darwin" ]]; then
 	source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -d $ZCOMPDUMP
 
 if (( $+commands[kitty] )) && [[ $TERM == "xterm-kitty" ]]; then
 	kitty + complete setup zsh | source /dev/stdin
