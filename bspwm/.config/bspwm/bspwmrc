@@ -1,8 +1,13 @@
-#! /bin/sh
+#! /bin/bash
 
-bspc monitor DP-2 -d I II III 
-bspc monitor DP-4 -d IV V VI
-bspc monitor $PRIMARY_MONITOR -d I II III IV V
+
+MONITORS=($(xrandr --query -display :0.0 | grep " connected " | awk '{ print$1 }' | tr '\n' ' '))
+if [[ ${#MONITORS[@]}  -eq 1 ]]; then
+    bspc monitor ${MONITORS[0]} -d I II III IV V
+else
+    bspc monitor ${MONITORS[0]} -d I II III 
+    bspc monitor ${MONITORS[1]} -d IV V VI
+fi
 
 # border color
 # bspc config normal_border_color "$(get_xrdb background)"
