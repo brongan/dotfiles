@@ -17,9 +17,17 @@ super + Escape
 # Show sxhkd help
 super + F1
 	dunstify -u low "Showing sxhkd help" && cat ~/.config/sxhkd/sxhkdrc | awk '/^[a-z]/ && last \{print $0,"\t",last\} \{last=""\} /^#/\{last=$0\}' | column -t -s $'\t' | rofi -dmenu -i -no-show-icons -width 1000
+
+### Function Keys ###
 # ChangeVolume.sh
 XF86Audio{LowerVolume,RaiseVolume,Mute}
 	changeVolume.sh {down,up,mute}
+
+XF86AudioPlay
+	playerctl play-pause
+
+XF86Audio{Prev,Next}
+	playerctl {prev,next}
 
 # ChangeBrightness.sh
 XF86MonBrightness{Up,Down}
@@ -27,7 +35,7 @@ XF86MonBrightness{Up,Down}
 
 # Take a Screenshot of the whole screen
 Print
-	dunstify -u low"Taking a Screenshot" -i image-png && shotgun - | xclip -selection clipboard -t image/png  
+	dunstify -u low "Taking a Screenshot" -i image-png && shotgun - | xclip -selection clipboard -t image/png  
 
 # Take a screenshot of a selection
 super + Print
