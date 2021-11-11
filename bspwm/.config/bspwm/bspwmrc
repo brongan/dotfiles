@@ -1,18 +1,19 @@
-#! /bin/bash
+#!/bin/bash
 
-set -eux
+set -ux
 
 MONITORS=($(xrandr --query -display :0.0 | grep " connected " | awk '{ print$1 }' | tr '\n' ' '))
 if [[ ${#MONITORS[@]} -eq 1 ]]; then
     bspc monitor ${MONITORS[0]} -d I II III IV V
     bspc rule -a Caprine desktop=^3
-    bspc rule -a Discord desktop=^3
+    bspc rule -a discord desktop=^3
 else
     bspc monitor ${MONITORS[0]} -d I II III 
     bspc monitor ${MONITORS[1]} -d IV V VI
     bspc rule -a Caprine desktop=^4
-    bspc rule -a Discord desktop=^4
+    bspc rule -a discord desktop=^4
 fi
+bspc rule -a Nightly desktop=^2
 
 # border color
 # bspc config normal_border_color "$(get_xrdb background)"
@@ -23,7 +24,6 @@ bspc config split_ratio           0.50
 bspc config borderless_monocle    true
 bspc config gapless_monocle       true
 bspc config single_monocle        true
-bspc config focus_follows_pointer false
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
