@@ -37,6 +37,7 @@ export GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export RUSTUP_HOME="${XDG_DATA_HOME}rustup"
 export GOPATH="${XDG_DATA_HOME}/go"
+export GEM_HOME="${XDG_DATA_HOME}/gem/ruby"
 export LESSHISTFILE="${XDG_STATE_HOME}/less/history"
 export LESSKEY="${XDG_CONFIG_HOME}/less/keys"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/password-store"
@@ -57,8 +58,8 @@ export LEIN_HOME="${XDG_DATA_HOME}/lein"
 export TERMINFO="${XDG_DATA_HOME}/terminfo"
 export TERMINFO_DIRS="${XDG_DATA_HOME}/terminfo:/usr/share/terminfo"
 
-# Go and Rust have to be special
-path=($path "${CARGO_HOME}/bin" "${GOPATH}/bin")
+# smh languages
+path=($path "${CARGO_HOME}/bin" "${GOPATH}/bin" "${GEM_HOME}/bin")
 
 # Node.js
 if [ -s "${XDG_CONFIG_HOME}/nvm/nvm.sh" ]; then
