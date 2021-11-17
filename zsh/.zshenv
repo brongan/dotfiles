@@ -54,6 +54,8 @@ export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/startup.py"
 export XINITRC="${XDG_CONFIG_HOME}/X11/xinitrc"
 export XSERVERRC="${XDG_CONFIG_HOME}/X11/xserverrc"
 export LEIN_HOME="${XDG_DATA_HOME}/lein"
+export TERMINFO="${XDG_DATA_HOME}/terminfo"
+export TERMINFO_DIRS="${XDG_DATA_HOME}/terminfo:/usr/share/terminfo"
 
 # Go and Rust have to be special
 path=($path "${CARGO_HOME}/bin" "${GOPATH}/bin")
