@@ -1,6 +1,7 @@
 [Unit]
 Description=PyWal Reload Oneshot
 After=xorg-server@0.service
+After=compton.service
 Requires=xorg-server@0.service
 
 [Service]
