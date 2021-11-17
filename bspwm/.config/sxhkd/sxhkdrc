@@ -58,6 +58,9 @@ super + alt + {q,r}
 super + {_,shift + }w
 	bspc node -{c,k}
 
+control + alt + Delete
+	bspc node -k
+
 # alternate between the tiled and monocle layout
 super + m
 	dunstify -u medium "Switching between tiled and monocle" && bspc desktop -l next
