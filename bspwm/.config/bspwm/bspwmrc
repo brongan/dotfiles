@@ -45,6 +45,8 @@ for game in $mygames; do
     bspc rule -a steam_app_$game desktop=^2 state=fullscreen
 done
 
+hsetroot -fill ~/Desktop/CyberneticBackground.jpg
+
 kitty &
 firefox-nightly &
 caprine &
