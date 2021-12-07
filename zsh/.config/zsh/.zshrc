@@ -28,13 +28,6 @@ fi
 export SUDO_EDITOR=$EDITOR
 export SYSTEMD_EDITOR=$EDITOR
 
-if (( $+commands[bat] )); then
-  export LESS="-R" # show colors
-  export LESSOPEN="| bat %s"
-  export PAGER=less
-  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-fi
-
 wm=$(wmctrl -m 2&> /dev/null | head -n 1 | cut -d' ' -f 2)
 if [[ $wm == "bspwm" || $wm == "i3" ]]; then
   export _JAVA_AWT_WM_NONREPARENTING=1
@@ -50,7 +43,11 @@ alias la="exa -a"
 alias ll="exa -aglh"
 alias ip="ip -c"
 alias rm="rm -i"
-alias cat="bat"
+if (( $+cmomands[bat] )); then
+	alias cat="bat"
+else
+	alias cat="batcat"
+fi
 alias vim="nvim"
 alias pass="gopass"
 alias top="btm"
@@ -59,6 +56,11 @@ alias bdu="sudo btrfs filesystem du"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
 alias yarn='yarn --use-yarnrc "${XDG_CONFIG_HOME}/yarn/config"'
+
+export LESS="-R" # show colors
+export LESSOPEN="| bat %s"
+export PAGER=less
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 if (( ! $+commands[sudoedit] )); then
   alias sudoedit="sudo -e"
@@ -71,11 +73,26 @@ fi
 
 # Completion
 if [[ $OSTYPE =~ "linux" ]]; then
-	source /usr/share/fzf/key-bindings.zsh
-	source /usr/share/fzf/completion.zsh
-	source /usr/share/vim/vimfiles/gruvbox_256palette.sh
-	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+	if [[ -d /usr/share/fzf ]]; then
+		source /usr/share/fzf/key-bindings.zsh
+		source /usr/share/fzf/completion.zsh
+	else
+		source /usr/share/doc/fzf/examples/key-bindings.zsh
+		source /usr/share/doc/fzf/examples/completion.zsh
+	fi
+	if [[ -f /usr/share/vim/vimfiles/gruvbox_256palette.sh ]]; then
+		source /usr/share/vim/vimfiles/gruvbox_256palette.sh
+	else
+		source ${XDG_DATA_HOME}/nvim/plugged/gruvbox/gruvbox_256palette.sh
+	fi
+	if [[ -d /usr/share/zsh/plugins ]]; then
+		source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+	else
+		source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+		source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+	fi
+
 	bindkey '^A' beginning-of-line
 	bindkey '^E' end-of-line
 elif [[ $OSTYPE =~ "darwin" ]]; then
