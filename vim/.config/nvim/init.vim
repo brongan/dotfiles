@@ -104,6 +104,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
 Plug 'wincent/terminus'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-maktaba'
 
 " Initialize plugin system
 call plug#end()

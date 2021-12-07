@@ -32,7 +32,6 @@
 	// Yank config
 	"yank.enableCompletion": false,
 	// Python config
-	"python.jediEnabled": false,
 	"python.linting.enabled": true,
 	"python.linting.pylintEnabled": false,
 	"python.linting.flake8Enabled": true,
@@ -45,5 +44,5 @@
 	"rust-analyzer.checkOnSave.command": "clippy",
 	"rust-analyzer.completion.addCallParenthesis": false,
 	"rust-analyzer.cargo.allFeatures": true,
-	"rust-analyzer.diagnostics.enable": true
+	"rust-analyzer.diagnostics.enable": true,
 }
