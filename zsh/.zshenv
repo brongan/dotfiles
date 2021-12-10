@@ -64,7 +64,7 @@ export TERMINFO_DIRS="${XDG_DATA_HOME}/terminfo:/usr/share/terminfo"
 path=($path "${CARGO_HOME}/bin" "${GOPATH}/bin" "${GEM_HOME}/bin")
 # Debian Why
 if [ -d "/usr/lib/cargo/bin/" ]; then
-  path=$(path "/usr/lib/cargo/bin")
+  path=($path "/usr/lib/cargo/bin")
 fi
 
 # Node.js
