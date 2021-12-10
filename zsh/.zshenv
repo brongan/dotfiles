@@ -62,6 +62,10 @@ export TERMINFO_DIRS="${XDG_DATA_HOME}/terminfo:/usr/share/terminfo"
 
 # smh languages
 path=($path "${CARGO_HOME}/bin" "${GOPATH}/bin" "${GEM_HOME}/bin")
+# Debian Why
+if [ -d "/usr/lib/cargo/bin/" ]; then
+  path=$(path "/usr/lib/cargo/bin")
+fi
 
 # Node.js
 if [ -s "${XDG_CONFIG_HOME}/nvm/nvm.sh" ]; then
