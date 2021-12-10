@@ -81,33 +81,27 @@ else
     call plug#begin('~/.vim/plugged')
 endif
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/nerdtree'
-Plug 'wellle/targets.vim'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'wincent/terminus'
-Plug 'tpope/vim-repeat'
-Plug 'valloric/listtoggle'
-Plug 'dylanaraps/wal.vim'
-Plug 'morhetz/gruvbox'
-Plug 'sheerun/vim-polyglot'
-Plug 'psliwka/vim-smoothie'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-rooter'
-Plug 'tmsvg/pear-tree'
+Plug 'bazelbuild/vim-bazel'
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'jackguo380/vim-lsp-cxx-highlight'
-Plug 'honza/vim-snippets'
 Plug 'kovetskiy/sxhkd-vim'
-Plug 'google/vim-maktaba'
-Plug 'bazelbuild/vim-bazel'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ojroques/vim-oscyank'
+Plug 'psliwka/vim-smoothie'
+Plug 'sheerun/vim-polyglot'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tmsvg/pear-tree'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'wellle/targets.vim'
+Plug 'wincent/terminus'
 
 " Initialize plugin system
 call plug#end()
@@ -255,20 +249,6 @@ nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 vmap <leader>p  <Plug>(coc-format-selected)
 nmap <leader>p  <Plug>(coc-format-selected)
 
-" Snippets
-
-" Use <tab> for jump to next placeholder
-let g:coc_snippet_next = '<tab>'
-
-" Use Shift + <tab> for jump to previous placeholder
-let g:coc_snippet_prev = '<S-tab>'
-
-" Use location list of CocList when jump to locations
-let g:coc_enable_locationlist = 1
-
-" Change background of floating window to a darker color (gets overwritten by colorscheme)
-" highlight Pmenu ctermfg=NONE ctermbg=2 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FZF
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -331,29 +311,6 @@ let g:lt_quickfix_list_toggle_map = '<leader>L'
 
 " Set height
 " let g:lt_height = 10
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Nerd Tree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeWinPos = "right"
-let NERDTreeShowHidden=0
-let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-let g:NERDTreeWinSize=35
-map <leader>nn :NERDTreeToggle<cr>
-map <leader>nb :NERDTreeFromBookmark<Space>
-map <leader>nf :NERDTreeFind<cr>
-
-" Close vim if the only window left is nerdtree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim Rooter
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Change directory for non-project files to current file directory
-let g:rooter_change_directory_for_non_project_files = 'current'
-
-" Resolve Symbolic Links
-let g:rooter_resolve_links = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pear Tree
@@ -427,7 +384,6 @@ let g:mkdp_open_to_the_world = 0
 
 " specify browser to open preview page
 " default: ''
-let g:mkdp_browser = 'brave'
 
 " options for markdown render
 " mkit: markdown-it options for render
@@ -683,14 +639,6 @@ if exists(':tnoremap')
                 buffer Terminal\ 1
                 " Gets the id of the terminal window
                 let s:monkey_terminal_window = win_getid()
-
-                "Change project directory to current buffer's project directory (requires vim-rooter)
-                if s:monkey_terminal_current_dir != getcwd()
-                    let s:monkey_terminal_current_dir = getcwd()
-                    call chansend(s:monkey_terminal_job_id, "cd ")
-                    call chansend(s:monkey_terminal_job_id, s:monkey_terminal_current_dir)
-                    call chansend(s:monkey_terminal_job_id, "\n")
-                endif
             endif
         endif
     endfunction
