@@ -81,7 +81,7 @@ else
     call plug#begin('~/.vim/plugged')
 endif
 
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-surround'
@@ -97,6 +97,7 @@ Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
 Plug 'psliwka/vim-smoothie'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-rooter'
 Plug 'tmsvg/pear-tree'
 Plug 'junegunn/fzf'
@@ -106,6 +107,7 @@ Plug 'honza/vim-snippets'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
+Plug 'ojroques/vim-oscyank'
 
 " Initialize plugin system
 call plug#end()
@@ -472,14 +474,18 @@ set number
 set mouse=a
 
 " Clipboard set to global and ctrl c/v maps
-" set clipboard=unnamedplus
-vmap <C-c> "+y
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <C-r><C-o>+
-
-vnoremap <leader>y "+y
 vnoremap <leader>x "+c
+noremap <leader>y "+y
+
+" SSH friendly clipboard
+vnoremap <leader>c :OSCYank<CR>
+vmap <C-c> :OSCYank<CR>
+
+" ex <leader>oip  " copy the inner paragraph
+nmap <leader>o <Plug>OSCYank
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -569,7 +575,7 @@ autocmd ColorScheme * call AdaptColorscheme()
 syntax enable
 
 " Set 256 color palette
-set t_Co=256
+"set t_Co=256
 
 " Gruvbox
 colorscheme gruvbox
@@ -634,10 +640,6 @@ map <leader>t<leader> :tabnext
 " Buffer movement and delete
 map gb :bn<cr>
 map gB :bp<cr>
-map <leader>bd :bd<cr>
-
-" Save current buffer and close all other buffers
-map <silent> <leader>ba :w<cr>:%bd<cr>:e#<cr>:bd#<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Neovim Terminal
@@ -764,10 +766,6 @@ let g:airline_detect_iminsert = 0
 
 " Use alternative seperators for the statusline of inactive windows
 " let g:airline_inactive_alt_sep = 1
-
-" Themes are automatically selected based on the matching colorscheme. this can be overridden by defining a value.
-" For powerline theme, need to manually add it to airline theme plugin folder
-let g:airline_theme = 'powerlineish'
 
 " Enable/disable COC.nvim error/warning display
 " let g:airline#extensions#coc#enabled = 0
