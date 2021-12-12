@@ -81,7 +81,6 @@ else
     call plug#begin('~/.vim/plugged')
 endif
 
-Plug 'bazelbuild/vim-bazel'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -91,6 +90,7 @@ Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ojroques/vim-oscyank'
 Plug 'psliwka/vim-smoothie'
+Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tmsvg/pear-tree'
