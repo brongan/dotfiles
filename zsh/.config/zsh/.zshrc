@@ -43,9 +43,9 @@ alias la="exa -a"
 alias ll="exa -aglh"
 alias ip="ip -c"
 alias rm="rm -i"
-if (( $+cmomands[bat] )); then
+if (( $+commands[bat] )); then
 	alias cat="bat"
-else
+elif (( $+commands[batcat] )); then
 	alias cat="batcat"
 fi
 alias vim="nvim"
