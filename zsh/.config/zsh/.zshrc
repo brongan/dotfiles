@@ -59,6 +59,9 @@ alias bdu="sudo btrfs filesystem du"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
 alias yarn='yarn --use-yarnrc "${XDG_CONFIG_HOME}/yarn/config"'
+function xdg-query() {
+	xdg-mime query default $(xdg-mime query filetype ${1})
+}
 
 export LESS="-R" # show colors
 export LESSOPEN="| bat %s"
