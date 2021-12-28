@@ -43,6 +43,7 @@ alias la="exa -a"
 alias ll="exa -aglh"
 alias ip="ip -c"
 alias rm="rm -i"
+alias grep="rg"
 if (( $+commands[bat] )); then
 	alias cat="bat"
 elif (( $+commands[batcat] )); then
