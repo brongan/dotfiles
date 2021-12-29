@@ -90,12 +90,9 @@ Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ojroques/vim-oscyank'
 Plug 'psliwka/vim-smoothie'
-Plug 'scrooloose/nerdtree'
-Plug 'sheerun/vim-polyglot'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'tmsvg/pear-tree'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
@@ -293,6 +290,32 @@ nnoremap <leader>fm :Marks<cr>
 nnoremap <leader>fr :Rg<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => nvim-treesitter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+ensure_installed = "all",     -- one of "all", "language", or a list of languages
+highlight = {
+enable = true,              -- false will disable the whole extension
+},
+   incremental_selection = {
+   enable = true,
+   keymaps = {
+       init_selection = "gnn",
+       node_incremental = "grn",
+       scope_incremental = "grc",
+       node_decremental = "grm",
+       },
+   },
+   refactor = {
+       highlight_definition = { enable = true },
+       navigation = { enable = true },
+       },
+   textobjects = { enable = true },
+   }
+EOF
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Git status
@@ -311,48 +334,6 @@ let g:lt_quickfix_list_toggle_map = '<leader>L'
 
 " Set height
 " let g:lt_height = 10
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Pear Tree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Default rules for matching:
-let g:pear_tree_pairs = {
-            \ '(': {'closer': ')'},
-            \ '[': {'closer': ']'},
-            \ '{': {'closer': '}'},
-            \ "'": {'closer': "'"},
-            \ '"': {'closer': '"'},
-            \ '<': {'closer': '>', 'not_at': ['\s']}
-            \}
-" See pear-tree/after/ftplugin/ for filetype-specific matching rules
-
-" Pear Tree is enabled for all filetypes by default:
-let g:pear_tree_ft_disabled = []
-
-" Pair expansion is dot-repeatable by default:
-let g:pear_tree_repeatable_expand = 1
-
-" Turn on smart pairing
-let g:pear_tree_smart_openers = 1
-let g:pear_tree_smart_closers = 0
-let g:pear_tree_smart_backspace = 1
-
-" If enabled, smart pair functions timeout after 60ms:
-let g:pear_tree_timeout = 60
-
-" Automatically map <BS>, <CR>, and <Esc>
-let g:pear_tree_map_special_keys = 0
-
-" Default mappings:
-imap <BS> <Plug>(PearTreeBackspace)
-" imap <CR> <Plug>(PearTreeExpand)
-imap <Esc> <Plug>(PearTreeFinishExpansion)
-" Pear Tree also makes <Plug> mappings for each opening and closing string.
-"     :help <Plug>(PearTreeOpener)
-"     :help <Plug>(PearTreeCloser)
-
-" Move cursor past closing string
-imap <C-j> <Plug>(PearTreeJump)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Markdown Preview
