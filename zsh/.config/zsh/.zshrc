@@ -51,7 +51,9 @@ elif (( $+commands[batcat] )); then
 fi
 alias vim="nvim"
 alias pass="gopass"
-alias top="btm"
+if (($+commands[btm])); then
+	alias top="btm"
+fi
 alias bdf="sudo btrfs filesystem usage"
 alias bdu="sudo btrfs filesystem du"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
