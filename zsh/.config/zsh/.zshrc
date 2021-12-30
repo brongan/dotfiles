@@ -112,3 +112,13 @@ if (( $+commands[kitty] )) && [[ $TERM == "xterm-kitty" ]]; then
 	kitty + complete setup zsh | source /dev/stdin
 fi
 
+# Atuin
+if (( $+commands[autin] )); then
+	export ATUIN_NOBIND=1
+	eval "$(atuin init zsh)"
+	atuin_fzf() {
+		atuin history list --cmd-only | fzf
+	}
+	bindkey '^R' fzf-history-widget
+fi
+
