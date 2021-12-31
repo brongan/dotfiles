@@ -628,8 +628,8 @@ if exists(':tnoremap')
         if win_gotoid(s:monkey_terminal_window)
             call MonkeyTerminalClose()
         else
-            " Resize terminal window to be 1/3 of main window
-            let s:main_window_height = winheight(0) * 1/3
+            " Resize terminal window
+            let s:main_window_height = winheight(0) * 1/2
             call MonkeyTerminalOpen()
             exe 'resize' s:main_window_height
         endif
