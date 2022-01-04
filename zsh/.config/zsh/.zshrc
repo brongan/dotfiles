@@ -12,6 +12,9 @@ export FZF_CTRL_T_COMMAND="fd --type d $FD_OPTIONS"
 export FZF_CTRL_T_OPTS="--preview '([[ -d {} ]] && tree -aC {}) || ([[ -f {} ]] && bat --color=always --style=header,grid --line-range :300 {})'"
 export FZF_ALT_C_COMMAND="fd --type f --hidden $FD_OPTIONS"
 
+# time
+export TIMEFMT=$'\n================\nCPU\t%P\nuser\t%*U\nsystem\t%*S\ntotal\t%*E'
+
 # NNN
 if (( $+commands[kitty] )); then
 	export NNN_PLUG='o:fzopen;v:preview-kitty'
@@ -119,7 +122,7 @@ fi
 atuin-fzf () {
 	local selected num
 	setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-	selected=( $(atuin history list --cmd-only | fzf --tac) )
+	selected=( $(atuin history list | tr -s ' ' | cut --complement -d' ' -f 1 | fzf --tac) )
 	local ret=$?
 	if [ -n "$selected" ]; then
 		RBUFFER=${selected}${RBUFFER}
