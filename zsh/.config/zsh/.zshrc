@@ -116,12 +116,21 @@ if (( $+commands[kitty] )) && [[ $TERM == "xterm-kitty" ]]; then
 fi
 
 # Atuin
-if (( $+commands[autin] )); then
+atuin-fzf () {
+	local selected num
+	setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+	selected=( $(atuin history list --cmd-only | fzf --tac) )
+	local ret=$?
+	if [ -n "$selected" ]; then
+		RBUFFER=${selected}${RBUFFER}
+	fi
+	zle reset-prompt
+	return $ret
+}
+if (( $+commands[atuin] )); then
 	export ATUIN_NOBIND=1
 	eval "$(atuin init zsh)"
-	atuin_fzf() {
-		atuin history list --cmd-only | fzf
-	}
-	bindkey '^R' fzf-history-widget
+	zle -N atuin-fzf
+	bindkey '^R' atuin-fzf
 fi
 
