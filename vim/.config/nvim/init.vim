@@ -1,3 +1,7 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => XDG path configuration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Stop polluting $HOME
 if $XDG_DATA_HOME != ""
     set runtimepath^=${XDG_CONFIG_HOME}/nvim runtimepath+=${XDG_DATA_HOME}/nvim runtimepath+=${XDG_DATA_HOME}/nvim/after
 
@@ -88,11 +92,12 @@ Plug 'kovetskiy/sxhkd-vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'ojroques/vim-oscyank'
 Plug 'psliwka/vim-smoothie'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
@@ -316,99 +321,11 @@ enable = true,              -- false will disable the whole extension
 EOF
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Fugitive
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Git status
-nmap <leader>gs :G<CR>
-
-" For merge conflicts, 2 = left, 3 = right
-nmap <leader>gj :diffget //3<CR>
-nmap <leader>gf :diffget //2<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => ListToggle
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Toggle for location list and quickfix
-let g:lt_location_list_toggle_map = '<leader>l'
-let g:lt_quickfix_list_toggle_map = '<leader>L'
-
-" Set height
-" let g:lt_height = 10
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Markdown Preview
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set to 1, nvim will open the preview window after entering the markdown buffer
-" default: 0
-let g:mkdp_auto_start = 0
-
-" set to 1, the nvim will auto close current preview window when change
-" from markdown buffer to another buffer
-" default: 1
-let g:mkdp_auto_close = 1
-
-" set to 1, the vim will refresh markdown when save the buffer or
-" leave from insert mode, default 0 is auto refresh markdown as you edit or
-" move the cursor
-" default: 0
-let g:mkdp_refresh_slow = 0
-
-" set to 1, the MarkdownPreview command can be use for all files,
-" by default it can be used in markdown file
-" default: 0
-let g:mkdp_command_for_global = 0
-
-" set to 1, preview server available to others in your network
-" by default, the server listens on localhost (127.0.0.1)
-" default: 0
-let g:mkdp_open_to_the_world = 0
-
-" specify browser to open preview page
-" default: ''
-
-" options for markdown render
-" mkit: markdown-it options for render
-" katex: katex options for math
-" uml: markdown-it-plantuml options
-" maid: mermaid options
-" disable_sync_scroll: if disable sync scroll, default 0
-" sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
-"   middle: mean the cursor position alway show at the middle of the preview page
-"   top: mean the vim top viewport alway show at the top of the preview page
-"   relative: mean the cursor position alway show at the relative positon of the preview page
-" hide_yaml_meta: if hide yaml metadata, default is 1
-" sequence_diagrams: js-sequence-diagrams options
-" content_editable: if enable content editable for preview page, default: v:false
-let g:mkdp_preview_options = {
-    \ 'mkit': {},
-    \ 'katex': {},
-    \ 'uml': {},
-    \ 'maid': {},
-    \ 'disable_sync_scroll': 0,
-    \ 'sync_scroll_type': 'middle',
-    \ 'hide_yaml_meta': 1,
-    \ 'sequence_diagrams': {},
-    \ 'flowchart_diagrams': {},
-    \ 'content_editable': v:false
-    \ }
-
-" preview page title
-" ${name} will be replace with the file name
-let g:mkdp_page_title = '「${name}」'
-
-" Preview Mappings
-nmap <leader>md <Plug>MarkdownPreviewToggle
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " =>  Save Stuff
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
-
-" Line number and mouse point
-set number
-set mouse=a
 
 " Clipboard set to global and ctrl c/v maps
 vmap <C-x> "+c
@@ -491,6 +408,10 @@ let g:netrw_browsex_viewer= "xdg-open"
 " Set windows to open below
 set splitbelow
 
+" Line number and mouse point
+set number
+set mouse=a
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -509,7 +430,7 @@ endfunction
 autocmd ColorScheme * call AdaptColorscheme()
 
 " Enable syntax highlighting
-syntax enable
+" syntax enable
 
 " Set 256 color palette
 "set t_Co=256
@@ -734,4 +655,12 @@ function! HasPaste()
     endif
     return ''
 endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Navigation
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <C-k> :cnext<CR>zz
+nnoremap <C-j> :cprev<CR>zz
+nnoremap <leader>k :lnext<CR>zz
+nnoremap <leader>j :lprev<CR>zz
 
