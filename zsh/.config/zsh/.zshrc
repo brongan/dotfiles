@@ -122,10 +122,11 @@ fi
 atuin-fzf () {
 	local selected num
 	setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-	selected=( $(atuin history list | tr -s ' ' | cut --complement -d' ' -f 1 | fzf --tac) )
+	selected=( $(atuin history list -h | tr -s ' ' | fzf --tac) )
 	local ret=$?
+	unset 'selected[${#selected[@]}]'
 	if [ -n "$selected" ]; then
-		RBUFFER=${selected}${RBUFFER}
+		RBUFFER="${selected[@]:2}${RBUFFER}"
 	fi
 	zle reset-prompt
 	return $ret
