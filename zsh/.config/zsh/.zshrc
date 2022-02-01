@@ -23,9 +23,9 @@ export NNN_FIFO=/tmp/nnn.fifo
 
 # Editors and pagers
 if (( $+commands[nvim] )); then
-  export EDITOR="nvim"
+	export EDITOR="nvim"
 else
-  export EDITOR="vim"
+	export EDITOR="vim"
 fi
 
 export SUDO_EDITOR=$EDITOR
@@ -33,7 +33,7 @@ export SYSTEMD_EDITOR=$EDITOR
 
 wm=$(wmctrl -m 2&> /dev/null | head -n 1 | cut -d' ' -f 2)
 if [[ $wm == "bspwm" || $wm == "i3" ]]; then
-  export _JAVA_AWT_WM_NONREPARENTING=1
+	export _JAVA_AWT_WM_NONREPARENTING=1
 fi
 
 [ -f ${XDG_CACHE_HOME}/wal/sequences ] && (cat ~/.cache/wal/sequences &)
@@ -63,7 +63,7 @@ alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
 alias yarn='yarn --use-yarnrc "${XDG_CONFIG_HOME}/yarn/config"'
 function xdg-query() {
-	xdg-mime query default $(xdg-mime query filetype ${1})
+xdg-mime query default $(xdg-mime query filetype ${1})
 }
 
 export LESS="-R" # show colors
@@ -72,7 +72,7 @@ export PAGER=less
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 if (( ! $+commands[sudoedit] )); then
-  alias sudoedit="sudo -e"
+	alias sudoedit="sudo -e"
 fi
 
 if (( $+commands[kitty] )); then
@@ -120,16 +120,16 @@ fi
 
 # Atuin
 atuin-fzf () {
-	local selected num
-	setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-	selected=( $(atuin history list -h | fzf --tac) )
-	local ret=$?
-	if [ -n "$selected" ]; then
-		RBUFFER="${selected[@]:2:-1}${RBUFFER}"
-	fi
-	zle end-of-line
-	zle reset-prompt
-	return $ret
+local selected num
+setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+selected=( $(atuin history list -h | fzf --tac) )
+local ret=$?
+if [ -n "$selected" ]; then
+	RBUFFER="${selected[@]:2:-1}${RBUFFER}"
+fi
+zle end-of-line
+zle reset-prompt
+return $ret
 }
 if (( $+commands[atuin] )); then
 	export ATUIN_NOBIND=1
