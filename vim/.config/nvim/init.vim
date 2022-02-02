@@ -74,6 +74,9 @@ set noerrorbells
 " Relative linenumbers
 set relativenumber
 
+set tabstop=4
+set noexpandtab
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins,
 " :PlugInstall to install plugins, :PlugUpdate to update or install
