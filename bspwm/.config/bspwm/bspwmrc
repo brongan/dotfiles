@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-set -ux
-
 MONITORS=( $(xrandr --query -display ${DISPLAY} | grep " connected " | awk '{ print$1 }' | tr '\n' ' ') )
+if [[  "${MONITORS[0]}" == "eDP-1" ]]; then
+	# Why is work laptop 13 inch 4k
+	xrandr --output "${MONITORS[0]}" --mode 1920x1080
+fi
+
 if [[ ${#MONITORS[@]} -eq 1 ]]; then
 	bspc monitor "${MONITORS[0]}" -d I II III IV V
 	bspc rule -a Caprine desktop=^3
@@ -13,12 +16,10 @@ elif  [[ ${#MONITORS[@]} -eq 2 ]]; then
 	bspc rule -a Caprine desktop=^4
 	bspc rule -a discord desktop=^4
 else
-	bspc monitor "${MONITORS[1]}" -d I II III
-	bspc monitor "${MONITORS[2]}" -d IV V VI
 	# laptop display
 	bspc monitor "${MONITORS[0]}" -d VII 
-	# Why is work laptop 13 inch 4k
-	xrandr --output "${MONITORS[0]}" --mode 1920x1080
+	bspc monitor "${MONITORS[1]}" -d I II III
+	bspc monitor "${MONITORS[2]}" -d IV V VI
 fi
 bspc rule -a Nightly deskop=^2
 bspc rule -a Google-chrome desktop=^2
@@ -26,16 +27,16 @@ bspc rule -a Google-chrome desktop=^2
 # border color
 # bspc config normal_border_color "$(get_xrdb background)"
 # bspc config focused_border_color "$(get_xrdb color12)"
-bspc config border_width          3
-bspc config window_gap            12
-bspc config split_ratio           0.50
-bspc config borderless_monocle    true
-bspc config gapless_monocle       true
-bspc config single_monocle        true
+bspc config border_width		  3
+bspc config window_gap			  12
+bspc config split_ratio			  0.50
+bspc config borderless_monocle	  true
+bspc config gapless_monocle		  true
+bspc config single_monocle		  true
 
-bspc config split_ratio          0.52
-bspc config borderless_monocle   true
-bspc config gapless_monocle      true
+bspc config split_ratio			 0.52
+bspc config borderless_monocle	 true
+bspc config gapless_monocle		 true
 
 bspc rule -a Rofi state=floating
 bspc rule -a Peek state=floating
@@ -57,7 +58,7 @@ fi
 hsetroot -fill ~/Desktop/CyberneticBackground.jpg
 
 kitty &
-if  command -v "firefox-nightly"  &> /dev/null; then
+if	command -v "firefox-nightly"  &> /dev/null; then
 	firefox-nightly &
 else
 	google-chrome &
