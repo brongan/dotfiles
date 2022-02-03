@@ -45,4 +45,16 @@
 	"rust-analyzer.completion.addCallParenthesis": false,
 	"rust-analyzer.cargo.allFeatures": true,
 	"rust-analyzer.diagnostics.enable": true,
+	"diagnostic-languageserver.filetypes": {
+			"vim": "vint",
+			"markdown": [ "write-good", "markdownlint" ],
+			"sh": "shellcheck",
+			"yaml": [ "yamllint" ],
+			"cmake": [ "cmake-lint", "cmakelint" ],
+			"systemd": "systemd-analyze",
+	},
+	"diagnostic-languageserver.formatFiletypes": {
+			"sh": "shfmt",
+			"cmake": "cmake-format",
+	},
 }
