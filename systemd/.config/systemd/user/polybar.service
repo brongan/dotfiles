@@ -4,9 +4,9 @@ Wants=bspwm.service
 After=bspwm.service
 
 [Service]
-Type=simple
+Type=forking
 Environment=DISPLAY=:0
-ExecStart=/usr/bin/polybar -c %h/.config/polybar/config.ini %i
+ExecStart=%h/.local/bin/launch_polybar.sh
 
 [Install]
 WantedBy=xorg.target
