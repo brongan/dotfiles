@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
-MONITORS=( $(xrandr --query -display ${DISPLAY} | grep " connected " | awk '{ print$1 }' | tr '\n' ' ') )
-PRIMARY_MONITOR_RESOLUTION=xrandr --current |awk '$0 ~ "*" {print $1}' | head -n 1
+set -ux
+
+mapfile -t MONITORS < <(xrandr --query -display "${DISPLAY}" | grep " connected " | awk '{ print$1 }')
+
+PRIMARY_MONITOR_RESOLUTION=$(xrandr --current |awk '$0 ~ "*" {print $1}' | head -n 1)
 
 # If we have an internal monitor with 4k rez make it 1080p
-if [[  "${MONITORS[0]}" == "eDP-1" && $PRIMARY_MONITOR_RESOLUTION=="3840x2160" ]]; then
+if [[  "${MONITORS[0]}" == "eDP-1" && ${PRIMARY_MONITOR_RESOLUTION} == "3840x2160" ]]; then
 	xrandr --output "${MONITORS[0]}" --mode "1920x1080"
 fi
 
@@ -53,9 +56,9 @@ xsetroot -cursor_name left_ptr
 
 steamlib=~/Games/SteamLibrary 
 if [[ -d $steamlib ]]; then
-	mygames=$(ls $steamlib/steamapps/appmanifest_*.acf | sed 's/[^0-9]*//g')
+	mygames=$(find $steamlib/steamapps/appmanifest_*.acf | sed 's/[^0-9]*//g')
 	for game in $mygames; do
-		bspc rule -a steam_app_$game desktop=^2 state=fullscreen
+		bspc rule -a "steam_app_${game}" desktop=^2 state=fullscreen
 	done
 fi
 
@@ -75,7 +78,7 @@ if command -v "discord" &> /dev/null; then
 	discord &
 fi
 
-if ! systemctl --user cat xorg.target 2&> /dev/null; then
+if [[  ${HOST} == "brennantracy" ]]; then
 	sxhkd &
 	picom &
 	dunst &
