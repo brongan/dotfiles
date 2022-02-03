@@ -1,28 +1,32 @@
 #!/usr/bin/env bash
 
 MONITORS=( $(xrandr --query -display ${DISPLAY} | grep " connected " | awk '{ print$1 }' | tr '\n' ' ') )
-if [[  "${MONITORS[0]}" == "eDP-1" ]]; then
-	# Why is work laptop 13 inch 4k
-	xrandr --output "${MONITORS[0]}" --mode 1920x1080
+PRIMARY_MONITOR_RESOLUTION=xrandr --current |awk '$0 ~ "*" {print $1}' | head -n 1
+
+# If we have an internal monitor with 4k rez make it 1080p
+if [[  "${MONITORS[0]}" == "eDP-1" && $PRIMARY_MONITOR_RESOLUTION=="3840x2160" ]]; then
+	xrandr --output "${MONITORS[0]}" --mode "1920x1080"
 fi
 
 if [[ ${#MONITORS[@]} -eq 1 ]]; then
 	bspc monitor "${MONITORS[0]}" -d I II III IV V
 	bspc rule -a Caprine desktop=^3
 	bspc rule -a discord desktop=^3
+	bspc rule -a Nightly desktop=^2
+	bspc rule -a Google-chrome desktop=^2
 elif  [[ ${#MONITORS[@]} -eq 2 ]]; then
 	bspc monitor "${MONITORS[0]}" -d I II III 
 	bspc monitor "${MONITORS[1]}" -d IV V VI
 	bspc rule -a Caprine desktop=^4
 	bspc rule -a discord desktop=^4
 else
-	# laptop display
+    # TODO Detach laptop monitor
 	bspc monitor "${MONITORS[0]}" -d VII 
 	bspc monitor "${MONITORS[1]}" -d I II III
 	bspc monitor "${MONITORS[2]}" -d IV V VI
+	bspc rule -a Caprine desktop=^6
+	bspc rule -a discord desktop=^6
 fi
-bspc rule -a Nightly deskop=^2
-bspc rule -a Google-chrome desktop=^2
 
 # border color
 # bspc config normal_border_color "$(get_xrdb background)"
@@ -58,20 +62,20 @@ fi
 hsetroot -fill ~/Desktop/CyberneticBackground.jpg
 
 kitty &
-if	command -v "firefox-nightly"  &> /dev/null; then
+if	command -v "firefox-nightly" &> /dev/null; then
 	firefox-nightly &
 else
 	google-chrome &
 fi
 
-if command -v "caprine"  &> /dev/null; then
+if command -v "caprine" &> /dev/null; then
 	caprine &
 fi
-if command -v "discord"  &> /dev/null; then
+if command -v "discord" &> /dev/null; then
 	discord &
 fi
 
-if ! systemctl cat xorg.target 2&> /dev/null; then
+if ! systemctl --user cat xorg.target 2&> /dev/null; then
 	sxhkd &
 	picom &
 	dunst &
