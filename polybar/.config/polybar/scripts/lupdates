@@ -10,7 +10,11 @@ if command -v paru; then
     $TERMINAL paru
 elif command -v yay; then
     $TERMINAL yay
-else
+elif command -v pacman; then
     $TERMINAL sudo pacman -Syu
+elif command -v apt; then
+    $TERMINAL sudo apt update -y && sudo apt upgrade -y
+else
+    exit 1
 fi
 
