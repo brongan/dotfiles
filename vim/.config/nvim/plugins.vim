@@ -6,6 +6,7 @@ Plug 'google/vim-maktaba'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'kovetskiy/sxhkd-vim'
+Plug 'lervag/vimtex'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
