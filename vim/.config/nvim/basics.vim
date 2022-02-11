@@ -209,6 +209,7 @@ set ffs=unix,dos,mac
 set smarttab
 
 " The way things should be done
+set shiftwidth=4
 set tabstop=4
 set noexpandtab
 
