@@ -7,12 +7,62 @@ mapfile -t MONITORS < <(xrandr --query -display "${DISPLAY}" | grep " connected 
 PRIMARY_MONITOR_RESOLUTION=$(xrandr --current |awk '$0 ~ "*" {print $1}' | head -n 1)
 
 # If we have an internal monitor with 4k rez make it 1080p
-if [[  "${MONITORS[0]}" == "eDP-1" && ${PRIMARY_MONITOR_RESOLUTION} == "3840x2160" ]]; then
+if [[  "${MONITORS[0]}" =~ "eDP" && ${PRIMARY_MONITOR_RESOLUTION} == "3840x2160" ]]; then
 	xrandr --output "${MONITORS[0]}" --mode "1920x1080"
 fi
 
+bspc subscribe monitor | while read -r line; do
+	case $line in
+		monitor_add*|monitor_remove*)
+		echo $line
+		bspc query -D --names
+		bspc query -M --names
+		bspc desktop Desktop --remove
+		if [ "$(bspc query -M | wc -l)" -eq "3" ]; then
+			xrandr --output ${MONITORS[0]} --off
+			monitor2=$(bspc query -M | sed -n 2p)
+			monitor3=$(bspc query -M | sed -n 3p)
+			bspc desktop I -m $monitor2
+			bspc desktop II -m $monitor2
+			bspc desktop III -m $monitor2
+			bspc desktop IV -m $monitor2
+			bspc desktop IV -m $monitor3
+			bspc desktop V -m $monitor3
+			bspc desktop VI -m $monitor3
+		elif [ "$(bspc query -M | wc -l)" -eq "2" ]; then
+			monitor1=$(bspc query -M | sed -n 1p)
+			monitor2=$(bspc query -M | sed -n 2p)
+			bspc desktop I -m $monitor1
+			bspc desktop II -m $monitor1
+			bspc desktop III -m $monitor1
+			bspc desktop IV -m $monitor2
+			bspc desktop V -m $monitor2
+			bspc desktop VI -m $monitor2
+		else
+			monitor1=$(bspc query -M | sed -n 1p)
+			bspc desktop I -m $monitor1
+			bspc desktop II -m $monitor1
+			bspc desktop III -m $monitor1
+			bspc desktop IV -m $monitor1
+			bspc desktop IV -m $monitor1
+			bspc desktop V -m $monitor1
+			bspc desktop VI -m $monitor1
+		fi
+		hsetroot -fill ~/Desktop/CyberneticBackground.jpg
+		if [[  $(hostname) =~ "brennantracy" ]]; then
+			launch_polybar.sh
+		fi
+		bspc query -D --names
+		bspc query -M --names
+		;;
+		*)
+		;;
+	esac
+done &
+
+
 if [[ ${#MONITORS[@]} -eq 1 ]]; then
-	bspc monitor "${MONITORS[0]}" -d I II III IV V
+	bspc monitor "${MONITORS[0]}" -d I II III IV V VI
 	bspc rule -a Caprine desktop=^3
 	bspc rule -a discord desktop=^3
 	bspc rule -a Nightly desktop=^2
@@ -23,17 +73,18 @@ elif  [[ ${#MONITORS[@]} -eq 2 ]]; then
 	bspc rule -a Caprine desktop=^4
 	bspc rule -a discord desktop=^4
 else
-    # TODO Detach laptop monitor
-	bspc monitor "${MONITORS[0]}" -d VII 
+	bspc monitor ${MONITORS[0]} --remove
+	xrandr --output ${MONITORS[0]} --off
 	bspc monitor "${MONITORS[1]}" -d I II III
 	bspc monitor "${MONITORS[2]}" -d IV V VI
 	bspc rule -a Caprine desktop=^6
 	bspc rule -a discord desktop=^6
 fi
 
-# border color
-# bspc config normal_border_color "$(get_xrdb background)"
-# bspc config focused_border_color "$(get_xrdb color12)"
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
+bspc config merge_overlapping_monitors true
+
 bspc config border_width		  3
 bspc config window_gap			  12
 bspc config split_ratio			  0.50
@@ -65,7 +116,7 @@ fi
 hsetroot -fill ~/Desktop/CyberneticBackground.jpg
 
 kitty &
-if	command -v "firefox-nightly" &> /dev/null; then
+if command -v "firefox-nightly" &> /dev/null; then
 	firefox-nightly &
 else
 	google-chrome &
@@ -78,7 +129,7 @@ if command -v "discord" &> /dev/null; then
 	discord &
 fi
 
-if [[  ${HOST} == "brennantracy" ]]; then
+if [[  $(hostname) =~ "brennantracy" ]]; then
 	sxhkd &
 	picom &
 	dunst &
