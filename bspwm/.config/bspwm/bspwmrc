@@ -67,6 +67,7 @@ if [[ ${#MONITORS[@]} -eq 1 ]]; then
 	bspc rule -a discord desktop=^3
 	bspc rule -a Nightly desktop=^2
 	bspc rule -a Google-chrome desktop=^2
+	bspc rule -a firefox-nightly desktop=^2
 elif  [[ ${#MONITORS[@]} -eq 2 ]]; then
 	bspc monitor "${MONITORS[0]}" -d I II III 
 	bspc monitor "${MONITORS[1]}" -d IV V VI
