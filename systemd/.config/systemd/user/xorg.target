@@ -1,9 +1,0 @@
-# xorg.target is a virtual target
-# Active when Xorg is ready to accept connections
-
-[Unit]
-Description=xorg systemd --user target
-Requires=xorg-server@0.service default.target
-After=default.target xorg-server@0.service
-AllowIsolate=yes
-

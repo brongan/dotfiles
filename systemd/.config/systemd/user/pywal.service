@@ -1,14 +1,11 @@
 [Unit]
 Description=PyWal Reload Oneshot
-After=xorg-server@0.service
-After=compton.service
-Requires=xorg-server@0.service
+PartOf=graphical-session.target
 
 [Service]
 Type=oneshot
-Environment=DISPLAY=:0
 ExecStart=/usr/bin/wal -R
 
 [Install]
-WantedBy=xorg.target
+WantedBy=graphical-session.target
 

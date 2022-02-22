@@ -1,7 +1,7 @@
 [Unit]
-Description=Bar
-Wants=bspwm.service
-After=bspwm.service
+Description=A fast and easy-to-use status bar 
+Documentation=man:polybar(1)
+PartOf=graphical-session.target
 
 [Service]
 Type=forking
@@ -9,5 +9,5 @@ Environment=DISPLAY=:0
 ExecStart=%h/.local/bin/launch_polybar.sh
 
 [Install]
-WantedBy=xorg.target
+WantedBy=graphical-session.target
 

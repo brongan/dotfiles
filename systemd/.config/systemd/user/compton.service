@@ -1,13 +1,16 @@
 [Unit]
-Description=Compositor
-Requires=xorg-server@0.service
-After=xorg-server@0.service
+Description=A lightweight compositor for X11 
+Documentation=man:picom(1)
+PartOf=graphical-session.target
 
 [Service]
-Environment=DISPLAY=:0
+Type=simple
 ExecStart=/usr/bin/picom
 ExecReload=/bin/kill -USR1 $MAINPID
+Restart=on-failure
+RestartSec=1
+TimeoutStopSec=10
 
 [Install]
-WantedBy=xorg.target
+WantedBy=graphical-session.target
 
