@@ -16,5 +16,5 @@ RestartSec=1
 TimeoutStopSec=10
 
 [Install]
-WantedBy=graphical-session.target
+WantedBy=xorg-session.target
 

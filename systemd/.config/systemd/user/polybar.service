@@ -9,5 +9,5 @@ Environment=DISPLAY=:0
 ExecStart=%h/.local/bin/launch_polybar.sh
 
 [Install]
-WantedBy=graphical-session.target
+WantedBy=xorg-session.target
 
