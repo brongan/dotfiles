@@ -51,6 +51,7 @@ if (( $+commands[bat] )); then
 	alias cat="bat"
 elif (( $+commands[batcat] )); then
 	alias cat="batcat"
+	alias bat="batcat"
 fi
 alias vim="nvim"
 alias pass="gopass"
@@ -136,5 +137,9 @@ if (( $+commands[atuin] )); then
 	eval "$(atuin init zsh)"
 	zle -N atuin-fzf
 	bindkey '^R' atuin-fzf
+fi
+
+if [[ "${USER}" == "brennantracy" ]]; then
+  source "${ZDOTDIR}/google.zsh"
 fi
 

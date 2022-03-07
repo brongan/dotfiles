@@ -1,8 +1,6 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Brennan Tracy
-	email = brennantracy4@gmail.com
-	signingkey = E3A5D73A297B4552E9FBDB394E4674411438A554
 [push]
 	default = simple
 [color]
@@ -50,4 +48,8 @@
 	conflictstyle = diff3
 [diff]
 	colorMoved = default
+[include]
+	path = config.personal
+[includeIf "gitdir:**/brennantracy/**"]
+	path = config.google
 

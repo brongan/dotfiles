@@ -1,12 +1,11 @@
 " Plugins
 call plug#begin('$XDG_DATA_HOME/nvim/plugged')
 
-Plug 'google/vim-codefmt'
-Plug 'google/vim-maktaba'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'lervag/vimtex'
+Plug 'mhinz/vim-signify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -20,6 +19,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-syntastic/syntastic'
 Plug 'wellle/targets.vim'
 Plug 'wincent/terminus'
 

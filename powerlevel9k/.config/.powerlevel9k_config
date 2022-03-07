@@ -73,12 +73,18 @@ POWERLEVEL9K_CUSTOM_USER="user_with_unicode"
 #Time
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
 
-# Prompt elements
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh custom_user dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv pyenv background_jobs status time battery)
+if [[ "${USER}" == "brennantracy" ]]; then
+	source "${XDG_CONFIG_HOME}/google_powerlevel9k_config.zsh"
+else
+	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh custom_user dir vcs)
+	POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv pyenv background_jobs status time battery)
+fi
 
 if [ -d /usr/share/zsh-theme-powerlevel10k ]; then
     source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-else
+elif [ -d /usr/local/opt/powerlevel10k ]; then
    source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+else
+    source ${XDG_CONFIG_HOME}/powerlevel10k/powerlevel10k.zsh-theme
 fi
+

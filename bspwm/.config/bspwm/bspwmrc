@@ -2,10 +2,10 @@
 
 set -ux
 
+dex -ae bspwm
+
 mapfile -t MONITORS < <(xrandr --query -display "${DISPLAY}" | grep " connected " | awk '{ print$1 }')
 RESOLUTIONS=($(xrandr --current |awk '$0 ~ "*" {print $1}' | head -n 1))
-
-autorandr -c
 
 # If we have an internal monitor with 4k rez make it 1080p
 for i in "${!RESOLUTIONS[@]}"; do
