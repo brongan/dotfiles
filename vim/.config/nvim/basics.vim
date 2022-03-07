@@ -184,14 +184,7 @@ endfunction
 
 autocmd ColorScheme * call AdaptColorscheme()
 
-" Enable syntax highlighting
-" syntax enable
-
-" Set 256 color palette
-"set t_Co=256
-
 " Gruvbox
-colorscheme gruvbox
 autocmd vimenter * ++nested colorscheme gruvbox
 
 set background=dark

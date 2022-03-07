@@ -1,9 +1,14 @@
+function! SourceIfExists(file)
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+  endif
+endfunction
+
 source ${XDG_CONFIG_HOME}/nvim/airline.vim
 source ${XDG_CONFIG_HOME}/nvim/basics.vim
 source ${XDG_CONFIG_HOME}/nvim/coc.vim
-if !empty(glob("${XDG_CONFIG_HOME}/nvim/google.vim"))
-	source ${XDG_CONFIG_HOME}/nvim/google.vim
-endif
+let work_path = $XDG_CONFIG_HOME . '/nvim/google.vim'
+call SourceIfExists(work_path)
 source ${XDG_CONFIG_HOME}/nvim/monkey_terminal.vim
 source ${XDG_CONFIG_HOME}/nvim/navigation.vim
 source ${XDG_CONFIG_HOME}/nvim/plugins.vim
