@@ -2,6 +2,7 @@
 Description=A fast and easy-to-use status bar 
 Documentation=man:polybar(1)
 PartOf=graphical-session.target
+After=xorg-session.target
 
 [Service]
 Type=forking
