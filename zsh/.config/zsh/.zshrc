@@ -72,6 +72,11 @@ export LESSOPEN="| bat %s"
 export PAGER=less
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+# Rust why
+if (( $+commands[sccache] )); then
+	export RUSTC_WRAPPER=sccache
+fi
+
 if (( ! $+commands[sudoedit] )); then
 	alias sudoedit="sudo -e"
 fi
