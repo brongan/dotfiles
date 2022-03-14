@@ -43,7 +43,7 @@ source "$XDG_CONFIG_HOME/.powerlevel9k_config"
 # Aliases for a few useful commands
 alias ls="exa"
 alias la="exa -a"
-alias ll="exa -aglh"
+alias ll="exa -aglhd"
 alias ip="ip -c"
 alias rm="rm -i"
 alias grep="rg"
