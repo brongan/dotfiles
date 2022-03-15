@@ -40,6 +40,15 @@ fi
 
 source "$XDG_CONFIG_HOME/.powerlevel9k_config"
 
+# XDG Aliases
+alias bazel="/usr/bin/bazel --bazelrc=${XDG_CONFIG_HOME}/bazel/bazelrc"
+alias gpg="/usr/bin/gpg2 --homedir $XDG_DATA_HOME/gnupg"
+alias gpg=gpg2
+alias irssi="/usr/bin/irssi --config=${XDG_CONFIG_HOME}/irssi/config --home=${XDG_DATA_HOME}/irssi"
+alias nvidia-settings="/usr/bin/nvidia-settings --config=${XDG_CONFIG_HOME}/nvidia/settings"
+alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
+alias yarn="yarn --use-yarnrc ${XDG_CONFIG_HOME}/yarn/config"
+
 # Aliases for a few useful commands
 alias ls="exa"
 alias la="exa -a"
@@ -60,11 +69,8 @@ if (($+commands[btm])); then
 fi
 alias bdf="sudo btrfs filesystem usage"
 alias bdu="sudo btrfs filesystem du"
-alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
-alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
-alias yarn='yarn --use-yarnrc "${XDG_CONFIG_HOME}/yarn/config"'
 function xdg-query() {
-xdg-mime query default $(xdg-mime query filetype ${1})
+	xdg-mime query default $(xdg-mime query filetype ${1})
 }
 
 export LESS="-R" # show colors
