@@ -1,0 +1,1 @@
+build --define=ABSOLUTE_JAVABASE=/usr/lib/jvm/java-11-openjdk
