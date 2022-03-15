@@ -9,7 +9,7 @@ dex -ae bspwm
 xset s off
 
 mapfile -t MONITORS < <(xrandr --query -display "${DISPLAY}" | grep " connected " | awk '{ print$1 }')
-RESOLUTIONS=($(xrandr --current |awk '$0 ~ "*" {print $1}' | head -n 1))
+RESOLUTIONS=($(xrandr --current | awk '$0 ~ "*" {print $1}' | head -n 1))
 
 # If we have an internal monitor with 4k rez make it 1080p
 for i in "${!RESOLUTIONS[@]}"; do
@@ -78,7 +78,7 @@ elif  [[ ${#MONITORS[@]} -eq 2 ]]; then
 else
 	bspc monitor "${MONITORS[0]}" -d I II III
 	bspc monitor "${MONITORS[1]}" -d IV V VI
-	bspc monitor ${MONITORS[2]} --remove
+	bspc monitor "${MONITORS[2]}" --remove
 	bspc rule -a Caprine desktop=^6
 	bspc rule -a discord desktop=^6
 fi
@@ -131,10 +131,8 @@ if command -v "discord" &> /dev/null; then
 	discord &
 fi
 
-if [[  $(hostname) =~ "brennantracy" ]]; then
-	sxhkd &
-	picom &
-	dunst &
-	launch_polybar.sh
-fi
+sxhkd &
+picom &
+dunst &
+launch_polybar.sh
 
