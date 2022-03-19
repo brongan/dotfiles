@@ -182,6 +182,7 @@ exec firefox-nightly
 # exec caprine b r o k e n
 exec dunst
 exec discord
+exec dex -ae sway
 
 #*********************************************************************************
 
