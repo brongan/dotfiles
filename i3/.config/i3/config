@@ -99,6 +99,11 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+bracketleft workspace prev
 bindsym $mod+bracketright workspace next
 
+bindsym $mod+tab workspace back_and_forth
+
+# Move between monitors
+
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
@@ -135,19 +140,18 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # R O F I 
-bindsym $mod+space exec --no-startup-id rofi -show drun
-
-# flash current window
-bindsym $mod+n exec --no-startup-id flash_window
+bindsym $mod+space exec rofi -show drun
 
 # Take a Screenshot of the whole screen
-bindsym Print exec --no-startup-id dunstify -u low "Taking a Screenshot" -i image-png && grim - | wl-copy 
+bindsym Print exec dunstify -u low "Taking a Screenshot" -i image-png && grim - | wl-copy 
 
 # Take a screenshot of a selection
-bindsym $mod+Print exec --no-startup-id dunstify -u low "Taking a Screenshot" -i image-png && grim  $(hacksaw -f "-i %i -g %g") - | xclip -selection clipboard -t image/png -i  
+bindsym $mod+Print exec dunstify -u low "Taking a Screenshot" -i image-png && grim -g "$(slurp)" - | wl-copy
 
-# Function Key Replacement
-bindsym XF86AudioRaiseVolume exec changeVolume.sh up
+# Record a gif
+bindsym $mod+Shift+Print exec dunstify -u low "Recording a gif" -i image-png && wf-recorder -g "$(slurp)"
+
+# Function Key Replacement bindsym XF86AudioRaiseVolume exec changeVolume.sh up
 bindsym XF86AudioLowerVolume exec changeVolume.sh down
 bindsym XF86AudioMute exec changeVolume.sh mute
 bindsym XF86MonBrightnessUp exec changeBrightness.sh up
@@ -155,15 +159,29 @@ bindsym XF86MonBrightnessDown exec changeBrightness.sh down
 
 #*********************************************************************************
 
+#	Workspace Settings
+
+#********************************************************************************
+
+workspace_auto_back_and_forth yes
+workspace 1 output DP-2
+workspace 2 output DP-2
+workspace 3 output DP-2
+workspace 4 output DP-3
+workspace 5 output DP-3
+workspace 6 output DP-3
+
+#*********************************************************************************
+
 #	Startup
 
 #********************************************************************************
 
-exec --no-startup-id kitty
-exec --no-startup-id firefox-nightly
-exec --no-startup-id caprine
-exec --no-startup-id discord
-
+exec kitty
+exec firefox-nightly
+# exec caprine b r o k e n
+exec dunst
+exec discord
 
 #*********************************************************************************
 
@@ -185,6 +203,14 @@ input type:touchpad {
     tap enabled
     natural_scroll enabled
 }
+
+input type=pointer  {
+    tap enabled
+    dwt enabled
+    accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
+    pointer_accel 0.5 # set mouse sensitivity (between -1 and 1)
+}
+
 
 #********************************************************************************
 
