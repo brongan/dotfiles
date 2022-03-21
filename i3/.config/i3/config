@@ -219,8 +219,8 @@ input type=pointer  {
 
 #********************************************************************************
 
-output eDP-1 scale 1.5 
-output "*" bg /home/brong/Desktop/bridge.png fill
+output eDP-1 scale 2.0
+output "*" bg $HOME/Desktop/bridge.png fill
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
