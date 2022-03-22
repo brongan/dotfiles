@@ -14,6 +14,7 @@ bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+w kill
+bindsym $mod+Shift+w exec swaymsg -t get_tree | jq 'recurse(.nodes[], .floating_nodes[]) | select(.focused).pid' | xargs -L 1 kill -9
 
 # change focus
 bindsym $mod+h focus left
@@ -109,8 +110,6 @@ bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -163,13 +162,19 @@ bindsym XF86MonBrightnessDown exec changeBrightness.sh down
 
 #********************************************************************************
 
+output DP-4 mode 2560x1440@60hz
+output DP-5 mode 2560x1440@60hz
+
+output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' mode 2560x1440@144hz
+output 'Unknown PA278QV M5LMQS139747' mode 2560x1440@60hz
+
+set $laptop eDP-1
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+
 workspace_auto_back_and_forth yes
-workspace 1 output DP-2
-workspace 2 output DP-2
-workspace 3 output DP-2
-workspace 4 output DP-3
-workspace 5 output DP-3
-workspace 6 output DP-3
+
+exec_always "~/.local/bin/sway_workspaces.sh"
 
 #*********************************************************************************
 
@@ -179,7 +184,6 @@ workspace 6 output DP-3
 
 exec kitty
 exec firefox-nightly
-# exec caprine b r o k e n
 exec dunst
 exec discord
 exec dex -ae sway
@@ -191,7 +195,7 @@ exec dex -ae sway
 #********************************************************************************
 
 bar {
-	status_command i3status
+  swaybar_command waybar
 }
 
 #*********************************************************************************
