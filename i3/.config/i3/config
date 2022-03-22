@@ -175,13 +175,20 @@ output "*" bg $HOME/Desktop/bridge.png fill
 output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' mode 2560x1440@144hz
 output 'Unknown PA278QV M5LMQS139747' mode 2560x1440@60hz
 
+workspace 1 output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' 
+workspace 2 output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' 
+workspace 3 output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' 
+workspace 4 output 'Unknown PA278QV M5LMQS139747' mode 2560x1440@60hz
+workspace 5 output 'Unknown PA278QV M5LMQS139747' mode 2560x1440@60hz
+workspace 6 output 'Unknown PA278QV M5LMQS139747' mode 2560x1440@60hz
+
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 
 workspace_auto_back_and_forth yes
 
-exec_always "~/.local/bin/sway_workspaces.sh"
+exec_always "/home/brong/.local/bin/sway_workspaces.sh"
 
 #*********************************************************************************
 
