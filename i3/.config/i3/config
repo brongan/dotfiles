@@ -191,6 +191,7 @@ exec_always "~/.local/bin/sway_workspaces.sh"
 
 exec kitty
 exec firefox-nightly
+exec google-chrome
 exec dunst
 exec discord
 exec dex -ae sway
@@ -222,7 +223,6 @@ input type=pointer  {
     accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
     pointer_accel 0.5 # set mouse sensitivity (between -1 and 1)
 }
-
 
 #********************************************************************************
 

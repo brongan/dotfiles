@@ -1,12 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
 class=$(playerctl metadata --player=spotifyd --format '{{lc(status)}}')
 icon=""
 
 if [[ $class == "playing" ]]; then
   info=$(playerctl metadata --player=spotifyd --format '{{artist}} - {{title}}')
-  if [[ ${#info} > 40 ]]; then
-    info=$(echo $info | cut -c1-40)"..."
+  if [[ ${#info} -gt 40 ]]; then
+    info=$(echo "${info}" | cut -c1-40)"..."
   fi
   text=$info" "$icon
 elif [[ $class == "paused" ]]; then
@@ -15,5 +15,5 @@ elif [[ $class == "stopped" ]]; then
   text=""
 fi
 
-echo -e "{\"text\":\""$text"\", \"class\":\""$class"\"}"
+echo -e "{\"text\":\"${text}\", \"class\":\"${class}\"}"
 
