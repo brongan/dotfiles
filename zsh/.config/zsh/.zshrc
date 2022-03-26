@@ -52,7 +52,7 @@ alias yarn="yarn --use-yarnrc ${XDG_CONFIG_HOME}/yarn/config"
 # Aliases for a few useful commands
 alias ls="exa"
 alias la="exa -a"
-alias ll="exa -aglhd"
+alias ll="exa -aglh"
 alias ip="ip -c"
 alias rm="rm -i"
 alias grep="rg"
@@ -64,8 +64,8 @@ elif (( $+commands[batcat] )); then
 fi
 alias vim="nvim"
 alias pass="gopass"
-if (($+commands[btm])); then
-	alias top="btm"
+if (($+commands[btop])); then
+	alias top="btop"
 fi
 alias bdf="sudo btrfs filesystem usage"
 alias bdu="sudo btrfs filesystem du"
