@@ -164,6 +164,9 @@ set splitbelow
 set number
 set mouse=a
 
+" Disable highlighting on search
+set nohlsearch
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -244,9 +247,7 @@ endtry
 """"""""""""""""""""""""""""""
 " => Shell section
 """"""""""""""""""""""""""""""
-if exists('$TMUX')
-	set termguicolors
-endif
+set termguicolors
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
