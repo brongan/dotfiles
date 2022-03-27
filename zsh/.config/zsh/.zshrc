@@ -103,7 +103,7 @@ if [[ $OSTYPE =~ "linux" ]]; then
 	fi
 	if [[ -f /usr/share/vim/vimfiles/gruvbox_256palette.sh ]]; then
 		source /usr/share/vim/vimfiles/gruvbox_256palette.sh
-	else
+	elif [[ -f ${XDG_DATA_HOME}/nvim/plugged/gruvbox/gruvbox_256palette.sh ]]; then
 		source ${XDG_DATA_HOME}/nvim/plugged/gruvbox/gruvbox_256palette.sh
 	fi
 	if [[ -d /usr/share/zsh/plugins ]]; then
