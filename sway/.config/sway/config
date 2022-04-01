@@ -138,6 +138,9 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Lock
+bindsym Control+Shift+l exec dunstify -u medium "Locking Screen" && swaylock -i $HOME/Desktop/CyberneticBackground.jpg
+
 # R O F I 
 bindsym $mod+space exec rofi -show drun
 
