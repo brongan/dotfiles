@@ -1,0 +1,23 @@
+vim.cmd("colorscheme gruvbox")
+require("globals")
+require("basics")
+require("plugins")
+require("mappings")
+require("navigation")
+
+require("configs.bash-language-server")
+require("configs.bufferline")
+require("configs.gitsigns")
+require("configs.indent-blankline")
+require("configs.lsp")
+require("configs.nvim-autopairs")
+require("configs.nvim-cmp")
+require("configs.nvim-colorizer")
+require("configs.nvim-dap-ui")
+require("configs.nvim-ts-autotag")
+require("configs.rust-tools")
+require("configs.symbols-outline")
+require("configs.telescope")
+require("configs.toggleterm")
+
+
