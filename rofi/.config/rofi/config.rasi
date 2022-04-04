@@ -1,7 +1,7 @@
 configuration {
- modi: "window,drun,ssh,combi";
+ modi: "drun,ssh,combi";
  font: "Noto Sans 12";
- combi-modi: "window,drun,ssh";
+ combi-modi: "drun,ssh";
  show-icons: true;
  }
 
