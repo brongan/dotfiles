@@ -227,6 +227,10 @@ bar {
   swaybar_command waybar
 }
 
+# What the hell are these defaults
+focus_follows_mouse no
+mouse_warping none
+
 #*********************************************************************************
 
 #   XOrg
