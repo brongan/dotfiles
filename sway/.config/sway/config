@@ -219,6 +219,20 @@ exec dex -ae sway
 
 #*********************************************************************************
 
+#	Startup
+
+#********************************************************************************
+
+for_window [class="^.*"] inhibit_idle fullscreen 
+for_window [app_id="^.*"] inhibit_idle fullscreen
+for_window [class="Chromium"] inhibit_idle fullscreen # Xorg
+for_window [window_role="browser"] inhibit_idle fullscreen # Xorg
+for_window [class="Firefox"] inhibit_idle fullscreen # Xorg
+for_window [app_id="firefox"] inhibit_idle fullscreen # Wayland
+for_window [app_id="firefox-nightly"] inhibit_idle fullscreen # Wayland
+
+#*********************************************************************************
+
 #   Sway
 
 #********************************************************************************
