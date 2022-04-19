@@ -155,6 +155,7 @@ bindsym $mod+Shift+Print exec dunstify -u low "Recording a gif" -i image-png && 
 
 # Function Key Replacement bindsym XF86AudioRaiseVolume exec changeVolume.sh up
 bindsym XF86AudioLowerVolume exec changeVolume.sh down
+bindsym XF86AudioRaiseVolume exec changeVolume.sh up
 bindsym XF86AudioMute exec changeVolume.sh mute
 bindsym XF86MonBrightnessUp exec changeBrightness.sh up
 bindsym XF86MonBrightnessDown exec changeBrightness.sh down
