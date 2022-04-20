@@ -1,12 +1,11 @@
 require("packer").startup(function(use)
-	use("neovim/nvim-lspconfig") -- Collection of configurations for the built-in LSP client
-	use("akinsho/toggleterm.nvim")
 	use("JoosepAlviste/nvim-ts-context-commentstring") -- handles embedded languages
 	use("L3MON4D3/LuaSnip")
 	use("RishabhRD/nvim-lsputils") -- Sensible defaults for lsp
 	use("RishabhRD/popfix") -- Dependency for something
 	use("airblade/vim-rooter") -- maybe use if this is pain
 	use("akinsho/nvim-bufferline.lua") -- Top bar buffers thing tabs
+	use("akinsho/toggleterm.nvim")
 	use("antoinemadec/FixCursorHold.nvim")
 	use("folke/trouble.nvim") -- Unifies LSP stuff with quickfix stuff and telescope
 	use("hrsh7th/cmp-buffer")
@@ -25,11 +24,11 @@ require("packer").startup(function(use)
 	use("mg979/vim-visual-multi") -- Change multiple lines at once
 	use("mhinz/vim-signify") -- Show changed lines from VCS
 	use("mhinz/vim-startify") -- start screen
+	use("neovim/nvim-lspconfig") -- Collection of configurations for the built-in LSP client
 	use("neovim/nvim-lspconfig") -- L S P
 	use("norcalli/nvim-colorizer.lua") -- Highlights colors
 	use("nvim-lua/plenary.nvim")
 	use("nvim-lualine/lualine.nvim") -- have been told this is faster than airline
-	use("nvim-treesitter/nvim-treesitter")  -- Highlighting based on syntax tree
 	use("nvim-treesitter/playground") -- Show treesitter info in window
 	use("ojroques/vim-oscyank") -- Escape code based copy paste
 	use("psliwka/vim-smoothie") -- Smooth scrolling
@@ -44,15 +43,16 @@ require("packer").startup(function(use)
 	use("tpope/vim-speeddating") -- Allows for incrementing/decrementing timestamps
 	use("tpope/vim-surround")  -- Surround is bae
 	use("vim-syntastic/syntastic") -- Syntax Checker
-	use("wbthomason/packer.nvim") -- Packer
 	use("williamboman/nvim-lsp-installer")
 	use("wincent/terminus") -- Fixes mouse + paste
 	use("windwp/nvim-autopairs") -- Trendy new autopairs
 	use('junegunn/fzf')
 	use('junegunn/fzf.vim')
+	use('morhetz/gruvbox')
 	use('nvim-lua/plenary.nvim')
+	use('wbthomason/packer.nvim') -- Packer can manage itself
 	use({ "famiu/feline.nvim", branch = "develop" }) -- StatusLine
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Highlighting based on syntax tree
 	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
 	use({
 		"nvim-telescope/telescope.nvim",
