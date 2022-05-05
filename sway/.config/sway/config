@@ -197,6 +197,11 @@ output "Unknown 0x095F 0x00000000" {
 output DP-4 pos 0 0 res 2560x1440
 output DP-5 pos 2560 0 res 2560x1440
 
+# Why does this happen with undock and redock
+output DP-6 pos 0 0 res 2560x1440
+output DP-7 pos 2560 0 res 2560x1440
+
+
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
@@ -261,7 +266,7 @@ input type=pointer  {
     tap enabled
     dwt enabled
     accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
-    pointer_accel 0.5 # set mouse sensitivity (between -1 and 1)
+    pointer_accel 0.0 # set mouse sensitivity (between -1 and 1)
 }
 
 #********************************************************************************
