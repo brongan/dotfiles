@@ -20,7 +20,6 @@ require("packer").startup(function(use)
 	use("mhinz/vim-signify") -- Show changed lines from VCS
 	use("neovim/nvim-lspconfig") -- Collection of configurations for the built-in LSP client
 	use("norcalli/nvim-colorizer.lua") -- Highlights colors
-	use("nvim-treesitter/playground") -- Show treesitter info in window
 	use("ojroques/vim-oscyank") -- Escape code based copy paste
 	use("psliwka/vim-smoothie") -- Smooth scrolling
 	use("ray-x/lsp_signature.nvim") -- give me those function signatures
