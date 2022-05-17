@@ -76,7 +76,7 @@ else
   path=($path "$HOME/.local/bin")
 fi
 
-path=($path "${CARGO_HOME}/bin" "${GOPATH}/bin" "${GEM_HOME}/bin")
+path=("${CARGO_HOME}/bin" $path "${GOPATH}/bin" "${GEM_HOME}/bin")
 # Debian Why
 if [ -d "/usr/lib/cargo/bin/" ]; then
   path=($path "/usr/lib/cargo/bin")
