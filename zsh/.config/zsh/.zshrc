@@ -133,17 +133,18 @@ fi
 
 # Atuin
 atuin-fzf () {
-local selected num
-setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-selected=( $(atuin history list --human | fzf --tac) )
-local ret=$?
-if [ -n "$selected" ]; then
-	RBUFFER="${selected[@]:2:-1}${RBUFFER}"
-fi
-zle end-of-line
-zle reset-prompt
-return $ret
+	local selected num
+	setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+	selected=( $(atuin history list --human | fzf --tac) )
+	local ret=$?
+	if [ -n "$selected" ]; then
+		RBUFFER="${selected[@]:4:-1}${RBUFFER}"
+	fi
+	zle end-of-line
+	zle reset-prompt
+	return $ret
 }
+
 if (( $+commands[atuin] )); then
 	export ATUIN_NOBIND=1
 	eval "$(atuin init zsh)"
