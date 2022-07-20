@@ -218,9 +218,9 @@ output "*" bg $HOME/Desktop/bridge.png fill
 
 exec kitty
 exec firefox-nightly
+#exec chromium
 exec google-chrome
 exec dunst
-exec discord
 exec dex -ae sway
 
 #*********************************************************************************
