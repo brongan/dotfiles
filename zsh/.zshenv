@@ -31,6 +31,18 @@ if [[ -v DISPLAY ]]; then
   export PRIMARY_MONITOR=$(xrandr --query -display $DISPLAY | grep " connected " | awk '{ print$1 }' | head -n 1)
 fi
 
+if [[ ${XDG_SESSION_TYPE} = wayland ]]; then
+	export QT_QPA_PLATFORM=wayland
+	export SDL_VIDEODRIVER=wayland
+	export MOZ_ENABLE_WAYLAND=1
+	export MOZ_WEBRENDER=1
+	export MOZ_DBUS_REMOTE=1
+	export QT_WAYLAND_FORCE_DPI=physical
+	export LIBVA_DRIVER_NAME=nvidia
+	export MOZ_DISABLE_RDD_SANDBOX=1
+	export EGL_PLATFORM=wayland
+fi
+
 # Node.js
 if [ -s "${XDG_CONFIG_HOME}/nvm/nvm.sh" ]; then
   export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
