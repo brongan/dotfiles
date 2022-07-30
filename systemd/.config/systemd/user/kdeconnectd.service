@@ -9,6 +9,7 @@ BusName=org.kde.kdeconnect
 Restart=on-failure
 RestartSec=1
 TimeoutStopSec=10
+Environment=QT_QPA_PLATFORM=offscreen
 
 [Install]
 WantedBy=graphical-session.target
