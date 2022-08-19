@@ -73,6 +73,7 @@ alias bdu="sudo btrfs filesystem du"
 function xdg-query() {
 	xdg-mime query default $(xdg-mime query filetype ${1})
 }
+alias watch=viddy
 
 export LESS="-R" # show colors
 export LESSOPEN="| bat %s"
@@ -113,6 +114,10 @@ if [[ $OSTYPE =~ "linux" ]]; then
 	else
 		source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 		source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+	fi
+
+	if [[ -f /etc/profile.d/google-cloud-sdk.sh ]]; then
+		source /etc/profile.d/google-cloud-sdk.sh ]]
 	fi
 
 	bindkey '^A' beginning-of-line
