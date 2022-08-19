@@ -117,18 +117,8 @@ fi
 
 hsetroot -fill ~/Desktop/CyberneticBackground.jpg
 
-kitty &
-if command -v "firefox-nightly" &> /dev/null; then
-	firefox-nightly &
-else
-	google-chrome &
-fi
-
 if command -v "caprine" &> /dev/null; then
 	caprine &
-fi
-if command -v "discord" &> /dev/null; then
-	discord &
 fi
 
 sxhkd &
