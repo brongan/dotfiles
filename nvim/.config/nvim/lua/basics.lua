@@ -23,11 +23,11 @@ vim.opt.swapfile = false
 -- => General
 ---------------------------------------------------------------
 
+vim.o.completeopt = "menuone,noselect"
 vim.opt.autochdir = false
 vim.opt.autoindent = true
 vim.opt.autoread = true
 vim.opt.background = "dark"
-vim.o.completeopt = "menuone,noselect"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.cmdheight = 2
 vim.opt.completeopt = "menuone,noinsert,noselect"
@@ -37,8 +37,10 @@ vim.opt.encoding = "utf-8"
 vim.opt.expandtab = false
 vim.opt.fileencoding = "utf-8"
 vim.opt.formatoptions:remove("cro")
+vim.opt.guicursor = "";
 vim.opt.hidden = true
 vim.opt.history=500
+vim.opt.hlsearch = false
 vim.opt.iskeyword:append("-")
 vim.opt.mouse = "a"
 vim.opt.number = true
@@ -54,9 +56,7 @@ vim.opt.splitright = true
 vim.opt.syntax = "enable"
 vim.opt.tabstop = 4
 vim.opt.termguicolors = true
-vim.opt.termguicolors = true
 vim.opt.textwidth = 80
 vim.opt.timeoutlen = 500
 vim.opt.updatetime = 300
 vim.opt.wrap = true
-

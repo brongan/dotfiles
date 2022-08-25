@@ -1,5 +1,7 @@
 vim.g.mapleader = ","
 
+map('n', '<Leader>pv', '<cmd>Ex<CR>')
+
 -- Fast saving and quit without saving
 map('n', '<Leader>w', ':w!<CR>')
 map('n', '<Leader>q', ':q!<CR>')
@@ -7,9 +9,6 @@ map('n', '<Leader>q', ':q!<CR>')
 -- Quickly insert an empty new line without entering insert mode, below and above
 map('n', '<Space>o', 'o<Esc>k')
 map('n', '<Space>O', 'O<Esc>j')
-
--- Symbols Outline
-map('n', "<Leader>s", ":SymbolsOutline<CR>")
 
 -- Comentary
 -- map('n', "<space>/", '<cmd>lua require("utils/comment")()<CR>')
@@ -58,6 +57,8 @@ map('n', "<Leader>lE", "<cmd>LspTroubleWorkspaceToggle<CR>")
 --   '<Esc> :lua require("utils/telescope").search_dotfiles()<CR>'
 -- )
 
+
+-- FZF
 map('n', "<Leader>-", ":FZF <c-r>=fnameescape(expand('%:p:h'))<cr>/<cr>") -- Current file directory
 map('n', "<Leader>ff", ":FZF<cr>") -- Search in current directory
 map('n', "<Leader>fF", ":Files ~/<cr>") -- Search home directory
