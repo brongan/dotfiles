@@ -60,3 +60,5 @@ vim.opt.textwidth = 80
 vim.opt.timeoutlen = 500
 vim.opt.updatetime = 300
 vim.opt.wrap = true
+vim.g.oscyank_term = "default"
+
