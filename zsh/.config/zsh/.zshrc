@@ -32,7 +32,7 @@ export SUDO_EDITOR=$EDITOR
 export SYSTEMD_EDITOR=$EDITOR
 
 wm=$(wmctrl -m 2&> /dev/null | head -n 1 | cut -d' ' -f 2)
-if [[ $wm == "bspwm" || $wm == "i3" ]]; then
+if [[ $wm == "bspwm" || $wm == "i3" || $wm == "wlroots" ]]; then
 	export _JAVA_AWT_WM_NONREPARENTING=1
 fi
 
@@ -43,7 +43,7 @@ source "$XDG_CONFIG_HOME/.powerlevel9k_config"
 # XDG Aliases
 alias bazel="/usr/bin/env -u _JAVA_OPTIONS CC=clang bear -- bazel --bazelrc=${XDG_CONFIG_HOME}/bazel/bazelrc --host_jvm_args=$_JAVA_OPTIONS"
 alias blaze=bazel # Why
-alias gpg="/usr/bin/gpg2 --homedir $XDG_DATA_HOME/gnupg"
+alias gpg="/usr/bin/gpg2 --homedir ${XDG_DATA_HOME}/gnupg"
 alias irssi="/usr/bin/irssi --config=${XDG_CONFIG_HOME}/irssi/config --home=${XDG_DATA_HOME}/irssi"
 alias nvidia-settings="/usr/bin/nvidia-settings --config=${XDG_CONFIG_HOME}/nvidia/settings"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
