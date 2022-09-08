@@ -4,6 +4,7 @@ require("packer").startup(function(use)
 	use("RishabhRD/popfix") -- Dependency for something
 	use("akinsho/nvim-bufferline.lua") -- Top bar buffers thing tabs
 	use("akinsho/toggleterm.nvim")
+	use{"akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim"}
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/cmp-emoji")
@@ -39,7 +40,7 @@ require("packer").startup(function(use)
 	use('junegunn/fzf.vim')
 	use('morhetz/gruvbox')
 	use('wbthomason/packer.nvim') -- Packer can manage itself
-	use({ "famiu/feline.nvim", branch = "develop" }) -- StatusLine
+	use({ "famiu/feline.nvim", branch = "master" }) -- StatusLine
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Highlighting based on syntax tree
 	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }) -- Debugging UI
 	use {
