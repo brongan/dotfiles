@@ -26,7 +26,7 @@
         "tooltip": false
     },
     "clock": {
-        "format": "{:%d.%m.%y %a / W: %V}",
+        "format": "{:%d.%m.%y %a / %H:%M:%S}",
         "tooltip": false
     },
     "battery": {

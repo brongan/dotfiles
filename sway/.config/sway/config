@@ -82,7 +82,7 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
+bindsym $mod+9 workspace $ws9k
 bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
@@ -103,7 +103,6 @@ bindsym $mod+bracketright workspace next
 bindsym $mod+tab workspace back_and_forth
 
 # Move between monitors
-
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
