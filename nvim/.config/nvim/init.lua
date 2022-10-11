@@ -22,6 +22,8 @@ require("configs.rust-tools")
 require("configs.symbols-outline")
 require("configs.toggleterm")
 require("configs.treesitter")
+require("configs.trouble")
+require("google")
 local ok, _ = pcall(require, "google")
 if not ok then
 	print("failed to load google lua config")

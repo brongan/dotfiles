@@ -22,7 +22,7 @@ map('n', "<Leader>n", ":NvimTreeFindFile<CR>")
 -- LSP
 map('n', "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 map('n', "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
-map('n', "gr", "<cmd>LspTrouble lsp_references<CR>")
+map('n', "gr", "<cmd>TroubleToggle lsp_references<CR>")
 map('n', "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 map('n', "<C-space>", "<cmd>lua vim.lsp.buf.hover()<CR>")
 map('v', "<C-space>", "<cmd>RustHoverRange<CR>")
@@ -34,12 +34,12 @@ map('n', "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 map('n', "<Leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 map('v', "<Leader>a", "<cmd>lua vim.lsp.buf.range_code_action()<CR>")
 
-map('n', "<Leader>ld", "<cmd>LspTrouble lsp_definitions<CR>")
+map('n', "<Leader>ld", "<cmd>TroubleToggle lsp_definitions<CR>")
 map('n', 
   "<Leader>le",
   "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>"
 )
-map('n', "<Leader>lE", "<cmd>LspTroubleWorkspaceToggle<CR>")
+map('n', "<Leader>lE", "<cmd>TroubleToggle workspace_diagnostics<CR>")
 
 -- Telescope
 -- map('n', "<C-f>", ':lua require("utils/telescope").search_files()<CR>')

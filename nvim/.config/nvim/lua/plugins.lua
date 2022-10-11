@@ -20,6 +20,7 @@ return packer.startup(function(use)
 	use("akinsho/nvim-bufferline.lua") -- Top bar buffers thing tabs
 	use("akinsho/toggleterm.nvim")
 	use("hrsh7th/cmp-buffer")
+	use({"folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons"})
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/cmp-emoji")
 	use("hrsh7th/cmp-nvim-lsp")
