@@ -24,6 +24,7 @@ vim.opt.swapfile = false
 ---------------------------------------------------------------
 
 vim.o.completeopt = "menuone,noselect"
+vim.g.oscyank_term = "default"
 vim.opt.autochdir = false
 vim.opt.autoindent = true
 vim.opt.autoread = true
@@ -60,5 +61,3 @@ vim.opt.textwidth = 80
 vim.opt.timeoutlen = 500
 vim.opt.updatetime = 300
 vim.opt.wrap = true
-vim.g.oscyank_term = "default"
-

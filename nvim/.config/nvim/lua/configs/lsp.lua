@@ -1,7 +1,3 @@
-require("packer").startup(function(use)
-	use("JoosepAlviste/nvim-ts-context-commentstring") -- handles embedded languages
-	use 'neovim/nvim-lspconfig' -- Collection of configurations for the built-in LSP client
-end)
 local lspconfig = require("lspconfig")
 
 -- TODO Setup AutoFormat
@@ -63,17 +59,14 @@ vim.lsp.set_log_level("debug")
 -- map buffer local keybindings when the language server attaches
 local servers = { 'pyright', 'tsserver'}
 for _, lsp in pairs(servers) do
-  require('lspconfig')[lsp].setup {
+  lspconfig[lsp].setup {
 	capabilities = capabilities,
     on_attach = on_attach,
-    flags = {
-      -- This will be the default in neovim 0.7+
-      debounce_text_changes = 150,
-    }
+    flags = {}
   }
 end
 
-require('lspconfig').clangd.setup {
+lspconfig.clangd.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
 	cmd = {
@@ -84,7 +77,7 @@ require('lspconfig').clangd.setup {
 	filetypes = {"c", "cpp", "objc", "objcpp"},
 }
 
-require('lspconfig').rust_analyzer.setup({
+lspconfig.rust_analyzer.setup({
     capabilities=capabilities,
     settings = {
       ["rust-analyzer"] = {
