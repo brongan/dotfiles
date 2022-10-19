@@ -36,7 +36,6 @@ vim.opt.conceallevel = 0
 vim.opt.cursorline = true
 vim.opt.encoding = "utf-8"
 vim.opt.expandtab = false
-vim.opt.fileencoding = "utf-8"
 vim.opt.formatoptions:remove("cro")
 vim.opt.guicursor = "";
 vim.opt.hidden = true

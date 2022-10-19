@@ -1,7 +1,5 @@
 vim.g.mapleader = ","
 
-map('n', '<Leader>pv', '<cmd>Ex<CR>')
-
 -- Fast saving and quit without saving
 map('n', '<Leader>w', ':w!<CR>')
 map('n', '<Leader>q', ':q!<CR>')
@@ -10,53 +8,61 @@ map('n', '<Leader>q', ':q!<CR>')
 map('n', '<Space>o', 'o<Esc>k')
 map('n', '<Space>O', 'O<Esc>j')
 
--- Comentary
--- map('n', "<space>/", '<cmd>lua require("utils/comment")()<CR>')
--- map('v', "<space>/", '<cmd>lua require("utils/comment")()<CR>')
-
--- Nvim-Tree
-map('n', "<C-n>", ":NvimTreeToggle<CR>")
-map('n', "<Leader>r", ":NvimTreeRefresh<CR>")
-map('n', "<Leader>n", ":NvimTreeFindFile<CR>")
-
 -- LSP
-map('n', "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-map('n', "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
-map('n', "gr", "<cmd>TroubleToggle lsp_references<CR>")
-map('n', "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
-map('n', "<C-space>", "<cmd>lua vim.lsp.buf.hover()<CR>")
-map('v', "<C-space>", "<cmd>RustHoverRange<CR>")
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP actions',
+  callback = function()
+    local bufmap = function(mode, lhs, rhs)
+      local opts = {buffer = true, noremap=true}
+      vim.keymap.set(mode, lhs, rhs, opts)
+    end
 
-map('n', "ge", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
-map('n', "gE", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
-map('n', "<silent><Leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-map('n', "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
-map('n', "<Leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-map('v', "<Leader>a", "<cmd>lua vim.lsp.buf.range_code_action()<CR>")
+    -- Displays hover information about the symbol under the cursor
+    bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
+    bufmap('n', '<C-space>', '<cmd>RustHoverRange<cr>')
 
-map('n', "<Leader>ld", "<cmd>TroubleToggle lsp_definitions<CR>")
-map('n', 
-  "<Leader>le",
-  "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>"
-)
-map('n', "<Leader>lE", "<cmd>TroubleToggle workspace_diagnostics<CR>")
+    -- Jump to the definition
+    bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
 
--- Telescope
--- map('n', "<C-f>", ':lua require("utils/telescope").search_files()<CR>')
--- map('n', "/", ':lua require("utils/telescope").search_in_buffer()<CR>')
--- map('i', 
---   "<C-f>",
---   '<Esc> :lua require("utils/telescope").search_in_buffer()<CR>'
--- )
--- map('n', 
---   "<Leader>fg",
---   '<Esc> :lua require("telescope.builtin").live_grep()<CR>'
--- )
--- map('n', 
---   "<Leader>fd",
---   '<Esc> :lua require("utils/telescope").search_dotfiles()<CR>'
--- )
+    -- Jump to declaration
+    bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
 
+    -- Lists all the implementations for the symbol under the cursor
+    bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+
+    -- Jumps to the definition of the type symbol
+    bufmap('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+
+    -- Lists all the references 
+    bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+
+    -- Displays a function's signature information
+    bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+
+    -- Renames all references to the symbol under the cursor
+    bufmap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
+
+    -- Selects a code action available at the current cursor position
+    bufmap('n', '<silent><Leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+    bufmap('x', '<silent><Leader>a', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
+
+    -- Show diagnostics in a floating window
+    bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+	bufmap('n', "<Leader>ld", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+
+    -- Move to the previous diagnostic
+    bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+
+    -- Move to the next diagnostic
+    bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+
+	bufmap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
+	bufmap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
+
+	bufmap('n', "<Leader>ld", "<cmd>TroubleToggle lsp_definitions<CR>")
+	bufmap('n', "<Leader>lE", "<cmd>TroubleToggle workspace_diagnostics<CR>")
+  end
+})
 
 -- FZF
 map('n', "<Leader>-", ":FZF <c-r>=fnameescape(expand('%:p:h'))<cr>/<cr>") -- Current file directory

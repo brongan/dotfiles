@@ -62,8 +62,13 @@ return packer.startup(function(use)
 	use({"nvim-lualine/lualine.nvim",requires = { "kyazdani42/nvim-web-devicons", opt = true }	})
 	use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Highlighting based on syntax tree
 	use({"rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }) -- Debugging UI
+	local ok, _ = pcall(require, "google")
+	if ok then
+		for i, plugin in ipairs(require("google").plugins) do
+			use(plugin)
+		end
+	end
 	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
 	if packer_bootstrap then
 		packer.sync()
 	end

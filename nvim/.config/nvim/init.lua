@@ -3,11 +3,16 @@ require("basics")
 require("plugins")
 require("mappings")
 require("navigation")
-
-local ok, _ = pcall(vim.cmd, "colorscheme gruvbox")
+local ok, _ = pcall(require, "google")
 if not ok then
-	print("gruvbox not installed run :PackerSync")
+	print("Failed to load google config")
 end
+
+vim.cmd([[
+  augroup Gruvbox
+  autocmd vimenter * ++nested colorscheme gruvbox
+  augroup END
+]])
 
 require("configs.bash-language-server")
 require("configs.bufferline")
@@ -23,11 +28,6 @@ require("configs.symbols-outline")
 require("configs.toggleterm")
 require("configs.treesitter")
 require("configs.trouble")
-require("google")
-local ok, _ = pcall(require, "google")
-if not ok then
-	print("failed to load google lua config")
-end
 
 vim.api.nvim_exec([[
 function! SourceIfExists(file)
