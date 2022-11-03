@@ -16,8 +16,6 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
   capabilities
 )
 
-vim.lsp.set_log_level("debug")
-
 local servers = { 'pyright', 'tsserver'}
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {
