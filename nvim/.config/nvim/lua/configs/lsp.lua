@@ -16,7 +16,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
   capabilities
 )
 
-local servers = { 'pyright', 'tsserver'}
+local servers = { 'pyright', 'tsserver', 'rust_analyzer'}
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {
     flags = {}
@@ -31,16 +31,6 @@ lspconfig.clangd.setup {
 	},
 	filetypes = {"c", "cpp", "objc", "objcpp"},
 }
-
-lspconfig.rust_analyzer.setup({
-    settings = {
-      ["rust-analyzer"] = {
-        checkOnSave = {
-          command = "clippy"
-        },
-      }
-    }
-})
 
 vim.cmd([[
   augroup CmpZsh
