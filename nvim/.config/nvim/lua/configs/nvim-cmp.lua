@@ -32,6 +32,7 @@ local kind_icons = {
 local source_names = {
 	vsnip = "(✂)",
 	nvim_ciderlsp = "(🤖)",
+	copilot = "(🤖)",
 	nvim_lsp = "(🔧)",
 	nvim_lua = "(LUA)",
 	emoji = "(💩)",
@@ -56,6 +57,7 @@ cmp.setup({
 	},
 	sources = cmp.config.sources({
 		{ name = 'nvim_ciderlsp' },
+		{ name = 'copilot' },
 		{ name = 'nvim_lsp' },
 		{ name = 'vsnip' },
 		{ name = 'nvim_lua' },

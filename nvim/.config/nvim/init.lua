@@ -6,6 +6,8 @@ require("navigation")
 local ok, _ = pcall(require, "google")
 if not ok then
 	print("Failed to load google config")
+	vim.g.copilot_assume_mapped = true
+	vim.g.copilot_no_tab_map = true
 end
 
 vim.cmd([[
