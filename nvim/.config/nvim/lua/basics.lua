@@ -29,7 +29,6 @@ vim.opt.autochdir = false
 vim.opt.autoindent = true
 vim.opt.autoread = true
 vim.opt.background = "dark"
-vim.opt.clipboard = "unnamedplus"
 vim.opt.cmdheight = 2
 vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.conceallevel = 0
