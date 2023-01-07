@@ -44,7 +44,7 @@ return packer.startup(function(use)
 	use("onsails/lspkind.nvim")
 	use("psliwka/vim-smoothie") -- Smooth scrolling
 	use("ray-x/lsp_signature.nvim") -- give me those function signatures
-	use("simrat39/rust-tools.nvim")
+	use("kdarkhan/rust-tools.nvim")
 	use("sumneko/lua-language-server")
 	use("tpope/vim-commentary") -- gc + motion comments out lines
 	use("tpope/vim-eunuch") -- :SudoEdit and :Chmod and :Mkdir
