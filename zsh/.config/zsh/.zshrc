@@ -130,10 +130,6 @@ fi
 
 autoload -Uz compinit && compinit -d $ZCOMPDUMP
 
-if (( $+commands[kitty] )) && [[ $TERM == "xterm-kitty" ]]; then
-	kitty + complete setup zsh | source /dev/stdin
-fi
-
 # Atuin
 atuin-fzf () {
 	local selected num
