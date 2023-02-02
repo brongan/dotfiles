@@ -8,6 +8,10 @@ map('n', '<Leader>q', ':q!<CR>')
 map('n', '<Space>o', 'o<Esc>k')
 map('n', '<Space>O', 'O<Esc>j')
 
+-- Attempt to copy to system clipboard regardless of ssh/tmux.
+map('v', '<Leader>c', ':OSCYank<cr>')
+map('n', '<Leader>o', '<Plug>OSCYank')
+
 -- LSP
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
