@@ -178,8 +178,8 @@ workspace 5 output 'Lenovo Group Limited P27h-20 V906M4CH'
 workspace 6 output 'Lenovo Group Limited P27h-20 V906M4CH'
 
 # Home
-output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' mode 2560x1440@144hz
-output 'Unknown PA278QV M5LMQS139747' mode 2560x1440@60hz
+output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' mode 2560x1440@84.983hz
+output 'Unknown PA278QV M5LMQS139747' mode 2560x1440@75hz
 workspace 1 output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' 
 workspace 2 output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' 
 workspace 3 output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' 
@@ -191,15 +191,6 @@ output "Unknown 0x095F 0x00000000" {
 	scale 1.0 
 	mode 1920x1080@60hz
 }
-
-# Both
-output DP-4 pos 0 0 res 2560x1440
-output DP-5 pos 2560 0 res 2560x1440
-
-# Why does this happen with undock and redock
-output DP-6 pos 0 0 res 2560x1440
-output DP-7 pos 2560 0 res 2560x1440
-
 
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
