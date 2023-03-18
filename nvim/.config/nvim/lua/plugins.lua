@@ -67,9 +67,6 @@ return packer.startup(function(use)
 		for i, plugin in ipairs(require("google").plugins) do
 			use(plugin)
 		end
-	else
-		use("github/copilot.vim")
-		use("hrsh7th/cmp-copilot")
 	end
 	-- Automatically set up your configuration after cloning packer.nvim
 	if packer_bootstrap then
