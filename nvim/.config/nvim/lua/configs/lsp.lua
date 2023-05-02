@@ -1,12 +1,42 @@
+local lsp = require('lsp-zero').preset({})
 local lspconfig = require("lspconfig")
+local ih = require("lsp-inlayhints")
 
-vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
+ih.setup()
+
+lsp.on_attach(function(client, bufnr)
+  lsp.default_keymaps({buffer = bufnr})
+  if client.name ~= "ciderlsp" then
+	  lsp.buffer_autoformat()
+  end
+end)
+
+lsp.ensure_installed({
+  'clangd',
+  'rust_analyzer'
+})
+
+lsp.skip_server_setup({'clangd'})
+require('clangd_extensions').setup()
+
+vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = "LspAttach_inlayhints",
+  callback = function(args)
+    if not (args.data and args.data.client_id) then
+      return
+    end
+
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    ih.on_attach(client, bufnr)
+  end,
+})
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local lsp_defaults = lspconfig.util.default_config
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local ok, _ = pcall(require, "google")
-if ok then
+if pcall(require, "google") then
 	capabilities = require("google").init_lsp(capabilities)
 end
 
@@ -15,13 +45,6 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
   lsp_defaults.capabilities,
   capabilities
 )
-
-local servers = { 'pyright', 'tsserver', 'rust_analyzer'}
-for _, lsp in pairs(servers) do
-  lspconfig[lsp].setup {
-    flags = {}
-  }
-end
 
 lspconfig.clangd.setup {
 	cmd = {
@@ -39,3 +62,4 @@ vim.cmd([[
   augroup END
 ]])
 
+lsp.setup()

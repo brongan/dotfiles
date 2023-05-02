@@ -1,4 +1,5 @@
 local cmp = require("cmp")
+local cmp_action = require('lsp-zero').cmp_action()
 local lspkind = require("lspkind")
 
 local kind_icons = {
@@ -50,11 +51,6 @@ local duplicates = {
 }
 
 cmp.setup({
-	snippet = {
-		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
-		end,
-	},
 	sources = cmp.config.sources({
 		{ name = 'nvim_ciderlsp' },
 		{ name = 'copilot' },
@@ -99,12 +95,30 @@ cmp.setup({
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.close(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
+		['<Tab>'] = cmp_action.luasnip_supertab(),
+		['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+		['<C-p>'] = cmp.mapping(function()
+			if cmp.visible() then
+				cmp.select_prev_item(cmp_select_opts)
+			else
+				cmp.complete()
+			end
+		end),
+		['<C-n>'] = cmp.mapping(function()
+			if cmp.visible() then
+				cmp.select_next_item(cmp_select_opts)
+			else
+				cmp.complete()
+			end
+		end),
 	}),	
 	experimental = {
 		native_menu = false,
 		ghost_text = true,
 	},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	}
 })
 

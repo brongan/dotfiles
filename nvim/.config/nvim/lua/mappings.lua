@@ -1,16 +1,16 @@
 vim.g.mapleader = ","
 
 -- Fast saving and quit without saving
-map('n', '<Leader>w', ':w!<CR>')
-map('n', '<Leader>q', ':q!<CR>')
+vim.keymap.set('n', '<Leader>w', ':w!<CR>')
+vim.keymap.set('n', '<Leader>q', ':q!<CR>')
 
 -- Quickly insert an empty new line without entering insert mode, below and above
-map('n', '<Space>o', 'o<Esc>k')
-map('n', '<Space>O', 'O<Esc>j')
+vim.keymap.set('n', '<Space>o', 'o<Esc>k')
+vim.keymap.set('n', '<Space>O', 'O<Esc>j')
 
 -- Attempt to copy to system clipboard regardless of ssh/tmux.
-map('v', '<Leader>c', ':OSCYank<cr>')
-map('n', '<Leader>o', '<Plug>OSCYank')
+vim.keymap.set('v', '<Leader>c', ':OSCYank<cr>')
+vim.keymap.set('n', '<Leader>o', '<Plug>OSCYank')
 
 -- LSP
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -69,22 +69,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- FZF
-map('n', "<Leader>-", ":FZF <c-r>=fnameescape(expand('%:p:h'))<cr>/<cr>") -- Current file directory
-map('n', "<Leader>ff", ":FZF<cr>") -- Search in current directory
-map('n', "<Leader>fF", ":Files ~/<cr>") -- Search home directory
-map('n', "<Leader>fb", ":Buffers<cr>") -- Open buffers
-map('n', "<Leader>fl",  ":Lines<cr>") -- Lines in loaded buffers
-map('n', "<Leader>fB", ":BLines<cr>") -- Lines in the current buffer
-map('n', "<Leader>ft", ":Tags<cr>") -- Tags in the project
-map('n', "<Leader>fh", ":History<cr>") -- v:oldfiles and open buffers
-map('n', "<Leader>fH", ":Helptags<cr>") -- Help tags
-map('n', "<Leader>f:", ":History:<cr>") -- Vim Command History
-map('n', "<Leader>f/", ":History/<cr>") -- Search History
-map('n', "<Leader>fg", ":GFiles<cr>") -- Git files (git ls-files)
-map('n', "<Leader>fs", ":GFiles?<cr>") -- Git files (git status)
-map('n', "<Leader>fc", ":Commits<cr>") -- Git commits (requires fugitive.vim)
-map('n', "<Leader>fv", ":Commands<cr>") -- Vim Commands
-map('n', "<Leader>fC", ":Colors<cr>") -- Change colorscheme
-map('n', "<Leader>fm", ":Marks<cr>") -- View marks
-map('n', "<Leader>fr", ":Rg<cr>") -- Ripgrep search result (ALT-A to select all, ALT-D to deselect all)
+vim.keymap.set('n', "<Leader>-", ":FZF <c-r>=fnameescape(expand('%:p:h'))<cr>/<cr>") -- Current file directory
+vim.keymap.set('n', "<Leader>ff", ":FZF<cr>") -- Search in current directory
+vim.keymap.set('n', "<Leader>fF", ":Files ~/<cr>") -- Search home directory
+vim.keymap.set('n', "<Leader>fb", ":Buffers<cr>") -- Open buffers
+vim.keymap.set('n', "<Leader>fl",  ":Lines<cr>") -- Lines in loaded buffers
+vim.keymap.set('n', "<Leader>fB", ":BLines<cr>") -- Lines in the current buffer
+vim.keymap.set('n', "<Leader>ft", ":Tags<cr>") -- Tags in the project
+vim.keymap.set('n', "<Leader>fh", ":History<cr>") -- v:oldfiles and open buffers
+vim.keymap.set('n', "<Leader>fH", ":Helptags<cr>") -- Help tags
+vim.keymap.set('n', "<Leader>f:", ":History:<cr>") -- Vim Command History
+vim.keymap.set('n', "<Leader>f/", ":History/<cr>") -- Search History
+vim.keymap.set('n', "<Leader>fg", ":GFiles<cr>") -- Git files (git ls-files)
+vim.keymap.set('n', "<Leader>fs", ":GFiles?<cr>") -- Git files (git status)
+vim.keymap.set('n', "<Leader>fc", ":Commits<cr>") -- Git commits (requires fugitive.vim)
+vim.keymap.set('n', "<Leader>fv", ":Commands<cr>") -- Vim Commands
+vim.keymap.set('n', "<Leader>fC", ":Colors<cr>") -- Change colorscheme
+vim.keymap.set('n', "<Leader>fm", ":Marks<cr>") -- View marks
+vim.keymap.set('n', "<Leader>fr", ":Rg<cr>") -- Ripgrep search result (ALT-A to select all, ALT-D to deselect all)
 
+vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");

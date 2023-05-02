@@ -16,19 +16,18 @@ vim.cmd([[
   augroup END
 ]])
 
-require("configs.bash-language-server")
+require("colorizer").setup({css = { rgb_fn = true }})
 require("configs.bufferline")
-require("configs.flutter-tools")
 require("configs.indent-blankline")
 require("configs.lsp")
-require("configs.lualine")
 require("configs.nvim-cmp")
-require("configs.nvim-colorizer")
-require("configs.nvim-dap-ui")
-require("configs.symbols-outline")
-require("configs.toggleterm")
 require("configs.treesitter")
-require("configs.trouble")
+require("flutter-tools").setup()
+require("lsp_signature").setup()
+require("mason").setup()
+require("nvim-ts-autotag").setup()
+require("trouble").setup{}
+require('lualine').setup()
 
 vim.api.nvim_exec([[
 function! SourceIfExists(file)

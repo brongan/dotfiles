@@ -25,6 +25,10 @@ vim.opt.swapfile = false
 
 vim.o.completeopt = "menuone,noselect"
 vim.g.oscyank_term = "default"
+vim.g.symbols_outline = {
+  auto_preview = true,
+  position = "left",
+}
 vim.opt.autochdir = false
 vim.opt.autoindent = true
 vim.opt.autoread = true

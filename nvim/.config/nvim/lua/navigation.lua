@@ -2,25 +2,25 @@
 -- => Moving around, tabs, windows and buffers
 --------------------------------------------------------
 -- Smart way to move between windows
-map("n", "<C-j", "C-W>j")
-map("n", "<C-k", "C-W>k")
-map("n", "<C-h", "C-W>h")
-map("n", "<C-l", "C-W>l")
+vim.keymap.set("n", "<C-j", "C-W>j")
+vim.keymap.set("n", "<C-k", "C-W>k")
+vim.keymap.set("n", "<C-h", "C-W>h")
+vim.keymap.set("n", "<C-l", "C-W>l")
 
 -- Useful mappings for managing tabs
-map("n", "<leader>tn", "tabnew<cr>")
-map("n", "<leader>to", "tabonly<cr>")
-map("n", "<leader>tc", "tabclose<cr>")
-map("n", "<leader>tm", "tabmove")
-map("n", "<leader>t<leader>", "tabnext")
+vim.keymap.set("n", "<leader>tn", "tabnew<cr>")
+vim.keymap.set("n", "<leader>to", "tabonly<cr>")
+vim.keymap.set("n", "<leader>tc", "tabclose<cr>")
+vim.keymap.set("n", "<leader>tm", "tabmove")
+vim.keymap.set("n", "<leader>t<leader>", "tabnext")
 
 -- Buffer movement and delete
-map("n", "gn", ":bn<cr>")
-map("n", "gN", ":bp<cr>")
+vim.keymap.set("n", "gn", ":bn<cr>")
+vim.keymap.set("n", "gN", ":bp<cr>")
 
 -- Quickfix
-map('n', "<C-k>", "cnext<CR>zz")
-map('n', "<C-j>", "cprev<CR>zz")
-map('n', "<leader>k", "lnext<CR>zz")
-map('n', "<leader>j", "lprev<CR>zz")
+vim.keymap.set('n', "<C-k>", "cnext<CR>zz")
+vim.keymap.set('n', "<C-j>", "cprev<CR>zz")
+vim.keymap.set('n', "<leader>k", "lnext<CR>zz")
+vim.keymap.set('n', "<leader>j", "lprev<CR>zz")
 
