@@ -15,6 +15,7 @@ local packer = require('packer')
 
 return packer.startup(function(use)
 	use("akinsho/nvim-bufferline.lua") -- Top bar buffers thing tabs
+	use("akinsho/toggleterm.nvim")
 	use("eandrju/cellular-automaton.nvim")
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-nvim-lsp")

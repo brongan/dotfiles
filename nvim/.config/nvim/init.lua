@@ -26,6 +26,7 @@ require("flutter-tools").setup()
 require("lsp_signature").setup()
 require("mason").setup()
 require("nvim-ts-autotag").setup()
+require("toggleterm").setup{open_mapping = [[<M-cr>]],size = 20}
 require("trouble").setup{}
 require('lualine').setup()
 
