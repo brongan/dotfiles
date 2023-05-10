@@ -3,6 +3,7 @@ vim.g.mapleader = ","
 -- Fast saving and quit without saving
 vim.keymap.set('n', '<Leader>w', ':w!<CR>')
 vim.keymap.set('n', '<Leader>q', ':q!<CR>')
+vim.keymap.set('n', 'bd', ':bd<CR>')
 
 -- Quickly insert an empty new line without entering insert mode, below and above
 vim.keymap.set('n', '<Space>o', 'o<Esc>k')

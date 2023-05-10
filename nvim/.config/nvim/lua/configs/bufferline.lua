@@ -16,5 +16,5 @@ vim.keymap.set('n', "b]", ":BufferLineCycleNext<CR>")
 
 -- These commands will sort buffers by directory or language
 vim.keymap.set('n', 'be', ':BufferLineSortByExtension<CR>')
-vim.keymap.set('n', 'bd', ':BufferLineSortByDirectory<CR>')
+vim.keymap.set('n', 'br', ':BufferLineSortByDirectory<CR>')
 
