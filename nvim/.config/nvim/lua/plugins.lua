@@ -31,7 +31,6 @@ return packer.startup(function(use)
 	use("neovim/nvim-lspconfig") -- Collection of configurations for the built-in LSP client
 	use("norcalli/nvim-colorizer.lua") -- Highlights colors
 	use("nvim-treesitter/nvim-treesitter-context")
-	use("ojroques/vim-oscyank") -- Escape code based copy paste
 	use("onsails/lspkind.nvim") -- LSP Symbols
 	use("p00f/clangd_extensions.nvim")
 	use("psliwka/vim-smoothie") -- Smooth scrolling
@@ -45,6 +44,7 @@ return packer.startup(function(use)
 	use("wbthomason/packer.nvim") -- Packer can manage itself
 	use("wincent/terminus") -- Fixes mouse + paste
 	use("windwp/nvim-ts-autotag")
+	use('ojroques/nvim-osc52')
 	use({"akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim"})
 	use({"famiu/feline.nvim", branch = "master" }) -- StatusLine
 	use({"folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons"})

@@ -90,3 +90,8 @@ vim.keymap.set('n', "<Leader>fm", ":Marks<cr>") -- View marks
 vim.keymap.set('n', "<Leader>fr", ":Rg<cr>") -- Ripgrep search result (ALT-A to select all, ALT-D to deselect all)
 
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+
+-- OSCYank
+vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
+vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
+vim.keymap.set('v', '<leader>c', require('osc52').copy_visual)
