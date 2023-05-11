@@ -2,7 +2,6 @@ require("globals")
 require("basics")
 require("plugins")
 require("mappings")
-require("navigation")
 local ok, _ = pcall(require, "google")
 if not ok then
 	print("Loaded personal config.")
