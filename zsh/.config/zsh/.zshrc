@@ -36,8 +36,6 @@ if [[ $wm == "bspwm" || $wm == "i3" || $wm == "wlroots" ]]; then
 	export _JAVA_AWT_WM_NONREPARENTING=1
 fi
 
-[ -f ${XDG_CACHE_HOME}/wal/sequences ] && (cat ~/.cache/wal/sequences &)
-
 source "$XDG_CONFIG_HOME/.powerlevel9k_config"
 
 # XDG Aliases
