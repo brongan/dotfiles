@@ -166,6 +166,7 @@ bindsym XF86MonBrightnessDown exec changeBrightness.sh down
 #********************************************************************************
 
 # Work
+output 'Unknown 0xC693 0x00000000' scale 2.0
 output 'Unknown 0x1400 0x00000000' scale 2.0
 output 'Lenovo Group Limited P27h-20 V906LTA1' mode 2560x1440@60hz
 output 'Lenovo Group Limited P27h-20 V906M4CH' mode 2560x1440@60hz
@@ -180,7 +181,7 @@ workspace 6 output 'Lenovo Group Limited P27h-20 V906M4CH'
 # Home
 output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' mode 2560x1440@84.983hz
 output 'Unknown PA278QV M5LMQS139747' mode 2560x1440@75hz
-output eDP-1 scale 1.5
+# TODO(replace with framework screen name)  output eDP-1 scale 1.5
 workspace 1 output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' 
 workspace 2 output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' 
 workspace 3 output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' 
@@ -213,6 +214,7 @@ exec firefox-nightly
 exec google-chrome
 exec dunst
 exec dex -ae sway
+exec /usr/libexec/xdg-desktop-portal-wlr
 
 #*********************************************************************************
 
