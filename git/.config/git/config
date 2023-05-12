@@ -52,3 +52,5 @@
 [includeIf "gitdir:**/brennantracy/**"]
 	path = config.google
 
+[init]
+	defaultBranch = main
