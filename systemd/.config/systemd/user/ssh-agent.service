@@ -2,7 +2,7 @@
 Description = "SSH key agent"
 
 [Service]
-Type = Simple
+Type = simple
 # Display required for ssh-askpass to work.
 Environment=DISPLAY=:0
 ExecStart=/usr/bin/env -u CHROME_REMOTE_DESKTOP_SESSION /usr/bin/ssh-agent -D -a $SSH_AUTH_SOCK
