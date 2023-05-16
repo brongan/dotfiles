@@ -6,6 +6,7 @@ ih.setup()
 
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
+  client.offset_encoding = "utf-16"
   if client.name ~= "ciderlsp" then
 	  lsp.buffer_autoformat()
   end
