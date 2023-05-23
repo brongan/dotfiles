@@ -6,7 +6,7 @@ ih.setup()
 
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
-  client.offset_encoding = "utf-16"
+  -- client.offset_encoding = "utf-16"
   if client.name ~= "ciderlsp" then
 	  lsp.buffer_autoformat()
   end
@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 if pcall(require, "google") then
 	local lsp_defaults = lspconfig.util.default_config
 	lsp_defaults.capabilities = vim.tbl_deep_extend(
-		'force',
+		'keep',
 		lsp_defaults.capabilities,
 		require("google").init_lsp(lsp_defaults.capabilities)
 	)
