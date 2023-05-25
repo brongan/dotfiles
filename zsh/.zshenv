@@ -59,6 +59,7 @@ export AWS_CONFIG_FILE="${XDG_CONFIG_HOME}/aws/config"
 export AWS_CREDENTIALS_FILE="${XDG_DATA_HOME}/aws/credentials"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export CUDA_CACHE_PATH="${XDG_CACHE_HOME}"/nv
+export DISTCC_DIR="/tmp/distcc"
 export GEM_HOME="${XDG_DATA_HOME}/gem/ruby"
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 export GOPATH="${XDG_DATA_HOME}/go"
@@ -79,6 +80,7 @@ export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
 export XINITRC="${XDG_CONFIG_HOME}/X11/xinitrc"
 export XSERVERRC="${XDG_CONFIG_HOME}/X11/xserverrc"
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java"
+export KDEHOME="${XDG_CONFIG_HOME}/kde"
 
 # Path changes
 typeset -U path
