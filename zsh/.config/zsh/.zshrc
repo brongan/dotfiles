@@ -153,3 +153,6 @@ if [[ "${USER}" == "brennantracy" ]]; then
   source "${ZDOTDIR}/google.zsh"
 fi
 
+if (( $+commands[direnv] )); then
+	eval "$(direnv hook zsh)"
+fi
