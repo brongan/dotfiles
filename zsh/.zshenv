@@ -1,8 +1,8 @@
 # XDG directories
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
-export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
-export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
-export XDG_STATE_HOME=${XDG_STATE_HOME:-$HOME/.local/state}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-${HOME}/.config}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:-${HOME}/.cache}
+export XDG_DATA_HOME=${XDG_DATA_HOME:-${HOME}/.local/share}
+export XDG_STATE_HOME=${XDG_STATE_HOME:-${HOME}/.local/state}
 
 # ZSH configuration
 export HISTFILE="${XDG_STATE_HOME}/zsh/history"
@@ -48,7 +48,7 @@ if [ -s "${XDG_CONFIG_HOME}/nvm/nvm.sh" ]; then
   export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
   \. "$NVM_DIR/nvm.sh" # This loads nvm
 else
-  path=($path "$HOME/.node_modules/bin")
+  path=($path "${HOME}/.node_modules/bin")
   export npm_config_prefix="${HOME}/.local"
 fi
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
@@ -90,10 +90,10 @@ typeset -U path
 if (( $+commands[systemd-path] )); then
   path=($path "$(systemd-path user-binaries)")
 else
-  path=($path "$HOME/.local/bin")
+  path=($path "${HOME}/.local/bin")
 fi
 
-path=("${CARGO_HOME}/bin" $path "${GOPATH}/bin" "${GEM_HOME}/bin")
+path=("${CARGO_HOME}/bin" $path "${GOPATH}/bin" "${GEM_HOME}/bin" "${XDG_STATE_HOME}/nix/profile/bin")
 # Debian Why
 if [ -d "/usr/lib/cargo/bin/" ]; then
   path=($path "/usr/lib/cargo/bin")
