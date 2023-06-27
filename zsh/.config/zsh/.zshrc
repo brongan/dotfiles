@@ -55,6 +55,7 @@ alias ll="exa -aglh"
 alias ip="ip -c"
 alias rm="rm -i"
 alias grep="rg"
+alias diff="delta"
 if (( $+commands[bat] )); then
 	alias cat="bat"
 elif (( $+commands[batcat] )); then
