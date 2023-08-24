@@ -45,6 +45,10 @@ return packer.startup(function(use)
 	use("wincent/terminus") -- Fixes mouse + paste
 	use("windwp/nvim-ts-autotag")
 	use('ojroques/nvim-osc52')
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = function() vim.fn["mkdp#util#install"]() end,
+	})
 	use({"akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim"})
 	use({"famiu/feline.nvim", branch = "master" }) -- StatusLine
 	use({"folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons"})
