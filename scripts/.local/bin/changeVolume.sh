@@ -4,7 +4,7 @@
 # Arbitrary but unique message id
 MSG_ID="9969420"
 
-VOLUME_PCT_CHANGE=1
+VOLUME_PCT_CHANGE=10
 MAX_TICKS=20
 NUM_TICKS=$(( 100/${MAX_TICKS} ))
 
