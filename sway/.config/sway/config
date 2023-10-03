@@ -261,6 +261,11 @@ input type=pointer  {
     pointer_accel 0.0 # set mouse sensitivity (between -1 and 1)
 }
 
+input "type:keyboard" {
+	xkb_layout us
+	xkb_options caps:escape
+}
+
 #********************************************************************************
 
 #	Appearance
