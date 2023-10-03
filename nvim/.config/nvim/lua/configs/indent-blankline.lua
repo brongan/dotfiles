@@ -1,4 +1,4 @@
-require("indent_blankline").setup({
+require("ibl").setup({
   buftype_exclude = { "terminal" },
   filetype_exclude = { "startify", "help", "dashboard", "Outline" },
   indent_blankline_use_treesitter = true,
