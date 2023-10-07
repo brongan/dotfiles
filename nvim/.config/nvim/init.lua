@@ -17,7 +17,7 @@ vim.cmd([[
 
 require("colorizer").setup({css = { rgb_fn = true }})
 require("configs.bufferline")
-require("configs.indent-blankline")
+require("ibl").setup({})
 require("configs.lsp")
 require("configs.nvim-cmp")
 require("configs.treesitter")
