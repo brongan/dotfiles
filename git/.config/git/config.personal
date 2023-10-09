@@ -1,4 +1,4 @@
 [user]
 	email=brennantracy4@gmail.com
-	signingkey = /home/brong/.ssh/id_ecdsa_sk
+	signingkey = /home/brong/.ssh/id_ed25519
 
