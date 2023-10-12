@@ -289,12 +289,6 @@ default_floating_border normal
 # Hide borders
 hide_edge_borders none
 
-# change borders
-bindsym $mod+y border none
-bindsym $mod+u border pixel 1
-bindsym $mod+i border normal
-
-
 #############################
 ### settings for i3-gaps: ###
 #############################
