@@ -4,7 +4,7 @@ local ih = require("lsp-inlayhints")
 
 ih.setup()
 
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_client, bufnr)
 	lsp.default_keymaps({ buffer = bufnr })
 	-- client.offset_encoding = "utf-16"
 	lsp.buffer_autoformat()

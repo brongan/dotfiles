@@ -1,4 +1,4 @@
-rule = {
+local rule = {
 	matches = {
 		{
 			{ "device.name", "equals", "alsa_card.usb-046d_HD_Pro_Webcam_C920_E733F5AF-02" },
