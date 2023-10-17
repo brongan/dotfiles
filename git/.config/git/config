@@ -48,7 +48,7 @@
 	conflictstyle = diff3
 [diff]
 	colorMoved = default
-[include]
+[includeIf "gitdir:**/brong/**"]
 	path = config.personal
 [includeIf "gitdir:**/brennantracy/**"]
 	path = config.google
