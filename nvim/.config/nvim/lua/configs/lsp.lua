@@ -6,13 +6,36 @@ ih.setup()
 
 lsp.on_attach(function(_client, bufnr)
 	lsp.default_keymaps({ buffer = bufnr })
-	-- client.offset_encoding = "utf-16"
+	local bind = vim.keymap.set
 	lsp.buffer_autoformat()
+	local bufmap = function(mode, lhs, rhs)
+		local opts = { buffer = bufnr, noremap = true }
+		bind(mode, lhs, rhs, opts)
+	end
+
+	bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
+	bufmap('n', '<C-space>', '<cmd>RustHoverRange<cr>')
+	bufmap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
+	bufmap('n', '<Leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+	bufmap('x', '<Leader>a', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
+	bufmap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
+	bufmap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
+	bufmap('n', "<Leader>ld", "<cmd>TroubleToggle lsp_definitions<CR>")
+	bufmap('n', "<Leader>lE", "<cmd>TroubleToggle workspace_diagnostics<CR>")
 end)
 
-lsp.ensure_installed({ 'rust_analyzer' })
+lsp.format_on_save({
+	format_opts = {
+		async = true,
+		timeout_ms = 10000,
+	},
+})
+
+
+lsp.ensure_installed({ 'rust_analyzer', 'bashls', 'clangd', 'unocss', 'dotls', 'gopls', 'biome', 'marksman', 'pylsp' })
 lsp.skip_server_setup({ 'clangd' })
 require('clangd_extensions').setup()
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
 vim.api.nvim_create_autocmd("LspAttach", {
