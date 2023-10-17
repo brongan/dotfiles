@@ -9,6 +9,7 @@ else
 	require("libp").setup()
 	require("hg").setup()
 	require('google.comments').setup()
+	require("neocitc").setup()
 	print("Loaded Google config.")
 end
 
