@@ -6,10 +6,11 @@ local ok, _ = pcall(require, "google")
 if not ok then
 	print("Loaded personal config.")
 else
-	require("libp").setup()
 	require("hg").setup()
-	require('google.comments').setup()
+	require("libp").setup()
 	require("neocitc").setup()
+	require('google.comments').setup()
+	require('luasnip-google').load_snippets()
 	print("Loaded Google config.")
 end
 
