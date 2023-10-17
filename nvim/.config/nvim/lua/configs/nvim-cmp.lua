@@ -33,7 +33,7 @@ local kind_icons = {
 local source_names = {
 	vsnip = "(✂)",
 	nvim_ciderlsp = "(🤖)",
-	copilot = "(🤖)",
+	buganizer = "(🐛)",
 	nvim_lsp = "(🔧)",
 	nvim_lua = "(LUA)",
 	emoji = "(💩)",
@@ -53,7 +53,7 @@ local duplicates = {
 cmp.setup({
 	sources = cmp.config.sources({
 		{ name = 'nvim_ciderlsp' },
-		{ name = 'copilot' },
+		{ name = 'buganizer' },
 		{ name = 'nvim_lsp' },
 		{ name = 'vsnip' },
 		{ name = 'nvim_lua' },

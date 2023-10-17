@@ -6,14 +6,13 @@ local ok, _ = pcall(require, "google")
 if not ok then
 	print("Loaded personal config.")
 else
+	require("libp").setup()
+	require("hg").setup()
+	require('google.comments').setup()
 	print("Loaded Google config.")
 end
 
-vim.cmd([[
-  augroup Gruvbox
-  autocmd vimenter * ++nested colorscheme gruvbox
-  augroup END
-]])
+vim.cmd.colorscheme "catppuccin-mocha"
 
 require("colorizer").setup({css = { rgb_fn = true }})
 require("configs.bufferline")
