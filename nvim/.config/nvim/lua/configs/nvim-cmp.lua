@@ -35,7 +35,6 @@ local source_names = {
 	nvim_ciderlsp = "(🤖)",
 	buganizer = "(🐛)",
 	nvim_lsp = "(🔧)",
-	nvim_lua = "(LUA)",
 	emoji = "(💩)",
 	path = "(🛣️)",
 	nvim_lua = "(CMP)",
@@ -57,7 +56,7 @@ cmp.setup({
 		{ name = 'nvim_lsp' },
 		{ name = 'vsnip' },
 		{ name = 'nvim_lua' },
-		{ name = 'buffer', keyword_length = 5 },
+		{ name = 'buffer',       keyword_length = 5 },
 		{ name = 'path' },
 		{ name = 'tmux' },
 		{ name = 'emoji' },
@@ -81,7 +80,7 @@ cmp.setup({
 		format = lspkind.cmp_format({
 			with_text = true,
 			maxwidth = 40, -- half max width
-			before = function (entry, vim_item)
+			before = function(entry, vim_item)
 				vim_item.kind = kind_icons[vim_item.kind]
 				vim_item.menu = source_names[entry.source.name]
 				vim_item.dup = duplicates[entry.source.name]
@@ -111,7 +110,7 @@ cmp.setup({
 				cmp.complete()
 			end
 		end),
-	}),	
+	}),
 	experimental = {
 		native_menu = false,
 		ghost_text = true,
@@ -121,4 +120,3 @@ cmp.setup({
 		documentation = cmp.config.window.bordered(),
 	}
 })
-

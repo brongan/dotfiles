@@ -1,15 +1,15 @@
 ---------------------------------------------------------------
 -- => XDG path configuration
 ---------------------------------------------------------------
-table.insert(vim.opt.runtimepath, os.getenv("XDG_CONFIG_HOME").."/nvim")
-table.insert(vim.opt.runtimepath, os.getenv("XDG_DATA_HOME").."nvim")
-table.insert(vim.opt.runtimepath, os.getenv("XDG_DATA_HOME").."after")
-table.insert(vim.opt.packpath, os.getenv("XDG_CONFIG_HOME").."nvim")
-table.insert(vim.opt.packpath, os.getenv("XDG_DATA_HOME").."nvim")
-table.insert(vim.opt.packpath, os.getenv("XDG_DATA_HOME").."nvim/after")
-vim.opt.backupdir=os.getenv("XDG_CACHE_HOME").."vim/backup"
-vim.opt.directory=os.getenv("XDG_CACHE_HOME").."vim/swap"
-vim.opt.undodir=os.getenv("XDG_CACHE_HOME").."vim/undo"
+table.insert(vim.opt.runtimepath, os.getenv("XDG_CONFIG_HOME") .. "/nvim")
+table.insert(vim.opt.runtimepath, os.getenv("XDG_DATA_HOME") .. "nvim")
+table.insert(vim.opt.runtimepath, os.getenv("XDG_DATA_HOME") .. "after")
+table.insert(vim.opt.packpath, os.getenv("XDG_CONFIG_HOME") .. "nvim")
+table.insert(vim.opt.packpath, os.getenv("XDG_DATA_HOME") .. "nvim")
+table.insert(vim.opt.packpath, os.getenv("XDG_DATA_HOME") .. "nvim/after")
+vim.opt.backupdir = os.getenv("XDG_CACHE_HOME") .. "vim/backup"
+vim.opt.directory = os.getenv("XDG_CACHE_HOME") .. "vim/swap"
+vim.opt.undodir = os.getenv("XDG_CACHE_HOME") .. "vim/undo"
 
 ---------------------------------------------------------------
 -- => Files, backup and undo
@@ -26,8 +26,8 @@ vim.opt.swapfile = false
 vim.o.completeopt = "menuone,noselect"
 vim.g.oscyank_term = "default"
 vim.g.symbols_outline = {
-  auto_preview = true,
-  position = "left",
+	auto_preview = true,
+	position = "left",
 }
 vim.opt.autochdir = false
 vim.opt.autoindent = true
@@ -42,7 +42,7 @@ vim.opt.expandtab = false
 vim.opt.formatoptions:remove("cro")
 vim.opt.guicursor = "";
 vim.opt.hidden = true
-vim.opt.history=500
+vim.opt.history = 500
 vim.opt.hlsearch = false
 vim.opt.iskeyword:append("-")
 vim.opt.mouse = "a"
