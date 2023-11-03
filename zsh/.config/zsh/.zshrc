@@ -163,7 +163,6 @@ if (( $+commands[direnv] )); then
 	eval "$(direnv hook zsh)"
 fi
 
-
 if (( $+commands[nix] )); then
 	fpath=(/usr/share/zsh/site-functions/ $fpath)
 fi
