@@ -184,9 +184,9 @@ output 'BOE 0x0BCA Unknown' scale 1.5
 workspace 1 output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' 
 workspace 2 output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' 
 workspace 3 output 'Ancor Communications Inc ROG PG279Q #ASM2jqfu0Ujd' 
-workspace 4 output 'Unknown PA278QV M5LMQS139747'
-workspace 5 output 'Unknown PA278QV M5LMQS139747'
-workspace 6 output 'Unknown PA278QV M5LMQS139747'
+workspace 4 output 'ASUSTek COMPUTER INC PA278QV M5LMQS139747'
+workspace 5 output 'ASUSTek COMPUTER INC PA278QV M5LMQS139747'
+workspace 6 output 'ASUSTek COMPUTER INC PA278QV M5LMQS139747'
 
 output "Unknown 0x095F 0x00000000" {
 	scale 1.0 
@@ -209,8 +209,6 @@ output "*" bg $HOME/Desktop/bridge.png fill
 
 exec kitty
 exec firefox-nightly
-#exec chromium
-exec google-chrome
 exec dunst
 exec dex -ae sway
 exec /usr/libexec/xdg-desktop-portal-wlr
