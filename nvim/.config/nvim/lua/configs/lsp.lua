@@ -14,7 +14,6 @@ lsp.on_attach(function(_client, bufnr)
 	end
 
 	bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
-	bufmap('n', '<C-space>', '<cmd>RustHoverRange<cr>')
 	bufmap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
 	bufmap('n', '<Leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>')
 	bufmap('x', '<Leader>a', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
@@ -46,7 +45,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		-- ih.on_attach(client, args.buf)
+		ih.on_attach(client, args.buf)
 	end,
 })
 
