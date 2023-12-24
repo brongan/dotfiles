@@ -30,8 +30,6 @@ lsp.format_on_save({
 	},
 })
 
-
-lsp.ensure_installed({ 'rust_analyzer', 'bashls', 'clangd', 'unocss', 'dotls', 'gopls', 'biome', 'marksman', 'pylsp' })
 lsp.skip_server_setup({ 'clangd' })
 require('clangd_extensions').setup()
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
