@@ -1,13 +1,13 @@
-local lsp = require('lsp-zero').preset({})
+local lsp_zero = require('lsp-zero').preset({})
 local lspconfig = require("lspconfig")
 local ih = require("lsp-inlayhints")
 
 ih.setup()
 
-lsp.on_attach(function(_client, bufnr)
-	lsp.default_keymaps({ buffer = bufnr })
+lsp_zero.on_attach(function(_client, bufnr)
+	lsp_zero.default_keymaps({ buffer = bufnr })
 	local bind = vim.keymap.set
-	lsp.buffer_autoformat()
+	lsp_zero.buffer_autoformat()
 	local bufmap = function(mode, lhs, rhs)
 		local opts = { buffer = bufnr, noremap = true }
 		bind(mode, lhs, rhs, opts)
@@ -23,16 +23,16 @@ lsp.on_attach(function(_client, bufnr)
 	bufmap('n', "<Leader>lE", "<cmd>TroubleToggle workspace_diagnostics<CR>")
 end)
 
-lsp.format_on_save({
+lsp_zero.format_on_save({
 	format_opts = {
 		async = true,
 		timeout_ms = 10000,
 	},
 })
 
-lsp.skip_server_setup({ 'clangd' })
+lsp_zero.setup_servers({ 'tsserver', 'rust_analyzer' })
+lsp_zero.skip_server_setup({ 'clangd' })
 require('clangd_extensions').setup()
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -56,4 +56,4 @@ if pcall(require, "google") then
 	)
 end
 
-lsp.setup()
+lsp_zero.setup()
