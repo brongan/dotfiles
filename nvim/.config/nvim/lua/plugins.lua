@@ -53,31 +53,10 @@ return packer.startup(function(use)
 	use({ "catppuccin/nvim", as = "catppuccin" })
 	use({ "famiu/feline.nvim", branch = "master" }) -- StatusLine
 	use({ "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" })
+	use({ "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end })
 	use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Highlighting based on syntax tree
-	use({
-		"iamcco/markdown-preview.nvim",
-		run = function() vim.fn["mkdp#util#install"]() end,
-	})
-	use {
-		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v2.x',
-		requires = {
-			-- LSP Support
-			{ 'neovim/nvim-lspconfig' }, -- Required
-			{                   -- Optional
-				'williamboman/mason.nvim',
-				run = function()
-					pcall(vim.cmd, 'MasonUpdate')
-				end,
-			},
-			{ 'williamboman/mason-lspconfig.nvim' }, -- Optional
-			-- Autocompletion
-			{ 'hrsh7th/nvim-cmp' },         -- Required
-			{ 'hrsh7th/cmp-nvim-lsp' },     -- Required
-			{ 'L3MON4D3/LuaSnip' },         -- Required
-		}
-	}
+	use({ 'VonHeikemen/lsp-zero.nvim', branch = 'v2.x' })
 	local ok, _ = pcall(require, "google")
 	if ok then
 		for i, plugin in ipairs(require("google").plugins) do
