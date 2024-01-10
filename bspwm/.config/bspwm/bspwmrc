@@ -31,7 +31,6 @@ bspc subscribe monitor | while read -r line; do
 			bspc desktop I -m $monitor2
 			bspc desktop II -m $monitor2
 			bspc desktop III -m $monitor2
-			bspc desktop IV -m $monitor2
 			bspc desktop IV -m $monitor3
 			bspc desktop V -m $monitor3
 			bspc desktop VI -m $monitor3
@@ -125,4 +124,5 @@ sxhkd &
 picom &
 dunst &
 launch_polybar.sh
+xrandr --output DP-2 --rate 144 --mode 2560x1440
 
