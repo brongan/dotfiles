@@ -17,10 +17,10 @@ local packer = require('packer')
 
 return packer.startup(function(use)
 	use("L3MON4D3/LuaSnip")
-	use('saadparwaiz1/cmp_luasnip')
 	use("akinsho/nvim-bufferline.lua") -- Top bar buffers thing tabs
 	use("akinsho/toggleterm.nvim")
 	use("eandrju/cellular-automaton.nvim")
+	use("folke/neoconf.nvim")
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-nvim-lua")
@@ -49,6 +49,7 @@ return packer.startup(function(use)
 	use("wincent/terminus")                 -- Fixes mouse + paste
 	use("windwp/nvim-ts-autotag")
 	use('ojroques/nvim-osc52')
+	use('saadparwaiz1/cmp_luasnip')
 	use({ "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" })
 	use({ "catppuccin/nvim", as = "catppuccin" })
 	use({ "famiu/feline.nvim", branch = "master" }) -- StatusLine
