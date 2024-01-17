@@ -42,6 +42,7 @@ if [[ ${XDG_SESSION_TYPE} = wayland ]]; then
 	export MOZ_DISABLE_RDD_SANDBOX=1
 	export EGL_PLATFORM=wayland
 fi
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Node.js
 if [ -s "${XDG_CONFIG_HOME}/nvm/nvm.sh" ]; then
