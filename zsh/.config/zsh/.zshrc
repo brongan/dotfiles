@@ -142,7 +142,7 @@ atuin-fzf () {
 	selected=( $(atuin history list --human | fzf --tac) )
 	local ret=$?
 	if [ -n "$selected" ]; then
-		RBUFFER="${selected[5,-1]}${RBUFFER}"
+		RBUFFER="${selected[3,-2]}${RBUFFER}"
 	fi
 	zle end-of-line
 	zle reset-prompt
