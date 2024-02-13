@@ -11,7 +11,7 @@ super + space
 	rofi -show drun
 
 # make sxhkd reload its configuration files:
-super + Escape
+super + r
 	dunstify -u medium "Reloading sxhkd config"; pkill -USR1 -x sxhkd
 
 # Show sxhkd help
@@ -35,11 +35,11 @@ XF86MonBrightness{Up,Down}
 
 # Take a Screenshot of the whole screen
 Print
-	dunstify -u low "Taking a Screenshot" -i image-png; shotgun - | xclip -selection clipboard -t image/png  
+	dunstify -u low "Taking a fullscreen Screenshot" -i image-png; shotgun -s - | xclip -selection clipboard -t image/png  
 
 # Take a screenshot of a selection
 super + Print
-	dunstify -u low "Taking a Screenshot" -i image-png; shotgun $(hacksaw -f "-i %i -g %g") - | xclip -selection clipboard -t image/png -i  
+	dunstify -u low "Taking a Screenshot of selection" -i image-png; shotgun $(hacksaw -f "-i %i -g %g") - | xclip -selection clipboard -t image/png -i  
 
 # Record a gif of a selection
 super + alt + Print
