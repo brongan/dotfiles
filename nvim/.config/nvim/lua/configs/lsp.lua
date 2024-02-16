@@ -31,7 +31,7 @@ lsp_zero.format_on_save({
 	},
 })
 
-lsp_zero.setup_servers({ 'tsserver', 'rust_analyzer', 'jsonls', 'lua_ls', 'glsl_analyzer' })
+lsp_zero.setup_servers({ 'tsserver', 'rust_analyzer', 'jsonls', 'lua_ls', 'glsl_analyzer', 'nil_ls' })
 lsp_zero.skip_server_setup({ 'clangd' })
 require('clangd_extensions').setup()
 
