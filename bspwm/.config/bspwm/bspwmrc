@@ -124,5 +124,5 @@ sxhkd &
 picom &
 dunst &
 launch_polybar.sh
-xrandr --output DP-2 --rate 144 --mode 2560x1440
+xrandr --output DP-1 --rate 144 --mode 2560x1440
 
