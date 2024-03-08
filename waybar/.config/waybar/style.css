@@ -1,147 +1,173 @@
 * {
-    border:        none;
-    border-radius: 0;
-    font-family:   Inconsolata;
-    font-size:     17px;
-    font-weight:     bold;
-    box-shadow:    none;
-    text-shadow:   none;
-    transition-duration: 0s;
+    border: none;
+    border-radius: 0px;
+    font-family: "Iosevka";
+    font-weight: bold;
+    font-size: 16px;
+    min-height: 10px;
 }
 
-window {
-    color:      rgba(217, 216, 216, 1);
-    background: rgba(1, 1, 1, 0.40);
+@define-color bar-bg rgba(0, 0, 0, 0);
+@define-color main-bg #11111b;
+@define-color main-fg #cdd6f4;
+@define-color wb-act-bg #a6adc8;
+@define-color wb-act-fg #313244;
+@define-color wb-hvr-bg #f5c2e7;
+@define-color wb-hvr-fg #313244;
+
+window#waybar {
+    background: @bar-bg;
 }
 
-window#waybar.solo {
-    background: rgba(1, 1, 1, 0.40);
-}
-
-#workspaces {
-    border-radius: 20px;
-    background: rgba(40, 42, 54, 0.85);
-    transition: none;
+tooltip {
+    background: @main-bg;
+    color: @main-fg;
+    border-radius: 7px;
+    border-width: 0px;
 }
 
 #workspaces button {
-    transition: none;
-    color:      rgba(217, 216, 216, 0.4);
-    background: transparent;
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 0px;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-right: 0px;
+    color: @main-fg;
+    animation: ws_normal 20s ease-in-out 1;
 }
 
-#workspaces button.visible {
-    color:      rgba(217, 216, 216, 1);
-}
-
-#workspaces button.focused {
-    border-top: 3px solid #9aedfe;
-    color: #9aedfe;
+#workspaces button.active {
+    background: @wb-act-bg;
+    color: @wb-act-fg;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: ws_active 20s ease-in-out 1;
+    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button:hover {
-    border-top: 3px solid #ff79c6;
-    transition: none;
-    box-shadow: inherit;
-    text-shadow: inherit;
-    color: #ff79c6;
+    background: @wb-hvr-bg;
+    color: @wb-hvr-fg;
+    animation: ws_hover 20s ease-in-out 1;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-#workspaces button.urgent {
-    color:      rgba(238, 46, 36, 1);
+#taskbar button {
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 0px;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-right: 0px;
+    color: @wb-color;
+    animation: tb_normal 20s ease-in-out 1;
 }
 
-#mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-spotify {
-    margin:     0px 6px 0px 10px;
-    min-width:  25px;
+#taskbar button.active {
+    background: @wb-act-bg;
+    color: @wb-act-color;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    animation: tb_active 20s ease-in-out 1;
+    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-#clock {
-    margin-left: 4px;
-    margin-right: 4px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 20px;
-    transition: none;
-    color: #4d4d4d;
-    background: rgba(107, 142, 35, 0.85);
+#taskbar button:hover {
+    background: @wb-hvr-bg;
+    color: @wb-hvr-color;
+    animation: tb_hover 20s ease-in-out 1;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-#custom-cmus {
-    margin-left: 4px;
-    margin-right: 4px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 20px;
-    transition: none;
-    color: #4d4d4d;
-    background: rgba(188, 143, 143, 0.85);
+#backlight,
+#battery,
+#bluetooth,
+#custom-cliphist,
+#clock,
+#custom-cpuinfo,
+#cpu,
+#custom-gpuinfo,
+#idle_inhibitor,
+#custom-keybindhint,
+#language,
+#memory,
+#mpris,
+#network,
+#custom-power,
+#pulseaudio,
+#custom-spotify,
+#taskbar,
+#custom-theme,
+#tray,
+#custom-updates,
+#custom-wallchange,
+#custom-wbar,
+#window,
+#workspaces,
+#custom-l_end,
+#custom-r_end,
+#custom-sl_end,
+#custom-sr_end,
+#custom-rl_end,
+#custom-rr_end {
+    color: @main-fg;
+    background: @main-bg;
+    opacity: 1;
+    margin: 4px 0px 4px 0px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
-#battery.warning {
-   color:       rgba(255, 210, 4, 1);
+#workspaces,
+#taskbar {
+    padding: 0px;
 }
 
-#battery.critical {
-    color:      rgba(238, 46, 36, 1);
+#custom-r_end {
+    border-radius: 0px 21px 21px 0px;
+    margin-right: 9px;
+    padding-right: 3px;
 }
 
-#battery.charging {
-    color:      rgba(217, 216, 216, 1);
+#custom-l_end {
+    border-radius: 21px 0px 0px 21px;
+    margin-left: 9px;
+    padding-left: 3px;
 }
 
-#pulseaudio {
-    margin-left: 4px;
-    margin-right: 4px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 20px;
-    transition: none;
-    color: #4d4d4d;
-    background: rgba(189, 183, 107, 0.85);
+#custom-sr_end {
+    border-radius: 0px;
+    margin-right: 9px;
+    padding-right: 3px;
 }
 
-#cpu {
-    margin-left: 4px;
-    margin-right: 4px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 20px;
-    transition: none;
-    color: #4d4d4d;
-    background: rgba(205, 92, 92, 0.85);
+#custom-sl_end {
+    border-radius: 0px;
+    margin-left: 9px;
+    padding-left: 3px;
 }
 
-#battery {
-    margin-left: 4px;
-    margin-right: 4px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 20px;
-    transition: none;
-    color: #4d4d4d;
-    background: rgba(176, 196, 222, 0.85);
+#custom-rr_end {
+    border-radius: 0px 7px 7px 0px;
+    margin-right: 9px;
+    padding-right: 3px;
 }
 
-#memory {
-    margin-left: 4px;
-    margin-right: 4px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 20px;
-    transition: none;
-    color: #4d4d4d;
-    background: rgba(222, 184, 135, 0.85);
+#custom-rl_end {
+    border-radius: 7px 0px 0px 7px;
+    margin-left: 9px;
+    padding-left: 3px;
 }
-
-#tray {
-    margin-left: 4px;
-    margin-right: 4px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 20px;
-    transition: none;
-    color: #4d4d4d;
-    background: rgba(119, 136, 153, 0.85);
-}
-
