@@ -1,147 +1,66 @@
 [global]
-    frame_width = 1
-    frame_color = "#788388"
+	alignment = left
+	enable_recursive_icon_lookup = true
+	frame_color = "#c0caf5"
+	gap_size = 5
+	height = 200
+	notification_limit = 5
+	offset = 20x20
+	origin = top-left
+	progress_bar = true
+	progress_bar_frame_width = 1
+	progress_bar_height = 10
+	progress_bar_max_width = 300
+	progress_bar_min_width = 150
+	scale = 0
+	separator_color = frame
 	width = 512
-    
-    font = Noto Sans 10
-    
-    # Allow a small subset of html markup:
-    #   <b>bold</b>
-    #   <i>italic</i>
-    #   <s>strikethrough</s>
-    #   <u>underline</u>
-    # 
-    # For a complete reference see
-    # <http://developer.gnome.org/pango/stable/PangoMarkupFormat.html>.
-    # If markup is not allowed, those tags will be stripped out of the
-    # message.
-    markup = yes
-    
-    # The format of the message.  Possible variables are:
-    #   %a  appname
-    #   %s  summary
-    #   %b  body
-    #   %i  iconname (including its path)
-    #   %I  iconname (without its path)
-    #   %p  progress value if set ([  0%] to [100%]) or nothing
-    # Markup is allowed
-    format = "%s %p\n%b"
-    
-    # Sort messages by urgency.
-    sort = yes
-    
-    # Show how many messages are currently hidden (because of geometry).
-    indicate_hidden = yes
-    
-    # Alignment of message text.
-    # Possible values are "left", "center" and "right".
-    alignment = left
-    
-    # Show age of message if message is older than show_age_threshold
-    # seconds.
-    # Set to -1 to disable.
-    show_age_threshold = 60
-    
-    # Split notifications into multiple lines if they don't fit into
-    # geometry.
-    word_wrap = no
-    
-    # Ignore newlines '\n' in notifications.
-    ignore_newline = no
-    
-    # Shrink window if it's smaller than the width.  Will be ignored if
-    # width is 0.
-    shrink = yes
-    
-    # The transparency of the window.  Range: [0; 100].
-    # This option will only work if a compositing windowmanager is
-    # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 15
-    
-    # Don't remove messages, if the user is idle (no mouse or keyboard input)
-    # for longer than idle_threshold seconds.
-    # Set to 0 to disable.
-    # default 120
-    idle_threshold = 120 
-    
-    # Which monitor should the notifications be displayed on.
-    monitor = 0
-    
-    # Display notification on focused monitor.  Possible modes are:
-    #   mouse: follow mouse pointer
-    #   keyboard: follow window with keyboard focus
-    #   none: don't follow anything
-    # 
-    # "keyboard" needs a windowmanager that exports the
-    # _NET_ACTIVE_WINDOW property.
-    # This should be the case for almost all modern windowmanagers.
-    # 
-    # If this option is set to mouse or keyboard, the monitor option
-    # will be ignored.
-    follow = mouse
-    
-    # Should a notification popped up from history be sticky or timeout
-    # as if it would normally do.
-    sticky_history = yes
-    
-    # Maximum amount of notifications kept in history
-    history_length = 20
-    
-    # Display indicators for URLs (U) and actions (A).
-    show_indicators = yes
-    
-    # The height of a single line.  If the height is smaller than the
-    # font height, it will get raised to the font height.
-    # This adds empty space above and under the text.
-    line_height = 0
-    
-    # Draw a line of "separator_height" pixel height between two
-    # notifications.
-    # Set to 0 to disable.
-    separator_height = 1
-    
-    # Padding between text and separator.
-    # padding = 8
-    padding = 8
-    
-    # Horizontal padding.
-    horizontal_padding = 10
-    
-    # dmenu path.
+    browser = /usr/bin/xdg-open
     dmenu = /usr/bin/dmenu -p dunst:
-    
-    # Browser for opening urls in context menu.
-    browser = /usr/bin/firefox-nightly --new-tab
-
-    # IDK
-    progress_bar = true
-
-    # Align icons left/right/off
-    icon_position = left
-
-    # Paths to default icons.
+    follow = none
+    font = Fira Sans 10
+    format = "%s %p\n%b"
+    frame_width = 3
+    history_length = 20
+    horizontal_padding = 8
     icon_path = /usr/share/icons/Papirus-Dark/16x16/actions:/usr/share/icons/Papirus/16x16/apps:/usr/share/icons/Papirus/16x16/apps:/usr/share/icons/Papirus-Dark/16x16/devices:/usr/share/icons/Papirus/16x16/emblems:/usr/share/icons/Papirus/16x16/emotes:/usr/share/icons/Papirus/16x16/mimetypes:/usr/share/icons/Papirus/16x16/panel:/usr/share/icons/Papirus-Dark/16x16/places:/usr/share/icons/Papirus/16x16/status
-
-
-    # Limit icons size.
+    icon_position = left
+    idle_threshold = 15 
+    ignore_newline = no
+    indicate_hidden = yes
+    line_height = 0
+    markup = full
     max_icon_size=128
+    monitor = 1
+    padding = 8
+    progress_bar = true
+    separator_height = 2
+    show_age_threshold = 60
+    show_indicators = yes
+    shrink = yes
+    sort = yes
+    sticky_history = yes
+    word_wrap = no
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#263238"
-    foreground = "#556064"
-    timeout = 10
+     background = "#fff"
+    foreground = "#89b4fa"
+    frame_color = "#89b4fa"
+    timeout = 3
 
 [urgency_normal]
-    background = "#263238"
-    foreground = "#F9FAF9"
-    timeout = 10
+    background = "#fff"
+    foreground = "#a6e3a1"
+    frame_color = "#a6e3a1"
+    timeout = 3
 
 [urgency_critical]
-    background = "#D62929"
-    foreground = "#F9FAF9"
-    timeout = 0
+    background = "#fff"
+    foreground = "#f38ba8"
+    frame_color = "#f38ba8"
+    timeout = 3
 
 [Discord]
     appname = Discord
