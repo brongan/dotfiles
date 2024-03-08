@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-set -ux
-
-mapfile -t MONITORS < <(xrandr --query -display "${DISPLAY}" | grep " connected " | awk '{ print$1 }')
-xrandr --output ${MONITORS[0]} --auto

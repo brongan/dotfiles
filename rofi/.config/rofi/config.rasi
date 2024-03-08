@@ -1,8 +1,0 @@
-configuration {
- modi: "drun,ssh,combi";
- font: "Noto Sans 12";
- combi-modi: "drun,ssh";
- show-icons: true;
- }
-
-@theme "slate"
