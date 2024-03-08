@@ -13,9 +13,9 @@ else
 	print("Loaded Google config.")
 end
 
-vim.cmd.colorscheme "catppuccin-mocha"
 
-require("colorizer").setup({ css = { rgb_fn = true } })
+require('catppuccin').setup({ transparent_background = true })
+require("colorizer").setup({ css = { css = true } })
 require("configs.bufferline")
 require("ibl").setup({})
 require("configs.lsp")
@@ -27,6 +27,8 @@ require("nvim-ts-autotag").setup()
 require("toggleterm").setup { open_mapping = [[<M-cr>]], size = 20 }
 require("trouble").setup {}
 require('lualine').setup()
+
+vim.cmd.colorscheme "catppuccin-mocha"
 
 vim.api.nvim_exec([[
 function! SourceIfExists(file)
