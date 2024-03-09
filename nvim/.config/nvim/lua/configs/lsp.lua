@@ -1,4 +1,5 @@
 local lsp_zero = require('lsp-zero').preset({})
+require("neodev").setup()
 require("neoconf").setup()
 local lspconfig = require("lspconfig")
 local ih = require("lsp-inlayhints")
