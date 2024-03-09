@@ -76,7 +76,7 @@ window {
 }
 
 #input * {
-  outline: 4px solid @red!important;
+  outline: 4px solid @red;
 }
 
 #text {
@@ -104,5 +104,5 @@ window {
 }
 
 #entry:drop(active) {
-  background-color: @lavender!important;
+  background-color: @lavender;
 }
