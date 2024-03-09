@@ -7,62 +7,19 @@
 	"passthrough": false,
 	"gtk-layer-shell": true,
 	"modules-left": [
-		"custom/padd",
-		"custom/l_end",
 		"custom/power",
-		"wlr/taskbar",
-		"custom/r_end",
-		"custom/l_end",
-		"custom/spotify",
-		"custom/r_end",
-		"custom/padd"
+		"hyprland/workspaces"
 	],
 	"modules-center": [
-		"custom/padd",
-		"custom/l_end",
-		"hyprland/workspaces",
-		"hyprland/window",
-		"custom/r_end",
-		"custom/padd"
+		"custom/spotify"
 	],
 	"modules-right": [
-		"custom/padd",
-		"custom/l_end",
-		"cpu",
-		"memory",
-		"custom/r_end",
-		"custom/l_end",
-		"backlight",
-		"network",
-		"bluetooth",
-		"pulseaudio",
-		"pulseaudio#microphone",
-		"clock",
-		"custom/r_end",
-		"custom/l_end",
 		"tray",
-		"battery",
-		"custom/r_end",
-		"custom/padd"
+		"group/group-applets",
+		"clock"
 	],
 	"hyprland/mode": {
 		"format": " {}"
-	},
-	"wlr/taskbar": {
-		"format": "{icon}",
-		"rotate": 0,
-		"icon-size": 18,
-		"icon-theme": "Tela-circle-dracula",
-		"spacing": 0,
-		"tooltip-format": "{title}",
-		"on-click": "activate",
-		"on-click-middle": "close",
-		"ignore-list": [
-			"Alacritty"
-		],
-		"app_ids-mapping": {
-			"firefoxdeveloperedition": "firefox-developer-edition"
-		}
 	},
 	"hyprland/workspaces": {
 		"all-outputs": false,
@@ -78,12 +35,10 @@
 		}
 	},
 	"hyprland/window": {
-		"max-length": 80,
-		"tooltip": false
+		"max-length": 80
 	},
 	"clock": {
-		"format": "{:%d.%m.%y %a / %H:%M:%S}",
-		"tooltip": false
+		"format": "{:%H:%M:%OS}"
 	},
 	"battery": {
 		"format": "{capacity}% {icon}",
@@ -99,8 +54,7 @@
 		"states": {
 			"warning": 25,
 			"critical": 10
-		},
-		"tooltip": false
+		}
 	},
 	"network": {
 		"format": "{icon}",
@@ -119,8 +73,7 @@
 				""
 			]
 		},
-		"on-click": "iwctl",
-		"tooltip": false
+		"on-click": "iwctl"
 	},
 	"pulseaudio": {
 		"format": "{volume} {icon}",
@@ -142,8 +95,7 @@
 			]
 		},
 		"scroll-step": 10,
-		"on-click": "pavucontrol",
-		"tooltip": false
+		"on-click": "pavucontrol"
 	},
 	"pulseaudio#microphone": {
 		"format": "{format_source}",
@@ -170,64 +122,24 @@
 		"format-alt": "{percent}% {icon}",
 		"format-alt-click": "click-right",
 		"format-icons": [
-			"",
-			""
+			"🔅",
+			"🔆"
 		],
-		"on-scroll-down": "light -A 1",
-		"on-scroll-up": "light -U 1"
-	},
-	"idle_inhibitor": {
-		"format": "{icon}",
-		"format-icons": {
-			"activated": "",
-			"deactivated": ""
-		},
-		"tooltip": false
+		"on-scroll-down": "brightnessctl set 5%-",
+		"on-scroll-up": "brightnessctl set 5%+"
 	},
 	"tray": {
 		"icon-size": 18
 	},
-	"cpu": {
-		"tooltip": false,
-		"format": "{}% "
-	},
-	"memory": {
-		"tooltip": false,
-		"format": "{}% "
-	},
-	"custom/l_end": {
-		"format": " ",
-		"interval": "once",
-		"tooltip": false
-	},
-	"custom/r_end": {
-		"format": " ",
-		"interval": "once",
-		"tooltip": false
-	},
-	"custom/sl_end": {
-		"format": " ",
-		"interval": "once",
-		"tooltip": false
-	},
-	"custom/sr_end": {
-		"format": " ",
-		"interval": "once",
-		"tooltip": false
-	},
-	"custom/rl_end": {
-		"format": " ",
-		"interval": "once",
-		"tooltip": false
-	},
-	"custom/rr_end": {
-		"format": " ",
-		"interval": "once",
-		"tooltip": false
-	},
-	"custom/padd": {
-		"format": "  ",
-		"interval": "once",
-		"tooltip": false
+	"group/group-applets": {
+		"orientation": "inherit",
+		"modules": [
+			"backlight",
+			"battery",
+			"bluetooth",
+			"network",
+			"pulseaudio",
+			"pulseaudio#microphone"
+		]
 	}
 }
