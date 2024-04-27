@@ -101,3 +101,6 @@ if [ -d "/usr/lib/cargo/bin/" ]; then
   path=($path "/usr/lib/cargo/bin")
 fi
 
+if [ -d "/opt/dart-sdk/bin/" ]; then
+	path=($path "/opt/dart-sdk/bin/")
+fi
