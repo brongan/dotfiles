@@ -14,7 +14,6 @@ vim.opt.undodir = os.getenv("XDG_CACHE_HOME") .. "vim/undo"
 ---------------------------------------------------------------
 -- => Files, backup and undo
 ---------------------------------------------------------------
-
 vim.opt.backup = false
 vim.opt.wb = false
 vim.opt.swapfile = false
@@ -22,19 +21,14 @@ vim.opt.swapfile = false
 ---------------------------------------------------------------
 -- => General
 ---------------------------------------------------------------
-
-vim.o.completeopt = "menuone,noselect"
 vim.g.oscyank_term = "default"
-vim.g.symbols_outline = {
-	auto_preview = true,
-	position = "left",
-}
+vim.g.symbols_outline = { auto_preview = true, position = "left" }
 vim.opt.autochdir = false
 vim.opt.autoindent = true
 vim.opt.autoread = true
 vim.opt.background = "dark"
 vim.opt.cmdheight = 2
-vim.opt.completeopt = "menuone,noinsert,noselect"
+vim.opt.completeopt = "menu,menuone,noinsert,noselect"
 vim.opt.conceallevel = 0
 vim.opt.cursorline = true
 vim.opt.encoding = "utf-8"
@@ -59,7 +53,6 @@ vim.opt.splitright = true
 vim.opt.syntax = "enable"
 vim.opt.tabstop = 4
 vim.opt.termguicolors = true
-vim.opt.textwidth = 80
 vim.opt.timeoutlen = 500
 vim.opt.updatetime = 300
 vim.opt.wrap = true
