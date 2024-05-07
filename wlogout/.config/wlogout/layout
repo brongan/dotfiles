@@ -1,6 +1,6 @@
 {
     "label" : "lock",
-    "action" : "swaylock",
+    "action" : "swaylock -f -c 000000 -i $HOME/Desktop/CyberneticBackground.jpg",
     "text" : "Lock",
     "keybind" : "l"
 }
@@ -28,7 +28,7 @@
 
 {
     "label" : "hibernate",
-    "action" : "systemctl hibernate",
+    "action" : "swaylock -f -c 000000 -i $HOME/Desktop/CyberneticBackground.jpg && systemctl hibernate",
     "text" : "Hibernate",
     "keybind" : "h"
 }
