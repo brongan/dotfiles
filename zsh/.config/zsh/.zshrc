@@ -125,12 +125,7 @@ if [[ $OSTYPE =~ "linux" ]]; then
 
 	bindkey '^A' beginning-of-line
 	bindkey '^E' end-of-line
-elif [[ $OSTYPE =~ "darwin" ]]; then
-	source /usr/local/Cellar/fzf/0.27.2/shell/key-bindings.zsh
-	source /usr/local/Cellar/fzf/0.27.2/shell/completion.zsh
-	source ${XDG_DATA_HOME}/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh 
-	source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+	bindkey -v
 fi
 
 autoload -Uz compinit && compinit -d $ZCOMPDUMP
