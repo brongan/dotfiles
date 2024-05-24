@@ -123,9 +123,8 @@ if [[ $OSTYPE =~ "linux" ]]; then
 		source /etc/profile.d/google-cloud-sdk.sh ]]
 	fi
 
-	bindkey '^A' beginning-of-line
-	bindkey '^E' end-of-line
 	bindkey -v
+	bindkey '	' autosuggest-accept
 fi
 
 autoload -Uz compinit && compinit -d $ZCOMPDUMP
