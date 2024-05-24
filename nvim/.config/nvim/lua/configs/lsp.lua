@@ -6,7 +6,7 @@ local ih = require("lsp-inlayhints")
 
 ih.setup()
 
-lsp_zero.on_attach(function(_client, bufnr)
+lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
 	local bind = vim.keymap.set
 	lsp_zero.buffer_autoformat()
@@ -23,6 +23,15 @@ lsp_zero.on_attach(function(_client, bufnr)
 	bufmap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
 	bufmap('n', "<Leader>ld", "<cmd>TroubleToggle lsp_definitions<CR>")
 	bufmap('n', "<Leader>lE", "<cmd>TroubleToggle workspace_diagnostics<CR>")
+
+	vim.api.nvim_command("augroup LSP")
+	vim.api.nvim_command("autocmd!")
+	if client.server_capabilities.documentFormattingProvider then
+		vim.api.nvim_command("autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()")
+		vim.api.nvim_command("autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()")
+		vim.api.nvim_command("autocmd CursorMoved <buffer> lua vim.lsp.util.buf_clear_references()")
+	end
+	vim.api.nvim_command("augroup END")
 end)
 
 lsp_zero.format_on_save({

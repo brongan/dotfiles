@@ -21,6 +21,7 @@ vim.opt.swapfile = false
 ---------------------------------------------------------------
 -- => General
 ---------------------------------------------------------------
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.g.oscyank_term = "default"
 vim.g.symbols_outline = { auto_preview = true, position = "left" }
 vim.opt.autochdir = false
