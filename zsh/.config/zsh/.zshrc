@@ -124,7 +124,8 @@ if [[ $OSTYPE =~ "linux" ]]; then
 	fi
 
 	bindkey -v
-	bindkey '	' autosuggest-accept
+	bindkey '^A' beginning-of-line
+	bindkey '^E' end-of-line
 fi
 
 autoload -Uz compinit && compinit -d $ZCOMPDUMP
