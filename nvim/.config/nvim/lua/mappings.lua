@@ -40,3 +40,10 @@ bind("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 bind('n', '<leader>c', require('osc52').copy_operator, { expr = true })
 bind('n', '<leader>cc', '<leader>c_', { remap = true })
 bind('v', '<leader>c', require('osc52').copy_visual)
+
+-- Diagnostic
+bind('n', 'd[', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message.' })
+bind('n', 'd]', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message.' })
+bind('n', '<leader>e', vim.diagnostic.open_float, {  desc  = 'Show diagnostic [E]rror message.' })
+bind('n', '<leader>q', vim.diagnostic.setloclist, {  desc  = 'Open diagnostic [Q]uickfix list.' })
+
