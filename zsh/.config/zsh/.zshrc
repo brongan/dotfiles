@@ -83,6 +83,9 @@ export LESSOPEN="| bat %s"
 export PAGER=less
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
+if (( $+commands[chromium] )); then
+	export CHROME_EXECUTABLE=$(which chromium)
+fi
 
 # Rust why
 if (( $+commands[sccache] )); then
