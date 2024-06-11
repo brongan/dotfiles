@@ -38,15 +38,16 @@ lsp_zero.format_on_save({
 
 lsp_zero.setup_servers({ 'tsserver', 'rust_analyzer', 'jsonls', 'lua_ls', 'glsl_analyzer', 'nil_ls', 'bufls' })
 
-require 'lspconfig'.sumneko_lua.setup {
+require 'lspconfig'.lua_ls.setup {
 	settings = {
 		Lua = {
 			diagnostics = {
-				globals = { 'vim' },
-			},
-		},
-	},
+				globals = { 'vim' }
+			}
+		}
+	}
 }
+
 
 require('clangd_extensions').setup()
 
