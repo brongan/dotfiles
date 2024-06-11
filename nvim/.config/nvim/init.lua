@@ -15,7 +15,7 @@ end
 
 
 require('catppuccin').setup({ transparent_background = true })
-require("colorizer").setup({'*'})
+require("colorizer").setup({ '*' })
 require("configs.bufferline")
 require("ibl").setup({})
 require("configs.lsp")

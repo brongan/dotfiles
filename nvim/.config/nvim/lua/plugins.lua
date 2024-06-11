@@ -1,72 +1,67 @@
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
 
-local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-local packer_bootstrap = nil
-if fn.empty(fn.glob(install_path)) > 0 then
-	packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-		install_path })
+local work_plugins = {}
+local ok, google = pcall(require, "google")
+if ok then
+	work_plugins = google.plugins
 end
 
-local packer = require('packer')
+local plugins = {
+	"L3MON4D3/LuaSnip",
+	"akinsho/flutter-tools.nvim",
+	"akinsho/nvim-bufferline.lua", -- Top bar buffers thing tabs
+	"akinsho/toggleterm.nvim",
+	"catppuccin/nvim",
+	"eandrju/cellular-automaton.nvim",
+	"famiu/feline.nvim", -- StatusLine
+	"folke/neoconf.nvim",
+	"folke/neodev.nvim",
+	"folke/lazy.nvim",
+	"folke/trouble.nvim",
+	"hrsh7th/cmp-buffer",
+	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/cmp-nvim-lua",
+	"hrsh7th/cmp-path",
+	"hrsh7th/nvim-cmp", -- Autocompletion
+	"iamcco/markdown-preview.nvim",
+	"junegunn/fzf",
+	"junegunn/fzf.vim",
+	"lukas-reineke/indent-blankline.nvim", -- Pretty indentations
+	"lvimuser/lsp-inlayhints.nvim",
+	"mhinz/vim-signify",                -- Show changed lines from VCS
+	"morhetz/gruvbox",
+	"neovim/nvim-lspconfig",            -- Collection of configurations for the built-in LSP client
+	"norcalli/nvim-colorizer.lua",      -- Highlights colors
+	"nvim-lualine/lualine.nvim",
+	"nvim-treesitter/nvim-treesitter",  -- Highlighting based on syntax tree
+	"nvim-treesitter/nvim-treesitter-context",
+	"onsails/lspkind.nvim",             -- LSP Symbols
+	"p00f/clangd_extensions.nvim",
+	"psliwka/vim-smoothie",             -- Smooth scrolling
+	"ray-x/lsp_signature.nvim",         -- give me those function signatures
+	"tpope/vim-commentary",             -- gc + motion comments out lines
+	"tpope/vim-eunuch",                 -- :SudoEdit and :Chmod and :Mkdir
+	"tpope/vim-fugitive",               -- :Git
+	"tpope/vim-repeat",                 -- Required for vim-surround
+	"tpope/vim-speeddating",            -- Allows for incrementing/decrementing timestamps
+	"tpope/vim-surround",               -- Surround is bae
+	"wincent/terminus",                 -- Fixes mouse + paste
+	"windwp/nvim-ts-autotag",
+	'ojroques/nvim-osc52',
+	'saadparwaiz1/cmp_luasnip',
+	{ 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
+	unpack(work_plugins),
+}
 
-return packer.startup(function(use)
-	use("L3MON4D3/LuaSnip")
-	use("akinsho/nvim-bufferline.lua") -- Top bar buffers thing tabs
-	use("akinsho/toggleterm.nvim")
-	use("catppuccin/nvim")
-	use("eandrju/cellular-automaton.nvim")
-	use("folke/neoconf.nvim")
-	use("folke/neodev.nvim")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-nvim-lua")
-	use("hrsh7th/cmp-path")
-	use("hrsh7th/nvim-cmp") -- Autocompletion
-	use("junegunn/fzf")
-	use("junegunn/fzf.vim")
-	use("lukas-reineke/indent-blankline.nvim") -- Pretty indentations
-	use("lvimuser/lsp-inlayhints.nvim")
-	use("mhinz/vim-signify")                -- Show changed lines from VCS
-	use("morhetz/gruvbox")
-	use("neovim/nvim-lspconfig")            -- Collection of configurations for the built-in LSP client
-	use("norcalli/nvim-colorizer.lua")      -- Highlights colors
-	use("nvim-treesitter/nvim-treesitter-context")
-	use("onsails/lspkind.nvim")             -- LSP Symbols
-	use("p00f/clangd_extensions.nvim")
-	use("psliwka/vim-smoothie")             -- Smooth scrolling
-	use("ray-x/lsp_signature.nvim")         -- give me those function signatures
-	use("tpope/vim-commentary")             -- gc + motion comments out lines
-	use("tpope/vim-eunuch")                 -- :SudoEdit and :Chmod and :Mkdir
-	use("tpope/vim-fugitive")               -- :Git
-	use("tpope/vim-repeat")                 -- Required for vim-surround
-	use("tpope/vim-speeddating")            -- Allows for incrementing/decrementing timestamps
-	use("tpope/vim-surround")               -- Surround is bae
-	use("wbthomason/packer.nvim")           -- Packer can manage itself
-	use("wincent/terminus")                 -- Fixes mouse + paste
-	use("windwp/nvim-ts-autotag")
-	use('ojroques/nvim-osc52')
-	use('saadparwaiz1/cmp_luasnip')
-	use({ "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" })
-	use({ "famiu/feline.nvim", branch = "master" }) -- StatusLine
-	use({ "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" })
-	use({ "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end })
-	use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Highlighting based on syntax tree
-	use({ 'VonHeikemen/lsp-zero.nvim', branch = 'v2.x' })
-	local ok, _ = pcall(require, "google")
-	if ok then
-		for i, plugin in ipairs(require("google").plugins) do
-			use(plugin)
-		end
-	end
-	-- Automatically set up your configuration after cloning packer.nvim
-	if packer_bootstrap then
-		packer.sync()
-	end
-end)
+require("lazy").setup(plugins, {});
