@@ -41,6 +41,11 @@ lsp_zero.setup_servers({ 'tsserver', 'rust_analyzer', 'jsonls', 'lua_ls', 'glsl_
 require 'lspconfig'.lua_ls.setup {
 	settings = {
 		Lua = {
+			runtime = { version = 'LuaJIT' },
+			workspace = {
+				checkThirdParty = false,
+				library = vim.api.nvim_get_runtime_file('', true),
+			},
 			diagnostics = {
 				globals = { 'vim' }
 			}
