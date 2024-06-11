@@ -1,10 +1,5 @@
 local lsp_zero = require('lsp-zero').preset({})
-require("neodev").setup()
-require("neoconf").setup()
 local lspconfig = require("lspconfig")
-local ih = require("lsp-inlayhints")
-
-ih.setup()
 
 lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
@@ -42,21 +37,18 @@ lsp_zero.format_on_save({
 })
 
 lsp_zero.setup_servers({ 'tsserver', 'rust_analyzer', 'jsonls', 'lua_ls', 'glsl_analyzer', 'nil_ls', 'bufls' })
-lsp_zero.skip_server_setup({ 'clangd' })
+
+require 'lspconfig'.sumneko_lua.setup {
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { 'vim' },
+			},
+		},
+	},
+}
+
 require('clangd_extensions').setup()
-
-vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = "LspAttach_inlayhints",
-	callback = function(args)
-		if not (args.data and args.data.client_id) then
-			return
-		end
-
-		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		ih.on_attach(client, args.buf)
-	end,
-})
 
 if pcall(require, "google") then
 	local lsp_defaults = lspconfig.util.default_config

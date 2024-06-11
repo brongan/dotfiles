@@ -25,8 +25,7 @@ local plugins = {
 	"catppuccin/nvim",
 	"eandrju/cellular-automaton.nvim",
 	"famiu/feline.nvim", -- StatusLine
-	"folke/neoconf.nvim",
-	"folke/neodev.nvim",
+	"folke/lazydev.nvim",
 	"folke/lazy.nvim",
 	"folke/trouble.nvim",
 	"hrsh7th/cmp-buffer",
@@ -38,9 +37,7 @@ local plugins = {
 	"junegunn/fzf",
 	"junegunn/fzf.vim",
 	"lukas-reineke/indent-blankline.nvim", -- Pretty indentations
-	"lvimuser/lsp-inlayhints.nvim",
 	"mhinz/vim-signify",                -- Show changed lines from VCS
-	"morhetz/gruvbox",
 	"neovim/nvim-lspconfig",            -- Collection of configurations for the built-in LSP client
 	"norcalli/nvim-colorizer.lua",      -- Highlights colors
 	"nvim-lualine/lualine.nvim",
