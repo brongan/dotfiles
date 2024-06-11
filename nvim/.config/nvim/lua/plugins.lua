@@ -25,7 +25,6 @@ local plugins = {
 	"catppuccin/nvim",
 	"eandrju/cellular-automaton.nvim",
 	"famiu/feline.nvim", -- StatusLine
-	"folke/lazydev.nvim",
 	"folke/lazy.nvim",
 	"folke/trouble.nvim",
 	"hrsh7th/cmp-buffer",
@@ -40,23 +39,25 @@ local plugins = {
 	"mhinz/vim-signify",                -- Show changed lines from VCS
 	"neovim/nvim-lspconfig",            -- Collection of configurations for the built-in LSP client
 	"norcalli/nvim-colorizer.lua",      -- Highlights colors
+	"nvim-lua/plenary.nvim",
 	"nvim-lualine/lualine.nvim",
-	"nvim-treesitter/nvim-treesitter",  -- Highlighting based on syntax tree
+	"nvim-treesitter/nvim-treesitter", -- Highlighting based on syntax tree
 	"nvim-treesitter/nvim-treesitter-context",
-	"onsails/lspkind.nvim",             -- LSP Symbols
+	"onsails/lspkind.nvim",         -- LSP Symbols
 	"p00f/clangd_extensions.nvim",
-	"psliwka/vim-smoothie",             -- Smooth scrolling
-	"ray-x/lsp_signature.nvim",         -- give me those function signatures
-	"tpope/vim-commentary",             -- gc + motion comments out lines
-	"tpope/vim-eunuch",                 -- :SudoEdit and :Chmod and :Mkdir
-	"tpope/vim-fugitive",               -- :Git
-	"tpope/vim-repeat",                 -- Required for vim-surround
-	"tpope/vim-speeddating",            -- Allows for incrementing/decrementing timestamps
-	"tpope/vim-surround",               -- Surround is bae
-	"wincent/terminus",                 -- Fixes mouse + paste
+	"psliwka/vim-smoothie",         -- Smooth scrolling
+	"ray-x/lsp_signature.nvim",     -- give me those function signatures
+	"tpope/vim-commentary",         -- gc + motion comments out lines
+	"tpope/vim-eunuch",             -- :SudoEdit and :Chmod and :Mkdir
+	"tpope/vim-fugitive",           -- :Git
+	"tpope/vim-repeat",             -- Required for vim-surround
+	"tpope/vim-speeddating",        -- Allows for incrementing/decrementing timestamps
+	"tpope/vim-surround",           -- Surround is bae
+	"wincent/terminus",             -- Fixes mouse + paste
 	"windwp/nvim-ts-autotag",
 	'ojroques/nvim-osc52',
 	'saadparwaiz1/cmp_luasnip',
+	{ "folke/lazydev.nvim",        ft = "lua" },
 	{ 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
 	unpack(work_plugins),
 }
