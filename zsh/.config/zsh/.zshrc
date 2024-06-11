@@ -40,7 +40,7 @@ if [[ $wm == "bspwm" || $wm == "i3" || $wm == "wlroots" ]]; then
 	export _JAVA_AWT_WM_NONREPARENTING=1
 fi
 
-source "$XDG_CONFIG_HOME/.powerlevel9k_config"
+eval "$(starship init zsh)"
 
 # XDG Aliases
 alias bazel="/usr/bin/env -u _JAVA_OPTIONS CC=clang bear -- bazel --bazelrc=${XDG_CONFIG_HOME}/bazel/bazelrc --host_jvm_args=$_JAVA_OPTIONS"
