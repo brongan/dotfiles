@@ -51,12 +51,13 @@ require 'lspconfig'.lua_ls.setup {
 
 require('clangd_extensions').setup()
 
-if pcall(require, "google") then
+local ok, google = pcall(require, "google")
+if ok then
 	local lsp_defaults = lspconfig.util.default_config
 	lsp_defaults.capabilities = vim.tbl_deep_extend(
 		'keep',
 		lsp_defaults.capabilities,
-		require("google").init_lsp(lsp_defaults.capabilities)
+		google.init_lsp(lsp_defaults.capabilities)
 	)
 end
 

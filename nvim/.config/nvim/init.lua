@@ -1,18 +1,16 @@
 require("basics")
 require("plugins")
 require("mappings")
-local ok, _ = pcall(require, "google")
-if not ok then
-	print("Loaded personal config.")
-else
+if pcall(require, "google") then
 	require("hg").setup()
 	require("libp").setup()
 	require("neocitc").setup()
 	require('google.comments').setup()
 	require('luasnip-google').load_snippets()
 	print("Loaded Google config.")
+else
+	print("Loaded personal config.")
 end
-
 
 require('catppuccin').setup({ transparent_background = true })
 require("colorizer").setup({ '*' })
