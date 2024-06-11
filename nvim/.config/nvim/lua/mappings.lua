@@ -34,15 +34,31 @@ bind('n', "<Leader>fC", ":Colors<cr>")                                     -- Ch
 bind('n', "<Leader>fm", ":Marks<cr>")                                      -- View marks
 bind('n', "<Leader>fr", ":Rg<cr>")                                         -- Ripgrep search result (ALT-A to select all, ALT-D to deselect all)
 
-bind("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+-- make_it_rain
+bind("n", "<Leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 -- OSCYank
-bind('n', '<leader>c', require('osc52').copy_operator, { expr = true })
-bind('n', '<leader>cc', '<leader>c_', { remap = true })
-bind('v', '<leader>c', require('osc52').copy_visual)
+bind('n', '<Leader>c', require('osc52').copy_operator, { expr = true })
+bind('n', '<Leader>cc', '<Leader>c_', { remap = true })
+bind('v', '<Leader>c', require('osc52').copy_visual)
 
 -- Diagnostic
 bind('n', 'd[', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message.' })
 bind('n', 'd]', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message.' })
-bind('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror message.' })
-bind('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list.' })
+bind('n', '<Leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror message.' })
+bind('n', '<Leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list.' })
+
+-- Trouble
+bind('n', '<Leader>xx', "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
+bind('n', '<Leader>xX', "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer Diagnostics (Trouble)" })
+bind('n', '<Leader>cs', "<cmd>Trouble symbols toggle focus=false<cr>", { desc = "Symbols (Trouble)" })
+bind('n', '<Leader>cl', "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+	{ desc = "LSP Definitions / references / ... (Trouble)" })
+bind('n', '<Leader>xL', "<cmd>Trouble loclist toggle<cr>", { desc = "Location List (Trouble)" })
+bind('n', '<Leader>xQ', "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List (Trouble)" })
+
+-- Quickfix
+bind('n', "c[", "<cmd>cprev<cr>", { desc = "Quickfix goto_prev" })
+bind('n', "c]", "<cmd>cnext<cr>", { desc = "Quickfix goto_next" })
+bind('n', "cC", "<cmd>cclose<cr>", { desc = "Quickfix close" })
+bind('n', "cc", "<cmd>copen<cr>", { desc = "Quickfix open" })
