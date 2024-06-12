@@ -2,14 +2,12 @@ require("nvim-treesitter")
 
 require 'nvim-treesitter.configs'.setup {
 	ts_funky_keywords = { enable = true },
-	ensure_installed = "all",
+	ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "rust", "cpp", "proto" },
+	sync_install = false,
+	auto_install = false,
+
 	highlight = {
 		enable = true,
-	},
-	playground = {
-		enable = true,
-		disable = {},
-		updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
 	},
 	incremental_selection = {
 		enable = true,
