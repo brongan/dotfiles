@@ -94,7 +94,7 @@ else
   path=($path "${HOME}/.local/bin")
 fi
 
-path=("${CARGO_HOME}/bin" $path "${GOPATH}/bin" "${GEM_HOME}/bin" "${XDG_STATE_HOME}/nix/profile/bin")
+path=("${CARGO_HOME}/bin" "${GOPATH}/bin" "${GEM_HOME}/bin" "${XDG_STATE_HOME}/nix/profile/bin" ${path} )
 
 # Debian Why
 if [ -d "/usr/lib/cargo/bin/" ]; then
