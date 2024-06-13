@@ -40,7 +40,6 @@ local plugins = {
 	"neovim/nvim-lspconfig",            -- Collection of configurations for the built-in LSP client
 	"norcalli/nvim-colorizer.lua",      -- Highlights colors
 	"nvim-lua/plenary.nvim",
-	"nvim-lualine/lualine.nvim",
 	"nvim-treesitter/nvim-treesitter", -- Highlighting based on syntax tree
 	"nvim-treesitter/nvim-treesitter-context",
 	"onsails/lspkind.nvim",         -- LSP Symbols
@@ -59,6 +58,7 @@ local plugins = {
 	'saadparwaiz1/cmp_luasnip',
 	{ "folke/lazydev.nvim",        ft = "lua" },
 	{ 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
+	{"nvim-lualine/lualine.nvim",  dependencies = { 'nvim-tree/nvim-web-devicons' }},
 	unpack(work_plugins),
 }
 
