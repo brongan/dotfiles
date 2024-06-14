@@ -18,16 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("basics")
 require("mappings")
-
-local ok, google = pcall(require, "google")
-if ok then
-	google.init()
-	print("Loaded Google config.")
-else
-	print("Loaded Personal config.")
-end
-
 require("lazy").setup(require("plugins"), {});
-require("ibl").setup()
 
 vim.cmd.colorscheme "catppuccin"

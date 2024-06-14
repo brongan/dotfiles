@@ -1,5 +1,10 @@
 local ok, google = pcall(require, "google")
-local work_plugins = ok and google.plugins or {}
+if ok then
+	print("Loaded Google config.")
+else
+	print("Loaded Personal config.")
+end
+
 local map = vim.keymap.set;
 
 return {
@@ -7,6 +12,7 @@ return {
 	require("configs.treesitter"),
 	require("configs.lsp"),
 	require("configs.telescope"),
+	require("configs.nvim-cmp"),
 	{ "akinsho/flutter-tools.nvim", opts = {} },
 	{ "catppuccin/nvim",            name = "catppuccin", priority = 1000, opts = { transparent_background = true, flavor = "mocha" }, },
 	{
@@ -93,6 +99,7 @@ return {
 	},                                               -- Pretty indentations
 	"mhinz/vim-signify",                             -- Show changed lines from VCS
 	{ "norcalli/nvim-colorizer.lua", opts = { "*" }, }, -- Highlights colors
+	{ "L3MON4D3/LuaSnip", version = "v2.*", },
 	"psliwka/vim-smoothie",                          -- Smooth scrolling
 	"tpope/vim-commentary",                          -- gc + motion comments out lines
 	"tpope/vim-eunuch",                              -- :SudoEdit and :Chmod and :Mkdir
@@ -143,5 +150,5 @@ return {
 			}, { mode = "v" })
 		end,
 	},
-	unpack(work_plugins),
+	unpack(google or {}),
 }
