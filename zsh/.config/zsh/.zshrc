@@ -43,7 +43,7 @@ fi
 eval "$(starship init zsh)"
 
 # XDG Aliases
-alias bazel="/usr/bin/env -u _JAVA_OPTIONS CC=clang bear -- bazel --bazelrc=${XDG_CONFIG_HOME}/bazel/bazelrc --host_jvm_args=$_JAVA_OPTIONS"
+alias bazel="/usr/bin/env -u _JAVA_OPTIONS CC=clang bear -- /usr/bin/env bazel --bazelrc=${XDG_CONFIG_HOME}/bazel/bazelrc --host_jvm_args=$_JAVA_OPTIONS"
 alias blaze=bazel # Why
 alias gpg="/usr/bin/gpg2 --homedir ${XDG_DATA_HOME}/gnupg"
 alias irssi="/usr/bin/irssi --config=${XDG_CONFIG_HOME}/irssi/config --home=${XDG_DATA_HOME}/irssi"
