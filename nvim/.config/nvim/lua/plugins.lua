@@ -100,14 +100,17 @@ return {
 	},                                               -- Pretty indentations
 	"mhinz/vim-signify",                             -- Show changed lines from VCS
 	{ "norcalli/nvim-colorizer.lua", opts = { "*" }, }, -- Highlights colors
-	{ "L3MON4D3/LuaSnip",            version = "v2.*", },
-	"psliwka/vim-smoothie",                          -- Smooth scrolling
-	"tpope/vim-commentary",                          -- gc + motion comments out lines
-	"tpope/vim-eunuch",                              -- :SudoEdit and :Chmod and :Mkdir
-	"tpope/vim-fugitive",                            -- :Git
-	"tpope/vim-repeat",                              -- Required for vim-surround
-	"tpope/vim-speeddating",                         -- Allows for incrementing/decrementing timestamps
-	"tpope/vim-surround",                            -- Surround is bae
+	{
+		"L3MON4D3/LuaSnip",
+		dependencies = { "rafamadriz/friendly-snippets" },
+	},
+	"psliwka/vim-smoothie", -- Smooth scrolling
+	"tpope/vim-commentary", -- gc + motion comments out lines
+	"tpope/vim-eunuch",   -- :SudoEdit and :Chmod and :Mkdir
+	"tpope/vim-fugitive", -- :Git
+	"tpope/vim-repeat",   -- Required for vim-surround
+	"tpope/vim-speeddating", -- Allows for incrementing/decrementing timestamps
+	"tpope/vim-surround", -- Surround is bae
 	{
 		"ojroques/nvim-osc52",
 		config = function()
@@ -118,7 +121,7 @@ return {
 		end
 	},
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-	{ "folke/lazydev.nvim", ft = "lua" },
+	{ "folke/lazydev.nvim",          ft = "lua" },
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
