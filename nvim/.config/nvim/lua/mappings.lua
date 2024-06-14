@@ -1,4 +1,5 @@
 vim.g.mapleader = ","
+vim.g.maplocalleader = ','
 
 local bind = vim.keymap.set
 -- Fast saving and quit without saving
@@ -43,6 +44,8 @@ bind('n', '<Leader>cc', '<Leader>c_', { remap = true })
 bind('v', '<Leader>c', require('osc52').copy_visual)
 
 -- Diagnostic
+bind('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+bind('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 bind('n', 'd[', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message.' })
 bind('n', 'd]', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message.' })
 bind('n', '<Leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror message.' })
@@ -62,3 +65,15 @@ bind('n', "c[", "<cmd>cprev<cr>", { desc = "Quickfix goto_prev" })
 bind('n', "c]", "<cmd>cnext<cr>", { desc = "Quickfix goto_next" })
 bind('n', "cC", "<cmd>cclose<cr>", { desc = "Quickfix close" })
 bind('n', "cc", "<cmd>copen<cr>", { desc = "Quickfix open" })
+
+bind('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
