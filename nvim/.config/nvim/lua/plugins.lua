@@ -13,6 +13,7 @@ return {
 	require("configs.lsp"),
 	require("configs.telescope"),
 	require("configs.nvim-cmp"),
+	{ "williamboman/mason.nvim",    opts = {} },
 	{ "akinsho/flutter-tools.nvim", opts = {} },
 	{ "catppuccin/nvim",            name = "catppuccin", priority = 1000, opts = { transparent_background = true, flavor = "mocha" }, },
 	{
@@ -99,7 +100,7 @@ return {
 	},                                               -- Pretty indentations
 	"mhinz/vim-signify",                             -- Show changed lines from VCS
 	{ "norcalli/nvim-colorizer.lua", opts = { "*" }, }, -- Highlights colors
-	{ "L3MON4D3/LuaSnip", version = "v2.*", },
+	{ "L3MON4D3/LuaSnip",            version = "v2.*", },
 	"psliwka/vim-smoothie",                          -- Smooth scrolling
 	"tpope/vim-commentary",                          -- gc + motion comments out lines
 	"tpope/vim-eunuch",                              -- :SudoEdit and :Chmod and :Mkdir
@@ -117,7 +118,7 @@ return {
 		end
 	},
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-	{ "folke/lazydev.nvim",          ft = "lua" },
+	{ "folke/lazydev.nvim", ft = "lua" },
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
@@ -150,5 +151,5 @@ return {
 			}, { mode = "v" })
 		end,
 	},
-	unpack(google or {}),
+	unpack(ok and google or {}),
 }
