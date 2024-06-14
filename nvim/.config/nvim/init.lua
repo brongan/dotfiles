@@ -1,27 +1,33 @@
+vim.g.mapleader = ","
+vim.g.maplocalleader = ','
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+---@diagnostic disable-next-line: undefined-field
+if not vim.uv.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath,
+	})
+end
+-- Add lazy to the `runtimepath`, this allows us to `require` it.
+vim.opt.rtp:prepend(lazypath)
+
 require("basics")
-require("plugins")
 require("mappings")
+
 local ok, google = pcall(require, "google")
 if ok then
 	google.init()
 	print("Loaded Google config.")
 else
-	require("lualine").setup()
-	print("Loaded personal config.")
+	print("Loaded Personal config.")
 end
 
-require("catppuccin").setup({ transparent_background = true })
-require("colorizer").setup({ "*" })
-require("configs.bufferline")
-require("ibl").setup({})
-require("configs.lsp")
-require("configs.nvim-cmp")
-require("configs.treesitter")
-require("flutter-tools").setup()
-require("lsp_signature").setup()
-require("nvim-ts-autotag").setup()
-require("toggleterm").setup { open_mapping = [[<M-cr>]], size = 20 }
-require("trouble").setup {}
+require("lazy").setup(require("plugins"), {});
+require("ibl").setup()
 
-vim.cmd.colorscheme "catppuccin-mocha"
-
+vim.cmd.colorscheme "catppuccin"
