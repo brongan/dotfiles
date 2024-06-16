@@ -11,33 +11,8 @@ format = """\
         $git_branch\
         $git_commit\
         $git_state\
-        $git_status\
         $hg_branch\
         $docker_context\
-        $package\
-        (↓ Toolchain version modules ↓)\
-        $cmake\
-        $dart\
-        $dotnet\
-        $elixir\
-        $elm\
-        $erlang\
-        $golang\
-        $helm\
-        $java\
-        $julia\
-        $nim\
-        $nodejs\
-        $ocaml\
-        $perl\
-        $php\
-        $purescript\
-        $ruby\
-        $rust\
-        $swift\
-        $terraform\
-        $zig\
-        (↑ Toolchain version modules ↑)\
         $nix_shell\
         $conda\
         $memory_usage\
