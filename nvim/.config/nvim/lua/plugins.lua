@@ -97,27 +97,46 @@ return {
 		config = function()
 			require("ibl").setup({})
 		end
-	},                                               -- Pretty indentations
-	"mhinz/vim-signify",                             -- Show changed lines from VCS
+	}, -- Pretty indentations
+	{
+		"mhinz/vim-signify",
+		config = function()
+			-- A small `updatetime` is preferred to update signs as files are updated
+			-- The default `updatetime` is 4000
+			vim.opt.updatetime = 500
+			vim.api.nvim_set_hl(0, "SignifySignAdd", { ctermfg = "green", fg = "#79b7a5" })
+			vim.api.nvim_set_hl(0, "SignifySignChange", { ctermfg = "yellow", fg = "#ffffcc" })
+			vim.api.nvim_set_hl(0, "SignifySignChangeDelete", { ctermfg = "red", fg = "#ff7b72" })
+			vim.api.nvim_set_hl(0, "SignifySignDelete", { ctermfg = "red", fg = "#ff7b72" })
+			vim.api.nvim_set_hl(0, "SignifySignDeleteDeleteFirstLine", { ctermfg = "red", fg = "#ff7b72" })
+		end,
+		keys = {
+			{ "[h", "<Plug>(signify-prev-hunk)",            desc = "Goto previous [h]unk" },
+			{ "]h", "<Plug>(signify-next-hunk)",            desc = "Goto next [h]unk" },
+			{ "[H", "<cmd>normal 9999[c<cr>",               desc = "Goto first [h]unk" },
+			{ "]H", "<cmd>normal 9999]c<cr>",               desc = "Goto last [h]unk" },
+			{ "ih", "<Plug>(signify-motion-inner-pending)", desc = "[H]unk text object",  mode = "o" },
+			{ "ih", "<Plug>(signify-motion-inner-visual)",  desc = "[H]unk text object",  mode = "x" },
+			{ "ah", "<Plug>(signify-motion-outer-pending)", desc = "[H]unk text object",  mode = "o" },
+			{ "ah", "<Plug>(signify-motion-outer-pending)", desc = "[H]unk text object",  mode = "x" },
+		},
+	},
 	{ "norcalli/nvim-colorizer.lua", opts = { "*" }, }, -- Highlights colors
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = { "rafamadriz/friendly-snippets" },
 	},
 	"psliwka/vim-smoothie", -- Smooth scrolling
-	"tpope/vim-commentary", -- gc + motion comments out lines
 	"tpope/vim-eunuch",   -- :SudoEdit and :Chmod and :Mkdir
 	"tpope/vim-fugitive", -- :Git
-	"tpope/vim-repeat",   -- Required for vim-surround
 	"tpope/vim-speeddating", -- Allows for incrementing/decrementing timestamps
-	"tpope/vim-surround", -- Surround is bae
 	{
 		"ojroques/nvim-osc52",
 		config = function()
-			map('n', '<leader>c', require('osc52').copy_operator,
+			map('n', '<C-c>', require('osc52').copy_operator,
 				{ expr = true, desc = "[c]opy to clipboard." })
-			map('n', '<leader>cc', '<leader>c_', { remap = true, desc = "[c]opy the current line." })
-			map('v', '<leader>c', require('osc52').copy_visual, { desc = "[c]opy the current selection." })
+			map('n', '<leader><C-c>', '<leader>c_', { remap = true, desc = "[c]opy the current line." })
+			map('v', '<leader><C-c>', require('osc52').copy_visual, { desc = "[c]opy the current selection." })
 		end
 	},
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
@@ -132,27 +151,14 @@ return {
 			end
 		}
 	},
-	{                 -- Useful plugin to show you pending keymaps.
+	{
 		"folke/which-key.nvim",
-		event = "VimEnter", -- Sets the loading event to "VimEnter"
-		config = function() -- This is the function that runs, AFTER loading
-			require("which-key").setup()
-
-			-- Document existing key chains
-			require("which-key").register {
-				["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-				["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-				["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-				["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-				["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
-				["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
-				["<leader>h"] = { name = "Git [H]unk", _ = "which_key_ignore" },
-			}
-			-- visual mode
-			require("which-key").register({
-				["<leader>h"] = { "Git [H]unk" },
-			}, { mode = "v" })
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
 		end,
+		opts = {},
 	},
 	unpack(ok and google or {}),
 }
