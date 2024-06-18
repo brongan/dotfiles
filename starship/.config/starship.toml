@@ -2,17 +2,43 @@
 
 # Configure the format of the prompt
 format = """\
-        $username\
-        $hostname\
+		$username\
+		$hostname\
         $shlvl\
         $singularity\
         $kubernetes\
         $directory\
+        ${custom.fig}\
         $git_branch\
         $git_commit\
         $git_state\
-        $hg_branch\
+		$git_status\
+		$hg_branch\
         $docker_context\
+		$package\
+        (↓ Toolchain version modules ↓)\
+        $cmake\
+        $dart\
+        $dotnet\
+        $elixir\
+        $elm\
+        $erlang\
+        $golang\
+        $helm\
+        $java\
+        $julia\
+        $nim\
+        $nodejs\
+        $ocaml\
+        $perl\
+        $php\
+        $purescript\
+        $ruby\
+        $rust\
+        $swift\
+        $terraform\
+        $zig\
+        (↑ Toolchain version modules ↑)\
         $nix_shell\
         $conda\
         $memory_usage\
@@ -62,7 +88,7 @@ error_symbol = "[[](bg:red fg:#333333)](fg:red)"
 vicmd_symbol = "[[](fg:green bg:#333333)](bg:green fg:#000000)"
 
 [cmake]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = "喝 "
 style = "bg:#444444 fg:blue"
@@ -91,13 +117,13 @@ symbol = " "
 style = "bg:#444444 fg:red"
 
 [dart]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = " "
 style = "bg:#444444 fg:blue"
 
 [directory]
-disabled = false
+disabled = true
 truncation_length = 3
 truncate_to_repo = true
 fish_style_pwd_dir_length = 0
@@ -108,8 +134,11 @@ read_only = ""
 read_only_style = "bg:#555555 fg:red"
 truncation_symbol = ""
 
-# [directory.substitutions]
-# "/path/to/replace" = "string/symbol"
+[custom.fig]
+format = "[[](bg:#555555 fg:#333333)  $output[](bg:#333333 fg:#555555)]($style)"
+command = """ echo "${${PWD}#/google/src/cloud/${USER}/}" | cut -d '/' -f 1 """
+when = """ [[ "$PWD" =~ "/google/src/cloud/$USER" ]] """
+style = "bold bg:#444444 fg:blue"
 
 [docker_context]
 disabled = false
@@ -119,20 +148,20 @@ format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$contex
 only_with_files = true
 
 [dotnet]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)$symbol$version( ﯑ $tfm)[](bg:#333333 fg:#444444)]($style)"
 symbol = "•NET "
 style = "bg:#444444 fg:blue"
 heuristic = true
 
 [elixir]
-disabled = false
+disabled = true
 format = '[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$versi[on](bg:#444444 fg:white) \(OTP $otp_version\)[](bg:#333333 fg:#444444)]($style)'
 symbol = " "
 style = "bg:#444444 fg:purple"
 
 [elm]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = " "
 style = "bg:#444444 fg:cyan"
@@ -146,7 +175,7 @@ style = "bold bg:#555555 fg:#000000"
 format = "([[](bg:#555555 fg:#333333)[with](bg:#555555 fg:white) $symbol$env_value[](bg:#333333 fg:#555555)]($style))"
 
 [erlang]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = " "
 style = "bg:#444444 fg:red"
@@ -185,7 +214,7 @@ style = "bold bg:#555555 fg:yellow"
 format = '\([[](bg:#555555 fg:#333333)$state( $progress_current/$progress_total )[](bg:#333333 fg:#555555)]($style)\)'
 
 [git_status]
-disabled = false
+disabled = true
 format = '([[](bg:#555555 fg:#333333)\[$all_status$ahead_behind\][](bg:#333333 fg:#555555)]($style))'
 style = "bold bg:#555555 fg:red"
 stashed = '\$'
@@ -200,26 +229,26 @@ staged = "+"
 untracked = "?"
 
 [golang]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = " "
 style = "bg:#444444 fg:cyan"
 
 [helm]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = "⎈ "
 style = "bg:#444444 fg:white"
 
 [hostname]
-disabled = false
+disabled = true
 ssh_only = true
 trim_at = "."
 format = "[[](bg:#555555 fg:#333333)($style)$hostname [in](bg:#555555 fg:white)[](bg:#333333 fg:#555555)]($style)"
 style = "bold dimmed bg:#555555 fg:green"
 
 [java]
-disabled = false
+disabled = true
 ## look for a dimmed variant
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 style = "dimmed bg:#444444 fg:red"
@@ -233,7 +262,7 @@ symbol = "✦"
 style = "bold bg:#555555 fg:blue"
 
 [julia]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = " "
 style = "bg:#444444 fg:purple"
@@ -256,7 +285,7 @@ symbol = " "
 
 # Mercurial
 [hg_branch]
-disabled = false
+disabled = true
 symbol = " "
 style = "bg:#555555 fg:purple"
 format = "[[](bg:#555555 fg:#333333)[on](bg:#555555 fg:white) $symbol$branch[](bg:#333333 fg:#555555)]($style)"
@@ -264,7 +293,7 @@ format = "[[](bg:#555555 fg:#333333)[on](bg:#555555 fg:white) $symbol$branch[
 truncation_symbol = "…"
 
 [nim]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = " "
 style = "bg:#444444 fg:yellow"
@@ -278,50 +307,50 @@ impure_msg = "impure"
 pure_msg = "pure"
 
 [nodejs]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = " "
 style = "bg:#444444 fg:green"
 
 [ocaml]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = "🐫 "
 style = "bg:#444444 fg:yellow"
 
 [package]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[is](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = " "
 style = "bg:#444444 fg:208"
 display_private = false
 
 [perl]
-disabled = false
+disabled = true
 symbol = " "
 style = "bg:#444444 fg:149"
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 
 [php]
-disabled = false
+disabled = true
 symbol = " "
 style = "bg:#444444 fg:147"
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 
 [purescript]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = "<=> "
 style = "bg:#444444 fg:white"
 
 [ruby]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = " "
 style = "bg:#444444 fg:red"
 
 [rust]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = " "
 style = "bg:#444444 fg:red"
@@ -340,7 +369,7 @@ symbol = ""
 style = "bold dimmed bg:#444444 fg:blue"
 
 [swift]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = "ﯣ "
 style = "bg:#444444 fg:202"
@@ -352,7 +381,7 @@ symbol = " ✖"
 style = "bold bg:#555555 fg:red"
 
 [terraform]
-disabled = false
+disabled = true
 format = '[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol\($workspace\)[](bg:#333333 fg:#444444)]($style)'
 symbol = "ﰉ "
 style = "bold bg:#444444 fg:105"
@@ -367,15 +396,15 @@ utc_time_offset = "local"
 time_range = "-"
 
 [username]
-disabled = false
+disabled = true
 format = "[[](bg:#555555 fg:#333333)$user [in](bg:#555555 fg:white)[](bg:#333333 fg:#555555)]($style)"
 style_root = "bold bg:#555555 fg:red"
 style_user = "bold bg:#555555 fg:yellow"
 show_always = false
 
 [zig]
-disabled = false
+disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = "↯ "
 style = "bg:#444444 fg:yellow"
-#EOF.
+
