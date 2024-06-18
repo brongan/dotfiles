@@ -67,30 +67,6 @@ return {
 		build = function() vim.fn["mkdp#util#install"]() end,
 	},
 	{
-		"junegunn/fzf.vim",
-		dependencies = "junegunn/fzf",
-		config = function()
-			map('n', "<Leader>-", ":FZF <c-r>=fnameescape(expand('%:p:h'))<cr>/<cr>") -- Current file directory
-			map('n', "<Leader>ff", ":FZF<cr>")                               -- Search in current directory
-			map('n', "<Leader>fF", ":Files ~/<cr>")                          -- Search home directory
-			map('n', "<Leader>fb", ":Buffers<cr>")                           -- Open buffers
-			map('n', "<Leader>fl", ":Lines<cr>")                             -- Lines in loaded buffers
-			map('n', "<Leader>fB", ":BLines<cr>")                            -- Lines in the current buffer
-			map('n', "<Leader>ft", ":Tags<cr>")                              -- Tags in the project
-			map('n', "<Leader>fh", ":History<cr>")                           -- v:oldfiles and open buffers
-			map('n', "<Leader>fH", ":Helptags<cr>")                          -- Help tags
-			map('n', "<Leader>f:", ":History:<cr>")                          -- Vim Command History
-			map('n', "<Leader>f/", ":History/<cr>")                          -- Search History
-			map('n', "<Leader>fg", ":GFiles<cr>")                            -- Git files (git ls-files)
-			map('n', "<Leader>fs", ":GFiles?<cr>")                           -- Git files (git status)
-			map('n', "<Leader>fc", ":Commits<cr>")                           -- Git commits (requires fugitive.vim)
-			map('n', "<Leader>fv", ":Commands<cr>")                          -- Vim Commands
-			map('n', "<Leader>fC", ":Colors<cr>")                            -- Change colorscheme
-			map('n', "<Leader>fm", ":Marks<cr>")                             -- View marks
-			map('n', "<Leader>fr", ":Rg<cr>")                                -- Ripgrep search result (ALT-A to select all, ALT-D to deselect all)
-		end
-	},
-	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		opts = {},

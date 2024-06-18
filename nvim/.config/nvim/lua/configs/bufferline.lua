@@ -14,14 +14,12 @@ return {
 					diagnostics = "nvim_lsp",
 				},
 			})
-			-- These commands will navigate through buffers in order regardless of which mode you are using
-			-- e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
-			map('n', "b[", ":BufferLineCyclePrev<CR>")
-			map('n', "b]", ":BufferLineCycleNext<CR>")
-
-			-- These commands will sort buffers by directory or language
-			map('n', 'be', ':BufferLineSortByExtension<CR>')
-			map('n', 'br', ':BufferLineSortByDirectory<CR>')
+			map('n', "[b", ":BufferLineCyclePrev<CR>", { desc = "Goto previous [b]uffer" })
+			map('n', "]b", ":BufferLineCycleNext<CR>", { desc = "Goto next [b]uffer" })
+			map('n', "b[", ":BufferLineCyclePrev<CR>", { desc = "Goto previous [b]uffer" })
+			map('n', "b]", ":BufferLineCycleNext<CR>", { desc = "Goto next [b]uffer" })
+			map('n', 'eb', ':BufferLineSortByExtension<CR>', { desc = "[B]ufferline sort by [E]xtension" })
+			map('n', 'rb', ':BufferLineSortByDirectory<CR>', { desc = "[B]ufferline sort by [D]irectory" })
 		end
 	},
 }
