@@ -13,9 +13,18 @@ return {
 	require("configs.lsp"),
 	require("configs.telescope"),
 	require("configs.nvim-cmp"),
-	{ "williamboman/mason.nvim",    opts = {} },
-	{ "akinsho/flutter-tools.nvim", opts = {} },
-	{ "catppuccin/nvim",            name = "catppuccin", priority = 1000, opts = { transparent_background = true, flavor = "mocha" }, },
+	{ "williamboman/mason.nvim", opts = {} },
+	{
+		'akinsho/flutter-tools.nvim',
+		lazy = false,
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'stevearc/dressing.nvim',
+		},
+		ft = { "dart" },
+		config = true,
+	},
+	{ "catppuccin/nvim",         name = "catppuccin", priority = 1000, opts = { transparent_background = true, flavor = "mocha" }, },
 	{
 		"eandrju/cellular-automaton.nvim",
 		dependencies = { 'nvim-treesitter/nvim-treesitter' },
@@ -135,6 +144,12 @@ return {
 			vim.o.timeoutlen = 300
 		end,
 		opts = {},
+	},
+	{
+		"rcarriga/nvim-notify",
+		opts = {
+			background_color = "#000000",
+		},
 	},
 	unpack(ok and google or {}),
 }
