@@ -166,3 +166,5 @@ if (( $+commands[nix] )); then
 	fpath=(/usr/share/zsh/site-functions/ $fpath)
 fi
 
+export FLUTTER_ROOT="/usr/lib/flutter"
+
