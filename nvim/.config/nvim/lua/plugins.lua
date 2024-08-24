@@ -13,6 +13,7 @@ return {
 	require("configs.lsp"),
 	require("configs.telescope"),
 	require("configs.nvim-cmp"),
+	"tpope/vim-surround",
 	{ "williamboman/mason.nvim", opts = {} },
 	{
 		'akinsho/flutter-tools.nvim',
