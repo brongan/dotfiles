@@ -241,7 +241,7 @@ symbol = "⎈ "
 style = "bg:#444444 fg:white"
 
 [hostname]
-disabled = true
+disabled = false
 ssh_only = true
 trim_at = "."
 format = "[[](bg:#555555 fg:#333333)($style)$hostname [in](bg:#555555 fg:white)[](bg:#333333 fg:#555555)]($style)"
