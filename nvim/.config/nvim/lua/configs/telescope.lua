@@ -13,6 +13,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		local actions = require("telescope.actions")
 		require('telescope').setup {
 			defaults = {
+				layout_config = {
+					horizontal = { width = 0.90 }
+				},
 				mappings = {
 					i = {
 						-- map actions.which_key to <C-h> (default: <C-/>)
