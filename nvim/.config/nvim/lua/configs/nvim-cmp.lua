@@ -73,6 +73,7 @@ return {
 				sources = cmp.config.sources({
 					{ name = 'luasnip' },
 					{ name = 'nvim_ciderlsp' },
+					{ name = "googlers", max_item_count = 5 },
 					{ name = 'buganizer' },
 					{ name = 'nvim_lsp' },
 					{ name = 'nvim_lua' },
