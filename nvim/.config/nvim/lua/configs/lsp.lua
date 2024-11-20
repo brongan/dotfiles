@@ -69,7 +69,7 @@ return {
 				},
 			})
 
-			lsp_zero.setup_servers({ 'ts_ls', 'rust_analyzer', 'jsonls', 'lua_ls', 'nil_ls', 'bufls' })
+			lsp_zero.setup_servers({ 'ts_ls', 'rust_analyzer', 'jsonls', 'lua_ls', 'nil_ls', 'buf_ls' })
 			require 'lspconfig'.lua_ls.setup {
 				settings = {
 					Lua = {
