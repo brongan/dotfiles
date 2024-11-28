@@ -108,14 +108,10 @@ return {
 		},
 	},
 	{ "norcalli/nvim-colorizer.lua", opts = { "*" }, }, -- Highlights colors
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = { "rafamadriz/friendly-snippets" },
-	},
-	"psliwka/vim-smoothie", -- Smooth scrolling
-	"tpope/vim-eunuch",   -- :SudoEdit and :Chmod and :Mkdir
-	"tpope/vim-fugitive", -- :Git
-	"tpope/vim-speeddating", -- Allows for incrementing/decrementing timestamps
+	"psliwka/vim-smoothie",                          -- Smooth scrolling
+	"tpope/vim-eunuch",                              -- :SudoEdit and :Chmod and :Mkdir
+	"tpope/vim-fugitive",                            -- :Git
+	"tpope/vim-speeddating",                         -- Allows for incrementing/decrementing timestamps
 	{
 		"ojroques/nvim-osc52",
 		config = function()

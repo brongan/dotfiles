@@ -2,21 +2,35 @@ vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
 
 return {
 	{
-		"saadparwaiz1/cmp_luasnip",
+		"L3MON4D3/LuaSnip",
+		dependencies = { "rafamadriz/friendly-snippets" },
+		config = function()
+			require("luasnip.loaders.from_vscode").lazy_load()
+		end
+
+	},
+	{
+		'saecki/crates.nvim',
+		event = { "BufRead Cargo.toml" },
+		config = function()
+			require('crates').setup({})
+		end,
+	},
+	{
+		"hrsh7th/nvim-cmp", -- Autocompletion
 		dependencies = {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
-			"onsails/lspkind.nvim", -- LSP Symbols
 			"hrsh7th/cmp-path",
-			"hrsh7th/nvim-cmp", -- Autocompletion
-			{ "L3MON4D3/LuaSnip", dependencies = { "rafamadriz/friendly-snippets" }, },
+			"onsails/lspkind.nvim", -- LSP Symbols
+			"petertriho/cmp-git",
+			'saadparwaiz1/cmp_luasnip'
 		},
 		config = function()
 			local cmp = require("cmp")
 			local lspkind = require("lspkind")
 			local luasnip = require("luasnip")
-
 			local kind_icons = {
 				Class = " ",
 				Color = " ",
@@ -39,48 +53,53 @@ return {
 				Snippet = " ",
 				Struct = " ",
 				Text = " ",
-				TypeParameter = " ",
+				TypeParameter = "",
 				Unit = "塞",
 				Value = " ",
 				Variable = " ",
 			}
-
 			local source_names = {
-				luasnip = "(✂)",
-				nvim_ciderlsp = "(🤖)",
-				buganizer = "(🐛)",
-				nvim_lsp = "(🔧)",
-				emoji = "(💩)",
-				path = "(🛣️)",
-				nvim_lua = "()",
 				buffer = "(🗏)",
+				buganizer = "(🐛)",
+				crates = "(🦀)",
+				emoji = "(💩)",
+				git = "(🐙)",
+				luasnip = "(✀ )",
+				nvim_ciderlsp = "(🤖)",
+				nvim_lsp = "(🔧)",
+				nvim_lua = "()",
+				path = "(🛣️)",
 				tmux = "()",
 			}
-
 			local duplicates = {
 				buffer = 1,
 				path = 1,
 				nvim_lsp = 0,
 				luasnip = 1,
 			}
-
 			cmp.setup({
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
 					end,
 				},
+				window = {
+					completion = cmp.config.window.bordered(),
+					documentation = cmp.config.window.bordered(),
+				},
 				sources = cmp.config.sources({
-					{ name = 'luasnip' },
-					{ name = 'nvim_ciderlsp' },
-					{ name = "googlers", max_item_count = 5 },
+					{ name = "googlers",     max_item_count = 5 },
+					{ name = 'buffer',       keyword_length = 5 },
 					{ name = 'buganizer' },
+					{ name = 'crates' },
+					{ name = 'emoji' },
+					{ name = 'git' },
+					{ name = 'luasnip',      option = { show_autosnippets = true } },
+					{ name = 'nvim_ciderlsp' },
 					{ name = 'nvim_lsp' },
 					{ name = 'nvim_lua' },
-					{ name = 'buffer',       keyword_length = 5 },
 					{ name = 'path' },
 					{ name = 'tmux' },
-					{ name = 'emoji' },
 				}),
 				sorting = {
 					priority_weight = 2,
@@ -119,7 +138,19 @@ return {
 					['<C-f>'] = cmp.mapping.scroll_docs(4),
 					['<C-Space>'] = cmp.mapping.complete {},
 					['<C-y>'] = cmp.mapping.confirm { select = true },
-					["<CR>"] = cmp.mapping.confirm({ select = false }),
+					['<CR>'] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							if luasnip.expandable() then
+								luasnip.expand()
+							else
+								cmp.confirm({
+									select = true,
+								})
+							end
+						else
+							fallback()
+						end
+					end),
 					-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#super-tab-like-mapping
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
@@ -162,10 +193,6 @@ return {
 				experimental = {
 					ghost_text = true,
 				},
-				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
-				}
 			})
 		end
 	}
