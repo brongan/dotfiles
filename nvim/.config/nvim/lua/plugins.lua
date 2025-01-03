@@ -120,10 +120,9 @@ return {
 	{
 		"ojroques/nvim-osc52",
 		config = function()
-			map('n', '<C-c>', require('osc52').copy_operator,
-				{ expr = true, desc = "[c]opy to clipboard." })
-			map('n', '<leader><C-c>', '<leader>c_', { remap = true, desc = "[c]opy the current line." })
-			map('v', '<leader><C-c>', require('osc52').copy_visual, { desc = "[c]opy the current selection." })
+			map('n', '<leader>c', require('osc52').copy_operator, { expr = true, desc = "[c]opy to clipboard." })
+			map('n', '<leader>cc', '<leader>c_', { remap = true, desc = "[c]opy the current line." })
+			map('v', '<leader>c', require('osc52').copy_visual, { desc = "[c]opy the current selection." })
 		end
 	},
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
