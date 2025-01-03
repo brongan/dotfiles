@@ -107,11 +107,16 @@ return {
 			{ "ah", "<Plug>(signify-motion-outer-pending)", desc = "[H]unk text object",  mode = "x" },
 		},
 	},
-	{ "norcalli/nvim-colorizer.lua", opts = { "*" }, }, -- Highlights colors
-	"psliwka/vim-smoothie",                          -- Smooth scrolling
-	"tpope/vim-eunuch",                              -- :SudoEdit and :Chmod and :Mkdir
-	"tpope/vim-fugitive",                            -- :Git
-	"tpope/vim-speeddating",                         -- Allows for incrementing/decrementing timestamps
+	{
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require 'colorizer'.setup()
+		end
+	},                    -- Highlights colors
+	"psliwka/vim-smoothie", -- Smooth scrolling
+	"tpope/vim-eunuch",   -- :SudoEdit and :Chmod and :Mkdir
+	"tpope/vim-fugitive", -- :Git
+	"tpope/vim-speeddating", -- Allows for incrementing/decrementing timestamps
 	{
 		"ojroques/nvim-osc52",
 		config = function()
@@ -122,7 +127,7 @@ return {
 		end
 	},
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-	{ "folke/lazydev.nvim",          ft = "lua" },
+	{ "folke/lazydev.nvim", ft = "lua" },
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
