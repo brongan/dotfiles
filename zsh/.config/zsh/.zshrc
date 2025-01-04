@@ -66,6 +66,8 @@ elif (( $+commands[batcat] )); then
 	alias cat="batcat"
 	alias bat="batcat"
 fi
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 alias vim="nvim"
 alias pass="gopass"
 if (($+commands[btop])); then
@@ -80,8 +82,9 @@ alias watch=viddy
 
 export LESS="-R" # show colors
 export LESSOPEN="| bat %s"
-export PAGER=less
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export PAGER=delta
+# export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+export MANPAGER="nvim +Man!"
 export MANROFFOPT="-c"
 if (( $+commands[chromium] )); then
 	export CHROME_EXECUTABLE=$(which chromium)
