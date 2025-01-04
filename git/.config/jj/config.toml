@@ -1,0 +1,12 @@
+[user]
+name = "Brennan Tracy"
+email = "brennantracy4@gmail.com"
+
+[ui]
+pager = "delta"
+paginate = "auto"
+editor = "nvim"
+default-command = "log"
+
+[ui.diff]
+format = "git"
