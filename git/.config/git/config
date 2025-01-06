@@ -70,6 +70,6 @@
 [submodule]
 	recurse = true
 [filter "rageencrypt"]
-	clean =  rage -i ~/.ssh/age.key -e -
-	smudge = rage -i ~/.ssh/age.key -d -
+	clean =  rage -i ~/.ssh/age.key -ea -
+	smudge = rage -i ~/.ssh/age.key -d  -
 	required = true
