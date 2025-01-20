@@ -125,7 +125,6 @@ return {
 			map('v', '<leader>c', require('osc52').copy_visual, { desc = "[c]opy the current selection." })
 		end
 	},
-	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	{ "folke/lazydev.nvim", ft = "lua" },
 	{
 		"nvim-lualine/lualine.nvim",
