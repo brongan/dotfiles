@@ -173,7 +173,11 @@ if (( $+commands[flutter] )); then
 	export FLUTTER_ROOT="/usr/lib/flutter"
 fi
 
-
 if (( $+commands[jj] )); then
 	source <(jj util completion zsh)
 fi
+
+if (( $+commands[zellij] )); then
+	source <(zellij setup --generate-completion zsh)
+fi
+
