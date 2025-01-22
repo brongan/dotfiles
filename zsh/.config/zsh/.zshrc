@@ -136,6 +136,10 @@ fi
 
 autoload -Uz compinit && compinit -d $ZCOMPDUMP
 
+if (( $+commands[zellij] )); then
+	compinit . <( zellij setup --generate-completion zsh | sed -Ee 's/^(_(zellij) ).*/compdef \1\2/' )
+fi
+
 # Atuin
 atuin-fzf () {
 	local selected num
@@ -177,7 +181,7 @@ if (( $+commands[jj] )); then
 	source <(jj util completion zsh)
 fi
 
-if (( $+commands[zellij] )); then
-	source <(zellij setup --generate-completion zsh)
+if (( $+commands[zoxide] )); then
+	eval "$(zoxide init zsh)"
 fi
 
