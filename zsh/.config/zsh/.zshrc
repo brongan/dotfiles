@@ -79,6 +79,7 @@ function xdg-query() {
 	xdg-mime query default $(xdg-mime query filetype ${1})
 }
 alias watch=viddy
+alias cd=z
 
 export LESS="-R" # show colors
 export LESSOPEN="| bat %s"
@@ -140,7 +141,6 @@ if (( $+commands[zellij] )); then
 	compinit . <( zellij setup --generate-completion zsh | sed -Ee 's/^(_(zellij) ).*/compdef \1\2/' )
 fi
 
-# Atuin
 atuin-fzf () {
 	local selected num
 	setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
