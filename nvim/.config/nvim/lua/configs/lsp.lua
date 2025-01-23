@@ -1,18 +1,15 @@
 return {
 	{
-		"VonHeikemen/lsp-zero.nvim",
+		'neovim/nvim-lspconfig',
 		branch = "v3.x",
 		dependencies = {
-			'neovim/nvim-lspconfig',
 			{ 'j-hui/fidget.nvim', opts = {} }, -- Useful status updates for LSP.
 		},
 		config = function()
-			local lsp_zero = require('lsp-zero').preset({})
 			local lspconfig = require("lspconfig")
 
-			lsp_zero.on_attach(function(client, bufnr)
-				lsp_zero.default_keymaps({ buffer = bufnr })
-				lsp_zero.buffer_autoformat()
+			-- Function to configure LSP settings
+			local function on_attach(client, bufnr)
 				local map = function(lhs, rhs, desc)
 					local opts = { buffer = bufnr, noremap = true, desc = 'LSP: ' .. desc }
 					vim.keymap.set('n', lhs, rhs, opts)
@@ -31,13 +28,11 @@ return {
 				map('K', vim.lsp.buf.hover, 'Hover Documentation')
 				map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-				if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-					vim.lsp.inlay_hint.enable(true, { 0 })
-					map('<leader>th', function()
-						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(bufnr))
-					end, '[T]oggle Inlay [H]ints')
+				-- Set settings based on server capabilities
+				if client.server_capabilities.document_formatting then
+					-- Enable formatting on save
+					vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
 				end
-
 				if client.server_capabilities.documentHighlightProvider then
 					local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
 					vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -60,17 +55,38 @@ return {
 						end,
 					})
 				end
-			end)
 
-			lsp_zero.format_on_save({
-				format_opts = {
-					async = true,
-					timeout_ms = 10000,
-				},
+				if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+					vim.lsp.inlay_hint.enable(true, { 0 })
+					map('<leader>th', function()
+						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(bufnr))
+					end, '[T]oggle Inlay [H]ints')
+				end
+			end
+
+			-- Create an autocommand for LspAttach
+			vim.api.nvim_create_autocmd('LspAttach', {
+				callback = function(args)
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					local bufnr = args.buf
+					on_attach(client, bufnr)
+				end,
 			})
 
-			lsp_zero.setup_servers({ 'ts_ls', 'rust_analyzer', 'jsonls', 'lua_ls', 'nil_ls', 'html', 'ts_ls',
-				'dotls', 'gopls' })
+			local servers = {
+				'ts_ls', -- TypeScript/JavaScript
+				'rust_analyzer', -- Rust
+				'jsonls', -- JSON
+				'nil_ls', -- Lua (using Neovim's built-in LSP)
+				'html', -- HTML
+				'dotls', -- Dockerfile
+				'gopls', -- Go
+			}
+
+			for _, server in ipairs(servers) do
+				require('lspconfig')[server].setup {}
+			end
+
 			require 'lspconfig'.lua_ls.setup {
 				settings = {
 					Lua = {
@@ -85,6 +101,7 @@ return {
 					}
 				}
 			}
+
 			local ok, google = pcall(require, "google")
 			if ok then
 				local lsp_defaults = lspconfig.util.default_config
@@ -94,7 +111,6 @@ return {
 					google.init_lsp(lsp_defaults.capabilities)
 				)
 			end
-			lsp_zero.setup()
 		end
 	},
 
