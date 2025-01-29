@@ -26,7 +26,7 @@ return {
 				map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 				map('<leader>a', vim.lsp.buf.code_action, 'Code [A]ction')
 
-				if client.server_capabilities.documentHighlightProvider then
+				if client.server_capabilities.documentHighlightProvider and vim.bo[bufnr].filetype ~= 'bzl' then
 					local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
 					vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
 						buffer = bufnr,
@@ -49,7 +49,7 @@ return {
 					})
 				end
 
-				if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+				if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint and vim.bo[bufnr].filetype ~= 'bzl' then
 					vim.lsp.inlay_hint.enable(true, { 0 })
 					map('<leader>th', function()
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(bufnr))
