@@ -19,14 +19,12 @@ return {
 				map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 				map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 				map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-				map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+				map('gi', require('telescope.builtin').lsp_implementations, '[G]oto [i]mplementation')
 				map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
 				map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
 				map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 				map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 				map('<leader>a', vim.lsp.buf.code_action, 'Code [A]ction')
-				map('K', vim.lsp.buf.hover, 'Hover Documentation')
-				map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
 				-- Set settings based on server capabilities
 				if client.server_capabilities.document_formatting then
@@ -66,6 +64,7 @@ return {
 
 			-- Create an autocommand for LspAttach
 			vim.api.nvim_create_autocmd('LspAttach', {
+				desc = 'LSP actions',
 				callback = function(args)
 					local client = vim.lsp.get_client_by_id(args.data.client_id)
 					local bufnr = args.buf

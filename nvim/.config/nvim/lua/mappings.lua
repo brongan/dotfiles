@@ -6,6 +6,7 @@ map('n', '<Leader>q', ':q!<CR>')
 map('n', 'bd', ':bd<CR>')
 
 -- Diagnostic
+map('n', "gl", vim.diagnostic.open_float, { desc = '[g]o to diagnostic [l]ist' })
 map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [d]iagnostic message' })
 map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [d]iagnostic message' })
 map('n', 'd[', vim.diagnostic.goto_prev, { desc = 'Go to previous [d]iagnostic message.' })
