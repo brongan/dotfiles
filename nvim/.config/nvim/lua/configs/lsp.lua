@@ -26,11 +26,6 @@ return {
 				map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 				map('<leader>a', vim.lsp.buf.code_action, 'Code [A]ction')
 
-				-- Set settings based on server capabilities
-				if client.server_capabilities.document_formatting then
-					-- Enable formatting on save
-					vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
-				end
 				if client.server_capabilities.documentHighlightProvider then
 					local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
 					vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {

@@ -10,7 +10,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		{ 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
 	},
 	config = function()
-		local actions = require("telescope.actions")
 		require('telescope').setup {
 			defaults = {
 				layout_config = {
@@ -18,9 +17,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 				},
 				mappings = {
 					i = {
-						-- map actions.which_key to <C-h> (default: <C-/>)
 						["<C-h>"] = "which_key",
-						-- ["<esc>"] = actions.close,
 					}
 				}
 			},

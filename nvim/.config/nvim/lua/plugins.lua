@@ -13,6 +13,7 @@ return {
 	require("configs.lsp"),
 	require("configs.telescope"),
 	require("configs.nvim-cmp"),
+	require("configs.conform"),
 	"tpope/vim-surround",
 	{ "williamboman/mason.nvim", opts = {} },
 	{
@@ -25,7 +26,12 @@ return {
 		ft = { "dart" },
 		config = true,
 	},
-	{ "catppuccin/nvim",         name = "catppuccin", priority = 1000, opts = { transparent_background = true, flavor = "mocha" }, },
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		opts = { transparent_background = true, flavor = "mocha" },
+	},
 	{
 		"eandrju/cellular-automaton.nvim",
 		dependencies = { 'nvim-treesitter/nvim-treesitter' },
@@ -125,7 +131,7 @@ return {
 			map('v', '<leader>c', require('osc52').copy_visual, { desc = "[c]opy the current selection." })
 		end
 	},
-	{ "folke/lazydev.nvim", ft = "lua" },
+	{ "folke/lazydev.nvim",      ft = "lua" },
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {

@@ -13,6 +13,7 @@ if not vim.uv.fs_stat(lazypath) then
 		lazypath,
 	})
 end
+
 -- Add lazy to the `runtimepath`, this allows us to `require` it.
 vim.opt.rtp:prepend(lazypath)
 
