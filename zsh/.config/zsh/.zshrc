@@ -31,10 +31,6 @@ fi
 export SUDO_EDITOR=$EDITOR
 export SYSTEMD_EDITOR=$EDITOR
 
-if [[ ! -n ${SSH_CONNECTION} ]]; then
-    export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
-fi
-
 wm=$(wmctrl -m 2&> /dev/null | head -n 1 | cut -d' ' -f 2)
 if [[ $wm == "bspwm" || $wm == "i3" || $wm == "wlroots" ]]; then
 	export _JAVA_AWT_WM_NONREPARENTING=1
