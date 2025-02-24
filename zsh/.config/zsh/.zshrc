@@ -157,7 +157,7 @@ if (( $+commands[atuin] )); then
 	bindkey '^R' atuin-fzf
 fi
 
-if [[ "${USER}" == "brennantracy" ]]; then
+if [[ $(whoami) == "brennantracy" ]]; then
   source "${ZDOTDIR}/google.zsh"
 fi
 
