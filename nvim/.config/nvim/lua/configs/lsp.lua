@@ -74,7 +74,6 @@ return {
 				'nil_ls', -- Lua (using Neovim's built-in LSP)
 				'html', -- HTML
 				'dotls', -- Dockerfile
-				'gopls', -- Go
 			}
 
 			for _, server in ipairs(servers) do
