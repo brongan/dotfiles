@@ -3,8 +3,15 @@
 set -eu
 
 BAT=BAT1
-battery_percentage=$(< /sys/class/power_supply/${BAT}/capacity)
-battery_status=$(< /sys/class/power_supply/${BAT}/status)
+DIR="/sys/class/power_supply/${BAT}" 
+
+if [ ! -d ${DIR} ]; then
+    echo "🔌"
+	exit 0
+fi
+
+battery_percentage=$(< "${DIR}/capacity")
+battery_status=$(< "${DIR}/status")
 battery_icons=("󰂃" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰁹")
 charging_icon="󰂄"
 icon_index=$((battery_percentage / 10))
