@@ -48,7 +48,6 @@ alias svn="svn --config-dir ${XDG_CONFIG_HOME}/subversion"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 alias yarn="yarn --use-yarnrc ${XDG_CONFIG_HOME}/yarn/config"
 
-# Aliases for a few useful commands
 alias ls="exa"
 alias la="exa -a"
 alias ll="exa -aglh"
@@ -97,6 +96,7 @@ if (( ! $+commands[sudoedit] )); then
 fi
 
 if (( $+commands[kitty] )); then
+	alias s="kitten ssh"
 	alias icat="kitty +kitten icat"
 fi
 
