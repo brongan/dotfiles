@@ -2,23 +2,20 @@ local map = vim.keymap.set
 
 -- Fast saving and quit without saving
 map('n', '<Leader>w', ':w!<CR>')
-map('n', '<Leader>q', ':q!<CR>')
 map('n', 'bd', ':bd<CR>')
 
 -- Diagnostic
 map('n', "gl", vim.diagnostic.open_float, { desc = '[g]o to diagnostic [l]ist' })
 map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [d]iagnostic message' })
 map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [d]iagnostic message' })
-map('n', 'd[', vim.diagnostic.goto_prev, { desc = 'Go to previous [d]iagnostic message.' })
-map('n', 'd]', vim.diagnostic.goto_next, { desc = 'Go to next [d]iagnostic message.' })
 map('n', '<Leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [e]rror message.' })
 map('n', '<Leader>d', vim.diagnostic.setloclist, { desc = 'Open diagnostic [d]uickfix list.' })
 
 -- Quickfix
-map('n', "<Leader>q[", "<cmd>cprev<cr>", { desc = "[q]uickfix goto_prev" })
-map('n', "<Leader>q]", "<cmd>cnext<cr>", { desc = "[q]uickfix goto_next" })
-map('n', "<Leader>qO", "<cmd>cclose<cr>", { desc = "[q]uickfix [C]lose" })
-map('n', "<Leader>qo", "<cmd>copen<cr>", { desc = "[q]uickfix open" })
+map('n', "[q", "<cmd>cprev<cr>", { desc = "[q]uickfix goto_prev" })
+map('n', "]q", "<cmd>cnext<cr>", { desc = "[q]uickfix goto_next" })
+map('n', "<Leader>q", "<cmd>cclose<cr>", { desc = "[q]uickfix close" })
+map('n', "<Leader>Q", "<cmd>copen<cr>", { desc = "[q]uickfix open" })
 
 -- Terminal mode
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
