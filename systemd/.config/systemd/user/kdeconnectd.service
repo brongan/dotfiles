@@ -4,7 +4,7 @@ PartOf=graphical-session.target
 
 [Service]
 Type=dbus
-ExecStart=/usr/lib/kdeconnectd
+ExecStart=/usr/bin/kdeconnectd
 BusName=org.kde.kdeconnect
 Restart=on-failure
 RestartSec=1
