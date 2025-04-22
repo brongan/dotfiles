@@ -1,6 +1,7 @@
 if [[ -z $DISPLAY && $(tty) = /dev/tty1 ]]; then
-	if [[ $(hostnamectl hostname --pretty) = "framework" ||  $(hostnamectl hostname --pretty) = "desktop" ]]; then
-		Hyprland
+	local hostname=$(hostnamectl hostname --pretty)
+	if [[ $hostname = "framework" ||  $hostname = "desktop" ]]; then
+		exec uwsm start hyprland.desktop
 	fi
 fi
 
