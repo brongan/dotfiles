@@ -8,5 +8,6 @@ paginate = "auto"
 editor = "nvim"
 default-command = "log"
 
-[ui.diff]
-format = "git"
+[ui.diff-formatter]
+format = ":git"
+
