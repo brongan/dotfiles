@@ -5,7 +5,7 @@ else
 	print("Loaded Personal config.")
 end
 
-local map = vim.keymap.set;
+local map = vim.keymap.set
 
 return {
 	require("configs.bufferline"),
@@ -17,11 +17,11 @@ return {
 	"tpope/vim-surround",
 	{ "williamboman/mason.nvim", opts = {} },
 	{
-		'akinsho/flutter-tools.nvim',
+		"akinsho/flutter-tools.nvim",
 		lazy = false,
 		dependencies = {
-			'nvim-lua/plenary.nvim',
-			'stevearc/dressing.nvim',
+			"nvim-lua/plenary.nvim",
+			"stevearc/dressing.nvim",
 		},
 		ft = { "dart" },
 		config = true,
@@ -34,10 +34,10 @@ return {
 	},
 	{
 		"eandrju/cellular-automaton.nvim",
-		dependencies = { 'nvim-treesitter/nvim-treesitter' },
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
-			map("n", "<Leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
-		end
+			map("n", "<Leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
+		end,
 	},
 	{
 		"folke/trouble.nvim",
@@ -45,32 +45,32 @@ return {
 		cmd = "Trouble",
 		keys = {
 			{
-				'<Leader>xx',
+				"<Leader>xx",
 				"<cmd>Trouble diagnostics toggle<cr>",
 				{ desc = "Diagnostics (Trouble)" },
 			},
 			{
-				'<Leader>xX',
+				"<Leader>xX",
 				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
 				{ desc = "Buffer Diagnostics (Trouble)" },
 			},
 			{
-				'<Leader>cs',
+				"<Leader>cs",
 				"<cmd>Trouble symbols toggle focus=false<cr>",
 				{ desc = "Symbols (Trouble)" },
 			},
 			{
-				'<Leader>cl',
+				"<Leader>cl",
 				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
 				{ desc = "LSP Definitions / references / ... (Trouble)" },
 			},
 			{
-				'<Leader>xL',
+				"<Leader>xL",
 				"<cmd>Trouble loclist toggle<cr>",
 				{ desc = "Location List (Trouble)" },
 			},
 			{
-				'<Leader>xQ',
+				"<Leader>xQ",
 				"<cmd>Trouble qflist toggle<cr>",
 				{ desc = "Quickfix List (Trouble)" },
 			},
@@ -80,7 +80,9 @@ return {
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },
-		build = function() vim.fn["mkdp#util#install"]() end,
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -88,7 +90,7 @@ return {
 		opts = {},
 		config = function()
 			require("ibl").setup({})
-		end
+		end,
 	}, -- Pretty indentations
 	{
 		"mhinz/vim-signify",
@@ -103,44 +105,44 @@ return {
 			vim.api.nvim_set_hl(0, "SignifySignDeleteDeleteFirstLine", { ctermfg = "red", fg = "#ff7b72" })
 		end,
 		keys = {
-			{ "[h", "<Plug>(signify-prev-hunk)",            desc = "Goto previous [h]unk" },
-			{ "]h", "<Plug>(signify-next-hunk)",            desc = "Goto next [h]unk" },
-			{ "[H", "<cmd>normal 9999[c<cr>",               desc = "Goto first [h]unk" },
-			{ "]H", "<cmd>normal 9999]c<cr>",               desc = "Goto last [h]unk" },
-			{ "ih", "<Plug>(signify-motion-inner-pending)", desc = "[H]unk text object",  mode = "o" },
-			{ "ih", "<Plug>(signify-motion-inner-visual)",  desc = "[H]unk text object",  mode = "x" },
-			{ "ah", "<Plug>(signify-motion-outer-pending)", desc = "[H]unk text object",  mode = "o" },
-			{ "ah", "<Plug>(signify-motion-outer-pending)", desc = "[H]unk text object",  mode = "x" },
+			{ "[h", "<Plug>(signify-prev-hunk)", desc = "Goto previous [h]unk" },
+			{ "]h", "<Plug>(signify-next-hunk)", desc = "Goto next [h]unk" },
+			{ "[H", "<cmd>normal 9999[c<cr>", desc = "Goto first [h]unk" },
+			{ "]H", "<cmd>normal 9999]c<cr>", desc = "Goto last [h]unk" },
+			{ "ih", "<Plug>(signify-motion-inner-pending)", desc = "[H]unk text object", mode = "o" },
+			{ "ih", "<Plug>(signify-motion-inner-visual)", desc = "[H]unk text object", mode = "x" },
+			{ "ah", "<Plug>(signify-motion-outer-pending)", desc = "[H]unk text object", mode = "o" },
+			{ "ah", "<Plug>(signify-motion-outer-pending)", desc = "[H]unk text object", mode = "x" },
 		},
 	},
 	{
 		"norcalli/nvim-colorizer.lua",
 		config = function()
-			require 'colorizer'.setup()
-		end
-	},                    -- Highlights colors
+			require("colorizer").setup()
+		end,
+	}, -- Highlights colors
 	"psliwka/vim-smoothie", -- Smooth scrolling
-	"tpope/vim-eunuch",   -- :SudoEdit and :Chmod and :Mkdir
+	"tpope/vim-eunuch", -- :SudoEdit and :Chmod and :Mkdir
 	"tpope/vim-fugitive", -- :Git
 	"tpope/vim-speeddating", -- Allows for incrementing/decrementing timestamps
 	{
 		"ojroques/nvim-osc52",
 		config = function()
-			map('n', '<leader>c', require('osc52').copy_operator, { expr = true, desc = "[c]opy to clipboard." })
-			map('n', '<leader>cc', '<leader>c_', { remap = true, desc = "[c]opy the current line." })
-			map('v', '<leader>c', require('osc52').copy_visual, { desc = "[c]opy the current selection." })
-		end
+			map("n", "<leader>c", require("osc52").copy_operator, { expr = true, desc = "[c]opy to clipboard." })
+			map("n", "<leader>cc", "<leader>c_", { remap = true, desc = "[c]opy the current line." })
+			map("v", "<leader>c", require("osc52").copy_visual, { desc = "[c]opy the current selection." })
+		end,
 	},
-	{ "folke/lazydev.nvim",      ft = "lua" },
+	{ "folke/lazydev.nvim", ft = "lua" },
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 			config = function()
 				---@diagnostic disable-next-line: undefined-field
-				require('lualine').setup {}
-			end
-		}
+				require("lualine").setup({})
+			end,
+		},
 	},
 	{
 		"folke/which-key.nvim",
@@ -163,7 +165,7 @@ return {
 		event = "VeryLazy",
 		config = function()
 			require("nvim-surround").setup({})
-		end
+		end,
 	},
 	unpack(ok and google or {}),
 }

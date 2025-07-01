@@ -6,14 +6,13 @@ return {
 		dependencies = { "rafamadriz/friendly-snippets" },
 		config = function()
 			require("luasnip.loaders.from_vscode").lazy_load()
-		end
-
+		end,
 	},
 	{
-		'saecki/crates.nvim',
+		"saecki/crates.nvim",
 		event = { "BufRead Cargo.toml" },
 		config = function()
-			require('crates').setup({})
+			require("crates").setup({})
 		end,
 	},
 	{
@@ -25,7 +24,7 @@ return {
 			"hrsh7th/cmp-path",
 			"onsails/lspkind.nvim", -- LSP Symbols
 			"petertriho/cmp-git",
-			'saadparwaiz1/cmp_luasnip'
+			"saadparwaiz1/cmp_luasnip",
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -88,18 +87,18 @@ return {
 					documentation = cmp.config.window.bordered(),
 				},
 				sources = cmp.config.sources({
-					{ name = "googlers",     max_item_count = 5 },
-					{ name = 'buffer',       keyword_length = 5 },
-					{ name = 'buganizer' },
-					{ name = 'crates' },
-					{ name = 'emoji' },
-					{ name = 'git' },
-					{ name = 'luasnip',      option = { show_autosnippets = true } },
-					{ name = 'nvim_ciderlsp' },
-					{ name = 'nvim_lsp' },
-					{ name = 'nvim_lua' },
-					{ name = 'path' },
-					{ name = 'tmux' },
+					{ name = "googlers", max_item_count = 5 },
+					{ name = "buffer", keyword_length = 5 },
+					{ name = "buganizer" },
+					{ name = "crates" },
+					{ name = "emoji" },
+					{ name = "git" },
+					{ name = "luasnip", option = { show_autosnippets = true } },
+					{ name = "nvim_ciderlsp" },
+					{ name = "nvim_lsp" },
+					{ name = "nvim_lua" },
+					{ name = "path" },
+					{ name = "tmux" },
 				}),
 				sorting = {
 					priority_weight = 2,
@@ -125,20 +124,20 @@ return {
 							vim_item.menu = source_names[entry.source.name]
 							vim_item.dup = duplicates[entry.source.name]
 							return vim_item
-						end
+						end,
 					}),
 				},
-				mapping = cmp.mapping.preset.insert {
+				mapping = cmp.mapping.preset.insert({
 					-- Select the [n]ext item
-					['<C-n>'] = cmp.mapping.select_next_item(),
+					["<C-n>"] = cmp.mapping.select_next_item(),
 					-- Select the [p]revious item
-					['<C-p>'] = cmp.mapping.select_prev_item(),
+					["<C-p>"] = cmp.mapping.select_prev_item(),
 					-- Scroll the documentation window [b]ack / [f]orward
-					['<C-b>'] = cmp.mapping.scroll_docs(-4),
-					['<C-f>'] = cmp.mapping.scroll_docs(4),
-					['<C-Space>'] = cmp.mapping.complete {},
-					['<C-y>'] = cmp.mapping.confirm { select = true },
-					['<CR>'] = cmp.mapping(function(fallback)
+					["<C-b>"] = cmp.mapping.scroll_docs(-4),
+					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-Space>"] = cmp.mapping.complete({}),
+					["<C-y>"] = cmp.mapping.confirm({ select = true }),
+					["<CR>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							if luasnip.expandable() then
 								luasnip.expand()
@@ -179,21 +178,21 @@ return {
 					--
 					-- <c-l> will move you to the right of each of the expansion locations.
 					-- <c-h> is similar, except moving you backwards.
-					['<C-l>'] = cmp.mapping(function()
+					["<C-l>"] = cmp.mapping(function()
 						if luasnip.expand_or_locally_jumpable() then
 							luasnip.expand_or_jump()
 						end
-					end, { 'i', 's' }),
-					['<C-h>'] = cmp.mapping(function()
+					end, { "i", "s" }),
+					["<C-h>"] = cmp.mapping(function()
 						if luasnip.locally_jumpable(-1) then
 							luasnip.jump(-1)
 						end
-					end, { 'i', 's' }),
-				},
+					end, { "i", "s" }),
+				}),
 				experimental = {
 					ghost_text = true,
 				},
 			})
-		end
-	}
+		end,
+	},
 }
