@@ -53,9 +53,12 @@ return {
 				end
 
 				if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint and normal then
-					vim.lsp.inlay_hint.enable(true, { 0 })
+					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 					map("<leader>th", function()
-						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(bufnr))
+						vim.lsp.inlay_hint.enable(
+							not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }),
+							{ bufnr = bufnr }
+						)
 					end, "[T]oggle Inlay [H]ints")
 				end
 			end
