@@ -52,7 +52,7 @@ return {
 					})
 				end
 
-				if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint and normal then
+				if client.supports_method("textDocument/inlayHint") or client.server_capabilities.inlayHintProvider then
 					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 					map("<leader>th", function()
 						vim.lsp.inlay_hint.enable(
@@ -60,6 +60,14 @@ return {
 							{ bufnr = bufnr }
 						)
 					end, "[T]oggle Inlay [H]ints")
+				end
+
+				if vim.lsp.codelens then
+					vim.lsp.codelens.refresh()
+					vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+						buffer = bufnr,
+						callback = vim.lsp.codelens.refresh,
+					})
 				end
 			end
 
@@ -74,19 +82,20 @@ return {
 			})
 
 			local servers = {
-				"ts_ls", -- TypeScript/JavaScript
-				"rust_analyzer", -- Rust
-				"jsonls", -- JSON
-				"nil_ls", -- Lua (using Neovim's built-in LSP)
-				"html", -- HTML
 				"dotls", -- Dockerfile
+				"html", -- HTML
+				"jsonls", -- JSON
+				"luals",
+				"nil_ls", -- Lua (using Neovim's built-in LSP)
+				"rust_analyzer", -- Rust
+				"ts_ls", -- TypeScript/JavaScript
 			}
 
 			for _, server in ipairs(servers) do
-				require("lspconfig")[server].setup({})
+				vim.lsp.enable(server)
 			end
 
-			require("lspconfig").lua_ls.setup({
+			vim.lsp.config["luals"] = {
 				settings = {
 					Lua = {
 						runtime = { version = "LuaJIT" },
@@ -99,7 +108,7 @@ return {
 						},
 					},
 				},
-			})
+			}
 
 			local ok, google = pcall(require, "google")
 			if ok then
