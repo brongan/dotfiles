@@ -1,5 +1,6 @@
-local ok, google = pcall(require, "google")
-if ok then
+local username = os.getenv("USER")
+if username == "brennantracy" then
+	require("google")
 	print("Loaded Google config.")
 else
 	print("Loaded Personal config.")
@@ -16,6 +17,14 @@ return {
 	require("configs.conform"),
 	"tpope/vim-surround",
 	{ "williamboman/mason.nvim", opts = {} },
+	{
+		"mason-org/mason-lspconfig.nvim",
+		opts = {},
+		dependencies = {
+			{ "mason-org/mason.nvim", opts = {} },
+			"neovim/nvim-lspconfig",
+		},
+	},
 	{
 		"akinsho/flutter-tools.nvim",
 		lazy = false,
