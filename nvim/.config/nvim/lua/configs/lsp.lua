@@ -1,7 +1,6 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
-		branch = "v3.x",
 		dependencies = {
 			{ "j-hui/fidget.nvim", opts = {} }, -- Useful status updates for LSP.
 		},
@@ -52,7 +51,7 @@ return {
 					})
 				end
 
-				if client.supports_method("textDocument/inlayHint") or client.server_capabilities.inlayHintProvider then
+				if client:supports_method("textDocument/inlayHint") or client.server_capabilities.inlayHintProvider then
 					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 					map("<leader>th", function()
 						vim.lsp.inlay_hint.enable(
@@ -81,21 +80,7 @@ return {
 				end,
 			})
 
-			local servers = {
-				"dotls", -- Dockerfile
-				"html", -- HTML
-				"jsonls", -- JSON
-				"luals",
-				"nil_ls", -- Lua (using Neovim's built-in LSP)
-				"rust_analyzer", -- Rust
-				"ts_ls", -- TypeScript/JavaScript
-			}
-
-			for _, server in ipairs(servers) do
-				vim.lsp.enable(server)
-			end
-
-			vim.lsp.config["luals"] = {
+			vim.lsp.config["lua_ls"] = {
 				settings = {
 					Lua = {
 						runtime = { version = "LuaJIT" },
@@ -109,6 +94,9 @@ return {
 					},
 				},
 			}
+
+			vim.lsp.enable("clangd")
+			-- vim.lsp.enable("gopls")
 
 			local ok, google = pcall(require, "google")
 			if ok then
