@@ -1,5 +1,5 @@
 vim.g.mapleader = ","
-vim.g.maplocalleader = ','
+vim.g.maplocalleader = ","
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 ---@diagnostic disable-next-line: undefined-field
@@ -19,6 +19,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("basics")
 require("mappings")
-require("lazy").setup(require("plugins"), {});
+require("lazy").setup(require("plugins"), {})
 
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme("catppuccin")
