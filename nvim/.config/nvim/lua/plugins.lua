@@ -1,6 +1,7 @@
 local username = os.getenv("USER")
+local work_plugins = {}
 if username == "brennantracy" then
-	require("google")
+	work_plugins = require("google")
 	print("Loaded Google config.")
 else
 	print("Loaded Personal config.")
@@ -176,5 +177,5 @@ return {
 			require("nvim-surround").setup({})
 		end,
 	},
-	unpack(require("google") or {}),
+	unpack(work_plugins),
 }
