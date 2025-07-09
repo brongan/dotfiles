@@ -46,7 +46,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		map("n", "<leader>fb", builtin.buffers, { desc = "[f] existing [b]uffers" })
 		map("n", "<leader>fB", builtin.live_grep, { desc = "[f]uzzy lines in [B]uffer" })
 		map("n", "<leader>fc", builtin.commands, { desc = "[f]uzzy [c]ommands" })
-		map("n", "<leader>f/", builtin.search_history, { desc = "[f]uzzy [s]earch [h]istory" })
+		map("n", "<leader>f/", builtin.search_history, { desc = "[f]uzzy search history" })
 		map("n", "<leader>f:", builtin.command_history, { desc = "[f]uzzy command history" })
 
 		local grep_files = function()

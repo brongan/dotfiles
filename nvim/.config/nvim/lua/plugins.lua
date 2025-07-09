@@ -170,11 +170,11 @@ return {
 	},
 	{
 		"kylechui/nvim-surround",
-		version = "main",
+		version = "^3.0.0",
 		event = "VeryLazy",
 		config = function()
 			require("nvim-surround").setup({})
 		end,
 	},
-	unpack(ok and google or {}),
+	unpack(require("google") or {}),
 }
