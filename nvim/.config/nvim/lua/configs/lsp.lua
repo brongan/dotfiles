@@ -98,6 +98,7 @@ return {
 			vim.lsp.enable("clangd")
 			vim.lsp.enable("gopls")
 			vim.lsp.enable("rust_analyzer")
+			vim.lsp.enable("pyright")
 
 			local ok, google = pcall(require, "google")
 			if ok then
