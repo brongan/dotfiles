@@ -177,5 +177,11 @@ return {
 			require("nvim-surround").setup({})
 		end,
 	},
+	{
+		'numToStr/Comment.nvim',
+		opts = {
+			-- add any options here
+		}
+	},
 	unpack(work_plugins),
 }
