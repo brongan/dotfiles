@@ -115,14 +115,14 @@ return {
 			vim.api.nvim_set_hl(0, "SignifySignDeleteDeleteFirstLine", { ctermfg = "red", fg = "#ff7b72" })
 		end,
 		keys = {
-			{ "[h", "<Plug>(signify-prev-hunk)", desc = "Goto previous [h]unk" },
-			{ "]h", "<Plug>(signify-next-hunk)", desc = "Goto next [h]unk" },
-			{ "[H", "<cmd>normal 9999[c<cr>", desc = "Goto first [h]unk" },
-			{ "]H", "<cmd>normal 9999]c<cr>", desc = "Goto last [h]unk" },
-			{ "ih", "<Plug>(signify-motion-inner-pending)", desc = "[H]unk text object", mode = "o" },
-			{ "ih", "<Plug>(signify-motion-inner-visual)", desc = "[H]unk text object", mode = "x" },
-			{ "ah", "<Plug>(signify-motion-outer-pending)", desc = "[H]unk text object", mode = "o" },
-			{ "ah", "<Plug>(signify-motion-outer-pending)", desc = "[H]unk text object", mode = "x" },
+			{ "[h", "<Plug>(signify-prev-hunk)",            desc = "Goto previous [h]unk" },
+			{ "]h", "<Plug>(signify-next-hunk)",            desc = "Goto next [h]unk" },
+			{ "[H", "<cmd>normal 9999[c<cr>",               desc = "Goto first [h]unk" },
+			{ "]H", "<cmd>normal 9999]c<cr>",               desc = "Goto last [h]unk" },
+			{ "ih", "<Plug>(signify-motion-inner-pending)", desc = "[H]unk text object",  mode = "o" },
+			{ "ih", "<Plug>(signify-motion-inner-visual)",  desc = "[H]unk text object",  mode = "x" },
+			{ "ah", "<Plug>(signify-motion-outer-pending)", desc = "[H]unk text object",  mode = "o" },
+			{ "ah", "<Plug>(signify-motion-outer-pending)", desc = "[H]unk text object",  mode = "x" },
 		},
 	},
 	{
@@ -130,9 +130,9 @@ return {
 		config = function()
 			require("colorizer").setup()
 		end,
-	}, -- Highlights colors
+	},                    -- Highlights colors
 	"psliwka/vim-smoothie", -- Smooth scrolling
-	"tpope/vim-eunuch", -- :SudoEdit and :Chmod and :Mkdir
+	"tpope/vim-eunuch",   -- :SudoEdit and :Chmod and :Mkdir
 	"tpope/vim-fugitive", -- :Git
 	"tpope/vim-speeddating", -- Allows for incrementing/decrementing timestamps
 	{
@@ -143,7 +143,7 @@ return {
 			map("v", "<leader>c", require("osc52").copy_visual, { desc = "[c]opy the current selection." })
 		end,
 	},
-	{ "folke/lazydev.nvim", ft = "lua" },
+	{ "folke/lazydev.nvim",      ft = "lua" },
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
@@ -183,5 +183,6 @@ return {
 			-- add any options here
 		}
 	},
+	{ "stevearc/oil.nvim", opts = {} },
 	unpack(work_plugins),
 }
