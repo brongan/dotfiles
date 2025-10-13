@@ -95,18 +95,19 @@ return {
 				},
 			}
 
-			vim.lsp.enable("clangd")
-			vim.lsp.enable("gopls")
-			vim.lsp.enable("rust_analyzer")
-			vim.lsp.enable("pyright")
-			vim.lsp.enable("lua_ls")
-
 			local ok, google = pcall(require, "google")
 			if ok then
 				local lsp_defaults = lspconfig.util.default_config
 				lsp_defaults.capabilities =
 					vim.tbl_deep_extend("keep", lsp_defaults.capabilities, google.init_lsp(lsp_defaults.capabilities))
+			else
+				vim.lsp.enable("clangd")
+				vim.lsp.enable("gopls")
+				vim.lsp.enable("rust_analyzer")
+				vim.lsp.enable("pyright")
 			end
+
+			vim.lsp.enable("lua_ls")
 		end,
 	},
 }
