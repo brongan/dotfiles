@@ -51,7 +51,7 @@ return {
 					})
 				end
 
-				if client:supports_method("textDocument/inlayHint") or client.server_capabilities.inlayHintProvider then
+				if client.server_capabilities.inlayHintProvider then
 					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 					map("<leader>th", function()
 						vim.lsp.inlay_hint.enable(
