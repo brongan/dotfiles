@@ -1,13 +1,11 @@
 [user]
-name = "Brennan Tracy"
 email = "brennantracy4@gmail.com"
+name = "Brennan Tracy"
 
 [ui]
+default-command = "log"
+diff-formatter = ":git"
+editor = "nvim"
 pager = "delta"
 paginate = "auto"
-editor = "nvim"
-default-command = "log"
-
-[ui.diff-formatter]
-format = ":git"
 
