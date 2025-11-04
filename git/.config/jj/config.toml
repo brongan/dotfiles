@@ -11,7 +11,7 @@ paginate = "auto"
 
 [aliases]
 init = ["git", "init", "--colocate"]
-ps = ["util", "exec", "--", "bash", "-c", """
+push = ["util", "exec", "--", "bash", "-c", """
 set -e
 
 # Check if current commit has both description and changes
