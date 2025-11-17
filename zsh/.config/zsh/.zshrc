@@ -50,7 +50,7 @@ alias yarn="yarn --use-yarnrc ${XDG_CONFIG_HOME}/yarn/config"
 
 alias ls="exa --icons"
 alias la="exa --icons -a"
-alias ll="exa --icons -aglh"
+alias ll="exa --icons -aaglh"
 alias ip="ip -c"
 alias rm="rm -i"
 alias grep="rg"
