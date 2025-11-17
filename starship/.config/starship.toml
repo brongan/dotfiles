@@ -9,10 +9,9 @@ format = """\
         $kubernetes\
         $directory\
         ${custom.fig}\
-        $git_branch\
-        $git_commit\
-        $git_state\
-		$git_status\
+        ${custom.git_branch}\
+        ${custom.git_commit}\
+		${custom.git_status}\
 		$hg_branch\
         $docker_context\
 		$package\
@@ -134,6 +133,84 @@ read_only = ""
 read_only_style = "bg:#555555 fg:red"
 truncation_symbol = ""
 
+[git_state]
+disabled = false
+rebase = "REBASING"
+merge = "MERGING"
+revert = "REVERTING"
+cherry_pick = "CHERRY-PICKING"
+bisect = "BISECTING"
+am = "AM"
+am_or_rebase = "AM/REBASE"
+style = "bold bg:#555555 fg:yellow"
+format = '\([[](bg:#555555 fg:#333333)$state( $progress_current/$progress_total )[](bg:#333333 fg:#555555)]($style)\)'
+
+# custom module for jj status
+[custom.jj]
+description = "The current jj status"
+when = "jj --ignore-working-copy root"
+symbol = "🥋 "
+command = '''
+jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '
+  separate(" ",
+    change_id.shortest(4),
+    bookmarks,
+    "|",
+    concat(
+      if(conflict, "💥"),
+      if(divergent, "🚧"),
+      if(hidden, "👻"),
+      if(immutable, "🔒"),
+    ),
+    raw_escape_sequence("\x1b[1;32m") ++ if(empty, "(empty)"),
+    raw_escape_sequence("\x1b[1;32m") ++ coalesce(
+      truncate_end(29, description.first_line(), "…"),
+      "(no description set)",
+    ) ++ raw_escape_sequence("\x1b[0m"),
+  )
+'
+'''
+
+[git_status]
+disabled = true
+
+[custom.git_status]
+when = "! jj --ignore-working-copy root"
+command = "starship module git_status"
+description = "Only show git_status if we're not in a jj repo"
+format = '([[](bg:#555555 fg:#333333)\[$all_status$ahead_behind\][](bg:#333333 fg:#555555)]($style))'
+style = "bold bg:#555555 fg:red"
+
+[git_commit]
+disabled = true
+
+[custom.git_commit]
+when = "! jj --ignore-working-copy root"
+command = "starship module git_commit"
+description = "Only show git_commit if we're not in a jj repo"
+format = '[[](bg:#555555 fg:#333333)\($hash\)[](bg:#333333 fg:#555555)]($style)'
+style = "bold bg:#555555 fg:green"
+
+[git_metrics]
+disabled = true
+
+[custom.git_metrics]
+when = "! jj --ignore-working-copy root"
+command = "starship module git_metrics"
+description = "Only show git_metrics if we're not in a jj repo"
+style = ""
+
+[git_branch]
+disabled = true
+
+[custom.git_branch]
+when = "! jj --ignore-working-copy root"
+command = "starship module git_branch"
+description = "Only show git_branch if we're not in a jj repo"
+format = "[[](bg:#555555 fg:#333333)[on](bg:#555555 fg:white) $symbol$branch[](bg:#333333 fg:#555555)]($style)"
+symbol = " "
+style = "bold bg:#555555 fg:purple"
+
 [custom.fig]
 format = "[[](bg:#555555 fg:#333333)  $output[](bg:#333333 fg:#555555)]($style)"
 command = """ echo "${${PWD}#/google/src/cloud/${USER}/}" | cut -d '/' -f 1 """
@@ -185,48 +262,6 @@ disabled = false
 format = '[[](bg:#444444 fg:#333333)[on](bg:#444444 fg:white) $symbol$account(\($region\))[](bg:#333333 fg:#444444)]($style)'
 symbol = " "
 style = "bold bg:#444444 fg:blue"
-
-[git_branch]
-disabled = false
-format = "[[](bg:#555555 fg:#333333)[on](bg:#555555 fg:white) $symbol$branch[](bg:#333333 fg:#555555)]($style)"
-symbol = " "
-style = "bold bg:#555555 fg:purple"
-# truncation_length = 7 # default = 2^63 - 1
-truncation_symbol = "…"
-
-[git_commit]
-disabled = false
-commit_hash_length = 7
-format = '[[](bg:#555555 fg:#333333)\($hash\)[](bg:#333333 fg:#555555)]($style)'
-style = "bold bg:#555555 fg:green"
-only_detached = true
-
-[git_state]
-disabled = false
-rebase = "REBASING"
-merge = "MERGING"
-revert = "REVERTING"
-cherry_pick = "CHERRY-PICKING"
-bisect = "BISECTING"
-am = "AM"
-am_or_rebase = "AM/REBASE"
-style = "bold bg:#555555 fg:yellow"
-format = '\([[](bg:#555555 fg:#333333)$state( $progress_current/$progress_total )[](bg:#333333 fg:#555555)]($style)\)'
-
-[git_status]
-disabled = true
-format = '([[](bg:#555555 fg:#333333)\[$all_status$ahead_behind\][](bg:#333333 fg:#555555)]($style))'
-style = "bold bg:#555555 fg:red"
-stashed = '\$'
-ahead = "⇡"
-behind = "⇣"
-diverged = "⇕"
-conflicted = "="
-deleted = "✘"
-renamed = "»"
-modified = "!"
-staged = "+"
-untracked = "?"
 
 [golang]
 disabled = true
