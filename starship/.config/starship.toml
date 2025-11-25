@@ -400,7 +400,6 @@ jj log --revisions @ --no-graph --ignore-working-copy --color never --limit 1 --
     if(empty, "(empty)"),
     coalesce(
       truncate_end(29, description.first_line(), "…"),
-      "()",
     )
   )
 '
@@ -410,7 +409,7 @@ jj log --revisions @ --no-graph --ignore-working-copy --color never --limit 1 --
 when = "jj --ignore-working-copy root"
 symbol = "±" 
 style = "bold bg:#555555 fg:purple"
-format = "[[](bg:#555555 fg:#333333)(bg:#555555 fg:white) $symbol$output[](bg:#333333 fg:#555555)]($style)"
+format = "[[](bg:#555555 fg:#333333)(bg:#555555 fg:white)$symbol$output[](bg:#333333 fg:#555555)]($style)"
 command = '''
 jj log -r@ -n1 --ignore-working-copy --no-graph -T "" --stat | tail -n1 | sd "(\d+) files? changed, (\d+) insertions?\(\+\), (\d+) deletions?\(-\)" ' ${1}m ${2}+ ${3}-' | sd " 0." ""
 '''
