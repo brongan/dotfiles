@@ -8,10 +8,6 @@ format = """\
         $singularity\
         $kubernetes\
         $directory\
-        ${custom.fig}\
-        ${custom.git_branch}\
-        ${custom.git_commit}\
-		${custom.git_status}\
 		$hg_branch\
         $docker_context\
 		$package\
@@ -145,76 +141,18 @@ am_or_rebase = "AM/REBASE"
 style = "bold bg:#555555 fg:yellow"
 format = '\([[](bg:#555555 fg:#333333)$state( $progress_current/$progress_total )[](bg:#333333 fg:#555555)]($style)\)'
 
-# custom module for jj status
-[custom.jj]
-description = "The current jj status"
-when = "jj --ignore-working-copy root"
-symbol = "🥋 "
-command = '''
-jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '
-  separate(" ",
-    change_id.shortest(4),
-    bookmarks,
-    "|",
-    concat(
-      if(conflict, "💥"),
-      if(divergent, "🚧"),
-      if(hidden, "👻"),
-      if(immutable, "🔒"),
-    ),
-    raw_escape_sequence("\x1b[1;32m") ++ if(empty, "(empty)"),
-    raw_escape_sequence("\x1b[1;32m") ++ coalesce(
-      truncate_end(29, description.first_line(), "…"),
-    ) ++ raw_escape_sequence("\x1b[0m"),
-  )
-'
-'''
 
 [git_status]
 disabled = true
 
-[custom.git_status]
-when = "! jj --ignore-working-copy root"
-command = "starship module git_status"
-description = "Only show git_status if we're not in a jj repo"
-format = '([[](bg:#555555 fg:#333333)\[$all_status$ahead_behind\][](bg:#333333 fg:#555555)]($style))'
-style = "bold bg:#555555 fg:red"
-
 [git_commit]
 disabled = true
-
-[custom.git_commit]
-when = "! jj --ignore-working-copy root"
-command = "starship module git_commit"
-description = "Only show git_commit if we're not in a jj repo"
-format = '[[](bg:#555555 fg:#333333)\($hash\)[](bg:#333333 fg:#555555)]($style)'
-style = "bold bg:#555555 fg:green"
 
 [git_metrics]
 disabled = true
 
-[custom.git_metrics]
-when = "! jj --ignore-working-copy root"
-command = "starship module git_metrics"
-description = "Only show git_metrics if we're not in a jj repo"
-style = ""
-
 [git_branch]
 disabled = true
-
-[custom.git_branch]
-when = "! jj --ignore-working-copy root"
-command = "starship module git_branch"
-description = "Only show git_branch if we're not in a jj repo"
-format = "[[](bg:#555555 fg:#333333)[on](bg:#555555 fg:white) $symbol$branch[](bg:#333333 fg:#555555)]($style)"
-symbol = " "
-style = "bold bg:#555555 fg:purple"
-
-[custom.fig]
-format = "[[](bg:#555555 fg:#333333)  $output[](bg:#333333 fg:#555555)]($style)"
-command = """ echo "${${PWD}#/google/src/cloud/${USER}/}" | cut -d '/' -f 1 """
-when = """ [[ "$PWD" =~ "/google/src/cloud/$USER" ]] """
-style = "bold bg:#444444 fg:blue"
 
 [docker_context]
 disabled = false
@@ -278,7 +216,7 @@ style = "bg:#444444 fg:white"
 disabled = false
 ssh_only = true
 trim_at = "."
-format = "[[](bg:#555555 fg:#333333)($style)$hostname [in](bg:#555555 fg:white)[](bg:#333333 fg:#555555)]($style)"
+format = "[[](bg:#555555 fg:#333333)($style)$hostname(bg:#555555 fg:white)[](bg:#333333 fg:#555555)]($style)"
 style = "bold dimmed bg:#555555 fg:green"
 
 [java]
@@ -441,4 +379,65 @@ disabled = true
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 symbol = "↯ "
 style = "bg:#444444 fg:yellow"
+
+[custom.jj]
+description = "The current jj status"
+detect_folders = [".jj"]
+symbol = "🥋 "
+style = "bold bg:#555555 fg:purple"
+format = "[[](bg:#555555 fg:#333333)(bg:#555555 fg:white) $symbol$output[](bg:#333333 fg:#555555)]($style)"
+command = '''
+jj log --revisions @ --no-graph --ignore-working-copy --color never --limit 1 --template '
+  separate(" ",
+    change_id.shortest(4),
+    bookmarks,
+    concat(
+      if(conflict, "💥"),
+      if(divergent, "🚧"),
+      if(hidden, "👻"),
+      if(immutable, "🔒"),
+    ),
+    if(empty, "(empty)"),
+    coalesce(
+      truncate_end(29, description.first_line(), "…"),
+      "()",
+    )
+  )
+'
+'''
+
+[custom.jjstate]
+when = "jj --ignore-working-copy root"
+symbol = "±" 
+style = "bold bg:#555555 fg:purple"
+format = "[[](bg:#555555 fg:#333333)(bg:#555555 fg:white) $symbol$output[](bg:#333333 fg:#555555)]($style)"
+command = '''
+jj log -r@ -n1 --ignore-working-copy --no-graph -T "" --stat | tail -n1 | sd "(\d+) files? changed, (\d+) insertions?\(\+\), (\d+) deletions?\(-\)" ' ${1}m ${2}+ ${3}-' | sd " 0." ""
+'''
+
+[custom.git_commit]
+when = "! jj --ignore-working-copy root"
+command = "starship module git_commit"
+description = "Only show git_commit if we're not in a jj repo"
+format = '([[](bg:#555555 fg:#333333)$output[](bg:#333333 fg:#555555)]($style))'
+style = "bold bg:#555555 fg:green"
+
+[custom.git_metrics]
+when = "! jj --ignore-working-copy root"
+command = "starship module git_metrics"
+description = "Only show git_metrics if we're not in a jj repo"
+style = ""
+
+[custom.git_branch]
+when = "! jj --ignore-working-copy root"
+command = "starship module git_branch"
+description = "Only show git_branch if we're not in a jj repo"
+format = "[[](bg:#555555 fg:#333333)(bg:#555555 fg:white)$symbol$output[](bg:#333333 fg:#555555)]($style)"
+style = "bold bg:#555555 fg:purple"
+
+[custom.fig]
+format = "[[](bg:#555555 fg:#333333)  $output[](bg:#333333 fg:#555555)]($style)"
+command = """ echo "${${PWD}#/google/src/cloud/${USER}/}" | cut -d '/' -f 1 """
+when = """ [[ "$PWD" =~ "/google/src/cloud/$USER" ]] """
+style = "bold bg:#444444 fg:blue"
 
