@@ -1,4 +1,5 @@
 # Starship default config, extracted from the source
+shell = ["sh"]
 
 # Configure the format of the prompt
 format = """\
