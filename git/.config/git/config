@@ -64,7 +64,7 @@
 [url "git@github.com:"]
 	insteadOf = "https://github.com/"	
 [help]
-	autocorrect = 10
+	autocorrect = off
 [status]
 	submoduleSummary = true
 [submodule]
