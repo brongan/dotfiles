@@ -2,12 +2,11 @@ local map = vim.keymap.set
 
 -- Fast saving and quit without saving
 map("n", "<Leader>w", ":w!<CR>")
-map("n", "bd", ":bd<CR>")
+map("n", "<Leader>x", ":bd<CR>")
 
 -- Diagnostic
-map("n", "gl", vim.diagnostic.open_float, { desc = "[g]o to diagnostic [l]ist" })
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [d]iagnostic message" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [d]iagnostic message" })
+map("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, { desc = "Go to prev [d]iagnostic" })
+map("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, { desc = "Go to next [d]iagnostic" })
 map("n", "<Leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [e]rror message." })
 map("n", "<Leader>d", vim.diagnostic.setloclist, { desc = "Open diagnostic [d]uickfix list." })
 
