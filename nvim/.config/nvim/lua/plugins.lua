@@ -1,41 +1,44 @@
 local username = os.getenv("USER")
 local work_plugins = {}
+
+-- Conditionally load work plugins
 if username == "brennantracy" then
-	work_plugins = require("google")
-	print("Loaded Google config.")
+	local ok, mod = pcall(require, "google")
+	if ok then
+		work_plugins = mod
+		print("Loaded Google config.")
+	end
 else
 	print("Loaded Personal config.")
 end
 
-local map = vim.keymap.set
-
-return {
+-- Define core plugins
+local plugins = {
+	-- Local modules
 	require("configs.bufferline"),
 	require("configs.treesitter"),
 	require("configs.lsp"),
 	require("configs.telescope"),
 	require("configs.nvim-cmp"),
 	require("configs.conform"),
-	"tpope/vim-surround",
+
+	-- LSP & Tools
 	{ "williamboman/mason.nvim", opts = {} },
 	{
 		"mason-org/mason-lspconfig.nvim",
 		opts = {},
-		dependencies = {
-			{ "mason-org/mason.nvim", opts = {} },
-			"neovim/nvim-lspconfig",
-		},
+		dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
 	},
 	{
 		"akinsho/flutter-tools.nvim",
 		lazy = false,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"stevearc/dressing.nvim",
-		},
+		dependencies = { "nvim-lua/plenary.nvim", "stevearc/dressing.nvim" },
 		ft = { "dart" },
 		config = true,
 	},
+	{ "folke/lazydev.nvim",      ft = "lua" },
+
+	-- UI & Themes
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -43,117 +46,101 @@ return {
 		opts = { transparent_background = true, flavor = "mocha" },
 	},
 	{
-		"eandrju/cellular-automaton.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		config = function()
-			map("n", "<Leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
-		end,
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {},
 	},
 	{
-		"folke/trouble.nvim",
+		"catgoose/nvim-colorizer.lua",
+		event = "BufReadPre",
 		opts = {},
-		cmd = "Trouble",
-		keys = {
-			{
-				"<Leader>xx",
-				"<cmd>Trouble diagnostics toggle<cr>",
-				{ desc = "Diagnostics (Trouble)" },
-			},
-			{
-				"<Leader>xX",
-				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-				{ desc = "Buffer Diagnostics (Trouble)" },
-			},
-			{
-				"<Leader>cs",
-				"<cmd>Trouble symbols toggle focus=false<cr>",
-				{ desc = "Symbols (Trouble)" },
-			},
-			{
-				"<Leader>cl",
-				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-				{ desc = "LSP Definitions / references / ... (Trouble)" },
-			},
-			{
-				"<Leader>xL",
-				"<cmd>Trouble loclist toggle<cr>",
-				{ desc = "Location List (Trouble)" },
-			},
-			{
-				"<Leader>xQ",
-				"<cmd>Trouble qflist toggle<cr>",
-				{ desc = "Quickfix List (Trouble)" },
+	},
+	{
+		"rcarriga/nvim-notify",
+		opts = { background_color = "#000000" },
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {},
+	},
+	-- Smooth scrolling (Replacement for vim-smoothie)
+	{ "karb94/neoscroll.nvim", opts = {} },
+
+	-- Git
+	"tpope/vim-fugitive",
+	{
+		"lewis6991/gitsigns.nvim", -- Replacement for vim-signify
+		event = { "BufReadPre", "BufNewFile" },
+		opts = {
+			signs = {
+				add = { text = "│" },
+				change = { text = "│" },
+				delete = { text = "_" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
 			},
 		},
+		keys = {
+			{ "]h",         "<cmd>Gitsigns next_hunk<cr>",                 desc = "Next Hunk" },
+			{ "[h",         "<cmd>Gitsigns prev_hunk<cr>",                 desc = "Prev Hunk" },
+			{ "<leader>hp", "<cmd>Gitsigns preview_hunk<cr>",              desc = "Preview Hunk" },
+			{ "<leader>hb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle Line Blame" },
+		},
 	},
+
+	-- Utility / Editing
+	{
+		"kylechui/nvim-surround",
+		version = "^3.0.0",
+		event = "VeryLazy",
+		config = true,
+	},
+	{ "numToStr/Comment.nvim", opts = {} },
+	{ "stevearc/oil.nvim",     opts = {} },
+	"tpope/vim-eunuch",
+	"tpope/vim-speeddating",
+	{
+		"eandrju/cellular-automaton.nvim",
+		keys = {
+			{ "<Leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", desc = "Make it rain" },
+		},
+	},
+
+	-- Diagnostics
+	{
+		"folke/trouble.nvim",
+		cmd = "Trouble",
+		opts = {},
+		keys = {
+			{ "<Leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Diagnostics (Trouble)" },
+			{ "<Leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           desc = "Buffer Diagnostics (Trouble)" },
+			{ "<Leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>",                desc = "Symbols (Trouble)" },
+			{ "<Leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Defs/Refs (Trouble)" },
+			{ "<Leader>xL", "<cmd>Trouble loclist toggle<cr>",                            desc = "Location List (Trouble)" },
+			{ "<Leader>xQ", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix List (Trouble)" },
+		},
+	},
+
+	-- Markdown
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },
-		build = function()
-			vim.fn["mkdp#util#install"]()
-		end,
+		build = function() vim.fn["mkdp#util#install"]() end,
 	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		opts = {},
-		config = function()
-			require("ibl").setup({})
-		end,
-	}, -- Pretty indentations
-	{
-		"mhinz/vim-signify",
-		config = function()
-			-- A small `updatetime` is preferred to update signs as files are updated
-			-- The default `updatetime` is 4000
-			vim.opt.updatetime = 500
-			vim.api.nvim_set_hl(0, "SignifySignAdd", { ctermfg = "green", fg = "#79b7a5" })
-			vim.api.nvim_set_hl(0, "SignifySignChange", { ctermfg = "yellow", fg = "#ffffcc" })
-			vim.api.nvim_set_hl(0, "SignifySignChangeDelete", { ctermfg = "red", fg = "#ff7b72" })
-			vim.api.nvim_set_hl(0, "SignifySignDelete", { ctermfg = "red", fg = "#ff7b72" })
-			vim.api.nvim_set_hl(0, "SignifySignDeleteDeleteFirstLine", { ctermfg = "red", fg = "#ff7b72" })
-		end,
-		keys = {
-			{ "[h", "<Plug>(signify-prev-hunk)",            desc = "Goto previous [h]unk" },
-			{ "]h", "<Plug>(signify-next-hunk)",            desc = "Goto next [h]unk" },
-			{ "[H", "<cmd>normal 9999[c<cr>",               desc = "Goto first [h]unk" },
-			{ "]H", "<cmd>normal 9999]c<cr>",               desc = "Goto last [h]unk" },
-			{ "ih", "<Plug>(signify-motion-inner-pending)", desc = "[H]unk text object",  mode = "o" },
-			{ "ih", "<Plug>(signify-motion-inner-visual)",  desc = "[H]unk text object",  mode = "x" },
-			{ "ah", "<Plug>(signify-motion-outer-pending)", desc = "[H]unk text object",  mode = "o" },
-			{ "ah", "<Plug>(signify-motion-outer-pending)", desc = "[H]unk text object",  mode = "x" },
-		},
-	},
-	{
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
-		end,
-	},                    -- Highlights colors
-	"psliwka/vim-smoothie", -- Smooth scrolling
-	"tpope/vim-eunuch",   -- :SudoEdit and :Chmod and :Mkdir
-	"tpope/vim-fugitive", -- :Git
-	"tpope/vim-speeddating", -- Allows for incrementing/decrementing timestamps
+
+	-- Clipboard (OSC52)
 	{
 		"ojroques/nvim-osc52",
-		config = function()
-			map("n", "<leader>c", require("osc52").copy_operator, { expr = true, desc = "[c]opy to clipboard." })
-			map("n", "<leader>cc", "<leader>c_", { remap = true, desc = "[c]opy the current line." })
-			map("v", "<leader>c", require("osc52").copy_visual, { desc = "[c]opy the current selection." })
-		end,
-	},
-	{ "folke/lazydev.nvim",      ft = "lua" },
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-			config = function()
-				---@diagnostic disable-next-line: undefined-field
-				require("lualine").setup({})
-			end,
+		keys = {
+			{ "<leader>c",  function() return require("osc52").copy_operator() end, expr = true,  desc = "Copy to clipboard" },
+			{ "<leader>cc", "<leader>c_",                                           remap = true, desc = "Copy line" },
+			{ "<leader>c",  function() return require("osc52").copy_visual() end,   mode = "v",   desc = "Copy selection" },
 		},
 	},
+
+	-- Keybinding helper
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
@@ -163,26 +150,9 @@ return {
 		end,
 		opts = {},
 	},
-	{
-		"rcarriga/nvim-notify",
-		opts = {
-			background_color = "#000000",
-		},
-	},
-	{
-		"kylechui/nvim-surround",
-		version = "^3.0.0",
-		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({})
-		end,
-	},
-	{
-		'numToStr/Comment.nvim',
-		opts = {
-			-- add any options here
-		}
-	},
-	{ "stevearc/oil.nvim", opts = {} },
-	unpack(work_plugins),
 }
+
+-- Merge work plugins into the main list
+vim.list_extend(plugins, work_plugins)
+
+return plugins
