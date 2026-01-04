@@ -32,26 +32,21 @@ vim.g.loaded_ruby_provider = 0
 vim.g.oscyank_term = "default"
 vim.g.symbols_outline = { auto_preview = true, position = "left" }
 vim.opt.autochdir = false
-vim.opt.autoindent = true
-vim.opt.autoread = true
 vim.opt.background = "dark"
 vim.opt.breakindent = true
-vim.opt.cmdheight = 2
+vim.opt.cmdheight = 1
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.conceallevel = 0
 vim.opt.cursorline = true
-vim.opt.encoding = "utf-8"
 vim.opt.expandtab = false
 vim.opt.formatoptions:remove("cro")
 vim.opt.guicursor = ""
-vim.opt.hidden = true
-vim.opt.history = 500
+vim.opt.history = 10000
 vim.opt.hlsearch = false
 vim.opt.ignorecase = true
 vim.opt.inccommand = "split"
 vim.opt.iskeyword:append("-")
 vim.opt.list = true
-vim.opt.mouse = "a"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.ruler = true
@@ -59,14 +54,12 @@ vim.opt.scrolloff = 10
 vim.opt.shiftwidth = 4
 vim.opt.shortmess:append("c")
 vim.opt.showmode = false
-vim.opt.showtabline = 4
+vim.opt.showtabline = 1
 vim.opt.signcolumn = "yes"
 vim.opt.smartcase = true
 vim.opt.smartindent = true
-vim.opt.smarttab = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.syntax = "enable"
 vim.opt.tabstop = 4
 vim.opt.termguicolors = true
 vim.opt.timeoutlen = 300
