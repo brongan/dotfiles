@@ -6,28 +6,48 @@ return {
 		{
 			"<leader>s",
 			function()
-				require("conform").format({ async = true })
+				require("conform").format({ async = true, lsp_fallback = true })
 			end,
-			mode = "",
+			mode = { "n", "v" },
 			desc = "Format buffer",
 		},
 	},
-	---@module "conform"
-	---@type conform.setupOpts
 	opts = {
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "isort", "black" },
+
+			-- Web Stack: Use prettierd if available, fallback to prettier
 			javascript = { "prettierd", "prettier", stop_after_first = true },
-			nix = { "alejandra", "nixfmt" },
+			typescript = { "prettierd", "prettier", stop_after_first = true },
+			javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+			typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+			css = { "prettierd", "prettier", stop_after_first = true },
+			html = { "prettierd", "prettier", stop_after_first = true },
+			json = { "prettierd", "prettier", stop_after_first = true },
+			yaml = { "prettierd", "prettier", stop_after_first = true },
+			markdown = { "prettierd", "prettier", stop_after_first = true },
+
+			nix = { "alejandra", "nixfmt", stop_after_first = true },
+
+			rust = { "rustfmt", lsp_format = "fallback" },
+
+			-- Python
+			python = { "isort", "black" },
+
+			-- Shell
+			sh = { "shfmt" },
 		},
+
+		-- Default options
 		default_format_opts = {
 			lsp_format = "fallback",
 		},
-		format_on_save = { timeout_ms = 500 },
+
+		format_on_save = { timeout_ms = 2500, lsp_fallback = true },
+
 		formatters = {
 			shfmt = {
-				prepend_args = { "-i", "2" },
+				prepend_args = { "-i", "4" }, -- Indent with 4 spaces (matches your basics.lua)
 			},
 		},
 	},
