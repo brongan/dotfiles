@@ -8,6 +8,7 @@ diff-formatter = ":git"
 editor = "nvim"
 pager = "delta"
 paginate = "auto"
+diff-editor = ":builtin"
 
 [aliases]
 init = ["git", "init", "--colocate"]
