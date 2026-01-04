@@ -1,3 +1,5 @@
+if vim.loader then vim.loader.enable() end
+
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
@@ -19,6 +21,14 @@ vim.opt.rtp:prepend(lazypath)
 
 require("basics")
 require("mappings")
-require("lazy").setup(require("plugins"), {})
+require("lazy").setup(require("plugins"), {
+	ui = {
+		border = "rounded",
+	},
+	checker = { enabled = true, notify = false },
+	change_detection = { notify = false },
+})
 
-vim.cmd.colorscheme("catppuccin")
+if not pcall(vim.cmd.colorscheme, "catppuccin") then
+	vim.cmd.colorscheme("default")
+end
