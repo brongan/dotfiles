@@ -1,23 +1,66 @@
 local map = vim.keymap.set
-return { -- Fuzzy Finder (files, lsp, etc)
+return {
 	"nvim-telescope/telescope.nvim",
-	event = "VimEnter",
 	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope-fzf-native.nvim",
+		{
+			"nvim-telescope/telescope-fzf-native.nvim",
+			build = "make",
+			cond = function() return vim.fn.executable("make") == 1 end,
+		},
 		"nvim-telescope/telescope-ui-select.nvim",
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+	},
+	keys = {
+		{ "<leader>fh", "<cmd>Telescope help_tags<cr>",       desc = "[F]uzzy [H]elp" },
+		{ "<leader>fk", "<cmd>Telescope keymaps<cr>",         desc = "[F]uzzy [K]eymaps" },
+		{ "<leader>ff", "<cmd>Telescope find_files<cr>",      desc = "[F]uzzy [F]iles" },
+		{ "<leader>fs", "<cmd>Telescope git_status<cr>",      desc = "[F]uzzy Git [S]tatus" },
+		{ "<leader>fg", "<cmd>Telescope git_files<cr>",       desc = "[F]uzzy [G]it Files" },
+		{ "<leader>fd", "<cmd>Telescope diagnostics<cr>",     desc = "[F]uzzy [D]iagnostics" },
+		{ "<leader>fr", "<cmd>Telescope resume<cr>",          desc = "[F]uzzy [R]esume" },
+		{ "<leader>fq", "<cmd>Telescope quickfix<cr>",        desc = "[F]uzzy [Q]uickfix" },
+		{ "<leader>fb", "<cmd>Telescope buffers<cr>",         desc = "[F]uzzy [B]uffers" },
+		{ "<leader>f.", "<cmd>Telescope oldfiles<cr>",        desc = '[F]uzzy Recent Files ("." for repeat)' },
+		{ "<leader>fc", "<cmd>Telescope commands<cr>",        desc = "[F]uzzy [C]ommands" },
+		{ "<leader>f/", "<cmd>Telescope search_history<cr>",  desc = "[F]uzzy Search History" },
+		{ "<leader>f:", "<cmd>Telescope command_history<cr>", desc = "[F]uzzy Command History" },
+
+		-- Search Content
+		{ "<leader>fB", "<cmd>Telescope live_grep<cr>",       desc = "[F]uzzy Grep [P]roject (Ripgrep)" },
+		{
+			"<leader>fl",
+			function()
+				require("telescope.builtin").live_grep({
+					grep_open_files = true,
+					prompt_title = "Live Grep in Open Files",
+				})
+			end,
+			desc = "[F]uzzy [L]ines (Open Buffers)"
+		},
+		{
+			"<leader>/",
+			function()
+				require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+					winblend = 10,
+					previewer = false,
+				}))
+			end,
+			desc = "[/] Fuzzily search in current buffer"
+		}
 	},
 	config = function()
 		require("telescope").setup({
 			defaults = {
-				layout_config = {
-					horizontal = { width = 0.90 },
-				},
+				layout_strategy = "horizontal",
+				layout_config = { horizontal = { width = 0.90 } },
 				mappings = {
 					i = {
 						["<C-h>"] = "which_key",
+						-- Quick actions inside telescope
+						["<C-u>"] = false,
+						["<C-d>"] = false,
 					},
 				},
 			},
@@ -28,33 +71,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			},
 		})
 
-		-- Enable Telescope extensions if they are installed
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
-
-		-- See `:help telescope.builtin`
-		local builtin = require("telescope.builtin")
-		map("n", "<leader>fh", builtin.help_tags, { desc = "[f]uzzy [h]elp" })
-		map("n", "<leader>fk", builtin.keymaps, { desc = "[f]uzzy [k]eymaps" })
-		map("n", "<leader>ff", builtin.find_files, { desc = "[f]uzzy [f]iles" })
-		map("n", "<leader>fs", builtin.git_status, { desc = "[f]uzzy git [s]tatus" })
-		map("n", "<leader>fg", builtin.git_files, { desc = "[f]uzzy [g]it ls-files" })
-		map("n", "<leader>fd", builtin.diagnostics, { desc = "[f]uzzy [dj]iagnostics" })
-		map("n", "<leader>fr", builtin.resume, { desc = "[f]uzzy [r]esume" })
-		map("n", "<leader>fq", builtin.quickfix, { desc = "[f]uzzy [qj]uickfix" })
-		map("n", "<leader>f.", builtin.oldfiles, { desc = '[f]uzzy Recent Files ("." for repeat)' })
-		map("n", "<leader>fb", builtin.buffers, { desc = "[f] existing [b]uffers" })
-		map("n", "<leader>fB", builtin.live_grep, { desc = "[f]uzzy lines in [B]uffer" })
-		map("n", "<leader>fc", builtin.commands, { desc = "[f]uzzy [c]ommands" })
-		map("n", "<leader>f/", builtin.search_history, { desc = "[f]uzzy search history" })
-		map("n", "<leader>f:", builtin.command_history, { desc = "[f]uzzy command history" })
-
-		local grep_files = function()
-			builtin.live_grep({
-				grep_open_files = true,
-				prompt_title = "Live Grep in Open Files",
-			})
-		end
-		map("n", "<leader>fl", grep_files, { desc = "[f]uzzy [l]ines" })
 	end,
 }
