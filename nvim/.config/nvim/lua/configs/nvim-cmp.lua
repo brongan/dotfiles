@@ -2,34 +2,44 @@ vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
 
 return {
 	{
-		"L3MON4D3/LuaSnip",
-		dependencies = { "rafamadriz/friendly-snippets" },
-		config = function()
-			require("luasnip.loaders.from_vscode").lazy_load()
-		end,
-	},
-	{
-		"saecki/crates.nvim",
-		event = { "BufRead Cargo.toml" },
-		config = function()
-			require("crates").setup({})
-		end,
-	},
-	{
-		"hrsh7th/nvim-cmp", -- Autocompletion
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
 		dependencies = {
+			-- Core
 			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
-			"hrsh7th/cmp-path",
-			"onsails/lspkind.nvim", -- LSP Symbols
-			"petertriho/cmp-git",
+
+			-- Snippets
+			{
+				"L3MON4D3/LuaSnip",
+				-- follow latest release to avoid breaking changes
+				version = "v2.*",
+				build = "make install_jsregexp",
+				dependencies = { "rafamadriz/friendly-snippets" },
+				config = function()
+					require("luasnip.loaders.from_vscode").lazy_load()
+				end,
+			},
 			"saadparwaiz1/cmp_luasnip",
+
+			-- UI & Tools
+			"onsails/lspkind.nvim",
+			"petertriho/cmp-git",
+
+			-- Rust specific (Lazy loaded on Cargo.toml)
+			{
+				"saecki/crates.nvim",
+				event = { "BufRead Cargo.toml" },
+				opts = {},
+			},
 		},
 		config = function()
 			local cmp = require("cmp")
 			local lspkind = require("lspkind")
 			local luasnip = require("luasnip")
+			require("cmp_git").setup()
 			local kind_icons = {
 				Class = " ",
 				Color = " ",
@@ -87,13 +97,13 @@ return {
 					documentation = cmp.config.window.bordered(),
 				},
 				sources = cmp.config.sources({
-					{ name = "googlers", max_item_count = 5 },
-					{ name = "buffer", keyword_length = 5 },
+					{ name = "googlers",     max_item_count = 5 },
+					{ name = "buffer",       keyword_length = 5 },
 					{ name = "buganizer" },
 					{ name = "crates" },
 					{ name = "emoji" },
 					{ name = "git" },
-					{ name = "luasnip", option = { show_autosnippets = true } },
+					{ name = "luasnip",      option = { show_autosnippets = true } },
 					{ name = "nvim_ciderlsp" },
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lua" },
