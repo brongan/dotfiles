@@ -10,16 +10,23 @@ return {
 					separator_style = "thin",
 					tab_size = 30,
 					enforce_regular_tabs = true,
-					how_buffer_icons = true,
 					diagnostics = "nvim_lsp",
 				},
 			})
-			map("n", "[b", ":BufferLineCyclePrev<CR>", { desc = "Goto previous [b]uffer" })
-			map("n", "]b", ":BufferLineCycleNext<CR>", { desc = "Goto next [b]uffer" })
-			map("n", "b[", ":BufferLineCyclePrev<CR>", { desc = "Goto previous [b]uffer" })
-			map("n", "b]", ":BufferLineCycleNext<CR>", { desc = "Goto next [b]uffer" })
-			map("n", "eb", ":BufferLineSortByExtension<CR>", { desc = "[B]ufferline sort by [E]xtension" })
-			map("n", "rb", ":BufferLineSortByDirectory<CR>", { desc = "[B]ufferline sort by [D]irectory" })
+			-- Navigation
+			map("n", "[b", "<cmd>BufferLineCyclePrev<CR>", { desc = "Prev Buffer" })
+			map("n", "]b", "<cmd>BufferLineCycleNext<CR>", { desc = "Next Buffer" })
+
+			-- Re-ordering (Move buffer position)
+			map("n", "<Leader>bl", "<cmd>BufferLineMovePrev<CR>", { desc = "Move buffer left" })
+			map("n", "<Leader>br", "<cmd>BufferLineMoveNext<CR>", { desc = "Move buffer right" })
+
+			-- Pinning
+			map("n", "<Leader>bp", "<cmd>BufferLineTogglePin<CR>", { desc = "Toggle Pin Buffer" })
+
+			-- Sorting
+			map("n", "<Leader>se", "<cmd>BufferLineSortByExtension<CR>", { desc = "Sort by Extension" })
+			map("n", "<Leader>sd", "<cmd>BufferLineSortByDirectory<CR>", { desc = "Sort by Dir" })
 		end,
 	},
 }
