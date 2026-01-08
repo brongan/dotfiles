@@ -1,185 +1,198 @@
-#  _____    _
-# |__  /___| |__  _ __ ___
-#   / // __| '_ \| '__/ __|
-#  / /_\__ \ | | | | | (__
-# /____|___/_| |_|_|  \___|
-
-# FZF stuff
-FD_OPTIONS="--follow --exclude .git --exclude node_modules"
+# ------------------------------------------------------------------------------
+# 1. Interactive Options & Bindings
+# ------------------------------------------------------------------------------
+# FZF Config (Static variables only)
 export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi --inline-info"
+export FD_OPTIONS="--follow --exclude .git --exclude node_modules"
 export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPTIONS"
 export FZF_CTRL_T_COMMAND="fd --type d $FD_OPTIONS"
 export FZF_CTRL_T_OPTS="--preview '([[ -d {} ]] && tree -aC {}) || ([[ -f {} ]] && bat --color=always --style=header,grid --line-range :300 {})'"
 export FZF_ALT_C_COMMAND="fd --type f --hidden $FD_OPTIONS"
 
-# time
+# ZSH Timings
 export TIMEFMT=$'\n================\nCPU\t%P\nuser\t%*U\nsystem\t%*S\ntotal\t%*E'
 
-# NNN
-if (( $+commands[kitty] )); then
-	export NNN_PLUG='o:fzopen;v:preview-kitty'
+# Editor Config
+export EDITOR="nvim"
+export SUDO_EDITOR="nvim"
+export SYSTEMD_EDITOR="nvim"
+export VISUAL="nvim"
+
+# Pager Config
+export LESS="-R"
+export LESSOPEN="| bat %s"
+export GIT_PAGER="delta"
+export MANPAGER="nvim +Man!"
+export MANROFFOPT="-c"
+
+# Keybindings (VI Mode)
+bindkey -v
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+
+# ------------------------------------------------------------------------------
+# 2. Integration & Compatibility
+# ------------------------------------------------------------------------------
+# Fix Java tiling (Moved from wmctrl logic to environment check)
+if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+    export _JAVA_AWT_WM_NONREPARENTING=1
 fi
-export NNN_FIFO=/tmp/nnn.fifo
 
-# Editors and pagers
-if (( $+commands[nvim] )); then
-	export EDITOR="nvim"
-else
-	export EDITOR="vim"
+# Rust sccache
+if (( $+commands[sccache] )); then
+    export RUSTC_WRAPPER=sccache
 fi
 
-export SUDO_EDITOR=$EDITOR
-export SYSTEMD_EDITOR=$EDITOR
-
-wm=$(wmctrl -m 2&> /dev/null | head -n 1 | cut -d' ' -f 2)
-if [[ $wm == "bspwm" || $wm == "i3" || $wm == "wlroots" ]]; then
-	export _JAVA_AWT_WM_NONREPARENTING=1
+# Flutter / Chrome
+if (( $+commands[flutter] )); then
+    export FLUTTER_ROOT="/usr/lib/flutter"
+    # Prioritize Chrome Stable if it exists, else Chromium
+    if (( $+commands[google-chrome-stable] )); then
+        export CHROME_EXECUTABLE="google-chrome-stable"
+    elif (( $+commands[chromium] )); then
+        export CHROME_EXECUTABLE="chromium"
+    fi
 fi
 
-eval "$(starship init zsh)"
-
-# XDG Aliases
+# ------------------------------------------------------------------------------
+# 3. Aliases
+# ------------------------------------------------------------------------------
+# XDG Cleanups
 alias bazel="/usr/bin/env -u _JAVA_OPTIONS CC=clang bear -- /usr/bin/env bazel --bazelrc=${XDG_CONFIG_HOME}/bazel/bazelrc --host_jvm_args=$_JAVA_OPTIONS"
-alias blaze=bazel # Why
-alias gpg="/usr/bin/gpg --homedir ${XDG_DATA_HOME}/gnupg"
-alias irssi="/usr/bin/irssi --config=${XDG_CONFIG_HOME}/irssi/config --home=${XDG_DATA_HOME}/irssi"
-alias nvidia-settings="/usr/bin/nvidia-settings --config=${XDG_CONFIG_HOME}/nvidia/settings"
+alias blaze=bazel
+alias gpg="gpg --homedir ${XDG_DATA_HOME}/gnupg"
+alias irssi="irssi --config=${XDG_CONFIG_HOME}/irssi/config --home=${XDG_DATA_HOME}/irssi"
+alias nvidia-settings="nvidia-settings --config=${XDG_CONFIG_HOME}/nvidia/settings"
 alias svn="svn --config-dir ${XDG_CONFIG_HOME}/subversion"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 alias yarn="yarn --use-yarnrc ${XDG_CONFIG_HOME}/yarn/config"
 
-alias ls="exa --icons"
-alias la="exa --icons -a"
-alias ll="exa --icons -aaglh"
+# General
 alias ip="ip -c"
 alias rm="rm -i"
-alias grep="rg"
+alias grep="grep --color=auto"
 alias diff="delta"
-if (( $+commands[bat] )); then
-	alias cat="bat"
-elif (( $+commands[batcat] )); then
-	alias cat="batcat"
-	alias bat="batcat"
+alias pass="gopass"
+alias watch=viddy
+alias sudoedit="sudo -e"
+
+# Modern Replacements
+(( $+commands[btop] )) && alias top="btop"
+if (( $+commands[eza] )); then
+    alias ls="eza --icons"
+    alias la="eza --icons -a"
+    alias ll="eza --icons -aaglh"
 fi
+
+if (( $+commands[bat] )); then
+    alias cat="bat"
+elif (( $+commands[batcat] )); then
+    alias cat="batcat"
+    alias bat="batcat"
+fi
+
+# Global Help aliases (Pipe to bat)
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 alias vim="nvim"
 alias pass="passage"
-if (($+commands[btop])); then
-	alias top="btop"
+ if (($+commands[btop])); then
+ 	alias top="btop"
 fi
+
+# Kitty specific
+if (( $+commands[kitty] )); then
+    alias s="kitten ssh"
+    alias icat="kitty +kitten icat"
+fi
+
+# Btrfs
 alias bdf="sudo btrfs filesystem usage"
 alias bdu="sudo btrfs filesystem du"
+
+# ------------------------------------------------------------------------------
+# 4. Functions
+# ------------------------------------------------------------------------------
 function xdg-query() {
-	xdg-mime query default $(xdg-mime query filetype ${1})
+    xdg-mime query default $(xdg-mime query filetype ${1})
 }
-alias watch=viddy
-alias cd=z
 
-export LESS="-R" # show colors
-export LESSOPEN="| bat %s"
-export GIT_PAGER="delta"
-# export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
-export MANPAGER="nvim +Man!"
-export MANROFFOPT="-c"
-
-# Rust why
-if (( $+commands[sccache] )); then
-	export RUSTC_WRAPPER=sccache
-fi
-
-if (( ! $+commands[sudoedit] )); then
-	alias sudoedit="sudo -e"
-fi
-
-if (( $+commands[kitty] )); then
-	alias s="kitten ssh"
-	alias icat="kitty +kitten icat"
-fi
-
-# Completion
-if [[ $OSTYPE =~ "linux" ]]; then
-	if [[ -d /usr/share/fzf ]]; then
-		source /usr/share/fzf/key-bindings.zsh
-		source /usr/share/fzf/completion.zsh
-	else
-		source /usr/share/doc/fzf/examples/key-bindings.zsh
-		source /usr/share/doc/fzf/examples/completion.zsh
-	fi
-	if [[ -f /usr/share/vim/vimfiles/gruvbox_256palette.sh ]]; then
-		source /usr/share/vim/vimfiles/gruvbox_256palette.sh
-	elif [[ -f ${XDG_DATA_HOME}/nvim/plugged/gruvbox/gruvbox_256palette.sh ]]; then
-		source ${XDG_DATA_HOME}/nvim/plugged/gruvbox/gruvbox_256palette.sh
-	fi
-	if [[ -d /usr/share/zsh/plugins ]]; then
-		source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-	else
-		source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-		source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-	fi
-
-	if [[ -f /etc/profile.d/google-cloud-sdk.sh ]]; then
-		source /etc/profile.d/google-cloud-sdk.sh ]]
-	fi
-
-	bindkey -v
-	bindkey '^A' beginning-of-line
-	bindkey '^E' end-of-line
-fi
-
-autoload -Uz compinit && compinit -d $ZCOMPDUMP
-
-if (( $+commands[zellij] )); then
-	compinit . <( zellij setup --generate-completion zsh | sed -Ee 's/^(_(zellij) ).*/compdef \1\2/' )
-fi
-
+# Custom Atuin FZF behavior
 atuin-fzf () {
-	local selected num
-	setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-	selected=( $(atuin history list --human | fzf --tac) )
-	local ret=$?
-	if [ -n "$selected" ]; then
-		RBUFFER="${selected[3,-2]}${RBUFFER}"
-	fi
-	zle end-of-line
-	zle reset-prompt
-	return $ret
+    local selected
+    setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+    selected=( $(atuin history list --human | fzf --tac) )
+    local ret=$?
+    if [ -n "$selected" ]; then
+        RBUFFER="${selected[3,-2]}${RBUFFER}"
+    fi
+    zle end-of-line
+    zle reset-prompt
+    return $ret
 }
 
-if (( $+commands[atuin] )); then
-	export ATUIN_NOBIND=1
-	eval "$(atuin init zsh)"
-	zle -N atuin-fzf
-	bindkey '^R' atuin-fzf
+# ------------------------------------------------------------------------------
+# 5. Completions
+# ------------------------------------------------------------------------------
+# Load distro-specific plugins
+if [[ -d /usr/share/zsh/plugins ]]; then
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [[ -d /usr/share/zsh-syntax-highlighting ]]; then
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-if [[ $(whoami) == "brennantracy" ]]; then
+# Load FZF bindings
+if [[ -d /usr/share/fzf ]]; then
+    source /usr/share/fzf/key-bindings.zsh
+    source /usr/share/fzf/completion.zsh
+fi
+
+# Fast Compinit (Checks cache once a day)
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+  compinit -d "${ZDOTDIR}/.zcompdump"
+else
+  compinit -i -d "${ZDOTDIR}/.zcompdump"
+  # Touch the file to update modification time
+  touch "${ZDOTDIR}/.zcompdump"
+fi
+
+# Load Tool Completions from Files (Do not generate on fly)
+# Run `zellij setup --generate-completion zsh > $ZDOTDIR/completions/_zellij` manually once
+# Run `jj util completion zsh > $ZDOTDIR/completions/_jj` manually once
+fpath=(${ZDOTDIR}/completions $fpath)
+
+# Nix
+if (( $+commands[nix] )); then
+    fpath=(/usr/share/zsh/site-functions/ $fpath)
+fi
+
+# ------------------------------------------------------------------------------
+# 6. Tool Initialization
+# ------------------------------------------------------------------------------
+
+# Atuin
+if (( $+commands[atuin] )); then
+    export ATUIN_NOBIND=1
+    eval "$(atuin init zsh)"
+    zle -N atuin-fzf
+    bindkey '^R' atuin-fzf
+fi
+
+# Google
+if [[ $(whoami) == "brennantracy" && -f "${ZDOTDIR}/google.zsh" ]]; then
   source "${ZDOTDIR}/google.zsh"
 fi
 
-if (( $+commands[direnv] )); then
-	eval "$(direnv hook zsh)"
-fi
+# Direnv
+(( $+commands[direnv] )) && eval "$(direnv hook zsh)"
 
-if (( $+commands[nix] )); then
-	fpath=(/usr/share/zsh/site-functions/ $fpath)
-fi
-
-if (( $+commands[flutter] )); then
-	export FLUTTER_ROOT="/usr/lib/flutter"
-	if (( $+commands[chromium] )); then
-		export CHROME_EXECUTABLE=$(which chromium)
-	elif  (( $+commands[google-chrome-stable] )); then
-		export CHROME_EXECUTABLE="google-chrome-stable"
-	fi
-fi
-
-if (( $+commands[jj] )); then
-	source <(jj util completion zsh)
-fi
-
+# Zoxide (Replaces cd)
 if (( $+commands[zoxide] )); then
+	alias cd=z
 	eval "$(zoxide init zsh)"
 fi
 
+(( $+commands[starship] )) && eval "$(starship init zsh)"
