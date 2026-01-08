@@ -46,8 +46,11 @@ return {
 		format_on_save = { timeout_ms = 2500, lsp_fallback = true },
 
 		formatters = {
+			prettier = {
+				prepend_args = { "--use-tabs", "--tab-width", "4" },
+			},
 			shfmt = {
-				prepend_args = { "-i", "4" }, -- Indent with 4 spaces (matches your basics.lua)
+				prepend_args = { "-i", "4" },
 			},
 		},
 	},
