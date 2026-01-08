@@ -1,32 +1,67 @@
 [global]
-	frame_color = "#89B4FA"
-    browser = /usr/bin/xdg-open
-	monitor = 1
-    dmenu = /usr/bin/wofi -p dunst:
-    font = Fira Sans 10
-    icon_path = /usr/share/icons/Papirus-Dark/16x16/actions:/usr/share/icons/Papirus/16x16/apps:/usr/share/icons/Papirus/16x16/apps:/usr/share/icons/Papirus-Dark/16x16/devices:/usr/share/icons/Papirus/16x16/emblems:/usr/share/icons/Papirus/16x16/emotes:/usr/share/icons/Papirus/16x16/mimetypes:/usr/share/icons/Papirus/16x16/panel:/usr/share/icons/Papirus-Dark/16x16/places:/usr/share/icons/Papirus/16x16/status:/usr/share/icons/Papirus/symbolic/status
+	follow = mouse
+	monitor = 0
+
+	stack_duplicates = false
+	hide_duplicate_count = true
+
+	width = 300
+	height = 300
+	origin = top-right
+	offset = 20x20
+	notification_limit = 5
+	corner_radius = 10
+
+	# Border & Padding
+	frame_width = 2
+	frame_color = "#89B4FA"  # Catppuccin Blue
+	gap_size = 5
+	padding = 15
+	horizontal_padding = 15
+	text_icon_padding = 15
+
+	# Font & Icons
+	font = Fira Sans Bold 10
+
+	enable_recursive_icon_lookup = true
+	icon_theme = Papirus-Dark
+	icon_position = left
+	min_icon_size = 32
+	max_icon_size = 64
+
+	# Actions
+	browser = /usr/bin/xdg-open
+	dmenu = /usr/bin/wofi -p dunst:
+	mouse_left_click = close_current
+	mouse_middle_click = do_action, close_current
+	mouse_right_click = close_all
 
 [urgency_low]
-background = "#1E1E2E"
-foreground = "#CDD6F4"
+	background = "#1E1E2E"
+	foreground = "#CDD6F4"
+	frame_color = "#89B4FA"
+	timeout = 10
 
 [urgency_normal]
-background = "#1E1E2E"
-foreground = "#CDD6F4"
+	background = "#1E1E2E"
+	foreground = "#CDD6F4"
+	frame_color = "#89B4FA"
+	timeout = 10
 
 [urgency_critical]
-background = "#1E1E2E"
-foreground = "#CDD6F4"
-frame_color = "#FAB387"
+	background = "#1E1E2E"
+	foreground = "#CDD6F4"
+	frame_color = "#FAB387" # Catppuccin Peach
+	timeout = 0  # Criticals should stay until clicked
+
+# --- App Specific Rules ---
 
 [Discord]
-    appname = Discord
-    format = "<b>%s</b>\n%b"
-    new_icon = discord
+	appname = Discord
+	format = "<b>%s</b>\n%b"
 
 [Spotify]
-    appname = Spotify
-    format = "<b>Now Playing:</b>\n%s\n%b"
-    new_icon = Spotify
-    timeout = 10
+	appname = Spotify
+	format = "<b>Now Playing:</b>\n%s\n%b"
+	timeout = 5
 
