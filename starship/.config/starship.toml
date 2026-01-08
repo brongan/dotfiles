@@ -1,64 +1,41 @@
-# Starship default config, extracted from the source
-shell = ["sh"]
+palette = "google_dark"
 
-# Configure the format of the prompt
-format = """\
-		$username\
-		$hostname\
-        $shlvl\
-        $singularity\
-        $kubernetes\
-        $directory\
-		$hg_branch\
-        $docker_context\
-		$package\
-        (↓ Toolchain version modules ↓)\
-        $cmake\
-        $dart\
-        $dotnet\
-        $elixir\
-        $elm\
-        $erlang\
-        $golang\
-        $helm\
-        $java\
-        $julia\
-        $nim\
-        $nodejs\
-        $ocaml\
-        $perl\
-        $php\
-        $purescript\
-        $ruby\
-        $rust\
-        $swift\
-        $terraform\
-        $zig\
-        (↑ Toolchain version modules ↑)\
-        $nix_shell\
-        $conda\
-        $memory_usage\
-        $aws\
-        $gcloud\
-        $env_var\
-        $crystal\
-        $cmd_duration\
-        $custom\
-        (↑ above input line ↑)\
-        $line_break\
-        (↓ on input line ↓)\
-        $jobs\
-        $battery\
-        $time\
-        $status\
-        $character\
-    """
+shell = ["sh"]
 
 # Timeout for starship to scan files (in milliseconds)
 scan_timeout = 30
 
-# Add a new line before the start of the prompt
-add_newline = true
+[palettes.google_dark]
+dark_grey = "#333333"
+mid_grey  = "#444444"
+light_grey = "#555555"
+white     = "#ffffff"
+yellow    = "#ffff00"
+red       = "#ff0000"
+blue      = "#0000ff"
+purple    = "#800080"
+
+format = """\
+$username\
+$hostname\
+$shlvl\
+$singularity\
+$directory\
+$docker_context\
+$nix_shell\
+$conda\
+$aws\
+$gcloud\
+$env_var\
+$cmd_duration\
+$custom\
+$line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$character\
+"""
 
 [aws]
 disabled = false
@@ -119,16 +96,13 @@ symbol = " "
 style = "bg:#444444 fg:blue"
 
 [directory]
-disabled = true
+disabled = false 
 truncation_length = 3
 truncate_to_repo = true
-fish_style_pwd_dir_length = 0
-use_logical_path = true
-format = "[[](bg:#555555 fg:#333333)$path [](bg:#333333 fg:#555555)]($style)([[](bg:#555555 fg:#333333)$read_only[](bg:#333333 fg:#555555)]($read_only_style))"
-style = "italic bg:#555555 fg:cyan"
+format = "[[](bg:light_grey fg:dark_grey)$path [](bg:dark_grey fg:light_grey)]($style)([[](bg:light_grey fg:dark_grey)$read_only[](bg:dark_grey fg:light_grey)]($read_only_style))"
+style = "italic bg:light_grey fg:cyan"
 read_only = ""
-read_only_style = "bg:#555555 fg:red"
-truncation_symbol = ""
+read_only_style = "bg:light_grey fg:red"
 
 [git_state]
 disabled = false
@@ -185,8 +159,6 @@ style = "bg:#444444 fg:cyan"
 disabled = false
 symbol = ""
 style = "bold bg:#555555 fg:#000000"
-# variable = ""
-# default = ""
 format = "([[](bg:#555555 fg:#333333)[with](bg:#555555 fg:white) $symbol$env_value[](bg:#333333 fg:#555555)]($style))"
 
 [erlang]
@@ -222,7 +194,6 @@ style = "bold dimmed bg:#555555 fg:green"
 
 [java]
 disabled = true
-## look for a dimmed variant
 format = "[[](bg:#444444 fg:#333333)[via](bg:#444444 fg:white) $symbol$version[](bg:#333333 fg:#444444)]($style)"
 style = "dimmed bg:#444444 fg:red"
 symbol = " "
@@ -256,13 +227,11 @@ format = "[[](bg:#555555 fg:#333333)[via](bg:#555555 fg:white) $symbol$ram( |
 style = "bold dimmed bg:#555555 fg:white"
 symbol = " "
 
-# Mercurial
 [hg_branch]
 disabled = true
 symbol = " "
 style = "bg:#555555 fg:purple"
 format = "[[](bg:#555555 fg:#333333)[on](bg:#555555 fg:white) $symbol$branch[](bg:#333333 fg:#555555)]($style)"
-# truncation_length = 8 # default = 2^63 - 1
 truncation_symbol = "…"
 
 [nim]
@@ -385,10 +354,10 @@ style = "bg:#444444 fg:yellow"
 description = "The current jj status"
 detect_folders = [".jj"]
 symbol = "🥋 "
-style = "bold bg:#555555 fg:purple"
-format = "[[](bg:#555555 fg:#333333)(bg:#555555 fg:white) $symbol$output[](bg:#333333 fg:#555555)]($style)"
+style = "bold bg:light_grey fg:purple"
+format = "[[](bg:light_grey fg:dark_grey)(bg:light_grey fg:white) $symbol$output[](bg:dark_grey fg:light_grey)]($style)"
 command = '''
-jj log --revisions @ --no-graph --ignore-working-copy --color never --limit 1 --template '
+jj log --revisions @ --no-graph --ignore-working-copy --color never --limit 1 --no-pager --template '
   separate(" ",
     change_id.shortest(4),
     bookmarks,
@@ -409,18 +378,17 @@ jj log --revisions @ --no-graph --ignore-working-copy --color never --limit 1 --
 [custom.jjstate]
 when = "jj --ignore-working-copy root"
 symbol = "±" 
-style = "bold bg:#555555 fg:purple"
-format = "[[](bg:#555555 fg:#333333)(bg:#555555 fg:white)$symbol$output[](bg:#333333 fg:#555555)]($style)"
+style = "bold bg:light_grey fg:purple"
+format = "[[](bg:light_grey fg:dark_grey)(bg:light_grey fg:white)$symbol$output[](bg:dark_grey fg:light_grey)]($style)"
 command = '''
-jj log -r@ -n1 --ignore-working-copy --no-graph -T "" --stat | tail -n1 | sd "(\d+) files? changed, (\d+) insertions?\(\+\), (\d+) deletions?\(-\)" ' ${1}m ${2}+ ${3}-' | sd " 0." ""
+jj log -r@ -n1 --ignore-working-copy --no-graph --no-pager -T "" --stat | tail -n1 | sd "(\d+) files? changed, (\d+) insertions?\(\+\), (\d+) deletions?\(-\)" ' ${1}m ${2}+ ${3}-' | sd " 0." ""
 '''
 
 [custom.git_commit]
-when = "! jj --ignore-working-copy root"
-command = "starship module git_commit"
-description = "Only show git_commit if we're not in a jj repo"
-format = '([[](bg:#555555 fg:#333333)$output[](bg:#333333 fg:#555555)]($style))'
-style = "bold bg:#555555 fg:green"
+when = "test ! -d .jj && git rev-parse --verify HEAD >/dev/null 2>&1"
+command = "git rev-parse --short HEAD"
+format = '([[](bg:light_grey fg:dark_grey)$output[](bg:dark_grey fg:light_grey)]($style))'
+style = "bold bg:light_grey fg:green"
 
 [custom.git_metrics]
 when = "! jj --ignore-working-copy root"
@@ -429,15 +397,17 @@ description = "Only show git_metrics if we're not in a jj repo"
 style = ""
 
 [custom.git_branch]
-when = "! jj --ignore-working-copy root"
-command = "starship module git_branch"
-description = "Only show git_branch if we're not in a jj repo"
-format = "([[](bg:#555555 fg:#333333)(bg:#555555 fg:white)$symbol$output[](bg:#333333 fg:#555555)]($style))"
-style = "bold bg:#555555 fg:purple"
+when = """ root=$(git rev-parse --show-toplevel 2>/dev/null) && test ! -d "$root/.jj" """
+description = "Show git branch only if not in a jj repo"
+style = "bold bg:light_grey fg:purple"
+format = "[[](bg:light_grey fg:dark_grey)(bg:light_grey fg:white)$symbol$output[](bg:dark_grey fg:light_grey)]($style)"
+command = "git branch --show-current 2>/dev/null"
+symbol = " "
 
 [custom.fig]
-format = "[[](bg:#555555 fg:#333333)  $output[](bg:#333333 fg:#555555)]($style)"
-command = """ echo "${${PWD}#/google/src/cloud/${USER}/}" | cut -d '/' -f 1 """
-when = """ [[ "$PWD" =~ "/google/src/cloud/$USER" ]] """
-style = "bold bg:#444444 fg:blue"
+shell = ["zsh", "--no-rcs", "-c"]
+format = "[[](bg:light_grey fg:dark_grey)  $output[](bg:dark_grey fg:light_grey)]($style)"
+command = """ echo "$PWD" | sed -n "s|^/google/src/cloud/$USER/\\([^/]*\\).*|\\1|p" """
+when = """ [[ "$PWD" == "/google/src/cloud/$USER"* ]] """
+style = "bold bg:mid_grey fg:blue"
 
