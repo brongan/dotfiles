@@ -1,0 +1,20 @@
+#! /usr/bin/env bash
+set -eou pipefail
+
+PREFIX="${PASSAGE_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/passage/store}"
+NOTIF_ID=$((RANDOM % 90000 + 10000))
+
+selection=$(find "$PREFIX" -type f -name '*.age' |
+    sed -e "s|^$PREFIX/||" -e 's|\.age$||' |
+    sort |
+    fuzzel -d -p "🔐 Pass: " -l 15 --width 60)
+
+[ -z "$selection" ] && exit 0
+
+passage -c "$selection" 2> >(while IFS= read -r line; do
+    notify-send -r "$NOTIF_ID" "Passage" "$line"
+done)
+
+if [ $? -eq 0 ]; then
+    notify-send -r "$NOTIF_ID" -t 2000 "Passage" "Copied $selection"
+fi
