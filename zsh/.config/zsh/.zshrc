@@ -64,7 +64,7 @@ fi
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 alias vim="nvim"
-alias pass="gopass"
+alias pass="passage"
 if (($+commands[btop])); then
 	alias top="btop"
 fi
