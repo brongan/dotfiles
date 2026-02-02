@@ -9,8 +9,10 @@ export FZF_CTRL_T_COMMAND="fd --type d $FD_OPTIONS"
 export FZF_CTRL_T_OPTS="--preview '([[ -d {} ]] && tree -aC {}) || ([[ -f {} ]] && bat --color=always --style=header,grid --line-range :300 {})'"
 export FZF_ALT_C_COMMAND="fd --type f --hidden $FD_OPTIONS"
 
-# ZSH Timings
+# ZSH
 export TIMEFMT=$'\n================\nCPU\t%P\nuser\t%*U\nsystem\t%*S\ntotal\t%*E'
+HISTSIZE=10000
+SAVEHIST=10000
 
 # Editor Config
 export EDITOR="nvim"

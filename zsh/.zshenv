@@ -7,11 +7,9 @@ export XDG_DATA_HOME=${XDG_DATA_HOME:-${HOME}/.local/share}
 export XDG_STATE_HOME=${XDG_STATE_HOME:-${HOME}/.local/state}
 
 # ------------------------------------------------------------------------------
-# ZSH Core Vars (No logic/options here)
+# ZSH Core Vars
 # ------------------------------------------------------------------------------
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
-# History file location is needed by non-interactive shells occasionally,
-# but 'SAVEHIST' and 'setopt' belong in .zshrc
 export HISTFILE="${XDG_STATE_HOME}/zsh/history"
 
 # ------------------------------------------------------------------------------
