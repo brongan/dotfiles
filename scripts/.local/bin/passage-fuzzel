@@ -1,8 +1,11 @@
 #! /usr/bin/env bash
 set -eou pipefail
 
+# Config
 PREFIX="${PASSAGE_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/passage/store}"
+CLEAR_AFTER_SECONDS=45
 
+# 1. Select the entry
 selection=$(find "$PREFIX" -type f -name '*.age' |
     sed -e "s|^$PREFIX/||" -e 's|\.age$||' |
     sort |
@@ -10,8 +13,72 @@ selection=$(find "$PREFIX" -type f -name '*.age' |
 
 [ -z "$selection" ] && exit 0
 
-if kitty --class "passage-pin" --title "Passage PIN" sh -c "passage -c '$selection'; exit"; then
-    notify-send "Passage" "Copied $selection"
+# 2. Define the viewer logic to run INSIDE the kitty window
+# We pass the selection as an argument to this inner script
+viewer_logic() {
+    local entry="$1"
+    local clear_sec="$2"
+
+    echo -e "\033[1;34m🔓 Decrypting $entry...\033[0m"
+
+    # Decrypt once into a variable to avoid multiple auth prompts
+    # We use 'passage show' to get raw content
+    if ! content=$(passage show "$entry"); then
+        echo "Failed to decrypt."
+        read -r -p "Press enter to close..."
+        exit 1
+    fi
+
+    # Extract Password (Line 1) and Metadata
+    pass=$(echo "$content" | sed -n '1p')
+    # Try to find a line starting with "user:" or "login:", otherwise take line 2
+    user=$(echo "$content" | grep -iE "^(user|login|username):" | head -n 1 | sed 's/^[^:]*:[[:space:]]*//')
+    if [ -z "$user" ]; then
+        user=$(echo "$content" | sed -n '2p')
+    fi
+
+    # Clear screen for presentation
+    clear
+
+    # -- DISPLAY SECTION --
+    echo -e "\033[1;32mEntry:\033[0m $entry"
+    echo -e "\033[1;32mUser: \033[0m \033[1;37m${user:-<Not Found>}\033[0m"
+    echo ""
+
+    # -- QR CODE SECTION --
+    # Uses ANSI UTF8 to render directly in terminal
+    echo -e "\033[1;33mQR Code (Password):\033[0m"
+    echo -n "$pass" | qrencode -t ansiutf8
+
+    # -- CLIPBOARD SECTION --
+    # We handle the copy manually to control the process lifecycle
+    if command -v wl-copy >/dev/null; then
+        echo -n "$pass" | wl-copy
+        echo -e "\n\033[1;36m✓ Password copied to clipboard.\033[0m"
+        echo -e "\033[0;90m(Clipboard will clear in $clear_sec seconds or on exit)\033[0m"
+    else
+        echo -e "\n\033[1;31m⚠ wl-copy not found. Clipboard parsing skipped.\033[0m"
+    fi
+
+    # -- WAIT LOOP --
+    # We wait for user input OR the timeout
+    # This keeps the window open so you can see the QR/User
+    read -t "$clear_sec" -n 1 -s -r -p $'\nPress any key to close immediately...' || true
+
+    # Cleanup
+    if command -v wl-copy >/dev/null; then
+        wl-copy --clear
+    fi
+}
+
+# Export function so subshell can see it
+export -f viewer_logic
+
+# 3. Launch Kitty
+# We exec the bash function inside kitty
+if kitty --class "passage-pin" --title "Passage: $selection" bash -c "viewer_logic '$selection' '$CLEAR_AFTER_SECONDS'"; then
+    # Optional: Desktop notification after window closes
+    notify-send "Passage" "Session finished for $selection"
 else
-    notify-send -u critical "Passage" "Failed to decrypt $selection"
+    notify-send -u critical "Passage" "Failed to open viewer"
 fi
