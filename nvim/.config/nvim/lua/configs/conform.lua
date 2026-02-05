@@ -35,7 +35,9 @@ return {
 			python = { "isort", "black" },
 
 			-- Shell
+			bash = { "shfmt" },
 			sh = { "shfmt" },
+			zsh = { "shfmt" },
 		},
 
 		-- Default options
