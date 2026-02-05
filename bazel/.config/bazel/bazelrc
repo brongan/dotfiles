@@ -1,58 +1,68 @@
-run --color=yes
+# =============================================================================
+# 1. General & Output
+# =============================================================================
+build --announce_rc
 build --color=yes
+build --show_timestamps
+build --keep_going
 
-build:linux --copt=-fPIC
-build:linux --copt=-Wno-deprecated-declarations
-build:linux --cxxopt=-std=c++20
-build:linux --conlyopt=-fexceptions
-build:linux --fission=dbg,opt
-build:linux --features=per_object_debug_info
-build:linux --action_env=BAZEL_LINKLIBS=-l%:libstdc++.a
-build:linux --action_env=BAZEL_LINKOPTS=-lm
+# =============================================================================
+# 2. Language Standards (Target & Host)
+# =============================================================================
+build --cxxopt=-std=c++20
+build --host_cxxopt=-std=c++20
+
+build --copt=-Wno-deprecated-declarations
+build --copt=-Wno-unused
 
 build --define absl=1
 
-# Pass PATH, CC, CXX and LLVM_CONFIG variables from the environment.
-build --action_env=CC
-build --action_env=CXX
-build --action_env=LLVM_CONFIG
-build --action_env=PATH
+# =============================================================================
+# 3. Platform: Linux
+# =============================================================================
+build:linux --fission=dbg,opt
+build:linux --features=per_object_debug_info
+build:linux --conlyopt=-fexceptions
 
-build:clang --action_env=BAZEL_COMPILER=clang
-build:clang --action_env=CC=clang --action_env=CXX=clang++
+build:linux --linkopt=-static-libstdc++
+build:linux --linkopt=-static-libgcc
+build:linux --linkopt=-lm
 
-build:clang-asan --config=clang
-build:clang-asan --config=asan
-build:clang-asan --linkopt -fuse-ld=lld
-build:clang-asan --linkopt --rtlib=compiler-rt
-build:clang-asan --linkopt --unwindlib=libgcc
+# =============================================================================
+# 4. Toolchains & Compilers
+# =============================================================================
+# --- Config: Generic Clang ---
+build:clang --repo_env=CC=clang
+build:clang --repo_env=CXX=clang++
+build:clang --copt=-Wall --copt=-Werror
 
-# Clang with libc++
+build:clang --linkopt=-fuse-ld=lld
+
 build:libc++ --config=clang
-build:libc++ --action_env=CXXFLAGS=-stdlib=libc++
-build:libc++ --action_env=LDFLAGS=-stdlib=libc++
-build:libc++ --action_env=BAZEL_CXXOPTS=-stdlib=libc++
-build:libc++ --action_env=BAZEL_LINKLIBS=-l%:libc++.a:-l%:libc++abi.a
-build:libc++ --action_env=BAZEL_LINKOPTS=-lm:-pthread
-build:libc++ --define force_libcpp=enabled
+build:libc++ --cxxopt=-stdlib=libc++
+build:libc++ --linkopt=-stdlib=libc++
+build:libc++ --linkopt=-static
+build:libc++ --linkopt=-lc++
+build:libc++ --linkopt=-lc++abi
+build:libc++ --linkopt=-pthread
 
-# Optimize build for binary size reduction.
-build:sizeopt -c opt --copt -Os
+build:clang_suite --crosstool_top=//toolchain:clang_suite
+build:clang_suite --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
 
-build --announce_rc
+# =============================================================================
+# 5. Sanitizers (ASAN/UBSAN)
+# =============================================================================
+build:asan --config=clang
+build:asan --copt=-fsanitize=address
+build:asan --linkopt=-fsanitize=address
+build:asan --copt=-fno-omit-frame-pointer
+build:asan --copt=-g
+build:asan --strip=never
 
-# Set the default compiler to the `clang` binary on the `PATH`.
-build:generic_clang --repo_env=CC=clang
-
-build:generic_clang --cxxopt=-std=c++20 --host_cxxopt=-std=c++20
-
-# Use `-Wall` and `-Werror` for Clang.
-build:generic_clang --copt=-Wall --copt=-Werror --host_copt=-Wall --host_copt=-Werror
-
-# This doesn't appear to be enforced by any upstream bot.
-build:generic_clang --copt=-Wno-unused --host_copt=-Wno-unused
-
-# https://bazel.build/tutorials/cc-toolchain-config
-build:clang_config --crosstool_top=//toolchain:clang_suite
-build:clang_config --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
+# =============================================================================
+# 6. Optimization Modes
+# =============================================================================
+build:sizeopt -c opt
+build:sizeopt --copt=-Os
+build:sizeopt --strip=always
 
