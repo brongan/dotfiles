@@ -13,6 +13,11 @@ export FZF_ALT_C_COMMAND="fd --type f --hidden $FD_OPTIONS"
 export TIMEFMT=$'\n================\nCPU\t%P\nuser\t%*U\nsystem\t%*S\ntotal\t%*E'
 HISTSIZE=10000
 SAVEHIST=10000
+setopt APPEND_HISTORY          # Append instead of overwriting
+setopt INC_APPEND_HISTORY      # Write to the file immediately after command execution
+setopt SHARE_HISTORY           # Share history across multiple open Kitty windows
+setopt HIST_IGNORE_ALL_DUPS    # Delete old duplicate commands from history
+setopt HIST_IGNORE_SPACE       # Don't record commands starting with a space
 
 # Editor Config
 export EDITOR="nvim"
@@ -145,11 +150,21 @@ elif [[ -d /usr/share/zsh-syntax-highlighting ]]; then
     source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
+
 # Load FZF bindings
-if [[ -d /usr/share/fzf ]]; then
-    source /usr/share/fzf/key-bindings.zsh
-    source /usr/share/fzf/completion.zsh
-fi
+for fzf_base in \
+    /usr/share/fzf \
+    /usr/share/doc/fzf/examples \
+    ~/.fzf \
+    ~/.local/state/nix/profile/share/fzf \
+    /run/current-system/sw/share/fzf
+do
+    if [[ -f "${fzf_base}/key-bindings.zsh" ]]; then
+        source "${fzf_base}/key-bindings.zsh"
+        source "${fzf_base}/completion.zsh"
+        break
+    fi
+done
 
 # Fast Compinit (Checks cache once a day)
 autoload -Uz compinit
