@@ -28,31 +28,20 @@ merge-args = [
 merge-tool-edits-conflict-markers = true
 
 [aliases]
+cma = ["commit", "-m"]
 init = ["git", "init", "--colocate"]
 push = ["util", "exec", "--", "bash", "-c", """
 set -e
-
-# Check if current commit has both description and changes
-has_description=$(jj log -r @ --no-graph --color never -T 'description' | grep -q . && echo "yes" || echo "no")
-# Use 'empty' template keyword to check if commit has changes
-has_changes=$(jj log -r @ --no-graph --color never -T 'empty' | grep -q "false" && echo "yes" || echo "no")
-
-if [ "$has_description" = "yes" ] && [ "$has_changes" = "yes" ]; then
-    echo "Current commit has description and changes, creating new commit..."
+desc=$(jj log -r @ -T description --no-graph --color never)
+is_empty=$(jj log -r @ -T empty --no-graph --color never)
+if [ -n "$desc" ] && [ "$is_empty" = "false" ]; then
     jj new
 fi
-
-# Get the bookmark from the parent commit directly
-bookmark=$(jj log -r 'ancestors(@) & bookmarks()' -n 1 --no-graph --color never -T 'bookmarks' | sed 's/\\*$//' | tr -d ' ')
-
+bookmark=$(jj log -r 'ancestors(@) & bookmarks()' -n 1 -T bookmarks --no-graph --color never | awk '{print $1}' | tr -d '*')
 if [ -z "$bookmark" ]; then
-    echo "No bookmark found on parent commit"
     exit 1
 fi
-
-echo "Moving bookmark '$bookmark' to parent commit and pushing..."
 jj bookmark set "$bookmark" -r @-
 jj git fetch
 jj git push --bookmark "$bookmark"
 """]
-cma = ["commit", "-m"]
