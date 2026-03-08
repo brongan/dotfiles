@@ -150,6 +150,7 @@ local plugins = {
 		end,
 		opts = {},
 	},
+	"rafikdraoui/jj-diffconflicts",
 }
 
 -- Merge work plugins into the main list
