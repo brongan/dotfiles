@@ -8,7 +8,24 @@ diff-formatter = ":git"
 editor = "nvim"
 pager = "delta"
 paginate = "auto"
-diff-editor = ":builtin"
+diff-editor = "diffconflicts"
+merge-editor = "diffconflicts"
+
+[merge-tools.nvim-diff]
+program = "nvim"
+args = ["-d", "$left", "$right"]
+
+[merge-tools.nvim-merge]
+program = "nvim"
+merge-args = ["$output"]
+
+[merge-tools.diffconflicts]
+program = "nvim"
+merge-args = [
+    "-c", "let g:jj_diffconflicts_marker_length=$marker_length",
+    "-c", "JJDiffConflicts!", "$output", "$base", "$left", "$right",
+]
+merge-tool-edits-conflict-markers = true
 
 [aliases]
 init = ["git", "init", "--colocate"]
