@@ -8,7 +8,6 @@ diff-formatter = ":git"
 editor = "nvim"
 pager = "delta"
 paginate = "auto"
-diff-editor = "diffconflicts"
 merge-editor = "diffconflicts"
 
 [merge-tools.nvim-diff]
