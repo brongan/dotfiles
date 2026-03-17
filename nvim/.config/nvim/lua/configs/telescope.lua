@@ -13,11 +13,20 @@ return {
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 	},
 	keys = {
-		{ "<leader>fh", "<cmd>Telescope help_tags<cr>",       desc = "[F]uzzy [H]elp" },
-		{ "<leader>fk", "<cmd>Telescope keymaps<cr>",         desc = "[F]uzzy [K]eymaps" },
-		{ "<leader>ff", "<cmd>Telescope find_files<cr>",      desc = "[F]uzzy [F]iles" },
-		{ "<leader>fs", "<cmd>Telescope git_status<cr>",      desc = "[F]uzzy Git [S]tatus" },
-		{ "<leader>fg", "<cmd>Telescope git_files<cr>",       desc = "[F]uzzy [G]it Files" },
+		{ "<leader>fh", "<cmd>Telescope help_tags<cr>",  desc = "[F]uzzy [H]elp" },
+		{ "<leader>fk", "<cmd>Telescope keymaps<cr>",    desc = "[F]uzzy [K]eymaps" },
+		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "[F]uzzy [F]iles" },
+		{ "<leader>fs", "<cmd>Telescope git_status<cr>", desc = "[F]uzzy Git [S]tatus" },
+		{
+			"<leader>fg",
+			function()
+				local ok = pcall(require("telescope.builtin").git_files)
+				if not ok then
+					vim.notify("Not a git repository", vim.log.levels.WARN, { title = "Telescope" })
+				end
+			end,
+			desc = "[F]uzzy [G]it Files"
+		},
 		{ "<leader>fd", "<cmd>Telescope diagnostics<cr>",     desc = "[F]uzzy [D]iagnostics" },
 		{ "<leader>fr", "<cmd>Telescope resume<cr>",          desc = "[F]uzzy [R]esume" },
 		{ "<leader>fq", "<cmd>Telescope quickfix<cr>",        desc = "[F]uzzy [Q]uickfix" },
