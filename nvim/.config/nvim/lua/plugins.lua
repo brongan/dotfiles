@@ -57,7 +57,22 @@ local plugins = {
 	},
 	{
 		"rcarriga/nvim-notify",
-		opts = { background_color = "#000000" },
+		opts = {
+			background_colour = "#000000",
+			render = "default",
+			stages = "fade",
+		},
+		config = function(_, opts)
+			local notify = require("notify")
+			local bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
+			if bg then
+				opts.background_colour = string.format("#%06x", bg)
+			else
+				opts.background_colour = "#000000"
+			end
+			notify.setup(opts)
+			vim.notify = notify
+		end,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
