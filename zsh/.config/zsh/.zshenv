@@ -93,3 +93,7 @@ path=(
 [[ -d "/usr/lib/cargo/bin" ]] && path+=("/usr/lib/cargo/bin")
 [[ -d "/opt/dart-sdk/bin" ]] && path+=("/opt/dart-sdk/bin")
 
+# ------------------------------------------------------------------------------
+# Misc
+# ------------------------------------------------------------------------------
+export CARGO_NET_GIT_FETCH_WITH_CLI=true
