@@ -73,3 +73,5 @@
 	clean =  rage -i ~/.ssh/age.key -e -
 	smudge = rage -i ~/.ssh/age.key -d -
 	required = true
+[credential]
+	helper = store
