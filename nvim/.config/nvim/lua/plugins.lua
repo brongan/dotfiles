@@ -168,6 +168,35 @@ local plugins = {
 		opts = {},
 	},
 	"rafikdraoui/jj-diffconflicts",
+	{
+		"robitx/gp.nvim",
+		config = function()
+			local conf = {
+				providers = {
+					openai = {
+						disable = true,
+					},
+					llamacpp = {
+						endpoint = "http://localhost:8080/v1/chat/completions",
+						secret = "none",
+					},
+				},
+				agents = {
+					{
+						name = "Gemma4",
+						chat = true,
+						command = true,
+						model = { model = "gemma-4-26B-A4B-it-GGUF" },
+						system_prompt =
+						"You are Gemma 4, an advanced 26B parameter coding assistant running locally via llama.cpp. You provide precise, expert-level code and technical explanations, utilizing your large contextwindow to analyze complex structures.",
+						provider = "llamacpp",
+					},
+				},
+			}
+			require("gp").setup(conf)
+		end,
+	}
+	,
 }
 
 -- Merge work plugins into the main list
