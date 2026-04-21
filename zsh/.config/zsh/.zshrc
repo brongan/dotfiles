@@ -141,17 +141,28 @@ atuin-fzf () {
 # ------------------------------------------------------------------------------
 # 5. Completions
 # ------------------------------------------------------------------------------
-# Load distro-specific plugins
-if [[ -d /usr/share/zsh/plugins ]]; then
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [[ -d /usr/share/zsh-syntax-highlighting ]]; then
-    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Run `zellij setup --generate-completion zsh > $ZDOTDIR/completions/_zellij` manually once
+# Run `jj util completion zsh > $ZDOTDIR/completions/_jj` manually once
+fpath=(${ZDOTDIR}/completions $fpath)
+
+if (( $+commands[nix] )); then
+    fpath=(/usr/share/zsh/site-functions/ $fpath)
 fi
 
+setopt EXTENDED_GLOB
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+  compinit -d "${ZDOTDIR}/.zcompdump"
+else
+  compinit -i -d "${ZDOTDIR}/.zcompdump"
+  touch "${ZDOTDIR}/.zcompdump"
+fi
+unsetopt EXTENDED_GLOB
 
-# Load FZF bindings
+if (( $+commands[eza] )); then
+    compdef eza=ls
+fi
+
 for fzf_base in \
     /usr/share/fzf \
     /usr/share/doc/fzf/examples \
@@ -166,26 +177,13 @@ do
     fi
 done
 
-# Fast Compinit (Checks cache once a day)
-autoload -Uz compinit
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-  compinit -d "${ZDOTDIR}/.zcompdump"
-else
-  compinit -i -d "${ZDOTDIR}/.zcompdump"
-  # Touch the file to update modification time
-  touch "${ZDOTDIR}/.zcompdump"
+if [[ -d /usr/share/zsh/plugins ]]; then
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [[ -d /usr/share/zsh-syntax-highlighting ]]; then
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
-
-# Load Tool Completions from Files (Do not generate on fly)
-# Run `zellij setup --generate-completion zsh > $ZDOTDIR/completions/_zellij` manually once
-# Run `jj util completion zsh > $ZDOTDIR/completions/_jj` manually once
-fpath=(${ZDOTDIR}/completions $fpath)
-
-# Nix
-if (( $+commands[nix] )); then
-    fpath=(/usr/share/zsh/site-functions/ $fpath)
-fi
-
 # ------------------------------------------------------------------------------
 # 6. Tool Initialization
 # ------------------------------------------------------------------------------
