@@ -72,6 +72,9 @@ return {
 						["<C-d>"] = false,
 					},
 				},
+				preview = {
+					treesitter = false,
+				},
 			},
 			extensions = {
 				["ui-select"] = {
