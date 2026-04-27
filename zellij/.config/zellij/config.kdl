@@ -93,7 +93,6 @@ keybinds clear-defaults=true {
         }
     }
     shared_except "locked" {
-        bind "Alt g"             { SwitchToMode "Locked" ; }
         bind "Alt q"             { Quit ; }
         bind "Alt h" "Alt Left"  { MoveFocusOrTab "Left" ; }
         bind "Alt l" "Alt Right" { MoveFocusOrTab "Right" ; }
