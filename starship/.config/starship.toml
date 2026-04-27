@@ -5,6 +5,8 @@ shell = ["sh"]
 # Timeout for starship to scan files (in milliseconds)
 scan_timeout = 30
 
+command_timeout = 1000
+
 [palettes.google_dark]
 dark_grey = "#333333"
 mid_grey  = "#444444"
