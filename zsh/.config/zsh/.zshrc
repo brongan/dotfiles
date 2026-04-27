@@ -94,8 +94,8 @@ fi
 if (( $+commands[bat] )); then
     alias cat="bat"
 elif (( $+commands[batcat] )); then
-    alias cat="batcat"
-    alias bat="batcat"
+    alias cat='/usr/bin/batcat'
+    alias bat='/usr/bin/batcat'
 fi
 
 # Global Help aliases (Pipe to bat)
