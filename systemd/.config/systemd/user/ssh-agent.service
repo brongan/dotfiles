@@ -1,11 +1,9 @@
 [Unit]
 Description=Manual SSH key agent
-ConditionPathExists=!%t/gcr/ssh
 
 [Service]
 Type=simple
-Environment=SSH_AUTH_SOCK=%t/gcr/ssh
-ExecStartPre=/usr/bin/mkdir -p %t/gcr
+Environment=SSH_AUTH_SOCK=%t/openssh_agent
 ExecStart=/usr/bin/ssh-agent -D -a ${SSH_AUTH_SOCK}
 
 [Install]
