@@ -195,8 +195,49 @@ local plugins = {
 			}
 			require("gp").setup(conf)
 		end,
+	},
+	{
+		"yetone/avante.nvim",
+		event = "VeryLazy",
+		lazy = false,
+		version = false,
+		build = "make",
+		init = function()
+			vim.env.DUMMY_API_KEY = "sk-dummy"
+		end,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"stevearc/dressing.nvim",
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"zbirenbaum/copilot.lua",
+			{
+				"MeanderingProgrammer/render-markdown.nvim",
+				opts = {
+					file_types = { "markdown", "Avante" },
+				},
+				ft = { "markdown", "Avante" },
+			},
+		},
+		config = function()
+			require("avante").setup({
+				provider = "gemma4",
+				providers = {
+					gemma4 = {
+						__inherited_from = "openai",
+						endpoint = "http://localhost:8080/v1",
+						model = "ggml-org/gemma-4-26B-A4B-it-GGUF:Q4_K_M",
+						api_key_name = "DUMMY_API_KEY",
+						extra_request_body = {
+							temperature = 0,
+							max_tokens = 8192,
+						},
+					},
+				},
+			})
+		end,
 	}
-	,
 }
 
 -- Merge work plugins into the main list
