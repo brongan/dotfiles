@@ -2,33 +2,31 @@ return {
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		main = "nvim-treesitter",
+		opts = {
+			ensure_installed = {
+				"c",
+				"vim",
+				"vimdoc",
+				"query",
+				"rust",
+				"cpp",
+				"proto",
+				"bash",
+				"diff",
+				"html",
+				"lua",
+				"luadoc",
+				"markdown",
+				"wgsl",
+			},
+			auto_install = false,
+		},
 		config = function()
-			require("nvim-treesitter").setup({
-				ensure_installed = {
-					"c",
-					"vim",
-					"vimdoc",
-					"query",
-					"rust",
-					"cpp",
-					"proto",
-					"bash",
-					"diff",
-					"html",
-					"lua",
-					"luadoc",
-					"markdown",
-				},
-				auto_install = false,
-				incremental_selection = {
-					enable = true,
-					keymaps = {
-						init_selection = "gnn",
-						node_incremental = "grc",
-						scope_incremental = "gmc",
-						node_decremental = "grm",
-					},
-				},
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function()
+					pcall(vim.treesitter.start)
+				end,
 			})
 		end,
 	},
