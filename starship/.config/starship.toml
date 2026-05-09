@@ -9,13 +9,13 @@ command_timeout = 1000
 
 [palettes.google_dark]
 dark_grey = "#333333"
-mid_grey  = "#444444"
+mid_grey = "#444444"
 light_grey = "#555555"
-white     = "#ffffff"
-yellow    = "#ffff00"
-red       = "#ff0000"
-blue      = "#0000ff"
-purple    = "#800080"
+white = "#ffffff"
+yellow = "#ffff00"
+red = "#ff0000"
+blue = "#0000ff"
+purple = "#800080"
 
 format = """\
 $username\
@@ -98,7 +98,7 @@ symbol = " "
 style = "bg:#444444 fg:blue"
 
 [directory]
-disabled = false 
+disabled = false
 truncation_length = 3
 truncate_to_repo = true
 format = "[[](bg:light_grey fg:dark_grey)$path [](bg:dark_grey fg:light_grey)]($style)([[](bg:light_grey fg:dark_grey)$read_only[](bg:dark_grey fg:light_grey)]($read_only_style))"
@@ -170,8 +170,10 @@ symbol = " "
 style = "bg:#444444 fg:red"
 
 [gcloud]
-disabled = false
-format = '[[](bg:#444444 fg:#333333)[on](bg:#444444 fg:white) $symbol$account(\($region\))[](bg:#333333 fg:#444444)]($style)'
+disabled = true
+# format = '[[](bg:#444444 fg:#333333)[on](bg:#444444 fg:white) $symbol$account(\($region\))[](bg:#333333 fg:#444444)]($style)'
+format = '[[](bg:#444444 fg:#333333)$symbol$project[](bg:#333333 fg:#444444)]($style)'
+# Optional: Shorten account to 8 chars
 symbol = " "
 style = "bold bg:#444444 fg:blue"
 
@@ -379,7 +381,7 @@ jj log --revisions @ --no-graph --ignore-working-copy --color never --limit 1 --
 
 [custom.jjstate]
 when = "jj --ignore-working-copy root"
-symbol = "±" 
+symbol = "±"
 style = "bold bg:light_grey fg:purple"
 format = "[[](bg:light_grey fg:dark_grey)(bg:light_grey fg:white)$symbol$output[](bg:dark_grey fg:light_grey)]($style)"
 command = '''
@@ -412,4 +414,3 @@ format = "[[](bg:light_grey fg:dark_grey)  $output[](bg:dark_grey fg:li
 command = """ echo "$PWD" | sed -n "s|^/google/src/cloud/$USER/\\([^/]*\\).*|\\1|p" """
 when = """ [[ "$PWD" == "/google/src/cloud/$USER"* ]] """
 style = "bold bg:mid_grey fg:blue"
-
