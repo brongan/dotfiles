@@ -1,0 +1,14 @@
+[Unit]
+Description=Webcam stream to %i
+After=network.target
+
+[Service]
+ExecStart=ffmpeg -vaapi_device /dev/dri/renderD128 -f v4l2 -video_size 1280x720 -i /dev/video0 -vf format=nv12,hwupload -c:v h264_vaapi -qp 28 -rtsp_transport tcp -f rtsp rtsp://%i:8554/webcam
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
+
