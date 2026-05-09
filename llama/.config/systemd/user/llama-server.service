@@ -1,0 +1,14 @@
+[Unit]
+Description=Llama Server Instance
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/llama-server -hf ggml-org/gemma-4-26B-A4B-it-GGUF:Q4_K_M -ngl all -fa on -c 32768 --host 0.0.0.0
+Restart=on-failure
+RestartSec=5
+OOMScoreAdjust=-500
+
+[Install]
+WantedBy=default.target
+
