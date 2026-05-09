@@ -13,11 +13,11 @@ export FZF_ALT_C_COMMAND="fd --type f --hidden $FD_OPTIONS"
 export TIMEFMT=$'\n================\nCPU\t%P\nuser\t%*U\nsystem\t%*S\ntotal\t%*E'
 HISTSIZE=10000
 SAVEHIST=10000
-setopt APPEND_HISTORY          # Append instead of overwriting
-setopt INC_APPEND_HISTORY      # Write to the file immediately after command execution
-setopt SHARE_HISTORY           # Share history across multiple open Kitty windows
-setopt HIST_IGNORE_ALL_DUPS    # Delete old duplicate commands from history
-setopt HIST_IGNORE_SPACE       # Don't record commands starting with a space
+setopt APPEND_HISTORY       # Append instead of overwriting
+setopt INC_APPEND_HISTORY   # Write to the file immediately after command execution
+setopt SHARE_HISTORY        # Share history across multiple open Kitty windows
+setopt HIST_IGNORE_ALL_DUPS # Delete old duplicate commands from history
+setopt HIST_IGNORE_SPACE    # Don't record commands starting with a space
 
 # Editor Config
 export EDITOR="nvim"
@@ -46,17 +46,17 @@ if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
 fi
 
 # Rust sccache
-if (( $+commands[sccache] )); then
+if (($+commands[sccache])); then
     export RUSTC_WRAPPER=sccache
 fi
 
 # Flutter / Chrome
-if (( $+commands[flutter] )); then
+if (($+commands[flutter])); then
     export FLUTTER_ROOT="/usr/lib/flutter"
     # Prioritize Chrome Stable if it exists, else Chromium
-    if (( $+commands[google-chrome-stable] )); then
+    if (($+commands[google - chrome - stable])); then
         export CHROME_EXECUTABLE="google-chrome-stable"
-    elif (( $+commands[chromium] )); then
+    elif (($+commands[chromium])); then
         export CHROME_EXECUTABLE="chromium"
     fi
 fi
@@ -84,16 +84,16 @@ alias watch=viddy
 alias sudoedit="sudo -e"
 
 # Modern Replacements
-(( $+commands[btop] )) && alias top="btop"
-if (( $+commands[eza] )); then
+(($+commands[btop])) && alias top="btop"
+if (($+commands[eza])); then
     alias ls="eza --icons"
     alias la="eza --icons -a"
     alias ll="eza --icons -aaglh"
 fi
 
-if (( $+commands[bat] )); then
+if (($+commands[bat])); then
     alias cat="bat"
-elif (( $+commands[batcat] )); then
+elif (($+commands[batcat])); then
     alias cat='/usr/bin/batcat'
     alias bat='/usr/bin/batcat'
 fi
@@ -103,12 +103,12 @@ alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 alias vim="nvim"
 alias pass="passage"
- if (($+commands[btop])); then
- 	alias top="btop"
+if (($+commands[btop])); then
+    alias top="btop"
 fi
 
 # Kitty specific
-if (( $+commands[kitty] )); then
+if (($+commands[kitty])); then
     alias s="kitten ssh"
     alias icat="kitty +kitten icat"
 fi
@@ -125,10 +125,10 @@ function xdg-query() {
 }
 
 # Custom Atuin FZF behavior
-atuin-fzf () {
+atuin-fzf() {
     local selected
-    setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-    selected=( $(atuin history list --human | fzf --tac) )
+    setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2>/dev/null
+    selected=($(atuin history list --human | fzf --tac))
     local ret=$?
     if [ -n "$selected" ]; then
         RBUFFER="${selected[3,-2]}${RBUFFER}"
@@ -145,21 +145,21 @@ atuin-fzf () {
 # Run `jj util completion zsh > $ZDOTDIR/completions/_jj` manually once
 fpath=(${ZDOTDIR}/completions $fpath)
 
-if (( $+commands[nix] )); then
+if (($+commands[nix])); then
     fpath=(/usr/share/zsh/site-functions/ $fpath)
 fi
 
 setopt EXTENDED_GLOB
 autoload -Uz compinit
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-  compinit -d "${ZDOTDIR}/.zcompdump"
+    compinit -d "${ZDOTDIR}/.zcompdump"
 else
-  compinit -i -d "${ZDOTDIR}/.zcompdump"
-  touch "${ZDOTDIR}/.zcompdump"
+    compinit -i -d "${ZDOTDIR}/.zcompdump"
+    touch "${ZDOTDIR}/.zcompdump"
 fi
 unsetopt EXTENDED_GLOB
 
-if (( $+commands[eza] )); then
+if (($+commands[eza])); then
     compdef eza=ls
 fi
 
@@ -168,8 +168,7 @@ for fzf_base in \
     /usr/share/doc/fzf/examples \
     ~/.fzf \
     ~/.local/state/nix/profile/share/fzf \
-    /run/current-system/sw/share/fzf
-do
+    /run/current-system/sw/share/fzf; do
     if [[ -f "${fzf_base}/key-bindings.zsh" ]]; then
         source "${fzf_base}/key-bindings.zsh"
         source "${fzf_base}/completion.zsh"
@@ -189,7 +188,7 @@ fi
 # ------------------------------------------------------------------------------
 
 # Atuin
-if (( $+commands[atuin] )); then
+if (($+commands[atuin])); then
     export ATUIN_NOBIND=1
     eval "$(atuin init zsh)"
     zle -N atuin-fzf
@@ -198,16 +197,23 @@ fi
 
 # Google
 if [[ $(whoami) == "brennantracy" && -f "${ZDOTDIR}/google.zsh" ]]; then
-  source "${ZDOTDIR}/google.zsh"
+    source "${ZDOTDIR}/google.zsh"
 fi
 
 # Direnv
-(( $+commands[direnv] )) && eval "$(direnv hook zsh)"
+(($+commands[direnv])) && eval "$(direnv hook zsh)"
 
 # Zoxide (Replaces cd)
-if (( $+commands[zoxide] )); then
-	alias cd=z
-	eval "$(zoxide init zsh)"
+if (($+commands[zoxide])); then
+    alias cd=z
+    eval "$(zoxide init zsh)"
 fi
 
-(( $+commands[starship] )) && eval "$(starship init zsh)"
+(($+commands[starship])) && eval "$(starship init zsh)"
+
+if [[ -n "$KITTY_INSTALLATION_DIR" ]]; then
+    export KITTY_SHELL_INTEGRATION="enabled"
+    autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
+    kitty-integration
+    unfunction kitty-integration
+fi
