@@ -1,0 +1,79 @@
+{
+	"position": "bottom",
+	"height": 32,
+	"margin_bottom": 4,
+	"start": [
+		{
+			"type": "custom",
+			"class": "power",
+			"bar": [
+				{
+					"type": "button",
+					"label": "⏻",
+					"on_click": "!wlogout"
+				}
+			]
+		},
+		{
+			"type": "workspaces",
+			"all_monitors": true,
+			"on_click": "focus",
+			"name_map": {
+				"1": "⌨",
+				"2": "🌐",
+				"3": "",
+				"4": "💬",
+				"5": "🎵"
+			}
+		},
+		{
+			"type": "focused",
+			"show_icon": false,
+			"truncate": { "mode": "end", "length": 50 }
+		}
+	],
+	"center": [
+		{
+			"type": "music",
+			"format": "{title} — {artist}",
+			"format_paused": "⏸  {title}",
+			"player_icons": {
+				"default": "",
+				"spotify": "",
+				"mpv": "🎵"
+			},
+			"truncate": { "mode": "end", "length": 45 }
+		}
+	],
+	"end": [
+		{
+			"type": "tray",
+			"icon_size": 16,
+			"spacing": 8
+		},
+		{
+			"type": "volume",
+			"format": "{icon} {percentage}%",
+			"format_muted": " Muted",
+			"on_click": "pavucontrol",
+			"on_scroll_up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+			"on_scroll_down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+		},
+		{
+			"type": "script",
+			"cmd": "iwctl station wlan0 show | awk '/Connected network/{print $3}'",
+			"interval": 5000
+		},
+		{
+			"type": "battery",
+			"show_if": "ls /sys/class/power_supply/BAT* 2>/dev/null",
+			"format": "{percentage}%",
+			"format_charging": " {percentage}%"
+		},
+		{
+			"type": "clock",
+			"format": " %H:%M",
+			"format_alt": " %A, %B %d, %Y"
+		}
+	]
+}
