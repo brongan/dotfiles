@@ -45,11 +45,6 @@ if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
     export _JAVA_AWT_WM_NONREPARENTING=1
 fi
 
-# Rust sccache
-if (($+commands[sccache])); then
-    export RUSTC_WRAPPER=sccache
-fi
-
 # Flutter / Chrome
 if (($+commands[flutter])); then
     export FLUTTER_ROOT="/usr/lib/flutter"
