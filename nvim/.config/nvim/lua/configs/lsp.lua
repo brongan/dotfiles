@@ -34,8 +34,10 @@ return {
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
 						map("<leader>th", function()
-							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }),
-								{ bufnr = event.buf })
+							vim.lsp.inlay_hint.enable(
+								not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }),
+								{ bufnr = event.buf }
+							)
 						end, "[T]oggle Inlay [H]ints")
 					end
 				end,
@@ -45,23 +47,31 @@ return {
 
 			if ok and google.init_lsp then
 				google.init_lsp(capabilities)
-			else
-				vim.lsp.config["lua_ls"] = {
-					settings = {
-						Lua = {
-							runtime = { version = "LuaJIT" },
-							workspace = { checkThirdParty = false },
-							diagnostics = { globals = { "vim" } },
-						},
+			end
+			vim.lsp.config["lua_ls"] = {
+				settings = {
+					Lua = {
+						runtime = { version = "LuaJIT" },
+						workspace = { checkThirdParty = false },
+						diagnostics = { globals = { "vim" } },
 					},
-				}
+				},
+			}
 
-				local servers = { "clangd", "gopls", "rust_analyzer", "pyright", "taplo", "lua_ls", "ts_ls",
-					"wgsl_analyzer", "bashls" }
+			local servers = {
+				"clangd",
+				"gopls",
+				"rust_analyzer",
+				"pyright",
+				"taplo",
+				"lua_ls",
+				"ts_ls",
+				"wgsl_analyzer",
+				"bashls",
+			}
 
-				for _, server in ipairs(servers) do
-					vim.lsp.enable(server)
-				end
+			for _, server in ipairs(servers) do
+				vim.lsp.enable(server)
 			end
 		end,
 	},
