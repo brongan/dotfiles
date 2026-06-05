@@ -1,8 +1,8 @@
 return {
-	{ -- Highlight, edit, and navigate code
+	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		build = ":TSUpdate",
-		main = "nvim-treesitter",
 		opts = {
 			ensure_installed = {
 				"c",
@@ -22,7 +22,8 @@ return {
 			},
 			auto_install = false,
 		},
-		config = function()
+		config = function(_, opts)
+			require("nvim-treesitter").setup(opts)
 			vim.api.nvim_create_autocmd("FileType", {
 				callback = function()
 					pcall(vim.treesitter.start)
@@ -32,6 +33,7 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
+		branch = "master",
 		config = function()
 			require("treesitter-context").setup({
 				enable = true,
