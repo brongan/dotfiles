@@ -29,18 +29,7 @@ merge-tool-edits-conflict-markers = true
 [aliases]
 cma = ["commit", "-m"]
 init = ["git", "init", "--colocate"]
-push = ["util", "exec", "--", "bash", "-c", """
-set -e
-desc=$(jj log -r @ -T description --no-graph --color never)
-is_empty=$(jj log -r @ -T empty --no-graph --color never)
-if [ -n "$desc" ] && [ "$is_empty" = "false" ]; then
-    jj new
-fi
-bookmark=$(jj log -r 'ancestors(@) & bookmarks()' -n 1 -T bookmarks --no-graph --color never | awk '{print $1}' | tr -d '*')
-if [ -z "$bookmark" ]; then
-    exit 1
-fi
-jj bookmark set "$bookmark" -r @-
-jj git fetch
-jj git push --bookmark "$bookmark"
-"""]
+fetch = ["git", "fetch"]
+push = ["git", "push"]
+sync = ["git", "fetch", "--all-remotes"]
+
