@@ -93,9 +93,6 @@ elif (($+commands[batcat])); then
     alias bat='/usr/bin/batcat'
 fi
 
-# Global Help aliases (Pipe to bat)
-alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
-alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 alias vim="nvim"
 alias pass="passage"
 if (($+commands[btop])); then
