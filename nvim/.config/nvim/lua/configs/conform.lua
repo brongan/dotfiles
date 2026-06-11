@@ -16,23 +16,22 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 
-			-- Web Stack: Use prettierd if available, fallback to prettier
-			javascript = { "prettierd", "prettier", stop_after_first = true },
-			typescript = { "prettierd", "prettier", stop_after_first = true },
-			javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-			typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-			css = { "prettierd", "prettier", stop_after_first = true },
-			html = { "prettierd", "prettier", stop_after_first = true },
-			json = { "prettierd", "prettier", stop_after_first = true },
-			yaml = { "prettierd", "prettier", stop_after_first = true },
-			markdown = { "prettierd", "prettier", stop_after_first = true },
+			javascript = { "dprint" },
+			typescript = { "dprint" },
+			javascriptreact = { "dprint" },
+			typescriptreact = { "dprint" },
+			css = { "dprint" },
+			html = { "dprint" },
+			json = { "dprint" },
+			yaml = { "dprint" },
+			markdown = { "dprint" },
+			toml = { "taplo" },
 
 			nix = { "alejandra", "nixfmt", stop_after_first = true },
 
 			rust = { "rustfmt", lsp_format = "fallback" },
 
-			-- Python
-			python = { "isort", "black" },
+			python = { "ruff_organize_imports", "ruff_format" },
 
 			-- Shell
 			bash = { "shfmt" },
@@ -48,9 +47,6 @@ return {
 		format_on_save = { timeout_ms = 2500, lsp_fallback = true },
 
 		formatters = {
-			prettier = {
-				prepend_args = { "--use-tabs", "--tab-width", "4" },
-			},
 			shfmt = {
 				prepend_args = { "-i", "4" },
 			},
