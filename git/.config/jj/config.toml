@@ -33,3 +33,7 @@ fetch = ["git", "fetch"]
 push = ["git", "push"]
 sync = ["git", "fetch", "--all-remotes"]
 
+[signing]
+sign-all = true
+backend = "ssh"
+
