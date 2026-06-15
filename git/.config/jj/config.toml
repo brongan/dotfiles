@@ -9,6 +9,7 @@ editor = "nvim"
 pager = "delta"
 paginate = "auto"
 merge-editor = "diffconflicts"
+show-cryptographic-signatures = true
 
 [merge-tools.nvim-diff]
 program = "nvim"
@@ -36,4 +37,5 @@ sync = ["git", "fetch", "--all-remotes"]
 [signing]
 sign-all = true
 backend = "ssh"
+key = "~/.config/jj/jj-signing.pub"
 
