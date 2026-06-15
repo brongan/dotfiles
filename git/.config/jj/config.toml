@@ -2,6 +2,12 @@
 email = "me@brongan.com"
 name = "Brennan Tracy"
 
+[[--scope]]
+--when.repositories = ["/usr/local/google"]
+
+[--scope.user]
+email = "brennantracy@google.com"
+
 [ui]
 default-command = "log"
 diff-formatter = ":git"
@@ -10,6 +16,14 @@ pager = "delta"
 paginate = "auto"
 merge-editor = "diffconflicts"
 show-cryptographic-signatures = true
+
+[template-aliases]
+'format_short_cryptographic_signature(sig)' = '''
+  if(sig,
+    sig.status(),
+    "(no sig)",
+  )
+'''
 
 [merge-tools.nvim-diff]
 program = "nvim"
@@ -35,7 +49,13 @@ push = ["git", "push"]
 sync = ["git", "fetch", "--all-remotes"]
 
 [signing]
-sign-all = true
 backend = "ssh"
-key = "~/.config/jj/jj-signing.pub"
+behavior = "drop"
+key = "~/.ssh/commit_signing.pub"
+
+[signing.backends.ssh]
+allowed-signers = "~/.ssh/allowed_signers"
+
+[git]
+sign-on-push = true
 

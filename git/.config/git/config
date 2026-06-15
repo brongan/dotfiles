@@ -1,5 +1,6 @@
 [user]
 	name = Brennan Tracy
+	signingkey = ~/.ssh/commit_signing.pub
 [push]
 	default = simple
 	autoSetupRemote = true
@@ -41,6 +42,8 @@
 	verbose = true
 [gpg]
 	format = ssh
+[gpg "ssh"]
+    allowedSignersFile = ~/.ssh/allowed_signers
 [core]
 	pager = delta
 [interactive]
