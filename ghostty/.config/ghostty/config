@@ -1,0 +1,84 @@
+theme = Catppuccin Mocha
+
+foreground = #CDD6F4
+selection-foreground = #1E1E2E
+selection-background = #F5E0DC
+cursor-color = #F5E0DC
+cursor-text = #1E1E2E
+
+palette = 0=#43465A
+palette = 8=#43465A
+palette = 1=#F38BA8
+palette = 9=#F38BA8
+palette = 2=#A6E3A1
+palette = 10=#A6E3A1
+palette = 3=#F9E2AF
+palette = 11=#F9E2AF
+palette = 4=#87B0F9
+palette = 12=#87B0F9
+palette = 5=#F5C2E7
+palette = 13=#F5C2E7
+palette = 6=#94E2D5
+palette = 14=#94E2D5
+palette = 7=#CDD6F4
+
+font-family = FiraCode Nerd Font
+font-size = 12
+font-feature = +zero,+onum
+
+background = #0D0E0E
+background-opacity = 0.75
+
+gtk-wide-tabs = false
+gtk-toolbar-style = flat
+gtk-custom-css = ./tabs.css
+
+window-padding-x = 10
+window-padding-y = 10
+window-decoration = none
+window-theme = ghostty
+
+split-divider-color = #CBA6F7
+unfocused-split-opacity = 1
+
+confirm-close-surface = false
+
+window-inherit-working-directory = true
+tab-inherit-working-directory = true
+split-inherit-working-directory = true
+
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 10
+
+bell-features = no-system,no-audio,no-attention,no-title,no-border
+
+clipboard-trim-trailing-spaces = true
+selection-clear-on-copy = true
+
+keybind = performable:ctrl+c=copy_to_clipboard
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
+keybind = ctrl+shift+s=paste_from_selection
+keybind = shift+insert=paste_from_selection
+keybind = ctrl+backspace=text:\x17
+
+keybind = ctrl+shift+enter=new_split:auto
+keybind = ctrl+shift+t=new_tab
+
+keybind = alt+digit_1=goto_tab:1
+keybind = alt+digit_2=goto_tab:2
+keybind = alt+digit_3=goto_tab:3
+keybind = alt+digit_4=goto_tab:4
+keybind = alt+digit_5=goto_tab:5
+keybind = alt+digit_6=goto_tab:6
+keybind = alt+digit_7=goto_tab:7
+keybind = alt+digit_8=goto_tab:8
+keybind = alt+digit_9=goto_tab:9
+
+keybind = alt+k=goto_split:up
+keybind = alt+h=goto_split:left
+keybind = alt+l=goto_split:right
+keybind = alt+j=goto_split:down
+
+keybind = ctrl+shift+f5=reload_config
+

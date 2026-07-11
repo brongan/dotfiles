@@ -81,9 +81,9 @@ alias sudoedit="sudo -e"
 # Modern Replacements
 (($+commands[btop])) && alias top="btop"
 if (($+commands[eza])); then
-    alias ls="eza --icons"
-    alias la="eza --icons -a"
-    alias ll="eza --icons -aaglh"
+    alias ls='eza --icons=auto'
+    alias la='eza --icons=auto -a'
+    alias ll='eza --icons=auto -aaglh'
 fi
 
 if (($+commands[bat])); then
@@ -99,10 +99,13 @@ if (($+commands[btop])); then
     alias top="btop"
 fi
 
-# Kitty specific
 if (($+commands[kitty])); then
     alias s="kitten ssh"
     alias icat="kitty +kitten icat"
+fi
+
+if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+    source "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration"
 fi
 
 # Btrfs
