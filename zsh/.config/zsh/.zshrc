@@ -47,8 +47,6 @@ fi
 
 # Flutter / Chrome
 if (($+commands[flutter])); then
-    export FLUTTER_ROOT="/usr/lib/flutter"
-    # Prioritize Chrome Stable if it exists, else Chromium
     if (($+commands[google - chrome - stable])); then
         export CHROME_EXECUTABLE="google-chrome-stable"
     elif (($+commands[chromium])); then
