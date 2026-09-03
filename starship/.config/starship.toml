@@ -246,11 +246,9 @@ style = "bg:#444444 fg:yellow"
 
 [nix_shell]
 disabled = false
-format = '[[](bg:#555555 fg:#333333)[via](bg:#555555 fg:white) $symbol$state( \($name\))[](bg:#333333 fg:#555555)]($style)'
-symbol = " "
+format = '[[](bg:#555555 fg:#333333)$symbol [](bg:#333333 fg:#555555)]($style)'
+symbol = "❄"
 style = "bold bg:#555555 fg:blue"
-impure_msg = "impure"
-pure_msg = "pure"
 
 [nodejs]
 disabled = true
@@ -355,6 +353,7 @@ symbol = "↯ "
 style = "bg:#444444 fg:yellow"
 
 [custom.jj]
+disabled = true
 description = "The current jj status"
 detect_folders = [".jj"]
 symbol = "🥋 "
