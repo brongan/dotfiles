@@ -147,16 +147,6 @@ local plugins = {
 	}
 	,
 
-	-- Clipboard (OSC52)
-	{
-		"ojroques/nvim-osc52",
-		keys = {
-			{ "<leader>c",  function() return require("osc52").copy_operator() end, expr = true,  desc = "Copy to clipboard" },
-			{ "<leader>cc", "<leader>c_",                                           remap = true, desc = "Copy line" },
-			{ "<leader>c",  function() return require("osc52").copy_visual() end,   mode = "v",   desc = "Copy selection" },
-		},
-	},
-
 	-- Keybinding helper
 	{
 		"folke/which-key.nvim",
