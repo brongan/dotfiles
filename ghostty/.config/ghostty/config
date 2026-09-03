@@ -43,7 +43,7 @@ unfocused-split-opacity = 1
 
 confirm-close-surface = false
 
-window-inherit-working-directory = true
+window-inherit-working-directory = false
 tab-inherit-working-directory = true
 split-inherit-working-directory = true
 
