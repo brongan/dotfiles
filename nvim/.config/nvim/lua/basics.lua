@@ -33,7 +33,6 @@ vim.g.clipboard = "osc52"
 vim.keymap.set("n", "<leader>c", '"+y', { desc = "Copy to clipboard" })
 vim.keymap.set("n", "<leader>cc", '"+yy', { desc = "Copy line" })
 vim.keymap.set("v", "<leader>c", '"+y', { desc = "Copy selection" })
-vim.g.symbols_outline = { auto_preview = true, position = "left" }
 vim.opt.autochdir = false
 vim.opt.background = "dark"
 vim.opt.breakindent = true
