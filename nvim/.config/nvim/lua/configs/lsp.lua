@@ -24,8 +24,8 @@ return {
 						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
 
-					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+					map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+					map("gr", vim.lsp.buf.references, "[G]oto [R]eferences")
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 					map("<leader>a", vim.lsp.buf.code_action, "Code [A]ction")
