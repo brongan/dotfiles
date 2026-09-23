@@ -104,6 +104,12 @@ hl.config({
 	},
 })
 
+hl.gesture({
+	fingers = 3,
+	direction = "horizontal",
+	action = "workspace",
+})
+
 hl.curve("overshot", {
 	type = "bezier",
 	points = { { 0.13, 0.99 }, { 0.29, 1.1 } },
