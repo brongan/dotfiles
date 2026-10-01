@@ -13,7 +13,7 @@ hl.env("GDK_BACKEND", "wayland")
 hl.env("GTK_THEME", "Adwaita:dark")
 hl.env("QT_STYLE_OVERRIDE", "Adwaita-Dark")
 
-pcall(require, "monitors")
+require("monitors")
 
 hl.config({
 	input = {
