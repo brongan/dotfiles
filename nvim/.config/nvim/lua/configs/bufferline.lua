@@ -8,7 +8,7 @@ return {
 			require("bufferline").setup({
 				options = {
 					separator_style = "thin",
-					tab_size = 30,
+					tab_size = 15,
 					enforce_regular_tabs = true,
 					diagnostics = "nvim_lsp",
 				},
