@@ -54,6 +54,22 @@ if (($+commands[flutter])); then
     fi
 fi
 
+# Terminal title
+autoload -Uz add-zsh-hook
+_title_prefix=${SSH_CONNECTION:+"${(%):-%m}: "}
+# Reset to cwd at each prompt, also replacing titles left by nvim, ssh, etc.
+_title_precmd() {
+    print -rn -- $'\e]2;'"${_title_prefix}${(%):-%~}"$'\a'
+}
+# Show the running command so busy tabs are identifiable.
+_title_preexec() {
+    local cmd=${(V)1}
+    (( ${#cmd} > 40 )) && cmd="${cmd[1,40]}…"
+    print -rn -- $'\e]2;'"${_title_prefix}${cmd}"$'\a'
+}
+add-zsh-hook precmd _title_precmd
+add-zsh-hook preexec _title_preexec
+
 # ------------------------------------------------------------------------------
 # 3. Aliases
 # ------------------------------------------------------------------------------

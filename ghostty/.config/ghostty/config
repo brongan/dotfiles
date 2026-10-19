@@ -51,6 +51,7 @@ mouse-hide-while-typing = true
 mouse-scroll-multiplier = 10
 
 bell-features = no-system,no-audio,no-attention,no-title,no-border
+shell-integration-features = no-title
 
 clipboard-trim-trailing-spaces = true
 selection-clear-on-copy = true
