@@ -12,6 +12,7 @@ hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
 hl.env("GDK_BACKEND", "wayland")
 hl.env("GTK_THEME", "Adwaita:dark")
 hl.env("QT_STYLE_OVERRIDE", "Adwaita-Dark")
+hl.env("T3CODE_HOME", "/home/brong/.local/share/t3code-app")
 
 require("monitors")
 
