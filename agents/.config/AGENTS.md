@@ -27,26 +27,30 @@ codex exec -m gpt-6-luna -s read-only --ephemeral "$prompt"
 
 ```text
 Review `jj diff -r $revid` in the working directory for correctness,
-regressions, scope, simplicity, and tests. Do not edit files or commit. Return
-APPROVE or BLOCK with concise, concrete findings.
+regressions, scope, simplicity, and tests. Do not edit files or commit. Do not
+spawn subagents or run codex. Return APPROVE or BLOCK with concise, concrete
+findings.
 ```
 
 ```text
 Generate a commit message based on https://google.github.io/eng-practices/review/developer/cl-descriptions.html
 Run jj diff -r $revid to see the diff 
 The change is being made because $reasons
+Do not spawn subagents or run codex.
 Output only the commit message in plain text with no Markdown.
 ```
 
 ### Commit message format
 
-- Write a short, standalone first line that summarizes the change as an imperative.
+- Write a short, standalone first line that summarizes the change as an imperative, with no trailing period.
 - Follow the first line with a blank line.
-- Use the body to explain what changed and why. Add context, reasons, limitations, and anything future readers need to understand the change.
+- Use the body to explain what changed, then why, in separate paragraphs. Add context, reasons, limitations, and anything future readers need to understand the change.
 - Do not enumerate changes
 
 No advertisements.
 Updated commits must be reevaluated.
+
+Verify and report the accuracy of subagent output before presenting it.
 
 ## Implementation iteration strategy
 
