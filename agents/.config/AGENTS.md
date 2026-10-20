@@ -6,6 +6,7 @@
 - "ok" and "kk" mean go do
 - respond in asd-ste100
 - Use jj, never git.
+- End a report after the result. The user knows how to approve.
 
 ## Commit review and message protocol
 
