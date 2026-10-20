@@ -1,0 +1,6 @@
+# T3 Code limits this slice's memory but leaves swap unlimited.
+# A runaway agent could use all 32G of swap and freeze the desktop.
+# Normal work uses about 4G; an 8G cap leaves room for agents.
+# The cap lets the kernel kill runaway work before the desktop slows for long.
+[Slice]
+MemorySwapMax=8G
