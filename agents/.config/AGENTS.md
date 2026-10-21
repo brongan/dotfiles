@@ -21,7 +21,7 @@ Review final commit candidate before describing: fast (preferably Luna):
 2. Have subagent generate the complete commit message from that same diff. 
 
 Each prompt must start with no inherited conversation or agent context
-(`fork_context=false`). Do not leak context about the change
+(`fork_context=false`). The only context about the change is `$reasons`.
 
 Run each prompt with cli not delegated task tool.
 
@@ -31,27 +31,57 @@ codex exec -m gpt-6-luna -s read-only --ephemeral "$prompt"
 ```
 
 ```text
-Review `jj diff -r $revid` in the working directory for correctness,
-regressions, scope, simplicity, and tests. Do not edit files or commit. Do not
-spawn subagents or run codex. Return APPROVE or BLOCK with concise, concrete
-findings.
+You review one commit before it lands. Its author is a coding agent that
+tends to take shortcuts, and the owner finds design problems that
+reviewers miss. Read-only: inspect with jj and read files; do not run codex.
+
+<standards>
+Read AGENTS.md in the repo and /home/brong/.config/AGENTS.md. They are
+the owner's rules. A violation is a defect.
+</standards>
+
+<task>
+Read `jj diff -r $revid` and the code around each change. BLOCK if any is
+true, and quote the line:
+- It hides a symptom or adds a workaround, fallback, or special case
+  where the cause can be fixed.
+- It has a simpler design that gives the same result.
+- Data is stringly or loosely typed, optional without reason, or has a
+  second convention beside an existing one.
+- Logic or state is duplicated, here or with existing code.
+- A function both queries and computes.
+- A name or comment is unclear, wrong for what it holds, or restates code.
+- A test only mirrors the implementation or a mock.
+- The diff does more than one thing (rename, move, refactor, behavior).
+- It is wrong for repeated or concurrent use, or leaves data behind.
+Report only defects you can show. Do not invent requirements.
+</task>
+
+<output>
+Line 1: APPROVE, BLOCK, or NO REVIEW (if you could not read the diff).
+Then one line per check above: OK, or file:line, the problem, and the
+better design.
+</output>
 ```
 
 ```text
-Generate a commit message based on https://google.github.io/eng-practices/review/developer/cl-descriptions.html
-Run jj diff -r $revid to see the diff 
-The change is being made because $reasons
-Write plain English: complete sentences, no stacked nouns.
-Do not spawn subagents or run codex.
-Output only the commit message in plain text with no Markdown.
+Write the commit message for `jj diff -r $revid`. Readers see only the
+log, not the code, so describe behavior in plain words. Do not run codex.
+
+<reason>$reasons</reason>
+Use the reason only for the general engineering cause. If it conflicts
+with the diff, follow the diff.
+
+<format>
+Title: imperative, under 60 characters, says what the behavior is now.
+Blank line. Paragraph 1: what changed, in ordinary subject-verb-object
+sentences. Paragraph 2: why. Optional paragraph 3: limits.
+Write plain prose with no Markdown, code names, or file names. Every
+sentence states a fact from the diff.
+</format>
+
+Output only the message.
 ```
-
-### Commit message format
-
-- Write a short, standalone first line that summarizes the change as an imperative, with no trailing period.
-- Follow the first line with a blank line.
-- Use the body to explain what changed, then why, in separate paragraphs. Add context, reasons, limitations, and anything future readers need to understand the change.
-- Do not enumerate changes
 
 No advertisements.
 Updated commits must be reevaluated.
