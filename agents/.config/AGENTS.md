@@ -118,4 +118,5 @@ Verify and report the accuracy of subagent output before presenting it.
 - Organize tests by behavior in separate files rather than large inline suites.
 - Prefer iterator pipelines (`map`, `filter`, `filter_map`, `collect`).
 - Avoid cloning as a shortcut.
-
+- The schema file is the source of truth. Once a change lands on main, apply it
+  to live databases with hand-written DDL kept out of the repo.
