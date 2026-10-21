@@ -88,6 +88,10 @@ Updated commits must be reevaluated.
 
 Verify and report the accuracy of subagent output before presenting it.
 
+## Delegation
+
+- Include the user’s agreed scope and approvals in each subagent prompt.
+
 ## Implementation iteration strategy
 
 1. Agree on the design and exact scope before implementation.
