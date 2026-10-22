@@ -37,6 +37,7 @@ findings.
 Generate a commit message based on https://google.github.io/eng-practices/review/developer/cl-descriptions.html
 Run jj diff -r $revid to see the diff 
 The change is being made because $reasons
+Write plain English: complete sentences, no stacked nouns.
 Do not spawn subagents or run codex.
 Output only the commit message in plain text with no Markdown.
 ```
