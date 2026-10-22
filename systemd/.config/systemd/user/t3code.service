@@ -1,0 +1,17 @@
+[Unit]
+Description=T3 Code server
+
+[Service]
+Environment=ELECTRON_RUN_AS_NODE=1
+Environment=T3CODE_PORT=3773
+Environment=T3CODE_HOST=0.0.0.0
+Environment=CLAUDE_CONFIG_DIR=%h/.config/claude
+Environment=CODEX_HOME=%h/.config/codex
+Environment=T3CODE_HOME=%h/.local/share/t3code
+WorkingDirectory=%h
+ExecStart=/opt/t3code-nightly-bin/t3code /opt/t3code-nightly-bin/resources/app.asar/apps/server/dist/bin.mjs serve
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
