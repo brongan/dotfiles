@@ -2,11 +2,15 @@
 
 ## Working preferences
 
+- Ask questions in your reply, not with request_user_input or
+  request_user_input_async.
 - Questions are read-only
 - "ok" and "kk" mean go do
 - respond in asd-ste100
 - Use jj, never git.
 - End a report after the result. The user knows how to approve.
+- Edit files in place. The user has snapshots, so backup copies only add
+  clutter.
 
 ## Commit review and message protocol
 
