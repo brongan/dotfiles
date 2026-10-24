@@ -1,0 +1,14 @@
+{
+  "excludes": [
+    "**/node_modules",
+    "**/*-lock.json"
+  ],
+  "plugins": [
+    "https://plugins.dprint.dev/typescript-0.96.1.wasm@9c52244de2c25a33addc7ddacff4443234a2dc4b5d3f34131262d1e0df35007c",
+    "https://plugins.dprint.dev/json-0.25.2.wasm@811ca4c6f732bcd6f707bc2f42d42395bb4127cdf829960cf628a18fc149777e",
+    "https://plugins.dprint.dev/markdown-0.28.0.wasm@96182f4bf9f91befb599b93183e873bd50782fad27cfd1b8b8851831aa3c0ff4",
+    "https://plugins.dprint.dev/g-plane/markup_fmt-v0.27.6.wasm@93dd0c870b60431ceea59f055792fee4a353868223c813d3a44414b31d1df602",
+    "https://plugins.dprint.dev/g-plane/malva-v0.16.0.wasm@1c1b31f972ef5aae052f97b6723aaf962e0175c5bbe4ba877e092512af354113",
+    "https://plugins.dprint.dev/g-plane/pretty_yaml-v0.6.0.wasm@40a2fdda7040317eb1b23520f3a00769a5571eedb049c4ca9175c1b9eeba01ae"
+  ]
+}
