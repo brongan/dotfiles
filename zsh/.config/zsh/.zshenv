@@ -74,8 +74,6 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 # Node / NVM (Variables Only)
 # ------------------------------------------------------------------------------
 export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
-export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
-export npm_config_prefix="${HOME}/.local"
 
 # ------------------------------------------------------------------------------
 # Path Construction
@@ -90,7 +88,6 @@ path=(
     "${GOPATH}/bin"
     "${GEM_HOME}/bin"
     "${XDG_STATE_HOME}/nix/profile/bin"
-    "${HOME}/.node_modules/bin"
     $path
 )
 
