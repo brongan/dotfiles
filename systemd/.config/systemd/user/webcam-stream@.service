@@ -1,6 +1,8 @@
 [Unit]
 Description=Webcam stream to %i
 After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=5
 
 [Service]
 ExecStart=ffmpeg -vaapi_device /dev/dri/renderD128 -f v4l2 -input_format mjpeg -framerate 30 -video_size 1280x720 -i /dev/video0 -vf format=nv12,hwupload -c:v h264_vaapi -profile:v main -bf 0 -g 6 -qp 28 -rtsp_transport tcp -f rtsp rtsp://%i:8554/webcam
