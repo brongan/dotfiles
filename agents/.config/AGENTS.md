@@ -18,6 +18,15 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - End a report after the result. The user knows how to approve.
 - Put designs, proposals, and reports inline in chat, never in artifacts. Put
   requests for the user in a list at the end.
+- Before you state a fact, confirm it with a command, file, or test. The user
+  acts on what you say.
+- Before you propose options, test each point that decides between them.
+  Untested options waste the user's decision.
+- Before you propose new code, look for an existing setting or service, and
+  give the simplest option first. Less code is less to maintain.
+- Before you propose a change to agent instructions, check it against
+  Anthropic's prompting best practices: say when the rule applies, what to
+  do, and why. The user should not have to ask for this.
 
 ## Delegation
 
@@ -35,6 +44,8 @@ Not on a Google machine: read ~/.config/agents/home.md.
    revision.
 6. Treat review findings as advisory: evaluate them against the project's
    design and test preferences. Iterate against 0 context reviewer until legitimate issues are addresssed.
+   Give findings that change user-visible behavior to the user with options
+   before you change the code. That behavior is the user's decision.
 7. Do not claim readiness until the final diff, checks, review,
    and commit description all match one another.
 
