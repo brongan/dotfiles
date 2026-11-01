@@ -6,9 +6,9 @@
 	hide_duplicate_count = true
 
 	width = 300
-	height = 300
+	height = (0, 300)
 	origin = top-right
-	offset = 20x20
+	offset = (20, 20)
 	notification_limit = 5
 	corner_radius = 10
 
