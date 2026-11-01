@@ -145,7 +145,6 @@ hl.animation({
 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("swaybg -o '*' -i ~/Desktop/frieren.jpg")
-	hl.exec_cmd("hypridle")
 	hl.exec_cmd("ghostty", { workspace = "1 silent" })
 	hl.exec_cmd("firefox", { workspace = "2 silent" })
 	hl.exec_cmd("signal-desktop", { workspace = "4 silent" })
@@ -153,9 +152,6 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")
 	hl.exec_cmd("ironbar")
 	hl.exec_cmd("blueberry-tray")
-	hl.exec_cmd("/usr/lib/kdeconnectd")
-	hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
-	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 end)
 
 require("bindings")
