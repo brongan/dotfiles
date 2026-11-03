@@ -11,8 +11,8 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - respond in asd-ste100
 - Use jj, never git. If git is required, run it inside the repo, never git -C.
 - Pass `-r $revid` explicitly. Never reference `@`.
-- Edit a revision in a child from `jj new -r $revid`. Never `jj edit`. Squash
-  only after approval.
+- Edit a revision in a child from `jj new -r $revid`. Never `jj edit`. Show the
+  child's diff as the interdiff, then squash without asking.
 - Give each parallel agent its own worktree in the harness data directory,
   never in a shared working copy or `~/ws/`.
 - End a report after the result. The user knows how to approve.
@@ -59,7 +59,8 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - Replace vague errors with specific protocol or system errors. Avoid catch-alls.
 - Startup failures should return errors, not panic or silently fall back to
   degraded behavior.
-- Organize tests by behavior in separate files rather than large inline suites.
+- Write one test per behavior, as idiomatic in the language.
+- In Rust, put `#[cfg(test)]` tests in a separate file.
 - Prefer iterator pipelines (`map`, `filter`, `filter_map`, `collect`).
 - Avoid cloning as a shortcut.
 - The schema file is the source of truth. Once a change lands on main, apply it
