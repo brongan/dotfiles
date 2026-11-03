@@ -95,6 +95,8 @@ path=(
 [[ -d "/usr/lib/cargo/bin" ]] && path+=("/usr/lib/cargo/bin")
 [[ -d "/opt/dart-sdk/bin" ]] && path+=("/opt/dart-sdk/bin")
 
+[[ $USERNAME == "brennantracy" && -f "${ZDOTDIR}/google.zshenv" ]] && source "${ZDOTDIR}/google.zshenv"
+
 # ------------------------------------------------------------------------------
 # Misc
 # ------------------------------------------------------------------------------

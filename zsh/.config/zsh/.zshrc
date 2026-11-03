@@ -205,7 +205,7 @@ if (($+commands[atuin])); then
 fi
 
 # Google
-if [[ $(whoami) == "brennantracy" && -f "${ZDOTDIR}/google.zsh" ]]; then
+if [[ $USERNAME == "brennantracy" && -f "${ZDOTDIR}/google.zsh" ]]; then
     source "${ZDOTDIR}/google.zsh"
 fi
 
