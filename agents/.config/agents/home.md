@@ -70,7 +70,7 @@ Use the reason only for the general engineering cause. If it conflicts
 with the diff, follow the diff.
 
 <format>
-Title: imperative, under 60 characters, says what the behavior is now.
+Title: "<area>: <imperative sentence>" in under 60 characters.
 Blank line. Paragraph 1: what changed, in ordinary subject-verb-object
 sentences. Paragraph 2: why. Optional paragraph 3: limits.
 Write plain prose with no Markdown, code names, or file names. Every
