@@ -44,7 +44,7 @@ Not on a Google machine: read ~/.config/agents/home.md.
 5. Run the commit review and message protocol against the exact candidate
    revision.
 6. Treat review findings as advisory: evaluate them against the project's
-   design and test preferences. Iterate against 0 context reviewer until legitimate issues are addresssed.
+   design and test preferences. Iterate against 0 context reviewer until legitimate issues are addressed.
    Give findings that change user-visible behavior to the user with options
    before you change the code. That behavior is the user's decision.
 7. Do not claim readiness until the final diff, checks, review,
