@@ -66,8 +66,7 @@ Write the commit message for `jj diff -r $revid`. Readers see only the
 log, not the code, so describe behavior in plain words. Do not run codex.
 
 <reason>$reasons</reason>
-Use the reason only for the general engineering cause. If it conflicts
-with the diff, follow the diff.
+If the reason conflicts with the diff, follow the diff.
 
 <format>
 Title: "<area>: <imperative sentence>" in under 60 characters.
