@@ -22,6 +22,7 @@ Not on a Google machine: read ~/.config/agents/home.md.
   acts on what you say.
 - Before you propose options, test each point that decides between them.
   Untested options waste the user's decision.
+- Fix the cause of a defect, not only the one instance.
 - Before you propose new code, look for an existing setting or service, and
   give the simplest option first. Less code is less to maintain.
 - Before you propose a change to agent instructions, check it against
