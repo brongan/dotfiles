@@ -17,8 +17,9 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - Put designs, proposals, and reports inline in chat, never in artifacts. End
   a reply with at most one request for the user, with enough context to answer
   it alone, because the user works in many chats at once.
-- Before you state a fact, confirm it with a command, file, or test. The user
-  acts on what you say.
+- Before you state a fact, cause, or number, confirm it with a command, file,
+  test, or a subagent on a fast model. Report only confirmed points, because
+  the user acts on what you say.
 - Before you propose options, test each point that decides between them.
   Untested options waste the user's decision.
 - Fix the cause of a defect, not only the one instance.
