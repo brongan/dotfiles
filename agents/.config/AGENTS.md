@@ -14,8 +14,9 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - Give each parallel agent its own worktree in the harness data directory,
   never in a shared working copy or `~/ws/`.
 - End a report after the result. The user knows how to approve.
-- Put designs, proposals, and reports inline in chat, never in artifacts. Put
-  requests for the user in a list at the end.
+- Put designs, proposals, and reports inline in chat, never in artifacts. End
+  a reply with at most one request for the user, with enough context to answer
+  it alone, because the user works in many chats at once.
 - Before you state a fact, confirm it with a command, file, or test. The user
   acts on what you say.
 - Before you propose options, test each point that decides between them.
