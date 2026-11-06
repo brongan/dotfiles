@@ -11,8 +11,6 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - respond in asd-ste100
 - Use jj, never git. If git is required, run it inside the repo, never git -C.
 - Pass `-r $revid` explicitly. Never reference `@`.
-- Edit a revision in a child from `jj new -r $revid`. Never `jj edit`. Show the
-  child's diff as the interdiff, then squash without asking.
 - Give each parallel agent its own worktree in the harness data directory,
   never in a shared working copy or `~/ws/`.
 - End a report after the result. The user knows how to approve.
@@ -36,18 +34,17 @@ Not on a Google machine: read ~/.config/agents/home.md.
 ## Implementation iteration strategy
 
 1. Agree on the design and exact scope before implementation.
-2. Create a dedicated change with jj new.
-3. Implement the smallest meaningfully reviewable diff. Do not include unrelated changes.
-4. During iteration, run focused tests and checks. Run the project's full
-   precommit gate once the diff is ready for review. Reread the exact final diff
+2. Implement the smallest meaningfully reviewable diff. Do not include unrelated changes.
+3. During iteration, run focused tests and checks. Run the project's full
+   precommit checks once the diff is ready for review. Reread the exact final diff
    and check that every changed line contributes to the requested behavior.
-5. Run the commit review and message protocol against the exact candidate
+4. Run the commit review and message protocol against the exact candidate
    revision.
-6. Treat self-review findings as advisory: evaluate them against the project's
+5. Treat self-review findings as advisory: evaluate them against the project's
    design and test preferences, and fix the legitimate ones. Iterate against a
    zero-context reviewer until none remain. Report the final diff and checks,
    not the findings, because step 1 already settled the design with the user.
-7. Do not claim readiness until the final diff, checks, review,
+6. Do not claim readiness until the final diff, checks, review,
    and commit description all match one another.
 
 ## Implementation preferences
