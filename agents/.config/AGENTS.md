@@ -58,6 +58,8 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - Startup failures should return errors, not panic or silently fall back to
   degraded behavior.
 - Write one test per behavior, as idiomatic in the language.
+- Write a comment only for the contract or the reason, as a full sentence.
+  The code already shows what it does.
 - In Rust, put `#[cfg(test)]` tests in a separate file.
 - Prefer iterator pipelines (`map`, `filter`, `filter_map`, `collect`).
 - Avoid cloning as a shortcut.
