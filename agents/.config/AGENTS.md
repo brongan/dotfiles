@@ -10,7 +10,6 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - "ok" and "kk" mean go do
 - respond in asd-ste100
 - Use jj, never git. If git is required, run it inside the repo, never git -C.
-- Pass `-r $revid` explicitly. Never reference `@`.
 - Give each parallel agent its own worktree in the harness data directory,
   never in a shared working copy or `~/ws/`.
 - End a report after the result. The user knows how to approve.
