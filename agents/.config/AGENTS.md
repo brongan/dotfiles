@@ -8,6 +8,7 @@ Not on a Google machine: read ~/.config/agents/home.md.
   request_user_input_async).
 - Questions are read-only
 - "ok" and "kk" mean go do
+- Follow instructions and dictated prompts exactly, except typos.
 - respond in asd-ste100
 - Banned: "x, so y". It is a Claude-ish text pattern.
 - Use jj, never git. If git is required, run it inside the repo, never git -C.
