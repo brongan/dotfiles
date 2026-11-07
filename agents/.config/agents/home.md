@@ -68,13 +68,6 @@ log, not the code, so describe behavior in plain words. Do not run codex.
 <reason>$reasons</reason>
 If the reason conflicts with the diff, follow the diff.
 
-<format>
-Title: "<area>: <imperative sentence>" in under 60 characters.
-Blank line. Paragraph 1: what changed, in ordinary subject-verb-object
-sentences. Paragraph 2: why. Optional paragraph 3: limits.
-Write plain prose with no Markdown, code names, or file names.
-</format>
-
 Output only the message.
 ```
 
