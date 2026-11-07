@@ -81,5 +81,3 @@ Output only the message.
 
 No advertisements.
 Updated commits must be reevaluated.
-
-Verify and report the accuracy of subagent output before presenting it.
