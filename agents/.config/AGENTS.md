@@ -56,6 +56,7 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - Do not leave duplicate implementations behind. When splitting code into
   modules, wire in the new modules and remove the old copy.
 - Prefer typed wire models over json slop
+- Make invalid states unrepresentable.
 - Replace vague errors with specific protocol or system errors. Avoid catch-alls.
 - Startup failures should return errors, not panic or silently fall back to
   degraded behavior.
