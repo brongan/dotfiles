@@ -36,7 +36,7 @@ local plugins = {
 		ft = { "dart" },
 		config = true,
 	},
-	{ "folke/lazydev.nvim",      ft = "lua" },
+	{ "folke/lazydev.nvim", ft = "lua" },
 
 	-- UI & Themes
 	{
@@ -97,9 +97,9 @@ local plugins = {
 			},
 		},
 		keys = {
-			{ "]h",         "<cmd>Gitsigns next_hunk<cr>",                 desc = "Next Hunk" },
-			{ "[h",         "<cmd>Gitsigns prev_hunk<cr>",                 desc = "Prev Hunk" },
-			{ "<leader>hp", "<cmd>Gitsigns preview_hunk<cr>",              desc = "Preview Hunk" },
+			{ "]h", "<cmd>Gitsigns next_hunk<cr>", desc = "Next Hunk" },
+			{ "[h", "<cmd>Gitsigns prev_hunk<cr>", desc = "Prev Hunk" },
+			{ "<leader>hp", "<cmd>Gitsigns preview_hunk<cr>", desc = "Preview Hunk" },
 			{ "<leader>hb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle Line Blame" },
 		},
 	},
@@ -112,7 +112,7 @@ local plugins = {
 		config = true,
 	},
 	{ "numToStr/Comment.nvim", opts = {} },
-	{ "stevearc/oil.nvim",     opts = {} },
+	{ "stevearc/oil.nvim", opts = {} },
 	"tpope/vim-eunuch",
 	"tpope/vim-speeddating",
 	{
@@ -128,24 +128,43 @@ local plugins = {
 		cmd = "Trouble",
 		opts = {},
 		keys = {
-			{ "<Leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Diagnostics (Trouble)" },
-			{ "<Leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           desc = "Buffer Diagnostics (Trouble)" },
-			{ "<Leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>",                desc = "Symbols (Trouble)" },
-			{ "<Leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Defs/Refs (Trouble)" },
-			{ "<Leader>xL", "<cmd>Trouble loclist toggle<cr>",                            desc = "Location List (Trouble)" },
-			{ "<Leader>xQ", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix List (Trouble)" },
+			{
+				"<Leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
+			},
+			{
+				"<Leader>xX",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Diagnostics (Trouble)",
+			},
+			{ "<Leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
+			{
+				"<Leader>cl",
+				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+				desc = "LSP Defs/Refs (Trouble)",
+			},
+			{
+				"<Leader>xL",
+				"<cmd>Trouble loclist toggle<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<Leader>xQ",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
+			},
 		},
 	},
 
 	-- Markdown
 	{
-		'MeanderingProgrammer/render-markdown.nvim',
-		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		opts = {},
-	}
-	,
+	},
 
 	-- Keybinding helper
 	{

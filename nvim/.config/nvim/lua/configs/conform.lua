@@ -45,12 +45,6 @@ return {
 		},
 
 		format_on_save = { timeout_ms = 2500, lsp_fallback = true },
-
-		formatters = {
-			shfmt = {
-				prepend_args = { "-i", "4" },
-			},
-		},
 	},
 	init = function()
 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"

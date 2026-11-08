@@ -5,8 +5,12 @@ map("n", "<Leader>w", ":w!<CR>")
 map("n", "<Leader>x", ":bd<CR>")
 
 -- Diagnostic
-map("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, { desc = "Go to prev [d]iagnostic" })
-map("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, { desc = "Go to next [d]iagnostic" })
+map("n", "[d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Go to prev [d]iagnostic" })
+map("n", "]d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Go to next [d]iagnostic" })
 map("n", "<Leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [e]rror message." })
 map("n", "<Leader>d", vim.diagnostic.setloclist, { desc = "Open diagnostic [d]uickfix list." })
 

@@ -7,14 +7,16 @@ return {
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
-			cond = function() return vim.fn.executable("make") == 1 end,
+			cond = function()
+				return vim.fn.executable("make") == 1
+			end,
 		},
 		"nvim-telescope/telescope-ui-select.nvim",
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 	},
 	keys = {
-		{ "<leader>fh", "<cmd>Telescope help_tags<cr>",  desc = "[F]uzzy [H]elp" },
-		{ "<leader>fk", "<cmd>Telescope keymaps<cr>",    desc = "[F]uzzy [K]eymaps" },
+		{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "[F]uzzy [H]elp" },
+		{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "[F]uzzy [K]eymaps" },
 		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "[F]uzzy [F]iles" },
 		{ "<leader>fs", "<cmd>Telescope git_status<cr>", desc = "[F]uzzy Git [S]tatus" },
 		{
@@ -25,19 +27,19 @@ return {
 					vim.notify("Not a git repository", vim.log.levels.WARN, { title = "Telescope" })
 				end
 			end,
-			desc = "[F]uzzy [G]it Files"
+			desc = "[F]uzzy [G]it Files",
 		},
-		{ "<leader>fd", "<cmd>Telescope diagnostics<cr>",     desc = "[F]uzzy [D]iagnostics" },
-		{ "<leader>fr", "<cmd>Telescope resume<cr>",          desc = "[F]uzzy [R]esume" },
-		{ "<leader>fq", "<cmd>Telescope quickfix<cr>",        desc = "[F]uzzy [Q]uickfix" },
-		{ "<leader>fb", "<cmd>Telescope buffers<cr>",         desc = "[F]uzzy [B]uffers" },
-		{ "<leader>f.", "<cmd>Telescope oldfiles<cr>",        desc = '[F]uzzy Recent Files ("." for repeat)' },
-		{ "<leader>fc", "<cmd>Telescope commands<cr>",        desc = "[F]uzzy [C]ommands" },
-		{ "<leader>f/", "<cmd>Telescope search_history<cr>",  desc = "[F]uzzy Search History" },
+		{ "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "[F]uzzy [D]iagnostics" },
+		{ "<leader>fr", "<cmd>Telescope resume<cr>", desc = "[F]uzzy [R]esume" },
+		{ "<leader>fq", "<cmd>Telescope quickfix<cr>", desc = "[F]uzzy [Q]uickfix" },
+		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "[F]uzzy [B]uffers" },
+		{ "<leader>f.", "<cmd>Telescope oldfiles<cr>", desc = '[F]uzzy Recent Files ("." for repeat)' },
+		{ "<leader>fc", "<cmd>Telescope commands<cr>", desc = "[F]uzzy [C]ommands" },
+		{ "<leader>f/", "<cmd>Telescope search_history<cr>", desc = "[F]uzzy Search History" },
 		{ "<leader>f:", "<cmd>Telescope command_history<cr>", desc = "[F]uzzy Command History" },
 
 		-- Search Content
-		{ "<leader>fB", "<cmd>Telescope live_grep<cr>",       desc = "[F]uzzy Grep [P]roject (Ripgrep)" },
+		{ "<leader>fB", "<cmd>Telescope live_grep<cr>", desc = "[F]uzzy Grep [P]roject (Ripgrep)" },
 		{
 			"<leader>fl",
 			function()
@@ -46,7 +48,7 @@ return {
 					prompt_title = "Live Grep in Open Files",
 				})
 			end,
-			desc = "[F]uzzy [L]ines (Open Buffers)"
+			desc = "[F]uzzy [L]ines (Open Buffers)",
 		},
 		{
 			"<leader>/",
@@ -56,8 +58,8 @@ return {
 					previewer = false,
 				}))
 			end,
-			desc = "[/] Fuzzily search in current buffer"
-		}
+			desc = "[/] Fuzzily search in current buffer",
+		},
 	},
 	config = function()
 		require("telescope").setup({

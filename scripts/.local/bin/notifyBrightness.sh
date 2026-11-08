@@ -18,4 +18,3 @@ fi
 
 canberra-gtk-play -i dialog-information -d "notifyBrightness"
 dunstify -h string:x-canonical-private-synchronous:brightness "${backlight}: ${brightness}%" -h int:value:"$brightness" -t 1500 --icon $icon
-

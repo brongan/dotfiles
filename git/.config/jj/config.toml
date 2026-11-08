@@ -19,10 +19,10 @@ show-cryptographic-signatures = true
 
 [template-aliases]
 'format_short_cryptographic_signature(sig)' = '''
-  if(sig,
-    sig.status(),
-    "(no sig)",
-  )
+	if(sig,
+		sig.status(),
+		"(no sig)",
+	)
 '''
 
 [merge-tools.nvim-diff]
@@ -36,8 +36,14 @@ merge-args = ["$output"]
 [merge-tools.diffconflicts]
 program = "nvim"
 merge-args = [
-    "-c", "let g:jj_diffconflicts_marker_length=$marker_length",
-    "-c", "JJDiffConflicts!", "$output", "$base", "$left", "$right",
+	"-c",
+	"let g:jj_diffconflicts_marker_length=$marker_length",
+	"-c",
+	"JJDiffConflicts!",
+	"$output",
+	"$base",
+	"$left",
+	"$right",
 ]
 merge-tool-edits-conflict-markers = true
 
@@ -58,4 +64,3 @@ allowed-signers = "~/.ssh/allowed_signers"
 
 [revsets]
 git-sign-on-push = "~signed() & mine()"
-
