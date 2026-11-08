@@ -12,6 +12,7 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - respond in asd-ste100
 - Banned: "x, so y". It is a Claude-ish text pattern.
 - Use jj, never git. If git is required, run it inside the repo, never git -C.
+- In an unmerged stack, fix a line in the commit that added it.
 - Give each parallel agent its own worktree in the harness data directory,
   never in a shared working copy or `~/ws/`.
 - End a report after the result. The user knows how to approve.
