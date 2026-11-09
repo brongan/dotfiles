@@ -53,6 +53,7 @@
 	navigate = true
 	line-numbers = true
 	syntax-theme = gruvbox-dark
+	tabs = 2
 [merge]
 	conflictstyle = diff3
 [diff]
