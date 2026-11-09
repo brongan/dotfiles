@@ -15,6 +15,7 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - In an unmerged stack, fix a line in the commit that added it.
 - Give each parallel agent its own worktree in the harness data directory,
   never in a shared working copy or `~/ws/`.
+- Clone only with approval, into `~/ws/`, so checkouts stay in one place.
 - End a report after the result. The user knows how to approve.
 - Put designs, proposals, and reports inline in chat, never in artifacts. End
   a reply with at most one request for the user, with enough context to answer
@@ -53,6 +54,8 @@ Not on a Google machine: read ~/.config/agents/home.md.
 
 ## Implementation preferences
 
+- Edit files with the harness's edit tool, not `sed` or other shell rewrites,
+  because a regex replace can corrupt a file without anyone noticing.
 - Prefer behavior-preserving, incremental refactors over broad rewrites.
 - Keep production behavior changes and test movement separate when practical.
 - Do not leave duplicate implementations behind. When splitting code into
