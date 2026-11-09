@@ -24,7 +24,7 @@ Run each prompt with cli not delegated task tool.
 
 Ex:
 ```sh
-codex exec -m gpt-6-luna -s read-only --ephemeral "$prompt" </dev/null
+codex exec -m gpt-6-luna -s read-only "$prompt" </dev/null
 ```
 
 ```text
