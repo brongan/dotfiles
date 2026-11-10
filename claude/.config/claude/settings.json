@@ -1,0 +1,17 @@
+{
+	"attribution": {
+		"commit": "",
+		"pr": ""
+	},
+	"includeCoAuthoredBy": false,
+	"permissions": {
+		"defaultMode": "auto"
+	},
+	"model": "opus",
+	"effortLevel": "high",
+	"theme": "dark",
+	"agentPushNotifEnabled": true,
+	"skipAutoPermissionPrompt": true,
+	"switchModelsOnFlag": true,
+	"autoMemoryDirectory": "~/.config/claude/memory"
+}
