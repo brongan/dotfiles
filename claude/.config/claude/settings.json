@@ -18,5 +18,6 @@
 	"agentPushNotifEnabled": true,
 	"skipAutoPermissionPrompt": true,
 	"switchModelsOnFlag": true,
-	"autoMemoryDirectory": "~/.config/claude/memory"
+	"autoMemoryDirectory": "~/.config/claude/memory",
+	"disableClaudeAiConnectors": true
 }
