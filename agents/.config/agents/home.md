@@ -8,6 +8,8 @@
   the approved commit, push `main` to every remote, then jj new and next task.
 - Harness data directory: `$T3CODE_HOME`. Put worktrees in
   `$T3CODE_HOME/worktrees/`.
+- In a jj repo, make worktrees for yourself and child agents with
+  `jj workspace add`, because a T3 worktree has no jj repo.
 
 ## Commit review and message protocol
 
