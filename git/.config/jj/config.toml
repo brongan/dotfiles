@@ -8,6 +8,10 @@ name = "Brennan Tracy"
 [--scope.user]
 email = "brennantracy@google.com"
 
+# The work jj predates revsets.git-sign-on-push and needs the deprecated switch.
+[--scope.git]
+sign-on-push = true
+
 [ui]
 default-command = "log"
 diff-formatter = ":git"
