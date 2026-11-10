@@ -5,6 +5,11 @@
 	},
 	"includeCoAuthoredBy": false,
 	"permissions": {
+		"allow": [
+			"Bash(sqlite3 -readonly *ha.home.brongan.com*)",
+			"Bash(curl *ha.home.brongan.com*)",
+			"Bash(websocat *ha.home.brongan.com*)"
+		],
 		"defaultMode": "auto"
 	},
 	"model": "opus",
