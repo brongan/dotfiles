@@ -16,6 +16,10 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - Give each parallel agent its own worktree in the harness data directory,
   never in a shared working copy or `~/ws/`.
 - Clone only with approval, into `~/ws/`, so checkouts stay in one place.
+- Pass `--limit 1000` to `gh` list and search commands, because they return 30
+  results by default and drop the rest without warning.
+- If you are Claude, pass new prose through a subagent on a fast, non-Claude
+  model with "translate this claudeish to english".
 - End a report after the result. The user knows how to approve.
 - Put designs, proposals, and reports inline in chat, never in artifacts. End
   a reply with at most one request for the user, with enough context to answer
