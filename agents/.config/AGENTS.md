@@ -29,7 +29,7 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - Before you propose new code, look for an existing setting or service, and
   give the simplest option first. Less code is less to maintain.
 - Before you propose a change to agent instructions, check it against
-  Anthropic's prompting best practices: say when the rule applies, what to
+  Anthropic's prompting best practices: say when it applies, what to
   do, and why. The user should not have to ask for this.
 
 ## Delegation
