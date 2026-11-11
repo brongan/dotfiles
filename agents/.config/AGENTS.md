@@ -71,5 +71,5 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - In Rust, put `#[cfg(test)]` tests in a separate file.
 - Prefer iterator pipelines (`map`, `filter`, `filter_map`, `collect`).
 - Avoid cloning as a shortcut.
-- The schema file is the source of truth. Once a change lands on main, apply it
+- The schema file is the source of truth. Once a change is on main, apply it
   to live databases with hand-written DDL kept out of the repo.

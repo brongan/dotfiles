@@ -30,7 +30,7 @@ codex exec -m gpt-6-luna -s read-only "$prompt" </dev/null
 ```
 
 ```text
-You review one commit before it lands. Its author is a coding agent that
+You review one commit before it goes on main. Its author is a coding agent that
 tends to take shortcuts, and the owner finds design problems that
 reviewers miss. Read-only: inspect with jj and read files; do not run codex.
 
