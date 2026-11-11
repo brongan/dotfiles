@@ -53,7 +53,6 @@ true, and quote the line:
 - A test only mirrors the implementation or a mock.
 - The diff does more than one thing (rename, move, refactor, behavior).
 - It is wrong for repeated or concurrent use, or leaves data behind.
-Report only defects you can show. Do not invent requirements.
 </task>
 
 <output>
