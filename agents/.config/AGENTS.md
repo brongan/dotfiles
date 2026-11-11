@@ -58,6 +58,8 @@ Not on a Google machine: read ~/.config/agents/home.md.
 
 ## Implementation preferences
 
+Repository style overrides these.
+
 - Edit files with the harness's edit tool, not `sed` or other shell rewrites,
   because a regex replace can corrupt a file without anyone noticing.
 - Prefer behavior-preserving, incremental refactors over broad rewrites.
