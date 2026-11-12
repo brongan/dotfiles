@@ -12,6 +12,19 @@ email = "brennantracy@google.com"
 [--scope.git]
 sign-on-push = true
 
+# The builtin trunk() knows only the origin and upstream remotes. Personal
+# repos push to the server remote. A repo setting overrides this alias.
+[revset-aliases]
+"trunk()" = '''
+latest(
+	remote_bookmarks(
+		exact:"main" | exact:"master" | exact:"trunk",
+		exact:"origin" | exact:"upstream" | exact:"server",
+	) |
+	root()
+)
+'''
+
 [ui]
 default-command = "log"
 diff-formatter = ":git"
