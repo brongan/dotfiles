@@ -40,7 +40,8 @@ Not on a Google machine: read ~/.config/agents/home.md.
 
 ## Delegation
 
-- Include the user’s agreed scope and approvals in each subagent prompt.
+- Give a subagent the task and the user's decisions only, because extra steps
+  anchor it on a wrong design.
 
 ## Implementation iteration strategy
 
