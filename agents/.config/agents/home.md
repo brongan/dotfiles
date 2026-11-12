@@ -8,6 +8,8 @@
   `$T3CODE_HOME/worktrees/`.
 - In a jj repo, make worktrees for yourself and child agents with
   `jj workspace add`, because a T3 worktree has no jj repo.
+- Before you write code, get the commit descriptions approved, because they
+  state the design in plain words.
 
 ## Commit review and message protocol
 
