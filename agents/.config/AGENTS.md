@@ -16,6 +16,8 @@ Not on a Google machine: read ~/.config/agents/home.md.
 - Give each parallel agent its own worktree in the harness data directory,
   never in a shared working copy or `~/ws/`.
 - Clone only with approval, into `~/ws/`, so checkouts stay in one place.
+- Edit files in place. The user has snapshots, so backup copies only add
+  clutter.
 - Pass `--limit 1000` to `gh` list and search commands, because they return 30
   results by default and drop the rest without warning.
 - If you are Claude, pass new prose through a subagent on a fast, non-Claude

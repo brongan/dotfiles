@@ -2,8 +2,6 @@
 
 ## Working preferences
 
-- Edit files in place. The user has snapshots, so backup copies only add
-  clutter.
 - lgtm means the commit description, and change are approved: move `main` to
   the approved commit, push `main` to every remote, then jj new and next task.
 - Harness data directory: `$T3CODE_HOME`. Put worktrees in
