@@ -17,7 +17,8 @@ description: >-
    change is for: what changed and why, evidence (tables, Mermaid diagrams,
    coverage, test results), and links to each spec or implementation it follows
    or diverges from, with reasons for any divergence. Use short headings and
-   code formatting. Omit other PRs, internal links, and closing boilerplate.
+   code formatting. Don't hard-wrap; GitHub renders each newline. Omit other
+   PRs, internal links, and closing boilerplate.
 4. **CI:** Before requesting review, run `gh pr checks <n> --watch` and trigger
    unrun checks until all pass.
 5. **Merge:** Fast-forward single-commit PRs; a merge commit adds nothing.
