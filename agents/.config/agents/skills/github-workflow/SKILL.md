@@ -21,5 +21,7 @@ description: >-
    PRs, internal links, and closing boilerplate.
 4. **CI:** Before requesting review, run `gh pr checks <n> --watch` and trigger
    unrun checks until all pass.
-5. **Merge:** Fast-forward single-commit PRs; a merge commit adds nothing.
-   Merge multi-commit PRs with a merge commit, as one unit.
+5. **Merge:** Never press a GitHub merge button for one commit; push that
+   commit to `main` yourself, because GitHub rewrites it. For several
+   commits, run `gh pr merge --merge`. If the repo requires linear
+   history, push the commits to `main` yourself.
