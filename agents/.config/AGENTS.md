@@ -77,6 +77,8 @@ Repository style overrides these.
 - Write a comment only for the contract or the reason, as a full sentence.
   The code already shows what it does.
 - In Rust, put `#[cfg(test)]` tests in a separate file.
+- Write unsafe code as a thin unsafe layer around a safe core, because the
+  compiler checks only the safe part. No caller can misuse a safe API.
 - Prefer iterator pipelines (`map`, `filter`, `filter_map`, `collect`).
 - Avoid cloning as a shortcut.
 - The schema file is the source of truth. Once a change is on main, apply it
