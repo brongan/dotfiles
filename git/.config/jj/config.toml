@@ -13,8 +13,13 @@ email = "brennantracy@google.com"
 sign-on-push = true
 
 # The builtin trunk() knows only the origin and upstream remotes. Personal
-# repos push to the server remote. A repo setting overrides this alias.
-[revset-aliases]
+# repos push to the server remote. The scope limits the alias to repos under
+# the home directory, because repos elsewhere can ship their own trunk(). A
+# repo setting overrides it.
+[[--scope]]
+--when.repositories = ["~"]
+
+[--scope.revset-aliases]
 "trunk()" = '''
 latest(
 	remote_bookmarks(
