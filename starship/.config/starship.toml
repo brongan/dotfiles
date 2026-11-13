@@ -7,16 +7,6 @@ scan_timeout = 30
 
 command_timeout = 1000
 
-[palettes.google_dark]
-dark_grey = "#333333"
-mid_grey = "#444444"
-light_grey = "#555555"
-white = "#ffffff"
-yellow = "#ffff00"
-red = "#ff0000"
-blue = "#0000ff"
-purple = "#800080"
-
 format = """\
 $username\
 $hostname\
@@ -38,6 +28,16 @@ $time\
 $status\
 $character\
 """
+
+[palettes.google_dark]
+dark_grey = "#333333"
+mid_grey = "#444444"
+light_grey = "#555555"
+white = "#ffffff"
+yellow = "#ffff00"
+red = "#ff0000"
+blue = "#0000ff"
+purple = "#800080"
 
 [aws]
 disabled = false
