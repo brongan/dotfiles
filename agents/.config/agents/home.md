@@ -13,16 +13,15 @@
 
 ## Commit review and message protocol
 
-Review final commit candidate before describing: fast (preferably Luna):
+Review the final commit candidate with a fast model (preferably Luna):
 
-1. Have subagent review the diff for correctness, regressions, scope, and
-   unnecessary complexity.
-2. Have subagent generate the complete commit message from that same diff. 
+Have a subagent review the diff for correctness, regressions, scope,
+unnecessary complexity, and a match with the approved description.
 
-Each prompt must start with no inherited conversation or agent context
-(`fork_context=false`). The only context about the change is `$reasons`.
+The prompt must start with no inherited conversation or agent context
+(`fork_context=false`).
 
-Run each prompt with cli not delegated task tool.
+Run the prompt with cli not delegated task tool.
 
 Ex:
 ```sh
@@ -53,6 +52,8 @@ true, and quote the line:
 - A test only mirrors the implementation or a mock.
 - The diff does more than one thing (rename, move, refactor, behavior).
 - It is wrong for repeated or concurrent use, or leaves data behind.
+- The description from `jj log -r $revid -T description` claims
+  something the diff does not do, or leaves out what it does.
 </task>
 
 <output>
@@ -60,16 +61,6 @@ Line 1: APPROVE, BLOCK, or NO REVIEW (if you could not read the diff).
 Then one line per check above: OK, or file:line, the problem, and the
 better design.
 </output>
-```
-
-```text
-Write the commit message for `jj diff -r $revid`. Readers see only the
-log, not the code, so describe behavior in plain words. Do not run codex.
-
-<reason>$reasons</reason>
-If the reason conflicts with the diff, follow the diff.
-
-Output only the message.
 ```
 
 No advertisements.
