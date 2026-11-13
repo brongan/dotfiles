@@ -7,15 +7,13 @@
 - Harness data directory: `$T3CODE_HOME`. Put worktrees in
   `$T3CODE_HOME/worktrees/`.
 - Make jj worktrees with `jj workspace add`. T3 worktrees have no jj repo.
-- Before you write code, get the commit descriptions approved, because they
-  state the design in plain words.
 
 ## Commit review and message protocol
 
 Review the final commit candidate with a fast model (preferably Luna):
 
 Have a subagent review the diff for correctness, regressions, scope,
-unnecessary complexity, and a match with the approved description.
+unnecessary complexity, and a match with the description.
 
 The prompt must start with no inherited conversation or agent context
 (`fork_context=false`).
