@@ -49,13 +49,16 @@ Not on a Google machine: read ~/.config/agents/home.md.
 3. During iteration, run focused tests and checks. Run the project's full
    precommit checks once the diff is ready for review. Reread the exact final diff
    and check that every changed line contributes to the requested behavior.
-4. Run the commit review and message protocol against the exact candidate
+4. Before the reviewer sees the diff, check every line against the
+   implementation preferences below and fix what fails. The reviewer misses
+   design problems. Its APPROVE does not show that the code is good.
+5. Run the commit review and message protocol against the exact candidate
    revision.
-5. Treat self-review findings as advisory: evaluate them against the project's
+6. Treat self-review findings as advisory: evaluate them against the project's
    design and test preferences, and fix the legitimate ones. Iterate against a
    zero-context reviewer until none remain. Report the final diff and checks,
    not the findings, because step 1 already settled the design with the user.
-6. Do not claim readiness until the final diff, checks, review,
+7. Do not claim readiness until the final diff, checks, review,
    and commit description all match one another.
 
 ## Implementation preferences
