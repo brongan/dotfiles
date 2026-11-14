@@ -1,6 +1,6 @@
 # Global agent instructions
 
-Not on a Google machine: read ~/.config/agents/home.md.
+Not on a Google machine: read ~/.config/agents/home.md first.
 
 ## Working preferences
 
