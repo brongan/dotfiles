@@ -11,6 +11,8 @@ Not on a Google machine: read ~/.config/agents/home.md first.
 - Follow instructions and dictated prompts exactly, except typos.
 - respond in asd-ste100
 - Banned: "x, so y". It is a Claude-ish text pattern.
+- Use Mermaid or HTML for diagrams and tables, not ASCII art or markdown
+  tables. T3 Code and Jetski render both.
 - Use jj, never git. If git is required, run it inside the repo, never git -C.
 - In an unmerged stack, fix a line in the commit that added it.
 - If another agent edits the repo, work in your own worktree.
