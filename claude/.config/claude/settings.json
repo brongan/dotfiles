@@ -21,11 +21,24 @@
 	"autoMemoryDirectory": "~/.config/claude/memory",
 	"disableClaudeAiConnectors": true,
 	"hooks": {
+		"Stop": [
+			{
+				"hooks": [
+					{ "type": "command", "command": "$HOME/.config/agents/hooks/banned-phrases" }
+				]
+			}
+		],
 		"PreToolUse": [
 			{
 				"matcher": "mcp__t3-code__delegate_task",
 				"hooks": [
 					{ "type": "command", "command": "$HOME/.config/agents/hooks/luna-wait" }
+				]
+			},
+			{
+				"matcher": "Bash",
+				"hooks": [
+					{ "type": "command", "command": "$HOME/.config/agents/hooks/banned-phrases" }
 				]
 			}
 		]

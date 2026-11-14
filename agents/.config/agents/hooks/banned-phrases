@@ -1,0 +1,45 @@
+#!/usr/bin/python3 -I
+"""Claude and Codex hook: reject a final reply, or a Bash command that writes a
+commit or PR message, when it contains a banned phrase.
+
+The hook checks the whole command and each message file it names. It rejects
+chained commands if any argument contains a banned phrase. When a command
+writes and then uses a message file, the hook skips the file because it does
+not exist yet, but checks its text when it appears in the command itself, such
+as in a heredoc.
+
+Both harnesses treat exit 0 with no output as success and exit 2 as a
+rejection with the reason on stderr, for Stop and for PreToolUse. The Codex
+hooks page (https://learn.chatgpt.com/docs/hooks) says: "Exit `0` with no
+output is treated as success and Codex continues." A Codex Stop test with this
+script logged "hook: Stop Completed".
+"""
+import json
+import re
+import sys
+from pathlib import Path
+
+BANNED = re.compile(r"\b(unchanged|does not change|do not change)\b", re.I)
+MESSAGE_COMMAND = re.compile(
+    r"\bjj\b[^|;&\n]*?\b(commit|cma|describe|desc|new)\b|\bgit commit\b|\bgh pr (create|edit)\b"
+)
+MESSAGE_FILE = re.compile(
+    r"(?:\s-F\s+|--file[ =]|--body-file[ =]|\$\(cat\s+|(?<!<)<(?![<(])\s*)(?:'([^']*)'|\"([^\"]*)\"|([^\s'\")]+))"
+)
+
+event = json.load(sys.stdin)
+if event["hook_event_name"] == "Stop":
+    text = event.get("last_assistant_message") or ""
+else:
+    command = event["tool_input"]["command"]
+    if MESSAGE_COMMAND.search(command):
+        paths = (next(filter(None, m.groups())) for m in MESSAGE_FILE.finditer(command))
+        files = [Path(p).expanduser() for p in paths]
+        text = "\n".join([command, *(f.read_text(encoding="utf-8") for f in files if f.is_file())])
+    else:
+        text = ""
+
+match = BANNED.search(text)
+if match:
+    print(f'Write it again without "{match.group(0)}".', file=sys.stderr)
+    sys.exit(2)
