@@ -2,8 +2,8 @@
 
 ## Working preferences
 
-- lgtm means the commit description, and change are approved: move `main` to
-  the approved commit, push `main` to every remote, then jj new and next task.
+- Approval on a commit covers its description and change: move `main` to the
+  commit, push `main` to every remote, then jj new and next task.
 - Harness data directory: `$T3CODE_HOME`. Put worktrees in
   `$T3CODE_HOME/worktrees/`.
 - Make jj worktrees with `jj workspace add`. T3 worktrees have no jj repo.
