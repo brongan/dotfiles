@@ -9,7 +9,8 @@ description: >-
 
 Make each message stand alone. Readers see only the message.
 
-- **Title:** `<area>: <imperative sentence>` under 50 characters, written as an order to the codebase.
-- **What:** Up to 4 imperative sentences about the whole change, not a list of files or edits.
-- **Why:** Up to 4 sentences on the problem and any decision the code does not show.
+- Line 1: `<area>: <imperative sentence>` under 50 characters, written as an order to the codebase.
+- Paragraph 1: up to 4 imperative sentences that describe the changes at a high level, not a list of files or edits.
+- Paragraph 2: up to 4 sentences on why this change is being made (for example, context about the problem being solved or decisions the code does not show).
+- Write each paragraph on one line, with no labels or Markdown. Use straight quotes and apostrophes.
 - No references to other commits, PRs, or stacks. Plain prose, active voice.
