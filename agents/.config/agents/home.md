@@ -18,12 +18,12 @@ unnecessary complexity, and a match with the description.
 The prompt must start with no inherited conversation or agent context
 (`fork_context=false`).
 
-Run the prompt with cli not delegated task tool.
-
-Ex:
-```sh
-codex exec -m gpt-6-luna -s read-only "$prompt" </dev/null
-```
+For reviews and translations, use `delegate_task` to run Luna (`codex`,
+`gpt-6-luna`). Send feedback to the subagent’s thread with
+`t3_thread_send`. Start each review with a new `delegate_task` because it
+must begin with no context. After each round, read the result with
+`task_status` using the `taskId` returned by `t3_thread_send`; this marks
+the result delivered and prevents T3 from sending a late notification.
 
 ```text
 You review one commit before it goes on main. Its author is a coding agent that

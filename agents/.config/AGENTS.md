@@ -21,8 +21,10 @@ Not on a Google machine: read ~/.config/agents/home.md first.
   clutter.
 - Pass `--limit 1000` to `gh` list and search commands, because they return 30
   results by default and drop the rest without warning.
-- If you are Claude, pass new prose through a subagent on a fast, non-Claude
-  model with "translate this claudeish to english".
+- If you are Claude, ask a non-Claude subagent to “translate this claudeish
+  to english” for new prose. Send it any rule violations too, and use its
+  final output as written. Editing it yourself can reintroduce Claude’s
+  wording.
 - End a report after the result. The user knows how to approve.
 - Put designs, proposals, and reports inline in chat, never in artifacts. End
   a reply with at most one request for the user, with enough context to answer
