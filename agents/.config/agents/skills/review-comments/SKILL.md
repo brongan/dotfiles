@@ -14,5 +14,6 @@ Show one comment at a time with:
 3. the code and test diff,
 4. the proposed reply to the reviewer.
 
-Apply the fix and post the reply only when the user approves. On GitHub, make
-one new commit for each round of human feedback.
+After the user approves, apply, push or upload the fix, and wait for the push
+to finish before posting the reply. On GitHub, make one new commit for each
+round of human feedback.
