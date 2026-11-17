@@ -25,6 +25,12 @@ must begin with no context. After each round, read the result with
 `task_status` using the `taskId` returned by `t3_thread_send`; this marks
 the result delivered and prevents T3 from sending a late notification.
 
+When Luna sets a commit message, tell it to run one plain command:
+`jj describe -r <rev> -m "<line 1>" -m "<paragraph 1>" -m "<paragraph 2>"`,
+with a backslash before each `"` in the message. The Codex sandbox mounts
+`.git` read-only, and only a command that starts with `jj` matches the rule
+that runs it outside the sandbox.
+
 ```text
 You review one commit before it goes on main. Its author is a coding agent that
 tends to take shortcuts, and the owner finds design problems that
