@@ -32,6 +32,10 @@ with a backslash before each `"` in the message. The Codex sandbox mounts
 `.git` read-only, and only a command that starts with `jj` matches the rule
 that runs it outside the sandbox.
 
+When you ask Luna for a commit message, give it the facts about why the change
+is made, in plain words, because the message must be in Luna's words, not
+Claude's.
+
 ```text
 You review one commit before it goes on main. Its author is a coding agent that
 tends to take shortcuts, and the owner finds design problems that
