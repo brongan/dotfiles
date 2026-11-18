@@ -76,6 +76,17 @@ Repository style overrides these.
 - Do not leave duplicate implementations behind. When splitting code into
   modules, wire in the new modules and remove the old copy.
 - Prefer typed wire models over json slop
+- When you write a parser for binary data, follow these rules, because a
+  parser reads untrusted input:
+  - Parse, don't validate.
+  - Check every length before you read.
+  - Read in wire order.
+  - Reject, do not repair.
+  - Make the parser total.
+  - Decode into enums.
+  - Write the parser and serializer as a pair.
+  - Fuzz the parser.
+  - Use a parser library or one shared reader.
 - Make invalid states unrepresentable.
 - Replace vague errors with specific protocol or system errors. Avoid catch-alls.
 - Startup failures should return errors, not panic or silently fall back to
