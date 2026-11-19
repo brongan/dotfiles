@@ -71,10 +71,7 @@ Repository style overrides these.
 
 - Edit files with the harness's edit tool, not `sed` or other shell rewrites,
   because a regex replace can corrupt a file without anyone noticing.
-- Prefer behavior-preserving, incremental refactors over broad rewrites.
 - Keep production behavior changes and test movement separate when practical.
-- Do not leave duplicate implementations behind. When splitting code into
-  modules, wire in the new modules and remove the old copy.
 - Prefer typed wire models over json slop
 - When you write a parser for binary data, follow these rules, because a
   parser reads untrusted input:
@@ -98,6 +95,5 @@ Repository style overrides these.
 - Write unsafe code as a thin unsafe layer around a safe core, because the
   compiler checks only the safe part. No caller can misuse a safe API.
 - Prefer iterator pipelines (`map`, `filter`, `filter_map`, `collect`).
-- Avoid cloning as a shortcut.
 - The schema file is the source of truth. Once a change is on main, apply it
   to live databases with hand-written DDL kept out of the repo.
