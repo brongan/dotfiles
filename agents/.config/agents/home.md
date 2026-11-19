@@ -12,12 +12,6 @@
 
 Review the final commit candidate with a fast model (preferably Luna):
 
-Have a subagent review the diff for correctness, regressions, scope,
-unnecessary complexity, and a match with the description.
-
-The prompt must start with no inherited conversation or agent context
-(`fork_context=false`).
-
 For reviews and translations, use `delegate_task` to run Luna (`codex`,
 `gpt-6-luna`). Send feedback to the subagent’s thread with
 `t3_thread_send`. Start each review with a new `delegate_task` because it
