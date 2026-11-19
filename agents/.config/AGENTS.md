@@ -62,8 +62,6 @@ Not on a Google machine: read ~/.config/agents/home.md first.
    design and test preferences, and fix the legitimate ones. Iterate against a
    zero-context reviewer until none remain. Report the final diff and checks,
    not the findings, because step 1 already settled the design with the user.
-7. Do not claim readiness until the final diff, checks, review,
-   and commit description all match one another.
 
 ## Implementation preferences
 
