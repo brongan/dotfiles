@@ -17,15 +17,16 @@ Luna (`codex`, `gpt-6-luna`). Start each round, feedback included, as a new
 `delegate_task` with the earlier output and your evidence, because T3 shows
 the result of a `t3_thread_send` round as a card in the chat.
 
-When Luna sets a commit message, tell it to run one plain command:
-`jj describe -r <rev> -m "<line 1>" -m "<paragraph 1>" -m "<paragraph 2>"`,
-with a backslash before each `"` in the message. The Codex sandbox mounts
-`.git` read-only, and only a command that starts with `jj` matches the rule
-that runs it outside the sandbox.
+Luna writes and sets every commit message. Send it only this text, because
+it copies anything extra into the message:
 
-When you ask Luna for a commit message, give it the facts about why the change
-is made, in plain words, because the message must be in Luna's words, not
-Claude's.
+```text
+Write the commit message for <rev> in <repo> with the commit-messages skill.
+
+Reason: <why the change is needed>
+
+Set it with `jj describe -r <rev> -m "<line 1>" -m "<paragraph 1>" -m "<paragraph 2>"`.
+```
 
 ```text
 You review one commit before it goes on main. Its author is a coding agent that
