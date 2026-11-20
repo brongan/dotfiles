@@ -1,12 +1,19 @@
 #!/usr/bin/python3 -I
-"""Reject Luna delegate calls that do not wait.
+"""Require Luna delegate calls to wait and block sends into delegated task threads.
 
-Waiting returns the result in the call and avoids unread result cards in chat.
+Waiting returns the result in the call and avoids unread result cards. Sends
+into delegated task threads create a card, and the hook blocks every send into
+those threads.
 """
 import json
 import sys
 
-task = json.load(sys.stdin)["tool_input"]
-if task.get("target", {}).get("model", "").endswith("-luna") and task.get("mode") != "wait":
+event = json.load(sys.stdin)
+call = event["tool_input"]
+if event["tool_name"] == "mcp__t3-code__t3_thread_send":
+    if call["threadId"].startswith("thread:delegated-task:"):
+        print('Start a new delegate_task with mode: "wait" and the earlier output.', file=sys.stderr)
+        sys.exit(2)
+elif call.get("target", {}).get("model", "").endswith("-luna") and call.get("mode") != "wait":
     print('Run Luna with mode: "wait".', file=sys.stderr)
     sys.exit(2)

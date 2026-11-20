@@ -30,7 +30,7 @@
 		],
 		"PreToolUse": [
 			{
-				"matcher": "mcp__t3-code__delegate_task",
+				"matcher": "mcp__t3-code__delegate_task|mcp__t3-code__t3_thread_send",
 				"hooks": [
 					{ "type": "command", "command": "$HOME/.config/agents/hooks/luna-wait" }
 				]
