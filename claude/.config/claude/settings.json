@@ -19,5 +19,15 @@
 	"skipAutoPermissionPrompt": true,
 	"switchModelsOnFlag": true,
 	"autoMemoryDirectory": "~/.config/claude/memory",
-	"disableClaudeAiConnectors": true
+	"disableClaudeAiConnectors": true,
+	"hooks": {
+		"PreToolUse": [
+			{
+				"matcher": "mcp__t3-code__delegate_task",
+				"hooks": [
+					{ "type": "command", "command": "$HOME/.config/agents/hooks/luna-wait" }
+				]
+			}
+		]
+	}
 }

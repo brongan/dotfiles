@@ -1,0 +1,12 @@
+#!/usr/bin/python3 -I
+"""Reject Luna delegate calls that do not wait.
+
+Waiting returns the result in the call and avoids unread result cards in chat.
+"""
+import json
+import sys
+
+task = json.load(sys.stdin)["tool_input"]
+if task.get("target", {}).get("model", "").endswith("-luna") and task.get("mode") != "wait":
+    print('Run Luna with mode: "wait".', file=sys.stderr)
+    sys.exit(2)
