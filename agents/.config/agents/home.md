@@ -15,10 +15,10 @@ Review the final commit candidate with a fast model (preferably Luna):
 For reviews and translations, use `delegate_task` to run Luna (`codex`,
 `gpt-6-luna`). Send feedback to the subagent’s thread with
 `t3_thread_send`. Start each review with a new `delegate_task` because it
-must begin with no context. After each round, read the result with
-`task_status` using the `taskId` returned by `delegate_task` or
-`t3_thread_send`; this marks the result delivered and prevents T3 from
-sending a late notification.
+must begin with no context. Run `delegate_task` with `mode: "wait"`. After
+a `t3_thread_send`, call `t3_thread_wait` and then `task_status` before you
+end the turn, even if T3 says to end it, because T3 shows each unread result
+as a card in the user's chat.
 
 When Luna sets a commit message, tell it to run one plain command:
 `jj describe -r <rev> -m "<line 1>" -m "<paragraph 1>" -m "<paragraph 2>"`,
