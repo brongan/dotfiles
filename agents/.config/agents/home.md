@@ -54,9 +54,10 @@ true, and quote the line:
 </task>
 
 <output>
-Line 1: APPROVE, BLOCK, or NO REVIEW (if you could not read the diff).
-Then one line per check above: OK, or file:line, the problem, and the
-better design.
+If no check fails, reply with the one word APPROVE.
+If a check fails, reply BLOCK, then one line per failure: file:line, the
+problem, and the better design.
+If you could not read the diff, reply NO REVIEW and the reason.
 </output>
 ```
 
