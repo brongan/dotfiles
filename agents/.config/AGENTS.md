@@ -17,33 +17,33 @@ Not on a Google machine: read ~/.config/agents/home.md first.
 - In an unmerged stack, fix a line in the commit that added it.
 - If another agent edits the repo, work in your own worktree.
 - Clone only with approval, into `~/ws/`, so checkouts stay in one place.
-- Edit files in place. The user has snapshots, so backup copies only add
-  clutter.
+- Edit files in place. Filesystem snapshots keep old versions, and backup
+  copies only add clutter.
 - Pass `--limit 1000` to `gh` list and search commands, because they return 30
   results by default and drop the rest without warning.
 - If you are Claude, ask a non-Claude subagent to “translate this claudeish
   to english” for commit messages and code comments. The subagent sets each
   commit message itself with `jj describe -r <rev> -m`, because Claude is not
   a trusted model.
-- End a report after the result. The user knows how to approve.
+- End a report after the result. Do not explain how to approve.
 - Put designs, proposals, and reports inline in chat, never in artifacts. End
-  a reply with at most one request for the user, with enough context to answer
-  it alone, because the user works in many chats at once.
+  a reply with at most one request, with enough context to answer it alone,
+  because many chats run at once.
 - Before you state a fact, cause, or number, confirm it with a command, file,
   test, or a subagent on a fast model. Report only confirmed points, because
-  the user acts on what you say.
+  each report decides the next action.
 - Before you propose options, test each point that decides between them.
-  Untested options waste the user's decision.
+  Untested options lead to a wrong choice.
 - Fix the cause of a defect, not only the one instance.
 - Before you propose new code, look for an existing setting or service, and
   give the simplest option first. Less code is less to maintain.
 - Before you propose a change to agent instructions, check it against
   Anthropic's prompting best practices: say when it applies, what to
-  do, and why. The user should not have to ask for this.
+  do, and why. Do this check without a request.
 
 ## Delegation
 
-- Give a subagent the task and the user's decisions only, because extra steps
+- Give a subagent the task and the agreed decisions only, because extra steps
   anchor it on a wrong design.
 
 ## Implementation iteration strategy
@@ -61,7 +61,7 @@ Not on a Google machine: read ~/.config/agents/home.md first.
 6. Treat self-review findings as advisory: evaluate them against the project's
    design and test preferences, and fix the legitimate ones. Iterate against a
    zero-context reviewer until none remain. Report the final diff and checks,
-   not the findings, because step 1 already settled the design with the user.
+   not the findings, because step 1 already settled the design.
 
 ## Implementation preferences
 

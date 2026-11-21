@@ -30,8 +30,8 @@ Set it with `jj describe -r <rev> -m "<line 1>" -m "<paragraph 1>" -m "<paragrap
 
 ```text
 You review one commit before it goes on main. Its author is a coding agent that
-tends to take shortcuts, and the owner finds design problems that
-reviewers miss. Read-only: inspect with jj and read files; do not run codex.
+tends to take shortcuts. Look hard for design problems, because reviewers
+often miss them. Read-only: inspect with jj and read files; do not run codex.
 
 <task>
 Read `jj diff -r $revid` and the code around each change. BLOCK if any is
