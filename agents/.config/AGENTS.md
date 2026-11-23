@@ -21,10 +21,11 @@ Not on a Google machine: read ~/.config/agents/home.md first.
   copies only add clutter.
 - Pass `--limit 1000` to `gh` list and search commands, because they return 30
   results by default and drop the rest without warning.
-- If you are Claude, ask a non-Claude subagent to “translate this claudeish
-  to english” for commit messages and code comments. The subagent sets each
-  commit message itself with `jj describe -r <rev> -m`, because Claude is not
-  a trusted model.
+- If you are Claude, have a non-Claude subagent write and set commit messages,
+  PR descriptions, and code comments (`jj describe -r <rev> -m` or the PR
+  update command), passing only the repo, revision, and reason for the change,
+  because Claude speaks claudeish, not English, and extra notes get copied
+  into the message.
 - End a report after the result. Do not explain how to approve.
 - Put designs, proposals, and reports inline in chat, never in artifacts. End
   a reply with at most one request, with enough context to answer it alone,
