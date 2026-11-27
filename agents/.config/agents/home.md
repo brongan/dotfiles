@@ -21,12 +21,9 @@ Luna writes and sets every commit message. Send it only this text, because
 it copies anything extra into the message:
 
 ```text
-Write a new commit message for <rev> in <repo> from its diff with the
-commit-messages skill. Replace its current description.
+Write the commit message for <rev> in <repo> with the commit-messages skill.
 
 Reason: <why the change is needed>
-
-Set it with `jj describe -r <rev> -m "<line 1>" -m "<paragraph 1>" -m "<paragraph 2>"`.
 ```
 
 ```text
