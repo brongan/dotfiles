@@ -10,15 +10,13 @@
 
 ## Commit review and message protocol
 
-Review the final commit candidate with a fast model (preferably Luna):
+Run reviews and commit messages on a fast non-Claude model, such as Luna
+(`codex`, `gpt-6-luna`) or Hydrogen (`antigravity`, `gemini-4-hydrogen`),
+with `delegate_task` and `mode: "wait"`. Start each round as a new
+`delegate_task`, because a `t3_thread_send` round makes a card in the chat.
 
-For reviews and translations, use `delegate_task` with `mode: "wait"` to run
-Luna (`codex`, `gpt-6-luna`). Start each round, feedback included, as a new
-`delegate_task` with the earlier output and your evidence, because T3 shows
-the result of a `t3_thread_send` round as a card in the chat.
-
-Luna writes and sets every commit message. Send it only this text, because
-it copies anything extra into the message:
+For a commit message, send only the template below in every round, because
+the model copies anything extra into the message:
 
 ```text
 Write the commit message for <rev> in <repo> with the commit-messages skill.
